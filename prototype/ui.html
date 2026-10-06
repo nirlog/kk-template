@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="assets/css/components.css" />
     <link rel="stylesheet" href="assets/css/pages.css" />
     <link rel="stylesheet" href="assets/css/product-stage.css" />
+    <link rel="stylesheet" href="assets/css/catalog.css" />
     <script src="assets/js/prototype.js" defer></script>
+    <script src="assets/js/catalog-experience.js" defer></script>
     <script src="assets/js/product-experience.js" defer></script>
   </head>
   <body>
@@ -38,8 +40,8 @@
           >KORSAC</a
         >
         <nav class="k-nav" aria-label="Основная навигация">
-          <a href="product.html#configurator">Компьютеры</a
-          ><a href="product.html">Для игр</a
+          <a href="catalog.html">Компьютеры</a
+          ><a href="catalog.html#play-range">Для игр</a
           ><button
             class="k-button k-button--text"
             type="button"
@@ -98,7 +100,8 @@
           ><a href="#navigation">Навигация</a
           ><a href="#overlays">Окна и уведомления</a>
           <a href="#motion">Motion</a
-          ><a href="#interactive">Интерактивный продукт</a>
+          ><a href="#interactive">Интерактивный продукт</a
+          ><a href="#catalog-primitives">Catalog Primitives</a>
         </nav>
         <section
           class="k-kit-section k-stack"
@@ -1730,6 +1733,634 @@
             <p class="k-price-note">Статический пример · без расчёта</p>
           </div>
         </section>
+        <section
+          class="k-kit-section k-stack k-catalog-kit"
+          id="catalog-primitives"
+          aria-labelledby="catalog-primitives-title"
+          data-catalog-experience
+          data-catalog-selection="play-1440"
+        >
+          <div class="k-stack k-stack--tight">
+            <span class="k-registration">CATALOG / PRIMITIVES</span>
+            <h2 id="catalog-primitives-title">Catalog Primitives</h2>
+            <p class="k-muted">
+              Семейство, ступень, выбранная карточка, MINI-ветка и сравнение.
+              Тот же controller и HTML-источник данных, что в каталоге.
+            </p>
+          </div>
+          <div
+            class="k-catalog-families"
+            role="group"
+            aria-label="Семейства KORSAC"
+          >
+            <span class="k-catalog-family is-current"
+              ><strong>PLAY</strong><span>Для игр</span></span
+            >
+            <button type="button" class="k-catalog-family" disabled>
+              <strong>CREATE</strong><span>В разработке</span>
+            </button>
+            <button type="button" class="k-catalog-family" disabled>
+              <strong>WORK</strong><span>В разработке</span>
+            </button>
+          </div>
+          <div
+            class="k-range-navigator"
+            role="group"
+            aria-label="Игровые сценарии PLAY"
+          >
+            <div class="k-range-ladder">
+              <div class="k-range-step" data-catalog-rail="play-1440">
+                <button
+                  class="k-range-button"
+                  type="button"
+                  data-catalog-pick="play-1440"
+                  aria-pressed="false"
+                  aria-controls="kit-catalog-preview"
+                  data-catalog-enhanced
+                  hidden
+                >
+                  <span>1440p</span><small>Основной баланс</small>
+                </button>
+                <a
+                  class="k-range-button"
+                  href="#kit-catalog-play-1440"
+                  data-catalog-fallback
+                  ><span>1440p</span><small>Основной баланс</small></a
+                >
+              </div>
+              <div class="k-range-step" data-catalog-rail="play-1440-pro">
+                <button
+                  class="k-range-button"
+                  type="button"
+                  data-catalog-pick="play-1440-pro"
+                  aria-pressed="false"
+                  aria-controls="kit-catalog-preview"
+                  data-catalog-enhanced
+                  hidden
+                >
+                  <span>1440p PRO</span><small>Высокий FPS</small>
+                </button>
+                <a
+                  class="k-range-button"
+                  href="#kit-catalog-play-1440-pro"
+                  data-catalog-fallback
+                  ><span>1440p PRO</span><small>Высокий FPS</small></a
+                >
+              </div>
+            </div>
+            <div
+              class="k-range-branch"
+              data-catalog-rail="play-1440-mini"
+              data-catalog-parent="play-1440"
+            >
+              <span class="k-small k-muted"
+                >От PLAY 1440<br />Другой форм-фактор</span
+              >
+              <button
+                class="k-range-button"
+                type="button"
+                data-catalog-pick="play-1440-mini"
+                aria-pressed="false"
+                aria-controls="kit-catalog-preview"
+                data-catalog-enhanced
+                hidden
+              >
+                <span>MINI</span><small>Компактный Mini-ITX</small>
+              </button>
+              <a
+                class="k-range-button"
+                href="#kit-catalog-play-1440-mini"
+                data-catalog-fallback
+                ><span>MINI</span><small>Компактный Mini-ITX</small></a
+              >
+              <p class="k-small">
+                Сценарий PLAY 1440. <br />Компактный Mini-ITX.
+              </p>
+            </div>
+          </div>
+          <section
+            class="k-catalog-preview k-frame"
+            id="kit-catalog-preview"
+            aria-labelledby="kit-catalog-preview-title"
+            data-catalog-preview
+            data-catalog-enhanced
+            hidden
+          >
+            <div class="k-catalog-preview-register">
+              <span class="k-registration">PLAY / RANGE</span
+              ><span class="k-small" data-catalog-identifier></span>
+            </div>
+            <h2 class="k-sr-only" id="kit-catalog-preview-title">
+              Выбранная система PLAY
+            </h2>
+            <div data-catalog-preview-content></div>
+            <p
+              class="k-sr-only"
+              role="status"
+              aria-live="polite"
+              aria-atomic="true"
+              data-catalog-selection-status
+            ></p>
+          </section>
+          <div class="k-catalog-cards k-catalog-cards--kit">
+            <article
+              class="k-catalog-card k-catalog-card--hero"
+              id="kit-catalog-play-1440"
+              data-catalog-model="play-1440"
+            >
+              <header class="k-catalog-card-register">
+                <span class="k-serial">02</span><span>Основной баланс</span
+                ><span class="k-catalog-selected" data-catalog-selected hidden
+                  >Выбрано</span
+                >
+              </header>
+              <div class="k-catalog-content" data-catalog-content>
+                <figure
+                  class="k-catalog-media"
+                  data-catalog-media
+                  data-form-factor="standard"
+                >
+                  <div class="k-catalog-silhouette" aria-hidden="true">
+                    <span class="k-catalog-front"></span
+                    ><span class="k-catalog-slot"></span
+                    ><span class="k-catalog-badge"></span>
+                  </div>
+                  <figcaption>Условная схема</figcaption>
+                </figure>
+                <div class="k-catalog-copy">
+                  <h3 class="k-catalog-designation" data-catalog-title>
+                    <span>KORSAC PLAY&nbsp;</span><strong>1440</strong>
+                  </h3>
+                  <p class="k-catalog-form" data-catalog-property="form">
+                    Стандартный корпус
+                  </p>
+                  <p class="k-catalog-purpose" data-catalog-property="purpose">
+                    Сбалансированная система для современных игр в 2560×1440.
+                  </p>
+                  <span data-catalog-property="scenario" hidden
+                    >2560×1440 / высокие настройки</span
+                  >
+                  <dl class="k-catalog-specs">
+                    <div>
+                      <dt>Процессор</dt>
+                      <dd data-catalog-property="cpu">Ryzen 7 9700X</dd>
+                    </div>
+                    <div>
+                      <dt>Графика</dt>
+                      <dd data-catalog-property="gpu">
+                        RTX 5070 · 12 ГБ GDDR7
+                      </dd>
+                    </div>
+                    <div>
+                      <dt>Память</dt>
+                      <dd data-catalog-property="ram">32 ГБ DDR5</dd>
+                    </div>
+                    <div>
+                      <dt>SSD</dt>
+                      <dd data-catalog-property="ssd">1 ТБ NVMe TLC</dd>
+                    </div>
+                  </dl>
+                  <p class="k-catalog-scope">
+                    <span>Настройка:</span>
+                    <span data-catalog-property="scope"
+                      >RAM 32/64 ГБ · основной и второй SSD · корпус</span
+                    >
+                  </p>
+                </div>
+              </div>
+              <div class="k-catalog-actions" data-catalog-actions>
+                <p class="k-catalog-price">
+                  <span class="k-price">179 900 ₽</span
+                  ><span class="k-price-note">Цена — пример</span>
+                </p>
+                <div class="k-cluster">
+                  <a class="k-button" href="product.html">Подробнее →</a
+                  ><a
+                    class="k-button k-button--text"
+                    href="product.html#configurator"
+                    >Настроить</a
+                  >
+                </div>
+              </div>
+              <div class="k-catalog-card-controls" data-catalog-enhanced hidden>
+                <button
+                  type="button"
+                  class="k-button k-button--text"
+                  data-catalog-pick="play-1440"
+                  aria-pressed="false"
+                  aria-controls="kit-catalog-preview"
+                  aria-label="Выбрать KORSAC PLAY 1440"
+                >
+                  Выбрать модель
+                </button>
+                <label class="k-catalog-check"
+                  ><input
+                    type="checkbox"
+                    data-catalog-compare="play-1440"
+                  />Сравнить<span class="k-sr-only">
+                    KORSAC PLAY 1440</span
+                  ></label
+                >
+              </div>
+              <template data-catalog-recommendation
+                ><p>
+                  Для высокого refresh rate и тяжёлой графики рассмотрите более
+                  высокий класс PRO.
+                </p>
+                <button
+                  type="button"
+                  class="k-button k-button--text"
+                  data-catalog-pick="play-1440-pro"
+                  aria-controls="kit-catalog-preview"
+                >
+                  Посмотреть PLAY 1440 PRO →
+                </button></template
+              >
+            </article>
+            <article
+              class="k-catalog-card"
+              id="kit-catalog-play-1440-mini"
+              data-catalog-model="play-1440-mini"
+            >
+              <header class="k-catalog-card-register">
+                <span class="k-serial">02.M</span
+                ><span>1440p · компактное исполнение</span
+                ><span class="k-catalog-selected" data-catalog-selected hidden
+                  >Выбрано</span
+                >
+              </header>
+              <div class="k-catalog-content" data-catalog-content>
+                <figure
+                  class="k-catalog-media"
+                  data-catalog-media
+                  data-form-factor="mini"
+                >
+                  <div class="k-catalog-silhouette" aria-hidden="true">
+                    <span class="k-catalog-front"></span
+                    ><span class="k-catalog-slot"></span
+                    ><span class="k-catalog-badge"></span>
+                  </div>
+                  <figcaption>Условная схема</figcaption>
+                </figure>
+                <div class="k-catalog-copy">
+                  <h3 class="k-catalog-designation" data-catalog-title>
+                    <span>KORSAC PLAY&nbsp;</span
+                    ><strong
+                      >1440 <span class="k-mini-marker">MINI</span></strong
+                    >
+                  </h3>
+                  <p class="k-catalog-form" data-catalog-property="form">
+                    Mini-ITX · компактное исполнение
+                  </p>
+                  <p class="k-catalog-purpose" data-catalog-property="purpose">
+                    Тот же игровой сценарий 1440p в компактном Mini-ITX
+                    исполнении.
+                  </p>
+                  <span data-catalog-property="scenario" hidden
+                    >2560×1440 / высокие настройки</span
+                  >
+                  <dl class="k-catalog-specs">
+                    <div>
+                      <dt>Процессор</dt>
+                      <dd data-catalog-property="cpu">
+                        Ryzen 7 игрового класса
+                      </dd>
+                    </div>
+                    <div>
+                      <dt>Графика</dt>
+                      <dd data-catalog-property="gpu">
+                        Класс RTX 5070 · проверенные исполнения
+                      </dd>
+                    </div>
+                    <div>
+                      <dt>Память</dt>
+                      <dd data-catalog-property="ram">32 ГБ DDR5</dd>
+                    </div>
+                    <div>
+                      <dt>SSD</dt>
+                      <dd data-catalog-property="ssd">1 ТБ NVMe</dd>
+                    </div>
+                  </dl>
+                  <p class="k-catalog-scope">
+                    <span>Настройка:</span>
+                    <span data-catalog-property="scope"
+                      >RAM 32/64 ГБ · SSD 1/2 ТБ · совместимые корпус и второй
+                      SSD</span
+                    >
+                  </p>
+                </div>
+              </div>
+              <div class="k-catalog-actions" data-catalog-actions>
+                <p class="k-catalog-price">
+                  <span class="k-small k-muted"
+                    >Стоимость уточняется при подборе конфигурации</span
+                  >
+                </p>
+                <div class="k-cluster">
+                  <a
+                    class="k-button k-button--secondary"
+                    href="#kit-catalog-model-note"
+                    data-catalog-placeholder
+                    >Подробнее →</a
+                  ><a
+                    class="k-button k-button--text"
+                    href="#kit-catalog-model-note"
+                    data-catalog-placeholder
+                    >Настроить</a
+                  >
+                </div>
+              </div>
+              <div class="k-catalog-card-controls" data-catalog-enhanced hidden>
+                <button
+                  type="button"
+                  class="k-button k-button--text"
+                  data-catalog-pick="play-1440-mini"
+                  aria-pressed="false"
+                  aria-controls="kit-catalog-preview"
+                  aria-label="Выбрать KORSAC PLAY 1440 MINI"
+                >
+                  Выбрать модель
+                </button>
+                <label class="k-catalog-check"
+                  ><input
+                    type="checkbox"
+                    data-catalog-compare="play-1440-mini"
+                  />Сравнить<span class="k-sr-only">
+                    KORSAC PLAY 1440 MINI</span
+                  ></label
+                >
+              </div>
+              <template data-catalog-recommendation
+                ><p>
+                  MINI выбирают ради компактности. Если важнее более высокий
+                  игровой класс, сравните с PRO.
+                </p>
+                <button
+                  type="button"
+                  class="k-button k-button--text"
+                  data-catalog-pick="play-1440-pro"
+                  aria-controls="kit-catalog-preview"
+                >
+                  Посмотреть PLAY 1440 PRO →
+                </button></template
+              >
+            </article>
+            <article
+              class="k-catalog-card"
+              id="kit-catalog-play-1440-pro"
+              data-catalog-model="play-1440-pro"
+            >
+              <header class="k-catalog-card-register">
+                <span class="k-serial">03</span
+                ><span>Высокая частота · тяжёлая графика</span
+                ><span class="k-catalog-selected" data-catalog-selected hidden
+                  >Выбрано</span
+                >
+              </header>
+              <div class="k-catalog-content" data-catalog-content>
+                <figure
+                  class="k-catalog-media"
+                  data-catalog-media
+                  data-form-factor="standard"
+                >
+                  <div class="k-catalog-silhouette" aria-hidden="true">
+                    <span class="k-catalog-front"></span
+                    ><span class="k-catalog-slot"></span
+                    ><span class="k-catalog-badge"></span>
+                  </div>
+                  <figcaption>Условная схема</figcaption>
+                </figure>
+                <div class="k-catalog-copy">
+                  <h3 class="k-catalog-designation" data-catalog-title>
+                    <span>KORSAC PLAY&nbsp;</span><strong>1440 PRO</strong>
+                  </h3>
+                  <p class="k-catalog-form" data-catalog-property="form">
+                    Стандартный корпус · усиленное охлаждение
+                  </p>
+                  <p class="k-catalog-purpose" data-catalog-property="purpose">
+                    Для 1440p с высоким refresh rate, тяжёлых игр и ray tracing.
+                  </p>
+                  <span data-catalog-property="scenario" hidden
+                    >1440p / high refresh / ray tracing</span
+                  >
+                  <dl class="k-catalog-specs">
+                    <div>
+                      <dt>Процессор</dt>
+                      <dd data-catalog-property="cpu">
+                        Повышенный игровой класс · ориентир X3D
+                      </dd>
+                    </div>
+                    <div>
+                      <dt>Графика</dt>
+                      <dd data-catalog-property="gpu">
+                        Класс RTX 5070 Ti · 16 ГБ
+                      </dd>
+                    </div>
+                    <div>
+                      <dt>Память</dt>
+                      <dd data-catalog-property="ram">32 ГБ DDR5</dd>
+                    </div>
+                    <div>
+                      <dt>SSD</dt>
+                      <dd data-catalog-property="ssd">2 ТБ NVMe</dd>
+                    </div>
+                  </dl>
+                  <p class="k-catalog-scope">
+                    <span>Настройка:</span>
+                    <span data-catalog-property="scope"
+                      >RAM 32/64 ГБ · SSD 2/4 ТБ · второй SSD · корпус</span
+                    >
+                  </p>
+                </div>
+              </div>
+              <div class="k-catalog-actions" data-catalog-actions>
+                <p class="k-catalog-price">
+                  <span class="k-small k-muted"
+                    >Стоимость уточняется при подборе конфигурации</span
+                  >
+                </p>
+                <div class="k-cluster">
+                  <a
+                    class="k-button k-button--secondary"
+                    href="#kit-catalog-model-note"
+                    data-catalog-placeholder
+                    >Подробнее →</a
+                  ><a
+                    class="k-button k-button--text"
+                    href="#kit-catalog-model-note"
+                    data-catalog-placeholder
+                    >Настроить</a
+                  >
+                </div>
+              </div>
+              <div class="k-catalog-card-controls" data-catalog-enhanced hidden>
+                <button
+                  type="button"
+                  class="k-button k-button--text"
+                  data-catalog-pick="play-1440-pro"
+                  aria-pressed="false"
+                  aria-controls="kit-catalog-preview"
+                  aria-label="Выбрать KORSAC PLAY 1440 PRO"
+                >
+                  Выбрать модель
+                </button>
+                <label class="k-catalog-check"
+                  ><input
+                    type="checkbox"
+                    data-catalog-compare="play-1440-pro"
+                  />Сравнить<span class="k-sr-only">
+                    KORSAC PLAY 1440 PRO</span
+                  ></label
+                >
+              </div>
+              <template data-catalog-recommendation
+                ><p>
+                  PRO — выше CPU/GPU-класс и 2 ТБ по умолчанию. Для обычного
+                  1440p начните с основной модели.
+                </p>
+                <button
+                  type="button"
+                  class="k-button k-button--text"
+                  data-catalog-pick="play-1440"
+                  aria-controls="kit-catalog-preview"
+                >
+                  Посмотреть PLAY 1440 →
+                </button></template
+              >
+            </article>
+          </div>
+          <section
+            class="k-catalog-compare-entry"
+            aria-labelledby="kit-catalog-compare-heading"
+            data-catalog-enhanced
+            hidden
+          >
+            <div class="k-stack k-stack--tight">
+              <h2 id="kit-catalog-compare-heading">Сравните классы систем</h2>
+              <p class="k-muted">
+                Отметьте две или три модели. Сценарий, графика и форм-фактор —
+                рядом.
+              </p>
+              <p
+                class="k-small"
+                role="status"
+                aria-live="polite"
+                aria-atomic="true"
+                data-catalog-compare-status
+              >
+                Выбрано 0 из 3. Отметьте минимум две модели.
+              </p>
+            </div>
+            <button
+              class="k-button k-button--secondary"
+              type="button"
+              data-catalog-compare-open
+              data-dialog-open="kit-catalog-compare-dialog"
+              aria-controls="kit-catalog-compare-dialog"
+              disabled
+            >
+              Сравнить
+            </button>
+          </section>
+          <dialog
+            class="k-dialog k-catalog-compare-dialog"
+            id="kit-catalog-compare-dialog"
+            aria-labelledby="kit-catalog-compare-title"
+          >
+            <div class="k-dialog-header">
+              <div class="k-stack k-stack--tight">
+                <span class="k-registration">PLAY / COMPARE</span>
+                <h2 id="kit-catalog-compare-title">
+                  Разные задачи. Разные системы.
+                </h2>
+              </div>
+              <button
+                class="k-button k-button--icon"
+                type="button"
+                data-dialog-close
+                aria-label="Закрыть сравнение"
+              >
+                ×
+              </button>
+            </div>
+            <div
+              class="k-catalog-compare-columns"
+              data-catalog-comparison
+            ></div>
+            <p class="k-small k-muted">
+              Классы компонентов — рабочие ориентиры архитектуры. FPS и
+              результаты тестов появятся после проверки конкретных ревизий.
+            </p>
+          </dialog>
+          <template data-catalog-compare-template
+            ><article class="k-compare-product">
+              <h3 data-catalog-compare-title></h3>
+              <dl class="k-compare-properties">
+                <div>
+                  <dt>Сценарий</dt>
+                  <dd data-catalog-compare-property="scenario"></dd>
+                </div>
+                <div>
+                  <dt>Графический класс</dt>
+                  <dd data-catalog-compare-property="gpu"></dd>
+                </div>
+                <div>
+                  <dt>Базовая память</dt>
+                  <dd data-catalog-compare-property="ram"></dd>
+                </div>
+                <div>
+                  <dt>Базовый SSD</dt>
+                  <dd data-catalog-compare-property="ssd"></dd>
+                </div>
+                <div>
+                  <dt>Форм-фактор</dt>
+                  <dd data-catalog-compare-property="form"></dd>
+                </div>
+                <div>
+                  <dt>Настройка</dt>
+                  <dd data-catalog-compare-property="scope"></dd>
+                </div>
+                <div>
+                  <dt>Для кого</dt>
+                  <dd data-catalog-compare-property="purpose"></dd>
+                </div>
+              </dl></article
+          ></template>
+          <div class="k-catalog-comparison-row">
+            <span class="k-small k-muted"
+              >Пример comparison row · Базовый SSD</span
+            ><span>PLAY 1440 <strong>1 ТБ</strong></span
+            ><span>PLAY 1440 PRO <strong>2 ТБ</strong></span>
+          </div>
+          <p class="k-small k-muted" id="kit-catalog-model-note">
+            Подробные страницы PRO и MINI появятся позже.
+            <a href="catalog.html">Открыть весь каталог →</a>
+          </p>
+          <dialog
+            class="k-dialog"
+            id="kit-catalog-model-dialog"
+            aria-labelledby="kit-catalog-model-dialog-title"
+            data-catalog-model-dialog
+          >
+            <div class="k-dialog-header">
+              <h2 id="kit-catalog-model-dialog-title" data-catalog-dialog-title>
+                Модель PLAY
+              </h2>
+              <button
+                class="k-button k-button--icon"
+                type="button"
+                data-dialog-close
+                aria-label="Закрыть окно"
+              >
+                ×
+              </button>
+            </div>
+            <p>
+              Страница и настройка модели появятся позже. Сейчас доступно
+              сравнение классов.
+            </p>
+          </dialog>
+        </section>
       </div>
     </main>
     <footer class="k-footer">
@@ -1807,9 +2438,9 @@
         <a href="index.html"
           ><span class="k-eyebrow k-nav-index" aria-hidden="true">01</span
           >Прототип</a
-        ><a href="product.html"
+        ><a href="catalog.html"
           ><span class="k-eyebrow k-nav-index" aria-hidden="true">02</span
-          >Компьютеры · Для игр</a
+          >Каталог · KORSAC PLAY</a
         ><a href="product.html#configurator"
           ><span class="k-eyebrow k-nav-index" aria-hidden="true">03</span
           >Настроить PLAY 1440</a

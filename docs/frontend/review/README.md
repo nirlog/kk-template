@@ -1,5 +1,43 @@
 # Материалы визуального и motion-ревью KORSAC
 
+## Catalog & Product Family Experience v1
+
+[Каталог: короткая запись — MP4](catalog-v1.mp4) показывает normal motion:
+примерно 0–9 s — PLAY 1440 → PRO → MINI → 4K → 1080 → 1440,
+keyboard focus/selection карточки MINI, отметки 1440/PRO и comparison dialog;
+примерно 9–14,5 s — mobile touch selector PRO → MINI → 1440 с местным
+видимым обновлением preview и обычной короткой прокруткой к CTA.
+
+Захват: Chromium 151, desktop viewport 1440×1080 и touch-emulated mobile
+375×800. MP4 H.264: 960×720 / 25 fps, **14,48 s**, около **1,02 MiB**.
+Mobile-фрагмент расположен по центру общего кадра. Нет замедления,
+автопереключения Navigator или fake performance/price calculation.
+
+PNG с reduced motion:
+
+- [Каталог desktop](catalog-v1-desktop.png), 1440×1200: семейства, четыре ступени,
+  отдельная MINI-ветка и выбранный PLAY 1440 целиком.
+- [Каталог mobile](catalog-v1-mobile.png), 375×1440: компактный selector,
+  выбранная модель, пример цены и CTA.
+- [Вся линейка PLAY](catalog-range-v1.png), 1440×1900: все пять source cards,
+  чуть больший приоритет PLAY 1440, рабочие classes и неизвестные цены.
+- [Сравнение 1440 / PRO](catalog-compare-v1.png), 1440×1080: product columns
+  и семь фактических строк, без численных performance claims.
+- [Catalog Primitives](catalog-primitives-v1.png), 1344×2267: component capture
+  из UI Kit — family switch, ladder item, MINI marker, выбранная карточка,
+  независимый Navigator и comparison row.
+
+[Документ каталога](../KORSAC-CATALOG-EXPERIENCE.md) описывает single HTML data
+source, MAX3 comparison, mobile/no-JS/reduced-motion и future Bitrix mapping.
+На 320/375/430 px карточки примерно 543–602 px; без horizontal overflow.
+Высота preview стабильна при переключении пяти моделей на контрольных ширинах.
+Review assets не загружаются страницами. Материалы продукта v3.1 ниже остаются
+актуальной отдельной основой; каталог не меняет Product Explorer.
+
+Human acceptance остаётся открытым: быстро ли читается ladder/MINI-ветка,
+ясно ли назначение PRO, понятны ли сравнение и мобильный путь в карточку,
+соответствует ли короткий resolve KORSAC. Запись и tests не заменяют эту оценку.
+
 ## Актуальный Explorer v3.1 — synchronized state
 
 [Запись взаимодействий v3.1 — MP4](interactive-v31.mp4) показывает контекстные

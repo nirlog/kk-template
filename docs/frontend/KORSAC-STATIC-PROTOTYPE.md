@@ -1,4 +1,4 @@
-# KORSAC — Static UI Prototype / Interactive Product Experience v3.1
+# KORSAC — Static UI Prototype / Product v3.1 / Catalog v1
 
 ## Назначение
 
@@ -9,11 +9,14 @@
 видимый фокус, CSS-токены и запуск без сборки.
 
 `index.html` помогает перейти к страницам; `ui.html` показывает компоненты,
-Identity Primitives и motion; `product.html` демонстрирует PLAY 1440.
+Identity/Catalog Primitives и motion; `product.html` демонстрирует PLAY 1440.
+`catalog.html` показывает сценарный выбор PLAY и сравнение продуктовых классов.
 Подробные решения и будущие точки интеграции описаны в
 [Visual & Motion Direction](KORSAC-VISUAL-MOTION-DIRECTION.md).
 Product Stage, synchronized Explorer и связь сцены с опциями добавлены в
 [Interactive Product Experience v3.1](KORSAC-INTERACTIVE-PRODUCT-EXPERIENCE.md).
+[Catalog Experience v1](KORSAC-CATALOG-EXPERIENCE.md) описывает PLAY ladder,
+MINI-ветку, scoped controller и future Bitrix mapping.
 
 Источники продуктового содержания:
 
@@ -29,6 +32,7 @@ prototype/
 ├── index.html
 ├── ui.html
 ├── product.html
+├── catalog.html
 └── assets/
     ├── css/
     │   ├── tokens.css
@@ -36,10 +40,12 @@ prototype/
     │   ├── layout.css
     │   ├── components.css
     │   ├── pages.css
-    │   └── product-stage.css
+    │   ├── product-stage.css
+    │   └── catalog.css
     ├── js/
     │   ├── prototype.js
-    │   └── product-experience.js
+    │   ├── product-experience.js
+    │   └── catalog-experience.js
     └── images/README.md
 ```
 
@@ -51,7 +57,7 @@ prototype/
 python3 -m http.server 8000 --bind 127.0.0.1 --directory prototype
 ```
 
-Откройте `/index.html`, `/ui.html`, `/product.html` на локальном порту 8000.
+Откройте `/index.html`, `/ui.html`, `/product.html`, `/catalog.html` на локальном порту 8000.
 Установка пакетов, сборка и Bitrix не требуются. Архитектура рассчитана
 на актуальные Chrome, Edge, Firefox и Safari; фактический список проверенных
 браузеров и ограничения проверки нужно фиксировать в PR.
@@ -99,14 +105,15 @@ Electric Blue — сигнал выбора, фокуса и действия. C
 `k-state-*` используется для статических примеров UI Kit. Реальные
 `:hover`, `:active`, `:focus-visible`, `:checked` работают отдельно.
 
-| Файл | Ответственность |
-| --- | --- |
-| `tokens.css` | Значения, семантические роли, duration/easing |
-| `base.css` | Reset, текст, ссылки, focus, reduced motion |
-| `layout.css` | Контейнер, grid, stack, cluster, shell |
-| `components.css` | Контролы, рамки, направляющие, паспорт, motion-примитивы |
-| `pages.css` | Компоновка UI Kit, hero и разделов продукта |
-| `product-stage.css` | Product Stage, контексты, Explorer, interactive fixture |
+| Файл                | Ответственность                                                  |
+| ------------------- | ---------------------------------------------------------------- |
+| `tokens.css`        | Значения, семантические роли, duration/easing                    |
+| `base.css`          | Reset, текст, ссылки, focus, reduced motion                      |
+| `layout.css`        | Контейнер, grid, stack, cluster, shell                           |
+| `components.css`    | Контролы, рамки, направляющие, паспорт, motion-примитивы         |
+| `pages.css`         | Компоновка UI Kit, hero и разделов продукта                      |
+| `product-stage.css` | Product Stage, контексты, Explorer, interactive fixture          |
+| `catalog.css`       | Family navigation, scenario rail, карточки, preview и comparison |
 
 ## Identity Primitives и Motion System
 
@@ -205,9 +212,32 @@ SYSTEM ID показывает preview выбранных labels. Контекс
 «Добавить в корзину» открывает информацию о прототипе. Счётчик корзины,
 заказы, localStorage, авторизация, поиск, фильтры, аналитика и сеть отсутствуют.
 
+## Catalog & Product Family Experience v1
+
+Каталог начинает discovery с четырёх сценарных ступеней PLAY и отдельной
+MINI-ветки от 1440. Выбор обновляет крупный preview и отметку source card;
+все пять карточек постоянно доступны ниже. PLAY 1440 имеет чуть больший
+приоритет. PRO объяснён более высоким CPU/GPU-классом, задачей high refresh
+и SSD 2 ТБ; MINI — компактным Mini-ITX исполнением того же сценария 1440p.
+CREATE/WORK показаны disabled buttons с подписью «В разработке».
+
+`catalog-experience.js` создаёт собственный controller для каждого root.
+Имена, baseline и CTA читаются из HTML-карточек; JS хранит presentation state,
+а не второй каталог компонентов. Сравнение 2–3 моделей открывает native dialog
+с семью документированными свойствами. Небольшая панель появляется после
+первой отметки; mobile comparison складывается вертикально без overflow.
+Цена PLAY 1440 — 179 900 ₽ с пометкой «Цена — пример», остальные неизвестны.
+Рекомендации authored по сценарию и не используют ценовые пороги.
+
+Без JS доступны anchor-сценарии, вся линейка и обычные ссылки; enhanced
+preview/comparison скрыты. Reduced motion оставляет мгновенный выбор без
+320 ms resolve. Мобильные карточки используют компактное media рядом
+с названием. Архитектура, media adapter и перенос в `bitrix:catalog.section`
+описаны в [Catalog Experience](KORSAC-CATALOG-EXPERIENCE.md).
+
 ## Данные макета
 
-CPU/GPU фиксированы: Ryzen 7 9700X и RTX 5070 12 ГБ. Основные опции — RAM
+В продукте PLAY 1440 CPU/GPU фиксированы: Ryzen 7 9700X и RTX 5070 12 ГБ. Основные опции — RAM
 32/64 ГБ, SSD и корпус. OS/software/service — визуальные группы, требующие
 согласования; недопущенные варианты disabled. Корпуса из shortlist — кандидаты,
 а выбор LANCOOL 217 в макете не утверждает производственный default.
@@ -222,14 +252,14 @@ Wordmark — временный текст, не финальный логоти
 
 ## Будущий перенос в Bitrix
 
-| Основа прототипа | Будущая точка интеграции |
-| --- | --- |
-| Header/footer | `local/templates/korsac/header.php` / `footer.php` |
-| Карточка продукта | шаблон `bitrix:catalog.section` |
-| Hero, описание, характеристики | шаблон `bitrix:catalog.element` |
-| Опции, выбор, validation rail | тема `kk.korsac.configurator-renderer` |
-| Группы и сводка конфигурации | `kk:korsac.configurator` |
-| Будущий интерфейс корзины | шаблон `Bitrix sale.basket.basket` |
+| Основа прототипа                        | Будущая точка интеграции                                |
+| --------------------------------------- | ------------------------------------------------------- |
+| Header/footer                           | `local/templates/korsac/header.php` / `footer.php`      |
+| Каталожная карточка / family / сценарий | `bitrix:catalog.section`, sections и product properties |
+| Hero, описание, характеристики          | шаблон `bitrix:catalog.element`                         |
+| Опции, выбор, validation rail           | тема `kk.korsac.configurator-renderer`                  |
+| Группы и сводка конфигурации            | `kk:korsac.configurator`                                |
+| Будущий интерфейс корзины               | шаблон `Bitrix sale.basket.basket`                      |
 
 Выбор renderer, calculate pending/calculated/error, ConfiguratorCore selection
 и authoritative calculate response должны стать реальными источниками
@@ -247,18 +277,19 @@ Backend сохраняет проверенный snapshot конфигурац�
 Следующий список определяет проверки; факт выполнения и ограничения среды
 фиксируются в PR, а не подразумеваются самим наличием списка.
 
-- HTTP открывает все три страницы; относительные ресурсы целы. `file://` проверяется, если браузерная политика среды позволяет.
+- HTTP открывает все четыре страницы; относительные ресурсы целы. `file://` проверяется, если браузерная политика среды позволяет.
 - Консоль без ошибок; нет внешних запросов или remote fonts.
-- При 320/375/768/1024/1280/1440 px страница не имеет горизонтального overflow; mobile CTA идёт перед компактными характеристиками.
+- При 320/375/430/768/1024/1280/1440 px страница не имеет горизонтального overflow; mobile CTA идёт перед компактными характеристиками.
 - Tab, Shift+Tab и стрелки работают для radio, tabs и обычных контролов; focus виден.
 - Accordion корректно меняет `aria-expanded`; dialog/drawer закрываются кнопкой, Escape и фоном, возвращая фокус.
 - Корпус, RAM, SSD, дополнительный накопитель, ОС, программы и сервис обновляют соответствующие подписи manifest.
 - После всех изменений опций цены hero, сводки и карточки остаются неизменными; сетевых запросов нет.
 - Motion replay работает без reload и бизнес-действий; анимации конечны и не лишают контролы доступности.
 - Reduced motion показывает содержимое сразу и отключает последовательности; no-JS сохраняет смысл и native controls.
+- Каталог: все пять моделей, MINI вне лестницы, preview/CTA и MAX3 comparison; touch375/430, no-JS320 и live reduced motion.
 - Контраст текста, copper, синего, CTA, selected/disabled state проверен отдельно от декоративных линий.
 - Ссылки, labels, IDs и `aria-controls` согласованы; `git diff --check` проходит.
 
-[Материалы визуального ревью](review/README.md) сохраняют v1/v2/v2.1 и добавляют v3.1; исходные v3 сохранены в архиве.
+[Материалы визуального ревью](review/README.md) сохраняют product v1/v2/v2.1/v3.1 и добавляют catalog v1; исходные v3 сохранены в архиве.
 Снимки не используются runtime. Проверка одного браузера не заменяет ручной
 приёмочный прогон во всех целевых браузерах.
