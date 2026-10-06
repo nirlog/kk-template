@@ -16,10 +16,12 @@ manifest конфигурации, SYSTEM ID и примитивы визуал�
 - [SYSTEM ID v2](system-id-v2.png).
 - [Motion playground](motion-ui.png).
 - [Мобильное меню v2 — явные индексы 01–06](drawer-v2-mobile.png).
+- [Select v2 — обычный, focus, disabled и error](select-v2-states.png).
 
 Захват v2: Chromium 151, reduced motion, desktop 1440×1080 px, mobile
 375×1000 px. Дополнительные desktop-фрагменты сняты при 1440×1440 px,
 чтобы в кадр помещались длинный manifest и все пять motion-примеров.
+Select-состояния сняты отдельным фрагментом раздела форм при ширине 1440 px.
 
 Статические снимки используются для сравнения композиции и состояний.
 Последовательности движения нужно смотреть в разделе Motion на
