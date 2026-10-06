@@ -1,0 +1,990 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- No favicon until the final brand assets are approved. -->
+    <link rel="icon" href="data:," />
+    <title>PLAY 1440 — KORSAC Prototype</title>
+    <link rel="stylesheet" href="assets/css/tokens.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/pages.css" />
+    <script src="assets/js/prototype.js" defer></script>
+  </head>
+  <body>
+    <a class="k-skip" href="#main">Перейти к содержанию</a>
+    <div class="k-prototype-note">
+      <div class="k-container">
+        Статический UI-прототип v1 · цены и опции — демонстрационные данные
+      </div>
+    </div>
+    <header class="k-header">
+      <div class="k-container k-header-inner">
+        <!-- Temporary text wordmark. Not an approved production logo. -->
+        <a
+          class="k-wordmark"
+          href="index.html"
+          aria-label="KORSAC — навигация прототипа"
+          >KORSAC</a
+        >
+        <nav class="k-nav" aria-label="Основная навигация">
+          <a href="product.html#configurator">Компьютеры</a
+          ><a href="product.html">Для игр</a
+          ><button
+            class="k-button k-button--text"
+            type="button"
+            data-dialog-open="scope-dialog"
+          >
+            Для работы</button
+          ><a href="product.html#assembly">О KORSAC</a
+          ><a href="product.html#warranty">Поддержка</a>
+        </nav>
+        <div class="k-header-actions">
+          <button
+            class="k-button k-button--icon k-search-entry"
+            type="button"
+            data-dialog-open="scope-dialog"
+            aria-label="Поиск — информация о прототипе"
+          >
+            Поиск
+          </button>
+          <button
+            class="k-button k-button--icon"
+            type="button"
+            data-dialog-open="scope-dialog"
+            aria-label="Корзина — информация о прототипе"
+          >
+            Корзина
+          </button>
+          <button
+            class="k-button k-button--icon k-mobile-toggle"
+            type="button"
+            data-dialog-open="menu-drawer"
+            aria-controls="menu-drawer"
+            aria-expanded="false"
+            aria-label="Открыть меню"
+          >
+            ☰
+          </button>
+        </div>
+      </div>
+    </header>
+    <main id="main">
+      <div class="k-container">
+        <nav class="k-breadcrumb" aria-label="Хлебные крошки">
+          <a href="index.html">Прототип</a> /
+          <span aria-current="page">PLAY 1440</span>
+        </nav>
+        <section class="k-hero k-two-col" aria-labelledby="product-title">
+          <figure class="k-hero-media">
+            <span class="k-media-index k-eyebrow">KP1440 / 2026.1</span
+            ><span class="k-case-outline" aria-hidden="true"></span
+            ><span class="k-small k-muted">Место для фотографии продукта</span>
+            <figcaption class="k-media-caption k-eyebrow">
+              <span>Airflow / Standard</span><span>Визуальный макет</span>
+            </figcaption>
+          </figure>
+          <div class="k-stack">
+            <div class="k-cluster">
+              <span class="k-eyebrow">Для игр в 1440p</span
+              ><span class="k-badge">2560 × 1440</span>
+            </div>
+            <h1 class="k-hero-title" id="product-title">
+              <span>KORSAC</span>PLAY 1440
+            </h1>
+            <p class="k-lead">
+              Игры в 1440p без переплаты за производительность, которая нужна
+              уже для 4K.
+            </p>
+            <dl class="k-hero-specs">
+              <div>
+                <dt>Процессор</dt>
+                <dd>Ryzen 7 9700X</dd>
+              </div>
+              <div>
+                <dt>Видеокарта</dt>
+                <dd>RTX 5070 · 12 ГБ</dd>
+              </div>
+              <div>
+                <dt>Память</dt>
+                <dd>32 ГБ DDR5</dd>
+              </div>
+              <div>
+                <dt>Накопитель</dt>
+                <dd>1 ТБ NVMe</dd>
+              </div>
+            </dl>
+            <div class="k-cluster">
+              <div>
+                <p class="k-price k-price--large">от 179 900 ₽</p>
+                <p class="k-price-note">
+                  Пример цены · не предложение о продаже
+                </p>
+              </div>
+              <a class="k-button" href="#configurator">Настроить ↓</a>
+            </div>
+            <a class="k-small" href="#specifications"
+              >Посмотреть характеристики</a
+            >
+          </div>
+        </section>
+        <div class="k-trust" role="group" aria-label="Сборка и сервис">
+          <div class="k-trust-item">
+            <span class="k-eyebrow">01 / Сборка</span
+            ><span>Профессиональная сборка</span>
+          </div>
+          <div class="k-trust-item">
+            <span class="k-eyebrow">02 / Контроль</span
+            ><span>Тестирование перед отправкой</span>
+          </div>
+          <div class="k-trust-item">
+            <span class="k-eyebrow">03 / Сервис</span
+            ><span>Гарантийное обслуживание</span>
+          </div>
+          <div class="k-trust-item">
+            <span class="k-eyebrow">04 / Поддержка</span
+            ><span>Помощь с вашей системой</span>
+          </div>
+        </div>
+        <section
+          class="k-section"
+          id="configurator"
+          aria-labelledby="config-title"
+        >
+          <div class="k-section-heading">
+            <div class="k-stack k-stack--tight">
+              <span class="k-eyebrow">01 / Точно под вас</span>
+              <h2 id="config-title">
+                Детали выбираете вы.<br />Баланс уже продуман.
+              </h2>
+            </div>
+            <p class="k-muted">
+              Процессор и видеокарта задают класс PLAY 1440. Подберите корпус,
+              объём памяти и пространство для игр.
+            </p>
+          </div>
+          <div class="k-config-layout">
+            <div class="k-config-groups">
+              <div class="k-panel k-stack k-stack--tight">
+                <h3>Основа PLAY 1440</h3>
+                <p>AMD Ryzen 7 9700X<br />GeForce RTX 5070 12 ГБ</p>
+                <p class="k-small k-muted">
+                  Фиксированные компоненты. B850 Wi-Fi, 750 Вт Gold и воздушное
+                  охлаждение — часть базового стандарта.
+                </p>
+              </div>
+              <fieldset class="k-config-group">
+                <legend>Корпус</legend>
+                <div class="k-option-grid">
+                  <label class="k-option k-option--image"
+                    ><input
+                      type="radio"
+                      name="product-case"
+                      value="0"
+                      checked
+                    /><span class="k-option-content"
+                      ><span class="k-image-placeholder"
+                        ><span class="k-case-outline" aria-hidden="true"></span
+                        ><span>Изображение корпуса · макет</span></span
+                      ><span class="k-option-caption"
+                        ><span class="k-option-name">Lian Li LANCOOL 217</span
+                        ><span class="k-option-detail">Black · кандидат</span
+                        ><span class="k-price-delta">Без доплаты</span></span
+                      ></span
+                    ></label
+                  ><label class="k-option k-option--image"
+                    ><input type="radio" name="product-case" value="1" /><span
+                      class="k-option-content"
+                      ><span class="k-image-placeholder"
+                        ><span class="k-case-outline" aria-hidden="true"></span
+                        ><span>Изображение корпуса · макет</span></span
+                      ><span class="k-option-caption"
+                        ><span class="k-option-name">Fractal Design North</span
+                        ><span class="k-option-detail"
+                          >Charcoal Black · кандидат</span
+                        ><span class="k-price-delta">+8 400 ₽</span></span
+                      ></span
+                    ></label
+                  ><label class="k-option k-option--image"
+                    ><input type="radio" name="product-case" value="2" /><span
+                      class="k-option-content"
+                      ><span
+                        class="k-image-placeholder k-image-placeholder--missing"
+                        ><span class="k-case-outline" aria-hidden="true"></span
+                        ><span>Фото пока нет</span></span
+                      ><span class="k-option-caption"
+                        ><span class="k-option-name"
+                          >be quiet! Pure Base 501 DX</span
+                        ><span class="k-option-detail">Black · кандидат</span
+                        ><span class="k-price-delta">+4 800 ₽</span></span
+                      ></span
+                    ></label
+                  >
+                </div>
+                <p class="k-config-help">
+                  Shortlist из спецификации. Допуск и корпус по умолчанию
+                  требуют проверки закупки и сборки. MINI — отдельная модель, а
+                  не опция корпуса.
+                </p>
+              </fieldset>
+              <fieldset class="k-config-group">
+                <legend>Оперативная память</legend>
+                <div class="k-field">
+                  <label for="product-ram">Объём · DDR5-6000</label
+                  ><select class="k-control" id="product-ram" name="ram">
+                    <option>32 ГБ · 2×16 ГБ · без доплаты</option>
+                    <option>64 ГБ · +42 000 ₽ (пример)</option>
+                  </select>
+                </div>
+                <p class="k-config-help">
+                  32 ГБ — базовый объём. 64 ГБ можно рассмотреть для
+                  одновременной работы с тяжёлыми проектами.
+                </p>
+              </fieldset>
+              <fieldset class="k-config-group">
+                <legend>Основной SSD</legend>
+                <div class="k-option-grid">
+                  <label class="k-option"
+                    ><input
+                      type="radio"
+                      name="product-ssd"
+                      value="0"
+                      checked
+                    /><span class="k-option-content"
+                      ><span class="k-option-name">1 ТБ</span
+                      ><span class="k-option-detail">NVMe PCIe 4.0 TLC</span
+                      ><span class="k-price-delta">Без доплаты</span></span
+                    ></label
+                  ><label class="k-option"
+                    ><input type="radio" name="product-ssd" value="1" /><span
+                      class="k-option-content"
+                      ><span class="k-option-name">2 ТБ</span
+                      ><span class="k-option-detail"
+                        >Для большой библиотеки</span
+                      ><span class="k-price-delta">+4 800 ₽</span></span
+                    ></label
+                  ><label class="k-option"
+                    ><input
+                      type="radio"
+                      name="product-ssd"
+                      value="2"
+                      disabled
+                    /><span class="k-option-content"
+                      ><span class="k-option-name">4 ТБ</span
+                      ><span class="k-option-detail"
+                        >Вариант на согласовании</span
+                      ><span class="k-price-delta">Цена уточняется</span></span
+                    ></label
+                  >
+                </div>
+              </fieldset>
+              <fieldset class="k-config-group">
+                <legend>Дополнительный накопитель</legend>
+                <div class="k-field">
+                  <label for="product-ssd2">Второй NVMe SSD</label
+                  ><select class="k-control" id="product-ssd2" name="ssd2">
+                    <option>Не установлен · без доплаты</option>
+                    <option>1 ТБ · +4 800 ₽ (пример)</option>
+                    <option>2 ТБ · +8 400 ₽ (пример)</option>
+                    <option disabled>4 ТБ · на согласовании</option>
+                  </select>
+                </div>
+                <p class="k-config-help">
+                  Необязательная опция. Второй SSD можно добавить позже.
+                </p>
+              </fieldset>
+              <fieldset class="k-config-group">
+                <legend>Операционная система</legend>
+                <div class="k-option-grid">
+                  <label class="k-option"
+                    ><input
+                      type="radio"
+                      name="product-os"
+                      value="0"
+                      checked
+                    /><span class="k-option-content"
+                      ><span class="k-option-name">Без ОС</span
+                      ><span class="k-option-detail">Базовая конфигурация</span
+                      ><span class="k-price-delta">Без доплаты</span></span
+                    ></label
+                  ><label class="k-option"
+                    ><input
+                      type="radio"
+                      name="product-os"
+                      value="1"
+                      disabled
+                    /><span class="k-option-content"
+                      ><span class="k-option-name">Windows 11</span
+                      ><span class="k-option-detail"
+                        >Условия лицензии уточняются</span
+                      ><span class="k-price-delta">Цена уточняется</span></span
+                    ></label
+                  >
+                </div>
+                <p class="k-config-help">
+                  Макет группы. Лицензия Windows не включена в базовую цену.
+                </p>
+              </fieldset>
+              <fieldset class="k-config-group">
+                <legend>Программное обеспечение</legend>
+                <label class="k-check"
+                  ><input type="checkbox" name="product-office" /><span
+                    >Microsoft Office Trial</span
+                  ><span class="k-check-price">+300 ₽</span></label
+                ><label class="k-check"
+                  ><input type="checkbox" name="product-security" /><span
+                    >Dr.Web Security Space</span
+                  ><span class="k-check-price">+1 800 ₽</span></label
+                >
+                <p class="k-config-help">
+                  Примеры будущей подачи опций. Состав, лицензии и цены требуют
+                  согласования.
+                </p>
+              </fieldset>
+              <fieldset class="k-config-group">
+                <legend>Сервис</legend>
+                <label class="k-check"
+                  ><input
+                    type="checkbox"
+                    name="product-warranty"
+                    disabled
+                  /><span>Дополнительная гарантия +1 год</span
+                  ><span class="k-check-price">+5 000 ₽</span></label
+                >
+                <p class="k-config-help">
+                  Демонстрация недоступной опции до утверждения условий.
+                </p>
+              </fieldset>
+            </div>
+            <!-- Static prototype summary. It does NOT represent or submit selected options. -->
+            <aside
+              class="k-panel k-summary k-stack"
+              aria-labelledby="summary-title"
+            >
+              <span class="k-eyebrow">Пример базовой конфигурации</span>
+              <h3 id="summary-title">PLAY 1440</h3>
+              <ul class="k-summary-list">
+                <li>AMD Ryzen 7 9700X</li>
+                <li>GeForce RTX 5070 12 ГБ</li>
+                <li>32 ГБ DDR5-6000</li>
+                <li>1 ТБ NVMe TLC</li>
+                <li>Lian Li LANCOOL 217 · кандидат</li>
+                <li>Без операционной системы</li>
+              </ul>
+              <div>
+                <p class="k-price k-price--large">179 900 ₽</p>
+                <p class="k-price-note">Статическая примерная цена</p>
+              </div>
+              <button
+                class="k-button k-button--full"
+                type="button"
+                data-dialog-open="scope-dialog"
+              >
+                Добавить в корзину
+              </button>
+              <p class="k-small k-muted">
+                Это макет: выбранные опции и цена в этой карточке не
+                обновляются. Кнопка открывает описание прототипа.
+              </p>
+            </aside>
+          </div>
+        </section>
+        <section
+          class="k-section"
+          id="overview"
+          aria-labelledby="overview-title"
+        >
+          <div class="k-section-heading">
+            <div class="k-stack k-stack--tight">
+              <span class="k-eyebrow">02 / Сценарий</span>
+              <h2 id="overview-title">Почему PLAY 1440</h2>
+            </div>
+            <p class="k-muted">
+              Понятный игровой класс и продуманная основа вместо бесконечного
+              выбора комплектующих.
+            </p>
+          </div>
+          <div data-tabs>
+            <div
+              class="k-tabs-list"
+              role="tablist"
+              aria-label="Разделы продукта"
+            >
+              <button
+                class="k-tab"
+                type="button"
+                role="tab"
+                id="product-tab-0"
+                aria-controls="product-panel-0"
+                aria-selected="true"
+                tabindex="0"
+              >
+                Обзор</button
+              ><button
+                class="k-tab"
+                type="button"
+                role="tab"
+                id="product-tab-1"
+                aria-controls="product-panel-1"
+                aria-selected="false"
+                tabindex="-1"
+              >
+                Характеристики</button
+              ><button
+                class="k-tab"
+                type="button"
+                role="tab"
+                id="product-tab-2"
+                aria-controls="product-panel-2"
+                aria-selected="false"
+                tabindex="-1"
+              >
+                Производительность</button
+              ><button
+                class="k-tab"
+                type="button"
+                role="tab"
+                id="product-tab-3"
+                aria-controls="product-panel-3"
+                aria-selected="false"
+                tabindex="-1"
+              >
+                Сборка и тестирование</button
+              ><button
+                class="k-tab"
+                type="button"
+                role="tab"
+                id="product-tab-4"
+                aria-controls="product-panel-4"
+                aria-selected="false"
+                tabindex="-1"
+              >
+                Гарантия
+              </button>
+            </div>
+            <div
+              class="k-tabpanel"
+              role="tabpanel"
+              id="product-panel-0"
+              aria-labelledby="product-tab-0"
+              tabindex="0"
+            >
+              <p>
+                Система для современных игр в 2560×1440. CPU и GPU определяют
+                класс модели; память, накопители и корпус можно подобрать под
+                свой сценарий.
+              </p>
+            </div>
+            <div
+              class="k-tabpanel"
+              role="tabpanel"
+              id="product-panel-1"
+              aria-labelledby="product-tab-1"
+              tabindex="0"
+            >
+              <p>
+                AMD Ryzen 7 9700X · GeForce RTX 5070 12 ГБ · B850 ATX Wi-Fi · 32
+                ГБ DDR5-6000 CL30 · 1 ТБ NVMe PCIe 4.0 TLC · 750 Вт Gold.
+              </p>
+            </div>
+            <div
+              class="k-tabpanel"
+              role="tabpanel"
+              id="product-panel-2"
+              aria-labelledby="product-tab-2"
+              tabindex="0"
+            >
+              <p>
+                Результаты появятся после тестирования производственной ревизии.
+                FPS, температуры и уровень шума пока не заявлены.
+              </p>
+            </div>
+            <div
+              class="k-tabpanel"
+              role="tabpanel"
+              id="product-panel-3"
+              aria-labelledby="product-tab-3"
+              tabindex="0"
+            >
+              <p>
+                Сборка, укладка кабелей, настройка BIOS и проверка стабильности
+                — этапы будущего протокола подготовки системы.
+              </p>
+            </div>
+            <div
+              class="k-tabpanel"
+              role="tabpanel"
+              id="product-panel-4"
+              aria-labelledby="product-tab-4"
+              tabindex="0"
+            >
+              <p>
+                Условия гарантии, срок и порядок обслуживания будут опубликованы
+                после согласования.
+              </p>
+            </div>
+          </div>
+          <div class="k-grid k-section">
+            <article class="k-stack k-stack--tight">
+              <h3>Под ваш монитор</h3>
+              <p class="k-muted">
+                Целевой сценарий — современные игры в 2560×1440 на высоких
+                настройках. Конкретные результаты проверим на производственной
+                ревизии.
+              </p>
+            </article>
+            <article class="k-stack k-stack--tight">
+              <h3>Разумная база</h3>
+              <p class="k-muted">
+                32 ГБ памяти, NVMe TLC и блок питания Gold входят в рабочую
+                спецификацию модели.
+              </p>
+            </article>
+            <article class="k-stack k-stack--tight">
+              <h3>Контролируемый выбор</h3>
+              <p class="k-muted">
+                Настройка памяти, накопителей и корпуса сохраняет характер PLAY
+                1440. MINI и PRO — самостоятельные продукты.
+              </p>
+            </article>
+          </div>
+        </section>
+        <section
+          class="k-section"
+          id="specifications"
+          aria-labelledby="spec-title"
+        >
+          <div class="k-section-heading">
+            <div class="k-stack k-stack--tight">
+              <span class="k-eyebrow">03 / Основа системы</span>
+              <h2 id="spec-title">Ключевые характеристики</h2>
+            </div>
+            <p class="k-muted">
+              Базовая спецификация v0.1. Точные физические модели будут
+              фиксироваться в паспорте собранной системы.
+            </p>
+          </div>
+          <dl class="k-spec-list">
+            <div class="k-spec-row">
+              <dt>Процессор</dt>
+              <dd>AMD Ryzen 7 9700X · 8 ядер / 16 потоков</dd>
+            </div>
+            <div class="k-spec-row">
+              <dt>Видеокарта</dt>
+              <dd>GeForce RTX 5070 · 12 ГБ GDDR7</dd>
+            </div>
+            <div class="k-spec-row">
+              <dt>Материнская плата</dt>
+              <dd>B850 ATX · Wi-Fi · 2.5 GbE</dd>
+            </div>
+            <div class="k-spec-row">
+              <dt>Оперативная память</dt>
+              <dd>32 ГБ DDR5-6000 CL30 · 2×16 ГБ · EXPO</dd>
+            </div>
+            <div class="k-spec-row">
+              <dt>Основной SSD</dt>
+              <dd>1 ТБ NVMe · PCIe 4.0 · TLC</dd>
+            </div>
+            <div class="k-spec-row">
+              <dt>Дополнительный SSD</dt>
+              <dd>Не установлен</dd>
+            </div>
+            <div class="k-spec-row">
+              <dt>Блок питания</dt>
+              <dd>750 Вт · 80 PLUS Gold · ATX 3.1 · native Gen5</dd>
+            </div>
+            <div class="k-spec-row">
+              <dt>Охлаждение</dt>
+              <dd>Башенное воздушное · 120/140 мм класс</dd>
+            </div>
+            <div class="k-spec-row">
+              <dt>Корпус</dt>
+              <dd>Airflow · из списка кандидатов KORSAC</dd>
+            </div>
+            <div class="k-spec-row">
+              <dt>Операционная система</dt>
+              <dd>Без ОС · Windows 11 отдельно</dd>
+            </div>
+          </dl>
+        </section>
+        <section
+          class="k-section"
+          id="performance"
+          aria-labelledby="performance-title"
+        >
+          <div class="k-section-heading">
+            <div class="k-stack k-stack--tight">
+              <span class="k-eyebrow">04 / Проверяем на практике</span>
+              <h2 id="performance-title">Производительность</h2>
+            </div>
+            <p class="k-muted">
+              Измерения появятся после тестирования производственной ревизии.
+              Здесь показана структура будущих результатов.
+            </p>
+          </div>
+          <div class="k-grid">
+            <article class="k-panel k-benchmark-card">
+              <span class="k-eyebrow">2560 × 1440 / Native</span>
+              <h3>Игровые тесты</h3>
+              <p class="k-benchmark-value">— FPS</p>
+              <p class="k-small k-muted">
+                Средний FPS и 1% low · после измерений
+              </p>
+            </article>
+            <article class="k-panel k-benchmark-card">
+              <span class="k-eyebrow">Upscaling / RT</span>
+              <h3>Тяжёлая графика</h3>
+              <p class="k-benchmark-value">— FPS</p>
+              <p class="k-small k-muted">
+                Пресет и технология · после измерений
+              </p>
+            </article>
+            <article class="k-panel k-benchmark-card">
+              <span class="k-eyebrow">CPU / GPU</span>
+              <h3>Длительная нагрузка</h3>
+              <p class="k-benchmark-value">— °C</p>
+              <p class="k-small k-muted">
+                Температуры и методика · после измерений
+              </p>
+            </article>
+          </div>
+        </section>
+        <section
+          class="k-section k-two-col"
+          id="cooling"
+          aria-labelledby="cooling-title"
+        >
+          <div class="k-stack">
+            <span class="k-eyebrow">05 / Инженерный баланс</span>
+            <h2 id="cooling-title">Охлаждение<br />и акустика</h2>
+            <p class="k-lead">
+              Свободный airflow и башенное охлаждение — рабочая основа PLAY
+              1440.
+            </p>
+            <p class="k-muted">
+              Профиль вентиляторов и температурный режим требуют проверки
+              конкретной сборки. Уровень шума опубликуем вместе с методикой
+              измерений.
+            </p>
+          </div>
+          <div class="k-panel k-stack">
+            <h3>Что проверяем</h3>
+            <p class="k-muted">
+              Температуры CPU, GPU и SSD, стабильность памяти, поведение системы
+              под совместной нагрузкой и настройки вентиляторов.
+            </p>
+            <p class="k-type-technical">
+              Температура: — после тестирования<br />Шум: — после тестирования
+            </p>
+          </div>
+        </section>
+        <section
+          class="k-section"
+          id="assembly"
+          aria-labelledby="assembly-title"
+        >
+          <div class="k-section-heading">
+            <div class="k-stack k-stack--tight">
+              <span class="k-eyebrow">06 / Внимание к деталям</span>
+              <h2 id="assembly-title">Сборка и тестирование</h2>
+            </div>
+            <p class="k-muted">
+              Рабочая последовательность подготовки системы. Точный регламент и
+              длительность тестов ещё предстоит утвердить.
+            </p>
+          </div>
+          <ol class="k-process k-grid">
+            <li>
+              <h3>Сборка</h3>
+              <p class="k-small k-muted">
+                Проверка комплектующих, аккуратная установка и укладка кабелей.
+              </p>
+            </li>
+            <li>
+              <h3>Настройка</h3>
+              <p class="k-small k-muted">
+                BIOS, профиль памяти и управление вентиляторами.
+              </p>
+            </li>
+            <li>
+              <h3>Проверка</h3>
+              <p class="k-small k-muted">
+                Стресс-тесты, стабильность памяти и валидация температур.
+              </p>
+            </li>
+            <li>
+              <h3>Финальный контроль</h3>
+              <p class="k-small k-muted">
+                Порты, сеть, визуальный осмотр и паспорт конфигурации.
+              </p>
+            </li>
+          </ol>
+          <article class="k-panel k-system-id k-stack">
+            <span class="k-eyebrow">KORSAC SYSTEM ID / визуальный концепт</span>
+            <h3>Своя история у каждой системы.</h3>
+            <strong>KS-26-001284</strong>
+            <p class="k-muted">
+              Будущий паспорт объединит установленную конфигурацию и результаты
+              проверки.
+            </p>
+            <p class="k-small">Built &amp; tested by KORSAC</p>
+            <p class="k-small k-muted">
+              Номер — пример. Функция паспорта не реализована.
+            </p>
+          </article>
+        </section>
+        <section
+          class="k-section k-two-col"
+          id="warranty"
+          aria-labelledby="warranty-title"
+        >
+          <div class="k-stack">
+            <span class="k-eyebrow">07 / После покупки</span>
+            <h2 id="warranty-title">Гарантия и поддержка</h2>
+            <p class="k-lead">Сервис — часть продуктового опыта KORSAC.</p>
+            <p class="k-muted">
+              Срок, условия гарантии и порядок обращения будут опубликованы
+              после согласования. Доставка и контакты поддержки пока не
+              утверждены.
+            </p>
+          </div>
+          <div class="k-panel k-stack">
+            <h3>Информация о сервисе</h3>
+            <p class="k-muted">
+              Здесь появятся условия обслуживания, документы и каналы поддержки.
+            </p>
+            <button
+              class="k-button k-button--secondary"
+              type="button"
+              data-dialog-open="scope-dialog"
+            >
+              Подробнее о прототипе
+            </button>
+          </div>
+        </section>
+        <section class="k-section" id="faq" aria-labelledby="faq-title">
+          <div class="k-section-heading">
+            <h2 id="faq-title">Вопросы и ответы</h2>
+          </div>
+          <div class="k-accordion">
+            <div class="k-accordion-item">
+              <h3>
+                <button
+                  class="k-accordion-trigger"
+                  type="button"
+                  data-accordion
+                  aria-expanded="false"
+                  aria-controls="product-faq-0"
+                  id="product-faq-trigger-0"
+                >
+                  Можно ли заменить процессор или видеокарту?
+                </button>
+              </h3>
+              <div
+                class="k-accordion-panel"
+                role="region"
+                id="product-faq-0"
+                aria-labelledby="product-faq-trigger-0"
+              >
+                <p>
+                  В PLAY 1440 CPU и GPU фиксированы. Более высокий игровой класс
+                  будет представлен отдельной моделью PRO.
+                </p>
+              </div>
+            </div>
+            <div class="k-accordion-item">
+              <h3>
+                <button
+                  class="k-accordion-trigger"
+                  type="button"
+                  data-accordion
+                  aria-expanded="false"
+                  aria-controls="product-faq-1"
+                  id="product-faq-trigger-1"
+                >
+                  Чем MINI отличается от стандартного корпуса?
+                </button>
+              </h3>
+              <div
+                class="k-accordion-panel"
+                role="region"
+                id="product-faq-1"
+                aria-labelledby="product-faq-trigger-1"
+              >
+                <p>
+                  MINI — отдельный продукт с собственной платой, блоком питания,
+                  охлаждением и проверкой совместимости. Это не просто
+                  компактный корпус для стандартной сборки.
+                </p>
+              </div>
+            </div>
+            <div class="k-accordion-item">
+              <h3>
+                <button
+                  class="k-accordion-trigger"
+                  type="button"
+                  data-accordion
+                  aria-expanded="false"
+                  aria-controls="product-faq-2"
+                  id="product-faq-trigger-2"
+                >
+                  Можно ли добавить второй SSD позже?
+                </button>
+              </h3>
+              <div
+                class="k-accordion-panel"
+                role="region"
+                id="product-faq-2"
+                aria-labelledby="product-faq-trigger-2"
+              >
+                <p>
+                  Дополнительный накопитель необязателен. Возможность установки
+                  проверяется по конфигурации конкретной системы.
+                </p>
+              </div>
+            </div>
+            <div class="k-accordion-item">
+              <h3>
+                <button
+                  class="k-accordion-trigger"
+                  type="button"
+                  data-accordion
+                  aria-expanded="false"
+                  aria-controls="product-faq-3"
+                  id="product-faq-trigger-3"
+                >
+                  Когда появятся результаты производительности?
+                </button>
+              </h3>
+              <div
+                class="k-accordion-panel"
+                role="region"
+                id="product-faq-3"
+                aria-labelledby="product-faq-trigger-3"
+              >
+                <p>
+                  После собственных измерений производственной ревизии.
+                  Результаты будут сопровождаться разрешением, пресетом и
+                  методикой.
+                </p>
+              </div>
+            </div>
+            <div class="k-accordion-item">
+              <h3>
+                <button
+                  class="k-accordion-trigger"
+                  type="button"
+                  data-accordion
+                  aria-expanded="false"
+                  aria-controls="product-faq-4"
+                  id="product-faq-trigger-4"
+                >
+                  Как работает доставка?
+                </button>
+              </h3>
+              <div
+                class="k-accordion-panel"
+                role="region"
+                id="product-faq-4"
+                aria-labelledby="product-faq-trigger-4"
+              >
+                <p>
+                  Условия, сроки и стоимость доставки будут добавлены после
+                  согласования. Прототип не принимает заказы.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+    <footer class="k-footer">
+      <div class="k-container">
+        <div class="k-footer-grid">
+          <div class="k-footer-brand k-stack k-stack--tight">
+            <a class="k-wordmark" href="index.html">KORSAC</a>
+            <p class="k-muted">Точно под задачу.</p>
+            <p class="k-small k-muted">KORSAC by King-Komp</p>
+          </div>
+          <nav aria-label="Продукт">
+            <span class="k-eyebrow">Продукт</span
+            ><a href="product.html">PLAY 1440</a
+            ><a href="product.html#configurator">Настроить</a
+            ><a href="ui.html">UI Kit</a>
+          </nav>
+          <nav aria-label="Информация">
+            <span class="k-eyebrow">Информация</span
+            ><a href="product.html#assembly">Сборка и тестирование</a
+            ><a href="product.html#warranty">Гарантия и поддержка</a
+            ><a href="product.html#faq">Вопросы и ответы</a>
+          </nav>
+        </div>
+        <div class="k-footer-bottom k-small k-muted">
+          <span>Визуальный прототип · не интернет-магазин</span
+          ><span>Юридические сведения и документы — после согласования</span>
+        </div>
+      </div>
+    </footer>
+    <dialog class="k-dialog" id="scope-dialog" aria-labelledby="scope-title">
+      <div class="k-dialog-header">
+        <h2 id="scope-title">О статическом прототипе</h2>
+        <button
+          class="k-button k-button--icon"
+          type="button"
+          data-dialog-close
+          aria-label="Закрыть окно"
+        >
+          ×
+        </button>
+      </div>
+      <div class="k-stack">
+        <p>
+          Здесь проверяем визуальную систему KORSAC. Поиск, корзина и линейка
+          для работы появятся на следующих этапах.
+        </p>
+        <p class="k-muted">
+          Выбор опций меняет только состояние контролов. Цена остаётся примером,
+          данные не сохраняются.
+        </p>
+        <a href="ui.html">Посмотреть UI Kit</a>
+      </div>
+    </dialog>
+    <dialog
+      class="k-dialog k-drawer"
+      id="menu-drawer"
+      aria-labelledby="menu-title"
+    >
+      <div class="k-dialog-header">
+        <h2 id="menu-title">Навигация</h2>
+        <button
+          class="k-button k-button--icon"
+          type="button"
+          data-dialog-close
+          aria-label="Закрыть меню"
+        >
+          ×
+        </button>
+      </div>
+      <nav class="k-drawer-nav" aria-label="Мобильная навигация">
+        <a href="index.html">Прототип</a
+        ><a href="product.html">Компьютеры · Для игр</a
+        ><a href="product.html#configurator">Настроить PLAY 1440</a
+        ><a href="product.html#assembly">О KORSAC</a
+        ><a href="product.html#warranty">Поддержка</a
+        ><a href="ui.html">UI Kit</a>
+      </nav>
+      <p class="k-small k-muted">
+        Линейка для работы и поиск — на следующих этапах.
+      </p>
+    </dialog>
+    <div
+      class="k-toast-region"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+      data-toast-region
+    ></div>
+  </body>
+</html>

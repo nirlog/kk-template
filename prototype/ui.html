@@ -1,0 +1,985 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- No favicon until the final brand assets are approved. -->
+    <link rel="icon" href="data:," />
+    <title>UI Kit — KORSAC Prototype</title>
+    <link rel="stylesheet" href="assets/css/tokens.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/pages.css" />
+    <script src="assets/js/prototype.js" defer></script>
+  </head>
+  <body>
+    <a class="k-skip" href="#main">Перейти к содержанию</a>
+    <div class="k-prototype-note">
+      <div class="k-container">
+        Статический UI-прототип v1 · цены и опции — демонстрационные данные
+      </div>
+    </div>
+    <header class="k-header">
+      <div class="k-container k-header-inner">
+        <!-- Temporary text wordmark. Not an approved production logo. -->
+        <a
+          class="k-wordmark"
+          href="index.html"
+          aria-label="KORSAC — навигация прототипа"
+          >KORSAC</a
+        >
+        <nav class="k-nav" aria-label="Основная навигация">
+          <a href="product.html#configurator">Компьютеры</a
+          ><a href="product.html">Для игр</a
+          ><button
+            class="k-button k-button--text"
+            type="button"
+            data-dialog-open="scope-dialog"
+          >
+            Для работы</button
+          ><a href="product.html#assembly">О KORSAC</a
+          ><a href="product.html#warranty">Поддержка</a>
+        </nav>
+        <div class="k-header-actions">
+          <button
+            class="k-button k-button--icon k-search-entry"
+            type="button"
+            data-dialog-open="scope-dialog"
+            aria-label="Поиск — информация о прототипе"
+          >
+            Поиск
+          </button>
+          <button
+            class="k-button k-button--icon"
+            type="button"
+            data-dialog-open="scope-dialog"
+            aria-label="Корзина — информация о прототипе"
+          >
+            Корзина
+          </button>
+          <button
+            class="k-button k-button--icon k-mobile-toggle"
+            type="button"
+            data-dialog-open="menu-drawer"
+            aria-controls="menu-drawer"
+            aria-expanded="false"
+            aria-label="Открыть меню"
+          >
+            ☰
+          </button>
+        </div>
+      </div>
+    </header>
+    <main id="main">
+      <div class="k-container">
+        <div class="k-kit-heading k-stack">
+          <a class="k-back" href="index.html">← К прототипам</a
+          ><span class="k-eyebrow">KORSAC / UI foundation 01</span>
+          <h1>Система интерфейса</h1>
+          <p class="k-lead">
+            Спокойная форма. Точные детали. Компоненты для продуктового опыта.
+          </p>
+        </div>
+        <nav class="k-kit-nav" aria-label="Разделы UI Kit">
+          <a href="#foundation">Основа</a><a href="#buttons">Кнопки и ссылки</a
+          ><a href="#forms">Формы</a><a href="#options">Опции</a
+          ><a href="#prices">Цены и статусы</a><a href="#cards">Карточки</a
+          ><a href="#navigation">Навигация</a
+          ><a href="#overlays">Окна и уведомления</a>
+        </nav>
+        <section
+          class="k-kit-section k-stack"
+          id="foundation"
+          aria-labelledby="foundation-title"
+        >
+          <h2 id="foundation-title">01 / Основа</h2>
+          <div class="k-grid">
+            <div class="k-swatch k-swatch--bg">
+              <span>Graphite<br /><small>#0B0E13</small></span>
+            </div>
+            <div class="k-swatch k-swatch--surface">
+              <span>Surface<br /><small>#141922</small></span>
+            </div>
+            <div class="k-swatch k-swatch--raised">
+              <span>Raised<br /><small>#1A202A</small></span>
+            </div>
+            <div class="k-swatch k-swatch--blue">
+              <span>Electric Blue<br /><small>#397BFF</small></span>
+            </div>
+            <div class="k-swatch k-swatch--copper">
+              <span>Copper<br /><small>#C38E5D</small></span>
+            </div>
+            <div class="k-swatch k-swatch--text">
+              <span>Text<br /><small>#F4F6F8</small></span>
+            </div>
+            <div class="k-swatch k-swatch--muted">
+              <span>Muted<br /><small>#929CAB</small></span>
+            </div>
+          </div>
+          <div class="k-panel k-stack">
+            <p class="k-type-display">Точно под задачу.</p>
+            <p class="k-type-h1">PLAY 1440 · заголовок H1</p>
+            <p class="k-type-h2">Инженерный баланс · H2</p>
+            <p class="k-type-h3">Выбор деталей · H3</p>
+            <p class="k-lead">
+              Крупный текст: игры в 1440p без переплаты за 4K.
+            </p>
+            <p>Основной текст: продуманная конфигурация и понятный выбор.</p>
+            <p class="k-small">Малый текст: 32 ГБ DDR5-6000 CL30 · 2×16 ГБ</p>
+            <p class="k-type-caption">
+              Подпись: данные после проверки производственной ревизии.
+            </p>
+            <p class="k-type-label">Метка: оперативная память</p>
+            <p class="k-type-technical">
+              Технический: Ryzen 7 9700X / RTX 5070 / 1 TB
+            </p>
+            <p class="k-price k-price--large">249 748 ₽</p>
+            <p class="k-price">179 900 ₽</p>
+          </div>
+          <p class="k-small k-muted">
+            Система интервалов: 4 / 8 / 12 / 16 / 20 / 24 / 32 / 40 / 48 / 64 /
+            80 / 96 px. Радиусы: 6 / 10 / 16 px. Шрифт — локальный системный
+            стек.
+          </p>
+        </section>
+        <section
+          class="k-kit-section k-stack"
+          id="buttons"
+          aria-labelledby="buttons-title"
+        >
+          <h2 id="buttons-title">02 / Кнопки и ссылки</h2>
+          <div class="k-state-gallery">
+            <div class="k-state-example">
+              <button class="k-button" type="button">Настроить</button
+              ><small>Default</small>
+            </div>
+            <div class="k-state-example">
+              <button class="k-button k-state-hover" type="button">
+                Настроить</button
+              ><small>Hover visual</small>
+            </div>
+            <div class="k-state-example">
+              <button class="k-button k-state-focus" type="button">
+                Настроить</button
+              ><small>Focus visual</small>
+            </div>
+            <div class="k-state-example">
+              <button class="k-button k-state-active" type="button">
+                Настроить</button
+              ><small>Active visual</small>
+            </div>
+            <div class="k-state-example">
+              <button class="k-button" type="button" disabled>Настроить</button
+              ><small>Disabled</small>
+            </div>
+            <div class="k-state-example">
+              <button class="k-button" type="button" disabled aria-busy="true">
+                <span class="k-spinner" aria-hidden="true"></span>
+                Загружаем…</button
+              ><small>Loading</small>
+            </div>
+          </div>
+          <div class="k-cluster">
+            <button
+              class="k-button k-button--secondary"
+              type="button"
+              data-dialog-open="scope-dialog"
+            >
+              Подробнее</button
+            ><button
+              class="k-button k-button--ghost"
+              type="button"
+              data-dialog-open="scope-dialog"
+            >
+              Сравнить конфигурации</button
+            ><a class="k-button k-button--text" href="product.html"
+              >Текстовая ссылка →</a
+            ><button
+              class="k-button k-button--icon"
+              type="button"
+              data-dialog-open="scope-dialog"
+              aria-label="Открыть информацию"
+            >
+              ↗
+            </button>
+          </div>
+          <div class="k-cluster">
+            <a href="product.html">Обычная ссылка</a
+            ><a class="k-muted" href="product.html#warranty"
+              >Приглушённая ссылка</a
+            ><a class="k-back" href="index.html">← Назад</a>
+            <nav class="k-nav" aria-label="Пример навигации">
+              <a href="product.html" aria-current="page">Для игр</a
+              ><a href="product.html#assembly">О KORSAC</a>
+            </nav>
+          </div>
+        </section>
+        <section
+          class="k-kit-section k-stack"
+          id="forms"
+          aria-labelledby="forms-title"
+        >
+          <h2 id="forms-title">03 / Формы</h2>
+          <div class="k-grid">
+            <div class="k-panel k-stack">
+              <h3>Обычные</h3>
+              <div class="k-field">
+                <label for="form-default-input">Имя</label
+                ><input
+                  id="form-default-input"
+                  type="text"
+                  placeholder="Ваше имя"
+                  class="k-control"
+                />
+              </div>
+              <div class="k-field">
+                <label for="form-default-select">Тема обращения</label
+                ><select id="form-default-select" class="k-control">
+                  <option>Выбор компьютера</option>
+                  <option>Поддержка</option>
+                </select>
+              </div>
+              <div class="k-field">
+                <label for="form-default-textarea">Комментарий</label
+                ><textarea
+                  id="form-default-textarea"
+                  placeholder="Ваш вопрос"
+                  class="k-control"
+                ></textarea>
+              </div>
+              <label class="k-check"
+                ><input
+                  id="form-default-checkbox"
+                  name="form-default-checkbox"
+                  type="checkbox"
+                /><span>Согласие · пример</span></label
+              ><label class="k-check"
+                ><input
+                  id="form-default-radio"
+                  name="form-default-radio"
+                  type="radio"
+                /><span>Предпочитаю письмо</span></label
+              >
+            </div>
+            <div class="k-panel k-stack">
+              <h3>Фокус · визуальный пример</h3>
+              <div class="k-field">
+                <label for="form-focus-input">Имя</label
+                ><input
+                  id="form-focus-input"
+                  type="text"
+                  placeholder="Ваше имя"
+                  class="k-control k-state-focus"
+                />
+              </div>
+              <div class="k-field">
+                <label for="form-focus-select">Тема обращения</label
+                ><select id="form-focus-select" class="k-control k-state-focus">
+                  <option>Выбор компьютера</option>
+                  <option>Поддержка</option>
+                </select>
+              </div>
+              <div class="k-field">
+                <label for="form-focus-textarea">Комментарий</label
+                ><textarea
+                  id="form-focus-textarea"
+                  placeholder="Ваш вопрос"
+                  class="k-control k-state-focus"
+                ></textarea>
+              </div>
+              <label class="k-check"
+                ><input
+                  id="form-focus-checkbox"
+                  name="form-focus-checkbox"
+                  type="checkbox"
+                  class="k-state-focus"
+                /><span>Согласие · пример</span></label
+              ><label class="k-check"
+                ><input
+                  id="form-focus-radio"
+                  name="form-focus-radio"
+                  type="radio"
+                  class="k-state-focus"
+                /><span>Предпочитаю письмо</span></label
+              >
+            </div>
+            <div class="k-panel k-stack">
+              <h3>Недоступные</h3>
+              <div class="k-field">
+                <label for="form-disabled-input">Имя</label
+                ><input
+                  id="form-disabled-input"
+                  type="text"
+                  placeholder="Ваше имя"
+                  class="k-control"
+                  disabled
+                />
+              </div>
+              <div class="k-field">
+                <label for="form-disabled-select">Тема обращения</label
+                ><select id="form-disabled-select" class="k-control" disabled>
+                  <option>Выбор компьютера</option>
+                  <option>Поддержка</option>
+                </select>
+              </div>
+              <div class="k-field">
+                <label for="form-disabled-textarea">Комментарий</label
+                ><textarea
+                  id="form-disabled-textarea"
+                  placeholder="Ваш вопрос"
+                  class="k-control"
+                  disabled
+                ></textarea>
+              </div>
+              <label class="k-check"
+                ><input
+                  id="form-disabled-checkbox"
+                  name="form-disabled-checkbox"
+                  type="checkbox"
+                  disabled
+                /><span>Согласие · пример</span></label
+              ><label class="k-check"
+                ><input
+                  id="form-disabled-radio"
+                  name="form-disabled-radio"
+                  type="radio"
+                  disabled
+                /><span>Предпочитаю письмо</span></label
+              >
+            </div>
+            <div class="k-panel k-stack">
+              <h3>Ошибка</h3>
+              <div class="k-field">
+                <label for="form-error-input">Имя</label
+                ><input
+                  id="form-error-input"
+                  type="text"
+                  placeholder="Ваше имя"
+                  class="k-control"
+                  aria-invalid="true"
+                  aria-describedby="form-error-input-error"
+                /><span class="k-error" id="form-error-input-error"
+                  >Проверьте значение: демонстрация ошибки.</span
+                >
+              </div>
+              <div class="k-field">
+                <label for="form-error-select">Тема обращения</label
+                ><select
+                  id="form-error-select"
+                  class="k-control"
+                  aria-invalid="true"
+                  aria-describedby="form-error-select-error"
+                >
+                  <option>Выбор компьютера</option>
+                  <option>Поддержка</option></select
+                ><span class="k-error" id="form-error-select-error"
+                  >Проверьте значение: демонстрация ошибки.</span
+                >
+              </div>
+              <div class="k-field">
+                <label for="form-error-textarea">Комментарий</label
+                ><textarea
+                  id="form-error-textarea"
+                  placeholder="Ваш вопрос"
+                  class="k-control"
+                  aria-invalid="true"
+                  aria-describedby="form-error-textarea-error"
+                ></textarea
+                ><span class="k-error" id="form-error-textarea-error"
+                  >Проверьте значение: демонстрация ошибки.</span
+                >
+              </div>
+              <label class="k-check"
+                ><input
+                  id="form-error-checkbox"
+                  name="form-error-checkbox"
+                  type="checkbox"
+                  aria-invalid="true"
+                  aria-describedby="form-error-checkbox-error"
+                /><span>Согласие · пример</span></label
+              >
+              <p class="k-error" id="form-error-checkbox-error">
+                Выберите значение · пример ошибки.
+              </p>
+              <label class="k-check"
+                ><input
+                  id="form-error-radio"
+                  name="form-error-radio"
+                  type="radio"
+                  aria-invalid="true"
+                  aria-describedby="form-error-radio-error"
+                /><span>Предпочитаю письмо</span></label
+              >
+              <p class="k-error" id="form-error-radio-error">
+                Выберите значение · пример ошибки.
+              </p>
+            </div>
+          </div>
+        </section>
+        <section
+          class="k-kit-section k-stack"
+          id="options"
+          aria-labelledby="options-title"
+        >
+          <h2 id="options-title">04 / Контролируемая настройка</h2>
+          <fieldset class="k-panel k-stack">
+            <legend>select · Оперативная память</legend>
+            <div class="k-field">
+              <label for="kit-ram">Объём памяти</label
+              ><select class="k-control" id="kit-ram">
+                <option>32 ГБ DDR5-6000 · без доплаты</option>
+                <option>64 ГБ DDR5-6000 · +42 000 ₽</option>
+              </select>
+            </div>
+            <p class="k-small k-muted">
+              Все дельты — примеры отображения, цена не пересчитывается.
+            </p>
+          </fieldset>
+          <fieldset class="k-panel">
+            <legend>text_buttons · SSD</legend>
+            <div class="k-option-grid">
+              <label class="k-option"
+                ><input type="radio" name="kit-ssd" value="0" checked /><span
+                  class="k-option-content"
+                  ><span class="k-option-name">1 ТБ</span
+                  ><span class="k-option-detail">NVMe PCIe 4.0 TLC</span
+                  ><span class="k-price-delta">Без доплаты</span></span
+                ></label
+              ><label class="k-option"
+                ><input type="radio" name="kit-ssd" value="1" /><span
+                  class="k-option-content"
+                  ><span class="k-option-name">2 ТБ</span
+                  ><span class="k-option-detail">Для большой библиотеки</span
+                  ><span class="k-price-delta">+4 800 ₽</span></span
+                ></label
+              ><label class="k-option"
+                ><input type="radio" name="kit-ssd" value="2" disabled /><span
+                  class="k-option-content"
+                  ><span class="k-option-name">4 ТБ</span
+                  ><span class="k-option-detail">Вариант на согласовании</span
+                  ><span class="k-price-delta">Цена уточняется</span></span
+                ></label
+              >
+            </div>
+          </fieldset>
+          <fieldset class="k-panel">
+            <legend>image_buttons · Корпус</legend>
+            <div class="k-option-grid">
+              <label class="k-option k-option--image"
+                ><input type="radio" name="kit-case" value="0" checked /><span
+                  class="k-option-content"
+                  ><span class="k-image-placeholder"
+                    ><span class="k-case-outline" aria-hidden="true"></span
+                    ><span>Изображение корпуса · макет</span></span
+                  ><span class="k-option-caption"
+                    ><span class="k-option-name">Lian Li LANCOOL 217</span
+                    ><span class="k-option-detail">Black · кандидат</span
+                    ><span class="k-price-delta">Без доплаты</span></span
+                  ></span
+                ></label
+              ><label class="k-option k-option--image"
+                ><input type="radio" name="kit-case" value="1" /><span
+                  class="k-option-content"
+                  ><span class="k-image-placeholder"
+                    ><span class="k-case-outline" aria-hidden="true"></span
+                    ><span>Изображение корпуса · макет</span></span
+                  ><span class="k-option-caption"
+                    ><span class="k-option-name">Fractal Design North</span
+                    ><span class="k-option-detail"
+                      >Charcoal Black · кандидат</span
+                    ><span class="k-price-delta">+8 400 ₽</span></span
+                  ></span
+                ></label
+              ><label class="k-option k-option--image"
+                ><input type="radio" name="kit-case" value="2" /><span
+                  class="k-option-content"
+                  ><span
+                    class="k-image-placeholder k-image-placeholder--missing"
+                    ><span class="k-case-outline" aria-hidden="true"></span
+                    ><span>Фото пока нет</span></span
+                  ><span class="k-option-caption"
+                    ><span class="k-option-name"
+                      >be quiet! Pure Base 501 DX</span
+                    ><span class="k-option-detail">Black · кандидат</span
+                    ><span class="k-price-delta">+4 800 ₽</span></span
+                  ></span
+                ></label
+              ><label class="k-option k-option--image k-state-hover"
+                ><input type="radio" name="kit-case" value="3" /><span
+                  class="k-option-content"
+                  ><span class="k-image-placeholder"
+                    ><span class="k-case-outline" aria-hidden="true"></span
+                    ><span>Изображение корпуса · макет</span></span
+                  ><span class="k-option-caption"
+                    ><span class="k-option-name">Montech AIR 903 MAX</span
+                    ><span class="k-option-detail">Black · кандидат</span
+                    ><span class="k-price-delta">Без доплаты</span></span
+                  ></span
+                ></label
+              ><label class="k-option k-option--image"
+                ><input type="radio" name="kit-case" value="4" disabled /><span
+                  class="k-option-content"
+                  ><span class="k-image-placeholder"
+                    ><span class="k-case-outline" aria-hidden="true"></span
+                    ><span>Изображение корпуса · макет</span></span
+                  ><span class="k-option-caption"
+                    ><span class="k-option-name">Вариант недоступен</span
+                    ><span class="k-option-detail">На согласовании</span
+                    ><span class="k-price-delta">Цена уточняется</span></span
+                  ></span
+                ></label
+              >
+            </div>
+            <p class="k-config-help">
+              Выбранный / обычный / без фото / hover visual / недоступный.
+              Корпуса из shortlist спецификации, окончательный допуск ещё не
+              утверждён.
+            </p>
+          </fieldset>
+          <fieldset class="k-panel">
+            <legend>checkboxes · Программы и сервис</legend>
+            <label class="k-check"
+              ><input type="checkbox" name="kit-office" checked /><span
+                >Microsoft Office Trial</span
+              ><span class="k-check-price">+300 ₽</span></label
+            ><label class="k-check"
+              ><input type="checkbox" name="kit-security" /><span
+                >Dr.Web Security Space</span
+              ><span class="k-check-price">+1 800 ₽</span></label
+            ><label class="k-check"
+              ><input type="checkbox" name="kit-warranty" disabled /><span
+                >Дополнительная гарантия +1 год</span
+              ><span class="k-check-price">+5 000 ₽</span></label
+            >
+            <p class="k-config-help">
+              Демонстрационные варианты. Дополнительная гарантия недоступна до
+              согласования условий.
+            </p>
+          </fieldset>
+        </section>
+        <section
+          class="k-kit-section k-stack"
+          id="prices"
+          aria-labelledby="prices-title"
+        >
+          <h2 id="prices-title">05 / Цена и статус</h2>
+          <div class="k-grid">
+            <div class="k-panel k-stack">
+              <p class="k-price k-price--large">249 748 ₽</p>
+              <p class="k-price">от 249 748 ₽</p>
+              <span class="k-price-delta">+4 800 ₽</span
+              ><span class="k-price-delta">−8 400 ₽</span>
+            </div>
+            <div class="k-panel">
+              <p class="k-price">249 748 ₽</p>
+              <p class="k-price-note">
+                <span class="k-spinner" aria-hidden="true"></span>
+                Пересчитываем… · визуальный пример
+              </p>
+            </div>
+            <div class="k-panel">
+              <p class="k-price">—</p>
+              <p class="k-price-note">Цена временно недоступна</p>
+            </div>
+          </div>
+          <div class="k-cluster">
+            <span class="k-badge k-badge--available">В наличии</span
+            ><span class="k-badge">Под заказ</span
+            ><span class="k-badge">Новинка</span
+            ><span class="k-badge">Популярная модель</span
+            ><span class="k-badge">1440p</span
+            ><span class="k-badge">Mini-ITX</span>
+          </div>
+          <p class="k-small k-muted">
+            Демонстрация состояний. Цена и наличие не являются предложением о
+            продаже.
+          </p>
+        </section>
+        <section
+          class="k-kit-section k-stack"
+          id="cards"
+          aria-labelledby="cards-title"
+        >
+          <h2 id="cards-title">06 / Продукт и паспорт</h2>
+          <div class="k-grid">
+            <article class="k-panel k-product-card">
+              <span class="k-image-placeholder"
+                ><span class="k-case-outline" aria-hidden="true"></span
+                ><span>Место для фотографии</span></span
+              >
+              <div class="k-product-card-body k-stack">
+                <div class="k-stack k-stack--tight">
+                  <span class="k-eyebrow">Для игр в 1440p</span>
+                  <h3>KORSAC PLAY 1440</h3>
+                  <p class="k-muted">
+                    Для современных игр в 2560×1440 на высоких настройках.
+                  </p>
+                  <p class="k-small">Ryzen 7 · RTX 5070 · 32 ГБ · 1 ТБ</p>
+                </div>
+                <div>
+                  <p class="k-price">от 179 900 ₽</p>
+                  <p class="k-price-note">Пример цены</p>
+                </div>
+                <a class="k-button" href="product.html#configurator"
+                  >Настроить</a
+                >
+              </div>
+            </article>
+            <article class="k-panel k-system-id k-stack">
+              <span class="k-eyebrow">KORSAC SYSTEM ID</span>
+              <h3>Паспорт вашей системы</h3>
+              <strong>KS-26-001284</strong>
+              <p class="k-muted">
+                Модель, установленные комплектующие и результаты проверки в
+                одном месте.
+              </p>
+              <p class="k-small">Built &amp; tested by KORSAC</p>
+              <p class="k-small k-muted">
+                Визуальный концепт. Номер вымышленный, паспорт не подключён.
+              </p>
+            </article>
+          </div>
+        </section>
+        <section
+          class="k-kit-section k-stack"
+          id="navigation"
+          aria-labelledby="navigation-title"
+        >
+          <h2 id="navigation-title">07 / Разделы и ответы</h2>
+          <div data-tabs>
+            <div
+              class="k-tabs-list"
+              role="tablist"
+              aria-label="Разделы продукта"
+            >
+              <button
+                class="k-tab"
+                type="button"
+                role="tab"
+                id="kit-tab-0"
+                aria-controls="kit-panel-0"
+                aria-selected="true"
+                tabindex="0"
+              >
+                Обзор</button
+              ><button
+                class="k-tab"
+                type="button"
+                role="tab"
+                id="kit-tab-1"
+                aria-controls="kit-panel-1"
+                aria-selected="false"
+                tabindex="-1"
+              >
+                Характеристики</button
+              ><button
+                class="k-tab"
+                type="button"
+                role="tab"
+                id="kit-tab-2"
+                aria-controls="kit-panel-2"
+                aria-selected="false"
+                tabindex="-1"
+              >
+                Производительность</button
+              ><button
+                class="k-tab"
+                type="button"
+                role="tab"
+                id="kit-tab-3"
+                aria-controls="kit-panel-3"
+                aria-selected="false"
+                tabindex="-1"
+              >
+                Сборка и тестирование</button
+              ><button
+                class="k-tab"
+                type="button"
+                role="tab"
+                id="kit-tab-4"
+                aria-controls="kit-panel-4"
+                aria-selected="false"
+                tabindex="-1"
+              >
+                Гарантия
+              </button>
+            </div>
+            <div
+              class="k-tabpanel"
+              role="tabpanel"
+              id="kit-panel-0"
+              aria-labelledby="kit-tab-0"
+              tabindex="0"
+            >
+              <p>
+                Система для современных игр в 2560×1440. CPU и GPU определяют
+                класс модели; память, накопители и корпус можно подобрать под
+                свой сценарий.
+              </p>
+            </div>
+            <div
+              class="k-tabpanel"
+              role="tabpanel"
+              id="kit-panel-1"
+              aria-labelledby="kit-tab-1"
+              tabindex="0"
+            >
+              <p>
+                AMD Ryzen 7 9700X · GeForce RTX 5070 12 ГБ · B850 ATX Wi-Fi · 32
+                ГБ DDR5-6000 CL30 · 1 ТБ NVMe PCIe 4.0 TLC · 750 Вт Gold.
+              </p>
+            </div>
+            <div
+              class="k-tabpanel"
+              role="tabpanel"
+              id="kit-panel-2"
+              aria-labelledby="kit-tab-2"
+              tabindex="0"
+            >
+              <p>
+                Результаты появятся после тестирования производственной ревизии.
+                FPS, температуры и уровень шума пока не заявлены.
+              </p>
+            </div>
+            <div
+              class="k-tabpanel"
+              role="tabpanel"
+              id="kit-panel-3"
+              aria-labelledby="kit-tab-3"
+              tabindex="0"
+            >
+              <p>
+                Сборка, укладка кабелей, настройка BIOS и проверка стабильности
+                — этапы будущего протокола подготовки системы.
+              </p>
+            </div>
+            <div
+              class="k-tabpanel"
+              role="tabpanel"
+              id="kit-panel-4"
+              aria-labelledby="kit-tab-4"
+              tabindex="0"
+            >
+              <p>
+                Условия гарантии, срок и порядок обслуживания будут опубликованы
+                после согласования.
+              </p>
+            </div>
+          </div>
+          <div class="k-accordion">
+            <div class="k-accordion-item">
+              <h3>
+                <button
+                  class="k-accordion-trigger"
+                  type="button"
+                  data-accordion
+                  aria-expanded="false"
+                  aria-controls="kit-faq-0"
+                  id="kit-faq-trigger-0"
+                >
+                  Можно ли изменить процессор и видеокарту?
+                </button>
+              </h3>
+              <div
+                class="k-accordion-panel"
+                role="region"
+                id="kit-faq-0"
+                aria-labelledby="kit-faq-trigger-0"
+              >
+                <p>
+                  CPU и GPU фиксированы для PLAY 1440. Более высокий игровой
+                  класс — отдельная модель.
+                </p>
+              </div>
+            </div>
+            <div class="k-accordion-item">
+              <h3>
+                <button
+                  class="k-accordion-trigger"
+                  type="button"
+                  data-accordion
+                  aria-expanded="false"
+                  aria-controls="kit-faq-1"
+                  id="kit-faq-trigger-1"
+                >
+                  Как выбрать накопитель?
+                </button>
+              </h3>
+              <div
+                class="k-accordion-panel"
+                role="region"
+                id="kit-faq-1"
+                aria-labelledby="kit-faq-trigger-1"
+              >
+                <p>
+                  Базовый объём — 1 ТБ NVMe. В прототипе можно посмотреть
+                  варианты большей ёмкости.
+                </p>
+              </div>
+            </div>
+            <div class="k-accordion-item">
+              <h3>
+                <button
+                  class="k-accordion-trigger"
+                  type="button"
+                  data-accordion
+                  aria-expanded="false"
+                  aria-controls="kit-faq-2"
+                  id="kit-faq-trigger-2"
+                >
+                  Доставка и гарантия
+                </button>
+              </h3>
+              <div
+                class="k-accordion-panel"
+                role="region"
+                id="kit-faq-2"
+                aria-labelledby="kit-faq-trigger-2"
+              >
+                <p>
+                  Условия, сроки и стоимость будут добавлены после согласования.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section
+          class="k-kit-section k-stack"
+          id="overlays"
+          aria-labelledby="overlays-title"
+        >
+          <h2 id="overlays-title">08 / Окна и уведомления</h2>
+          <div class="k-cluster">
+            <button
+              class="k-button k-button--secondary"
+              type="button"
+              data-dialog-open="scope-dialog"
+            >
+              Открыть modal</button
+            ><button
+              class="k-button k-button--secondary"
+              type="button"
+              data-dialog-open="menu-drawer"
+              aria-controls="menu-drawer"
+              aria-expanded="false"
+            >
+              Открыть drawer</button
+            ><button
+              class="k-button k-button--ghost"
+              type="button"
+              data-toast="Добавлено в корзину · демонстрация уведомления"
+            >
+              Показать статус</button
+            ><button
+              class="k-button k-button--ghost"
+              type="button"
+              data-toast="Не удалось пересчитать конфигурацию · демонстрация ошибки"
+              data-toast-kind="error"
+            >
+              Показать ошибку
+            </button>
+          </div>
+          <div class="k-grid">
+            <div class="k-notice">
+              <span>Добавлено в корзину · образец, без действия</span>
+            </div>
+            <div class="k-notice k-notice--error">
+              <span>Не удалось пересчитать конфигурацию · образец</span>
+            </div>
+          </div>
+          <p class="k-small k-muted">
+            Окна закрываются кнопкой, Escape и кликом по фону. Фокус остаётся
+            внутри окна и возвращается к открывшему его контролу.
+          </p>
+        </section>
+      </div>
+    </main>
+    <footer class="k-footer">
+      <div class="k-container">
+        <div class="k-footer-grid">
+          <div class="k-footer-brand k-stack k-stack--tight">
+            <a class="k-wordmark" href="index.html">KORSAC</a>
+            <p class="k-muted">Точно под задачу.</p>
+            <p class="k-small k-muted">KORSAC by King-Komp</p>
+          </div>
+          <nav aria-label="Продукт">
+            <span class="k-eyebrow">Продукт</span
+            ><a href="product.html">PLAY 1440</a
+            ><a href="product.html#configurator">Настроить</a
+            ><a href="ui.html">UI Kit</a>
+          </nav>
+          <nav aria-label="Информация">
+            <span class="k-eyebrow">Информация</span
+            ><a href="product.html#assembly">Сборка и тестирование</a
+            ><a href="product.html#warranty">Гарантия и поддержка</a
+            ><a href="product.html#faq">Вопросы и ответы</a>
+          </nav>
+        </div>
+        <div class="k-footer-bottom k-small k-muted">
+          <span>Визуальный прототип · не интернет-магазин</span
+          ><span>Юридические сведения и документы — после согласования</span>
+        </div>
+      </div>
+    </footer>
+    <dialog class="k-dialog" id="scope-dialog" aria-labelledby="scope-title">
+      <div class="k-dialog-header">
+        <h2 id="scope-title">О статическом прототипе</h2>
+        <button
+          class="k-button k-button--icon"
+          type="button"
+          data-dialog-close
+          aria-label="Закрыть окно"
+        >
+          ×
+        </button>
+      </div>
+      <div class="k-stack">
+        <p>
+          Здесь проверяем визуальную систему KORSAC. Поиск, корзина и линейка
+          для работы появятся на следующих этапах.
+        </p>
+        <p class="k-muted">
+          Выбор опций меняет только состояние контролов. Цена остаётся примером,
+          данные не сохраняются.
+        </p>
+        <a href="ui.html">Посмотреть UI Kit</a>
+      </div>
+    </dialog>
+    <dialog
+      class="k-dialog k-drawer"
+      id="menu-drawer"
+      aria-labelledby="menu-title"
+    >
+      <div class="k-dialog-header">
+        <h2 id="menu-title">Навигация</h2>
+        <button
+          class="k-button k-button--icon"
+          type="button"
+          data-dialog-close
+          aria-label="Закрыть меню"
+        >
+          ×
+        </button>
+      </div>
+      <nav class="k-drawer-nav" aria-label="Мобильная навигация">
+        <a href="index.html">Прототип</a
+        ><a href="product.html">Компьютеры · Для игр</a
+        ><a href="product.html#configurator">Настроить PLAY 1440</a
+        ><a href="product.html#assembly">О KORSAC</a
+        ><a href="product.html#warranty">Поддержка</a
+        ><a href="ui.html">UI Kit</a>
+      </nav>
+      <p class="k-small k-muted">
+        Линейка для работы и поиск — на следующих этапах.
+      </p>
+    </dialog>
+    <div
+      class="k-toast-region"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+      data-toast-region
+    ></div>
+  </body>
+</html>
