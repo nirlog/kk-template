@@ -137,6 +137,15 @@ legend {
   text-transform: uppercase;
   color: var(--k-secondary);
 }
+.k-technical {
+  font: 400 var(--k-technical) / 1.5 var(--k-font-mono);
+  font-variant-numeric: tabular-nums;
+}
+.k-serial {
+  color: var(--k-identity);
+  font-family: var(--k-font-mono);
+  font-variant-numeric: tabular-nums;
+}
 .k-lead {
   font-size: var(--k-body-lg);
   color: var(--k-secondary);
@@ -157,5 +166,9 @@ legend {
     animation: none !important;
     transition: none !important;
     scroll-behavior: auto !important;
+  }
+  [data-motion-step] {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }

@@ -17,10 +17,16 @@
     <a class="k-skip" href="#main">Перейти к содержанию</a>
     <div class="k-prototype-note">
       <div class="k-container">
-        Статический UI-прототип v1 · цены и опции — демонстрационные данные
+        <span class="k-registration">DIRECTION / 02</span
+        ><span>UI-прототип · цены и опции — примеры</span>
       </div>
     </div>
     <header class="k-header">
+      <div class="k-shell-rail" aria-hidden="true">
+        <div class="k-container">
+          <span>KORSAC / SYSTEMS</span><span>VISUAL REV. 02</span>
+        </div>
+      </div>
       <div class="k-container k-header-inner">
         <!-- Temporary text wordmark. Not an approved production logo. -->
         <a
@@ -75,19 +81,97 @@
       <div class="k-container">
         <div class="k-kit-heading k-stack">
           <a class="k-back" href="index.html">← К прототипам</a
-          ><span class="k-eyebrow">KORSAC / UI foundation 01</span>
-          <h1>Система интерфейса</h1>
+          ><span class="k-eyebrow">KORSAC / VISUAL DIRECTION 02</span>
+          <h1>Инженерная точность.</h1>
           <p class="k-lead">
-            Спокойная форма. Точные детали. Компоненты для продуктового опыта.
+            Индексы, линии и состояния. Визуальная грамматика KORSAC и короткий
+            словарь движения.
           </p>
         </div>
         <nav class="k-kit-nav" aria-label="Разделы UI Kit">
+          <a href="#identity">Identity Primitives</a>
           <a href="#foundation">Основа</a><a href="#buttons">Кнопки и ссылки</a
           ><a href="#forms">Формы</a><a href="#options">Опции</a
           ><a href="#prices">Цены и статусы</a><a href="#cards">Карточки</a
           ><a href="#navigation">Навигация</a
           ><a href="#overlays">Окна и уведомления</a>
+          <a href="#motion">Motion</a>
         </nav>
+        <section
+          class="k-kit-section k-stack"
+          id="identity"
+          aria-labelledby="identity-title"
+        >
+          <div class="k-stack k-stack--tight">
+            <div class="k-section-index">
+              <span>00</span><span>IDENTITY / PRIMITIVES</span>
+            </div>
+            <h2 id="identity-title">KORSAC Identity Primitives</h2>
+            <p class="k-muted">
+              Повторяемая грамматика: индекс, опорная линия, активный угол и
+              регистрационная метка.
+            </p>
+          </div>
+          <div class="k-identity-grid">
+            <article class="k-frame k-identity-stage k-stack">
+              <span class="k-frame-index">FRAME / 01</span>
+              <div class="k-section-index">
+                <span>01</span><span>PRODUCT</span>
+              </div>
+              <h3>Точный контекст.<br />Открытая композиция.</h3>
+              <span class="k-rail" aria-hidden="true"></span
+              ><span class="k-registration">REV. 2026.1</span>
+              <p class="k-small k-muted">
+                Рамка прерывается в углу. Copper отмечает идентичность, blue —
+                действие.
+              </p>
+            </article>
+            <div class="k-stack">
+              <fieldset>
+                <legend>Маркер выбранной опции</legend>
+                <div class="k-option-grid">
+                  <label class="k-option"
+                    ><input type="radio" name="identity-option" checked /><span
+                      class="k-option-content"
+                      ><span class="k-option-name">32 ГБ</span
+                      ><span class="k-option-detail">Базовый объём</span
+                      ><span class="k-price-delta">Без доплаты</span></span
+                    ></label
+                  ><label class="k-option"
+                    ><input type="radio" name="identity-option" /><span
+                      class="k-option-content"
+                      ><span class="k-option-name">64 ГБ</span
+                      ><span class="k-option-detail">Для тяжёлых проектов</span
+                      ><span class="k-price-delta">Дельта — пример</span></span
+                    ></label
+                  >
+                </div>
+              </fieldset>
+              <div class="k-registration k-identity-register">
+                <span class="k-eyebrow">REGISTER / SERIAL</span
+                ><strong>KS-26-001284</strong
+                ><span class="k-small k-muted">Серийная метка · пример</span>
+              </div>
+            </div>
+          </div>
+          <div class="k-grid k-validation-gallery">
+            <div class="k-validation k-validation--confirmed">
+              <span class="k-validation-rail" aria-hidden="true"></span
+              ><span class="k-validation-label">Цена подтверждена</span
+              ><small class="k-muted">Пример состояния renderer</small>
+            </div>
+            <div class="k-validation k-validation--pending">
+              <span class="k-validation-rail" aria-hidden="true"></span
+              ><span class="k-validation-label">Пересчитываем…</span
+              ><small class="k-muted">Пример, без запроса</small>
+            </div>
+            <div class="k-validation k-validation--error">
+              <span class="k-validation-rail" aria-hidden="true"></span
+              ><span class="k-validation-label">Не удалось пересчитать</span
+              ><small class="k-muted">Пример состояния ошибки</small>
+            </div>
+          </div>
+        </section>
         <section
           class="k-kit-section k-stack"
           id="foundation"
@@ -175,7 +259,10 @@
             </div>
             <div class="k-state-example">
               <button class="k-button" type="button" disabled aria-busy="true">
-                <span class="k-spinner" aria-hidden="true"></span>
+                <span
+                  class="k-validation-rail k-inline-rail"
+                  aria-hidden="true"
+                ></span>
                 Загружаем…</button
               ><small>Loading</small>
             </div>
@@ -213,6 +300,32 @@
               <a href="product.html" aria-current="page">Для игр</a
               ><a href="product.html#assembly">О KORSAC</a>
             </nav>
+          </div>
+          <div class="k-cta-comparison">
+            <article class="k-stack k-stack--tight">
+              <span class="k-eyebrow">A / PRIMARY</span
+              ><button
+                class="k-button"
+                type="button"
+                data-dialog-open="scope-dialog"
+              >
+                Настроить
+              </button>
+              <p class="k-small k-muted">
+                #245DDD + светлый текст · выбранное направление
+              </p>
+            </article>
+            <article class="k-stack k-stack--tight">
+              <span class="k-eyebrow">B / EXPLORATION</span
+              ><button
+                class="k-button k-button--electric"
+                type="button"
+                data-dialog-open="scope-dialog"
+              >
+                Настроить
+              </button>
+              <p class="k-small k-muted">#397BFF + тёмный текст · сравнение</p>
+            </article>
           </div>
         </section>
         <section
@@ -574,7 +687,10 @@
             <div class="k-panel">
               <p class="k-price">249 748 ₽</p>
               <p class="k-price-note">
-                <span class="k-spinner" aria-hidden="true"></span>
+                <span
+                  class="k-validation-rail k-inline-rail"
+                  aria-hidden="true"
+                ></span>
                 Пересчитываем… · визуальный пример
               </p>
             </div>
@@ -604,14 +720,17 @@
           <h2 id="cards-title">06 / Продукт и паспорт</h2>
           <div class="k-grid">
             <article class="k-panel k-product-card">
-              <span class="k-image-placeholder"
+              <span class="k-image-placeholder k-frame"
                 ><span class="k-case-outline" aria-hidden="true"></span
                 ><span>Место для фотографии</span></span
               >
               <div class="k-product-card-body k-stack">
+                <div class="k-section-index">
+                  <span>01</span><span>PLAY / SERIES</span>
+                </div>
                 <div class="k-stack k-stack--tight">
                   <span class="k-eyebrow">Для игр в 1440p</span>
-                  <h3>KORSAC PLAY 1440</h3>
+                  <h3>PLAY <span class="k-card-model">1440</span></h3>
                   <p class="k-muted">
                     Для современных игр в 2560×1440 на высоких настройках.
                   </p>
@@ -626,17 +745,42 @@
                 >
               </div>
             </article>
-            <article class="k-panel k-system-id k-stack">
-              <span class="k-eyebrow">KORSAC SYSTEM ID</span>
-              <h3>Паспорт вашей системы</h3>
-              <strong>KS-26-001284</strong>
-              <p class="k-muted">
-                Модель, установленные комплектующие и результаты проверки в
-                одном месте.
-              </p>
-              <p class="k-small">Built &amp; tested by KORSAC</p>
-              <p class="k-small k-muted">
-                Визуальный концепт. Номер вымышленный, паспорт не подключён.
+            <article class="k-system-id k-frame k-stack">
+              <div class="k-passport-head" data-motion-step="frame">
+                <span class="k-eyebrow">KORSAC / SYSTEM ID</span
+                ><span class="k-registration" data-motion-step="registration"
+                  >REG / 01</span
+                >
+              </div>
+              <div data-motion-step="marker">
+                <h3>Паспорт системы</h3>
+                <p class="k-small k-muted">
+                  Визуальный концепт · номер — пример
+                </p>
+              </div>
+              <strong class="k-passport-serial" data-motion-step="serial"
+                >KS-26-001284</strong
+              >
+              <dl class="k-passport-details" data-motion-step="details">
+                <div>
+                  <dt>Модель</dt>
+                  <dd>PLAY / 1440</dd>
+                </div>
+                <div>
+                  <dt>Ревизия</dt>
+                  <dd>KP1440 / 2026.1</dd>
+                </div>
+                <div>
+                  <dt>Комплектующие</dt>
+                  <dd>После сборки</dd>
+                </div>
+                <div>
+                  <dt>Результаты проверки</dt>
+                  <dd>После измерений</dd>
+                </div>
+              </dl>
+              <p class="k-small" data-motion-step="registration">
+                Built &amp; tested by KORSAC
               </p>
             </article>
           </div>
@@ -893,6 +1037,174 @@
             внутри окна и возвращается к открывшему его контролу.
           </p>
         </section>
+        <section
+          class="k-kit-section k-stack"
+          id="motion"
+          aria-labelledby="motion-title"
+        >
+          <div class="k-section-index">
+            <span>09</span><span>MOTION / CONTROLLED</span>
+          </div>
+          <h2 id="motion-title">Motion</h2>
+          <p class="k-muted">
+            Движение появляется в момент изменения. Примеры можно повторять; они
+            не запускают расчёт, проверку или покупку.
+          </p>
+          <div class="k-motion-grid">
+            <article class="k-motion-example k-stack">
+              <h3>Последовательность hero</h3>
+              <div
+                class="k-motion-stage k-frame"
+                id="motion-hero"
+                data-motion="hero"
+              >
+                <span class="k-eyebrow" data-motion-step="marker"
+                  >PLAY / 1440</span
+                ><span
+                  class="k-case-outline"
+                  data-motion-step="media"
+                  aria-hidden="true"
+                ></span
+                ><strong data-motion-step="title">1440</strong
+                ><span class="k-small k-muted" data-motion-step="facts"
+                  >32 ГБ · 1 ТБ</span
+                ><span
+                  class="k-rail"
+                  data-motion-step="cta"
+                  aria-hidden="true"
+                ></span>
+              </div>
+              <button
+                class="k-button k-button--secondary"
+                type="button"
+                data-motion-replay="motion-hero"
+                aria-label="Повторить: Последовательность hero"
+              >
+                Повторить →
+              </button>
+            </article>
+            <article class="k-motion-example k-stack">
+              <h3>Калибровочная линия</h3>
+              <div
+                class="k-validation k-validation--pending"
+                id="motion-validation"
+                data-motion="validation"
+              >
+                <span class="k-validation-rail" aria-hidden="true"></span
+                ><span class="k-validation-label">Пересчитываем…</span
+                ><small class="k-muted">Только визуальное состояние</small>
+              </div>
+              <button
+                class="k-button k-button--secondary"
+                type="button"
+                data-motion-replay="motion-validation"
+                aria-label="Повторить: Калибровочная линия"
+              >
+                Повторить →
+              </button>
+            </article>
+            <article class="k-motion-example k-stack">
+              <h3>Подтверждение выбора</h3>
+              <div
+                class="k-motion-selection-demo k-frame k-stack"
+                id="motion-selection"
+                data-motion="selection"
+              >
+                <span class="k-eyebrow">OPTION / ACTIVE</span
+                ><strong>64 ГБ DDR5</strong
+                ><span class="k-rail" aria-hidden="true"></span
+                ><span class="k-small k-muted">Состояние видно сразу.</span>
+              </div>
+              <button
+                class="k-button k-button--secondary"
+                type="button"
+                data-motion-replay="motion-selection"
+                aria-label="Повторить: Подтверждение выбора"
+              >
+                Повторить →
+              </button>
+            </article>
+            <article class="k-motion-example k-stack">
+              <h3>Раскрытие SYSTEM ID</h3>
+              <article
+                class="k-system-id k-frame k-stack"
+                id="motion-passport"
+                data-motion="passport"
+              >
+                <div class="k-passport-head" data-motion-step="frame">
+                  <span class="k-eyebrow">KORSAC / SYSTEM ID</span
+                  ><span class="k-registration" data-motion-step="registration"
+                    >REG / 01</span
+                  >
+                </div>
+                <div data-motion-step="marker">
+                  <h3>Паспорт системы</h3>
+                  <p class="k-small k-muted">
+                    Визуальный концепт · номер — пример
+                  </p>
+                </div>
+                <strong class="k-passport-serial" data-motion-step="serial"
+                  >KS-26-001284</strong
+                >
+                <dl class="k-passport-details" data-motion-step="details">
+                  <div>
+                    <dt>Модель</dt>
+                    <dd>PLAY / 1440</dd>
+                  </div>
+                  <div>
+                    <dt>Ревизия</dt>
+                    <dd>KP1440 / 2026.1</dd>
+                  </div>
+                  <div>
+                    <dt>Комплектующие</dt>
+                    <dd>После сборки</dd>
+                  </div>
+                  <div>
+                    <dt>Результаты проверки</dt>
+                    <dd>После измерений</dd>
+                  </div>
+                </dl>
+                <p class="k-small" data-motion-step="registration">
+                  Built &amp; tested by KORSAC
+                </p>
+              </article>
+              <button
+                class="k-button k-button--secondary"
+                type="button"
+                data-motion-replay="motion-passport"
+                aria-label="Повторить: Раскрытие SYSTEM ID"
+              >
+                Повторить →
+              </button>
+            </article>
+            <article class="k-motion-example k-stack">
+              <h3>Индекс секции</h3>
+              <div
+                class="k-motion-index-demo k-frame"
+                id="motion-index"
+                data-motion="index"
+              >
+                <div class="k-section-index">
+                  <span>05</span><span>MEASUREMENT</span>
+                </div>
+                <h3>Контекст секции</h3>
+                <span class="k-rail" aria-hidden="true"></span>
+              </div>
+              <button
+                class="k-button k-button--secondary"
+                type="button"
+                data-motion-replay="motion-index"
+                aria-label="Повторить: Индекс секции"
+              >
+                Повторить →
+              </button>
+            </article>
+          </div>
+          <p class="k-small k-muted">
+            При reduced motion подписи и выбранные состояния доступны сразу.
+            Сканы и последовательное раскрытие отключены.
+          </p>
+        </section>
       </div>
     </main>
     <footer class="k-footer">
@@ -902,6 +1214,7 @@
             <a class="k-wordmark" href="index.html">KORSAC</a>
             <p class="k-muted">Точно под задачу.</p>
             <p class="k-small k-muted">KORSAC by King-Komp</p>
+            <span class="k-registration k-small">KORSAC / SERIES</span>
           </div>
           <nav aria-label="Продукт">
             <span class="k-eyebrow">Продукт</span
@@ -917,6 +1230,9 @@
           </nav>
         </div>
         <div class="k-footer-bottom k-small k-muted">
+          <span class="k-eyebrow k-footer-register"
+            >END / 02 · VISUAL PROTOTYPE</span
+          >
           <span>Визуальный прототип · не интернет-магазин</span
           ><span>Юридические сведения и документы — после согласования</span>
         </div>
@@ -940,7 +1256,7 @@
           для работы появятся на следующих этапах.
         </p>
         <p class="k-muted">
-          Выбор опций меняет только состояние контролов. Цена остаётся примером,
+          Выбор опций обновляет только подписи в сводке. Цена остаётся примером,
           данные не сохраняются.
         </p>
         <a href="ui.html">Посмотреть UI Kit</a>
@@ -963,12 +1279,25 @@
         </button>
       </div>
       <nav class="k-drawer-nav" aria-label="Мобильная навигация">
-        <a href="index.html">Прототип</a
-        ><a href="product.html">Компьютеры · Для игр</a
-        ><a href="product.html#configurator">Настроить PLAY 1440</a
-        ><a href="product.html#assembly">О KORSAC</a
-        ><a href="product.html#warranty">Поддержка</a
-        ><a href="ui.html">UI Kit</a>
+        <a href="index.html"
+          ><span class="k-eyebrow k-nav-index" aria-hidden="true">01</span
+          >Прототип</a
+        ><a href="product.html"
+          ><span class="k-eyebrow k-nav-index" aria-hidden="true">02</span
+          >Компьютеры · Для игр</a
+        ><a href="product.html#configurator"
+          ><span class="k-eyebrow k-nav-index" aria-hidden="true">03</span
+          >Настроить PLAY 1440</a
+        ><a href="product.html#assembly"
+          ><span class="k-eyebrow k-nav-index" aria-hidden="true">04</span>О
+          KORSAC</a
+        ><a href="product.html#warranty"
+          ><span class="k-eyebrow k-nav-index" aria-hidden="true">05</span
+          >Поддержка</a
+        ><a href="ui.html"
+          ><span class="k-eyebrow k-nav-index" aria-hidden="true">06</span>UI
+          Kit</a
+        >
       </nav>
       <p class="k-small k-muted">
         Линейка для работы и поиск — на следующих этапах.

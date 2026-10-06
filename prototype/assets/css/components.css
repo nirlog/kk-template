@@ -14,8 +14,8 @@
   background: var(--k-accent-fill);
   text-decoration: none;
   transition:
-    background var(--k-duration),
-    border-color var(--k-duration);
+    background var(--k-duration) var(--k-ease-standard),
+    border-color var(--k-duration) var(--k-ease-standard);
 }
 .k-button:hover,
 .k-button.k-state-hover {
@@ -76,18 +76,42 @@
 .k-button--full {
   width: 100%;
 }
-.k-spinner {
-  width: 14px;
-  height: 14px;
-  border: 2px solid currentColor;
-  border-right-color: transparent;
-  border-radius: 50%;
-  animation: k-spin 1s linear infinite;
+/* Comparison B only: white is not used on the Electric Blue fill. */
+.k-button--electric {
+  background: var(--k-accent);
+  color: var(--k-bg);
 }
-@keyframes k-spin {
-  to {
-    transform: rotate(360deg);
-  }
+.k-button--electric:hover,
+.k-button--electric.k-state-hover {
+  background: var(--k-electric-hover);
+  color: var(--k-bg);
+}
+.k-button--electric:active,
+.k-button--electric.k-state-active {
+  background: var(--k-electric-active);
+  color: var(--k-bg);
+}
+.k-spinner {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  flex: 0 0 26px;
+  width: 26px;
+  height: 3px;
+}
+.k-spinner::before,
+.k-spinner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: currentColor;
+}
+.k-spinner::before {
+  opacity: 0.3;
+}
+.k-spinner::after {
+  width: 10px;
+  animation: k-compact-sweep var(--k-motion-reveal) var(--k-ease-precision) 1;
 }
 .k-panel {
   background: var(--k-surface);
@@ -168,6 +192,10 @@ textarea.k-control {
   font-variant-numeric: tabular-nums;
   color: var(--k-secondary);
 }
+.k-check:has(input:checked) {
+  border-left: 2px solid var(--k-accent);
+  padding-left: var(--k-space-3);
+}
 .k-option-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr));
@@ -190,6 +218,7 @@ textarea.k-control {
   z-index: 1;
 }
 .k-option-content {
+  position: relative;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -197,19 +226,46 @@ textarea.k-control {
   padding: var(--k-space-5);
   padding-right: var(--k-space-12);
   border: 1px solid var(--k-border-strong);
-  border-radius: var(--k-radius-md);
+  border-radius: var(--k-radius-sm);
   background: var(--k-bg);
   transition:
-    border-color var(--k-duration),
-    background var(--k-duration);
+    border-color var(--k-duration) var(--k-ease-standard),
+    background var(--k-duration) var(--k-ease-standard);
+}
+.k-option-content::before,
+.k-option-content::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+}
+.k-option-content::before {
+  top: var(--k-space-4);
+  left: -1px;
+  width: 3px;
+  height: 32px;
+  background: var(--k-accent);
+  transform-origin: top;
+}
+.k-option-content::after {
+  top: -1px;
+  right: -1px;
+  width: 14px;
+  height: 14px;
+  border-top: 2px solid var(--k-accent);
+  border-right: 2px solid var(--k-accent);
 }
 .k-option:hover .k-option-content,
 .k-option.k-state-hover .k-option-content {
   background: var(--k-surface-hover);
 }
 .k-option input:checked + .k-option-content {
-  border-color: var(--k-accent);
+  border-color: var(--k-border-strong);
   background: var(--k-selected);
+}
+.k-option input:checked + .k-option-content::before,
+.k-option input:checked + .k-option-content::after {
+  opacity: 1;
 }
 .k-option input:focus-visible + .k-option-content {
   outline: 2px solid var(--k-focus);
@@ -310,12 +366,40 @@ textarea.k-control {
 .k-product-card {
   overflow: hidden;
   padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
 }
 .k-product-card-body {
-  padding: var(--k-space-6);
+  padding: var(--k-space-6) 0 0;
+  border-left: 1px solid var(--k-border);
+  padding-left: var(--k-space-6);
+}
+.k-product-card-body h3 {
+  font-size: clamp(1.75rem, 3vw, 2.75rem);
+  line-height: 1.1;
+}
+.k-product-card-body .k-button {
+  align-self: start;
 }
 .k-product-card .k-image-placeholder {
-  aspect-ratio: 16 / 9;
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border: 1px solid var(--k-border);
+  background: var(--k-surface);
+}
+.k-product-card .k-image-placeholder::after {
+  content: "";
+  position: absolute;
+  right: 20px;
+  bottom: -1px;
+  width: 28px;
+  height: 2px;
+  background: var(--k-identity);
+}
+.k-product-card .k-image-placeholder .k-case-outline {
+  width: 76px;
+  height: 116px;
 }
 .k-tabs-list {
   display: flex;
@@ -333,6 +417,9 @@ textarea.k-control {
   padding: var(--k-space-3);
   min-height: 44px;
   font-size: var(--k-body-sm);
+  transition:
+    color var(--k-motion-fast) var(--k-ease-standard),
+    background var(--k-motion-fast) var(--k-ease-standard);
 }
 .k-tab:hover {
   color: var(--k-text);
@@ -371,6 +458,9 @@ textarea.k-control {
   content: "+";
   color: var(--k-muted);
   font-size: var(--k-h3);
+}
+.k-accordion-trigger:hover {
+  color: var(--k-focus);
 }
 .k-accordion-trigger[aria-expanded="true"]::after {
   content: "−";
@@ -414,11 +504,28 @@ textarea.k-control {
 .k-drawer-nav {
   display: flex;
   flex-direction: column;
-  gap: var(--k-space-3);
+  gap: 0;
+  counter-reset: navigation;
+  border-top: 1px solid var(--k-border);
 }
 .k-drawer-nav a {
-  padding-block: var(--k-space-3);
+  display: flex;
+  align-items: baseline;
+  gap: var(--k-space-4);
+  padding-block: var(--k-space-4);
   color: var(--k-text);
+  border-bottom: 1px solid var(--k-border);
+  text-decoration: none;
+  counter-increment: navigation;
+}
+.k-drawer-nav a::before {
+  content: counter(navigation, decimal-leading-zero);
+  flex: 0 0 20px;
+  color: var(--k-identity);
+  font: 400 var(--k-caption) / 1.5 var(--k-font-mono);
+}
+.k-drawer-nav a:hover {
+  color: var(--k-focus);
 }
 body.k-dialog-open {
   overflow: hidden;
@@ -467,18 +574,397 @@ body.k-dialog-open {
   font-size: var(--k-technical);
 }
 .k-spec-row dt {
-  color: var(--k-muted);
+  color: var(--k-secondary);
+  font: 400 var(--k-caption) / 1.6 var(--k-font-mono);
 }
 .k-spec-row dd {
   margin: 0;
 }
 .k-system-id {
-  border-top: 2px solid var(--k-identity);
-  font-family: var(--k-font-mono);
+  --k-frame-surface: var(--k-surface);
+  position: relative;
+  border-radius: 0;
+  border-top: 1px solid var(--k-border-strong);
+  border-left: 3px solid var(--k-identity);
+  padding: var(--k-space-8);
+  background: var(--k-surface);
 }
-.k-system-id strong {
-  font-size: var(--k-h3);
-  letter-spacing: 0.05em;
+.k-system-id > .k-eyebrow {
+  color: var(--k-identity);
+}
+.k-system-id strong,
+.k-passport-serial {
+  display: block;
+  color: var(--k-identity);
+  font: 500 clamp(1.375rem, 2.8vw, 2.25rem) / 1.25 var(--k-font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.035em;
+  overflow-wrap: anywhere;
+}
+.k-passport-details {
+  display: grid;
+  gap: 0;
+  padding-block: var(--k-space-3);
+  border-block: 1px solid var(--k-border);
+}
+.k-passport-details > div {
+  display: grid;
+  grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+  gap: var(--k-space-4);
+  padding-block: var(--k-space-2);
+  font-size: var(--k-body-sm);
+}
+.k-passport-details dt {
+  color: var(--k-muted);
+  font: 400 var(--k-caption) / 1.7 var(--k-font-mono);
+}
+.k-passport-details dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+/* Identity primitives: open rails, one interrupted frame and a copper register.
+   These marks are decorative; labels remain ordinary semantic text. */
+.k-section-index {
+  display: flex;
+  align-items: center;
+  gap: var(--k-space-3);
+  min-width: 0;
+  color: var(--k-secondary);
+  font: 500 var(--k-caption) / 1.5 var(--k-font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.k-section-index > :first-child {
+  flex: 0 0 auto;
+  color: var(--k-identity);
+  font-variant-numeric: tabular-nums;
+}
+.k-section-index::after {
+  content: "";
+  flex: 1 1 28px;
+  min-width: 16px;
+  height: 1px;
+  background: var(--k-border-strong);
+  transform-origin: left;
+}
+.k-rail {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: var(--k-border-strong);
+  transform-origin: left;
+}
+.k-rail--signal {
+  height: 2px;
+  background: var(--k-accent);
+}
+.k-frame {
+  position: relative;
+  border: 1px solid var(--k-border-strong);
+  border-radius: 0;
+}
+.k-frame::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 24px;
+  height: 14px;
+  background: var(--k-frame-surface, var(--k-bg));
+  border-bottom: 1px solid var(--k-border-strong);
+  border-left: 1px solid var(--k-border-strong);
+  pointer-events: none;
+}
+.k-frame::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  right: var(--k-space-8);
+  width: 24px;
+  height: 2px;
+  background: var(--k-identity);
+  box-shadow:
+    -6px 0 0 var(--k-frame-surface, var(--k-bg)),
+    6px 0 0 var(--k-frame-surface, var(--k-bg));
+  pointer-events: none;
+}
+.k-frame-index {
+  position: absolute;
+  top: var(--k-space-4);
+  left: var(--k-space-4);
+  color: var(--k-identity);
+  font: 400 var(--k-caption) / 1.5 var(--k-font-mono);
+  font-variant-numeric: tabular-nums;
+}
+.k-registration {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--k-space-4);
+  color: var(--k-identity);
+  font: 400 var(--k-caption) / 1.5 var(--k-font-mono);
+  letter-spacing: 0.025em;
+}
+.k-registration::before {
+  content: "";
+  flex: 0 0 6px;
+  width: 6px;
+  height: 6px;
+  background: var(--k-identity);
+  box-shadow: 7px 0 0 -2px var(--k-identity);
+}
+.k-system-id.k-frame {
+  border-left: 3px solid var(--k-identity);
+}
+.k-passport-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--k-space-3);
+  padding-bottom: var(--k-space-4);
+  border-bottom: 1px solid var(--k-border);
+}
+.k-passport-head .k-eyebrow {
+  color: var(--k-identity);
+}
+.k-validation {
+  display: grid;
+  gap: var(--k-space-3);
+  padding-block: var(--k-space-4);
+  border-top: 1px solid var(--k-border);
+}
+.k-validation-label {
+  font-size: var(--k-body-sm);
+  color: var(--k-secondary);
+}
+.k-validation-rail {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 3px;
+  background: var(--k-border);
+}
+.k-validation-rail::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--k-accent);
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.k-validation--confirmed .k-validation-label {
+  color: var(--k-success);
+}
+.k-validation--pending .k-validation-rail::after {
+  transform: scaleX(0.32);
+}
+.k-validation--error .k-validation-label {
+  color: var(--k-danger);
+}
+.k-validation--error .k-validation-rail::after {
+  background: var(--k-danger);
+}
+
+/* Motion applies only while a finite event/replay class is present.
+   Content is visible without JavaScript and controls stay usable throughout. */
+.k-frame.k-motion-run[data-motion="hero"]::before,
+.k-frame.k-motion-run[data-motion="hero"]::after,
+.k-frame.k-motion-run[data-motion="passport"]::before,
+.k-frame.k-motion-run[data-motion="passport"]::after {
+  animation: k-frame-resolve var(--k-motion-base) var(--k-ease-precision) both;
+}
+.k-motion-run[data-motion="hero"] [data-motion-step="frame"]::before,
+.k-motion-run[data-motion="hero"] [data-motion-step="frame"]::after {
+  animation: k-frame-resolve var(--k-motion-base) var(--k-ease-precision) both;
+}
+.k-motion-run[data-motion="hero"] [data-motion-step="media"] {
+  animation: k-media-resolve var(--k-motion-slow) var(--k-ease-enter) 80ms both;
+}
+.k-motion-run[data-motion="hero"] [data-motion-step="marker"] {
+  animation: k-mark-resolve var(--k-motion-base) var(--k-ease-precision) 180ms
+    both;
+}
+.k-motion-run[data-motion="hero"] [data-motion-step="title"] {
+  animation: k-content-resolve var(--k-motion-slow) var(--k-ease-enter) 260ms
+    both;
+}
+.k-motion-run[data-motion="hero"] [data-motion-step="facts"] {
+  animation: k-content-resolve var(--k-motion-base) var(--k-ease-standard) 380ms
+    both;
+}
+.k-motion-run[data-motion="hero"] [data-motion-step="cta"] {
+  animation: k-action-resolve var(--k-motion-base) var(--k-ease-standard) 500ms
+    both;
+}
+.k-motion-run[data-motion="selection"] .k-option-content::before,
+.k-option.k-motion-run[data-motion="selection"] .k-option-content::before {
+  animation: k-selection-line var(--k-motion-base) var(--k-ease-precision) both;
+}
+.k-motion-run[data-motion="selection"] .k-rail,
+.k-motion-run[data-motion="selection"]
+  > .k-validation
+  .k-validation-rail::after {
+  animation: k-line-resolve var(--k-motion-base) var(--k-ease-precision) both;
+}
+.k-summary-resolve {
+  display: inline-block;
+  animation: k-label-resolve var(--k-motion-fast) var(--k-ease-standard) both;
+}
+.k-motion-run[data-motion="validation"] .k-validation-rail::after {
+  animation: k-validation-sweep var(--k-motion-reveal) var(--k-ease-precision)
+    both;
+}
+.k-motion-run[data-motion="passport"] [data-motion-step="frame"]::before,
+.k-motion-run[data-motion="passport"] [data-motion-step="frame"]::after,
+.k-motion-run[data-motion="passport"][data-motion-step="frame"]::before,
+.k-motion-run[data-motion="passport"][data-motion-step="frame"]::after {
+  animation: k-frame-resolve var(--k-motion-base) var(--k-ease-precision) both;
+}
+.k-motion-run[data-motion="passport"] [data-motion-step="marker"] {
+  animation: k-mark-resolve var(--k-motion-base) var(--k-ease-precision) 80ms
+    both;
+}
+.k-motion-run[data-motion="passport"] [data-motion-step="serial"] {
+  animation: k-content-resolve var(--k-motion-slow) var(--k-ease-enter) 140ms
+    both;
+}
+.k-motion-run[data-motion="passport"] [data-motion-step="details"] {
+  animation: k-content-resolve var(--k-motion-base) var(--k-ease-standard) 280ms
+    both;
+}
+.k-motion-run[data-motion="passport"] [data-motion-step="registration"] {
+  animation: k-mark-resolve var(--k-motion-base) var(--k-ease-precision) 400ms
+    both;
+}
+.k-motion-run[data-motion="index"] .k-section-index::after,
+.k-section-index.k-motion-run[data-motion="index"]::after,
+.k-motion-run[data-motion="index"] .k-rail {
+  animation: k-line-resolve var(--k-motion-slow) var(--k-ease-precision) both;
+}
+.k-dialog-enter {
+  animation: k-dialog-resolve var(--k-motion-base) var(--k-ease-enter) both;
+}
+.k-drawer.k-dialog-enter {
+  animation-name: k-drawer-resolve;
+}
+.k-accordion-enter {
+  animation: k-label-resolve var(--k-motion-fast) var(--k-ease-standard) both;
+}
+@keyframes k-frame-resolve {
+  from {
+    opacity: 0.55;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes k-media-resolve {
+  from {
+    opacity: 1;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes k-mark-resolve {
+  from {
+    opacity: 1;
+    transform: translateX(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes k-content-resolve {
+  from {
+    opacity: 1;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes k-action-resolve {
+  from {
+    opacity: 1;
+    transform: translateY(2px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes k-label-resolve {
+  from {
+    opacity: 1;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes k-selection-line {
+  from {
+    transform: scaleY(0.15);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+@keyframes k-line-resolve {
+  from {
+    transform: scaleX(0.08);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes k-validation-sweep {
+  0% {
+    transform: scaleX(0.08);
+  }
+  75% {
+    transform: scaleX(1);
+  }
+  100% {
+    transform: scaleX(0.32);
+  }
+}
+@keyframes k-compact-sweep {
+  from {
+    transform: translateX(-10px);
+  }
+  to {
+    transform: translateX(26px);
+  }
+}
+@keyframes k-dialog-resolve {
+  from {
+    opacity: 1;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes k-drawer-resolve {
+  from {
+    opacity: 1;
+    transform: translateX(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 @media (max-width: 599px) {
   .k-panel {
@@ -486,6 +972,13 @@ body.k-dialog-open {
   }
   .k-product-card {
     padding: 0;
+  }
+  .k-system-id {
+    padding: var(--k-space-5);
+  }
+  .k-passport-details > div {
+    grid-template-columns: 1fr;
+    gap: var(--k-space-1);
   }
   .k-check {
     flex-wrap: wrap;
@@ -499,5 +992,20 @@ body.k-dialog-open {
   .k-spec-row {
     grid-template-columns: 1fr;
     gap: var(--k-space-1);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .k-motion-run [data-motion-step],
+  .k-summary-resolve,
+  .k-dialog-enter,
+  .k-accordion-enter {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .k-motion-run .k-rail,
+  .k-motion-run .k-section-index::after,
+  .k-section-index.k-motion-run::after,
+  .k-motion-run .k-option-content::before {
+    transform: none !important;
   }
 }
