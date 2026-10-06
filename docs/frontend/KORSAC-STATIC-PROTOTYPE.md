@@ -1,4 +1,4 @@
-# KORSAC — Static UI Prototype / Visual Direction v2
+# KORSAC — Static UI Prototype / Interactive Product Experience v3
 
 ## Назначение
 
@@ -12,6 +12,8 @@
 Identity Primitives и motion; `product.html` демонстрирует PLAY 1440.
 Подробные решения и будущие точки интеграции описаны в
 [Visual & Motion Direction](KORSAC-VISUAL-MOTION-DIRECTION.md).
+Product Stage, native-scroll Explorer и связь сцены с опциями добавлены в
+[Interactive Product Experience v3](KORSAC-INTERACTIVE-PRODUCT-EXPERIENCE.md).
 
 Источники продуктового содержания:
 
@@ -33,8 +35,11 @@ prototype/
     │   ├── base.css
     │   ├── layout.css
     │   ├── components.css
-    │   └── pages.css
-    ├── js/prototype.js
+    │   ├── pages.css
+    │   └── product-stage.css
+    ├── js/
+    │   ├── prototype.js
+    │   └── product-experience.js
     └── images/README.md
 ```
 
@@ -101,6 +106,7 @@ Electric Blue — сигнал выбора, фокуса и действия. C
 | `layout.css` | Контейнер, grid, stack, cluster, shell |
 | `components.css` | Контролы, рамки, направляющие, паспорт, motion-примитивы |
 | `pages.css` | Компоновка UI Kit, hero и разделов продукта |
+| `product-stage.css` | Product Stage, контексты, Explorer, interactive fixture |
 
 ## Identity Primitives и Motion System
 
@@ -134,8 +140,9 @@ typing и декоративного прогресса нет. Основные
 Контейнер ограничен 1360 px; поля адаптивны. Grid использует `minmax`, чтобы
 дочерние блоки не задавали минимальную ширину страницы. На узких экранах
 layout собирается в одну колонку, направляющая сборки становится вертикальной,
-а сводка остаётся в потоке. На desktop она расположена сбоку и также сохраняет
-обычный поток: длинный manifest прокручивается вместе со страницей, его CTA доступен.
+а сводка остаётся в потоке. На desktop компактная сцена закрепляется внутри
+аппаратной группы; длинный manifest расположен сбоку от дополнительных
+групп и прокручивается вместе со страницей, его CTA доступен.
 Скролл вкладок ограничен tablist.
 
 Контрольные ширины: 320, 375, 768, 1024, 1280 и 1440 px. Есть skip link,
@@ -172,6 +179,27 @@ compatibility/availability rules и конфигурационного API.
 в HTML; JS не выполняет `price += delta` или иной ценовой арифметики.
 Подпись demo price сохраняется в интерфейсе. Состояния confirmed/pending/error
 в UI Kit — визуальные примеры будущего расчёта, а не результат валидации сборки.
+
+## Interactive Product Experience v3
+
+`product-experience.js` создаёт scoped controllers относительно
+`data-product-experience`: hero, Explorer и сцена конфигуратора получают
+выбранные подписи из тех же native controls. На большом desktop Explorer
+использует sticky внутри раздела и IntersectionObserver для пяти semantic
+narrative steps; ручной выбор сохраняется до следующего шага после прокрутки.
+На mobile/tablet и коротких экранах сцена в обычном потоке с кнопками.
+Прокрутка, focus и URL не управляются состоянием сцены.
+
+Пять button-hotspots открывают HTML-пояснения под схемой. Корпус меняет
+условный силуэт; RAM — метаданные; SSD/SSD2 — подписи и второй слот.
+SYSTEM ID показывает preview выбранных labels. Контексты измерений сохраняют
+пустые метрики, а четыре всегда видимых этапа сборки имеют focus/click-пояснения.
+Без JS overview и весь рассказ доступны. Reduced motion сохраняет переключение
+состояния без expressive resolve. Цены не меняются.
+
+В UI Kit добавлены Interactive Product Primitives с отдельным playground.
+Архитектура слоёв, события, адаптивность и будущий media/kk.korsac adapter
+описаны в [документе v3](KORSAC-INTERACTIVE-PRODUCT-EXPERIENCE.md).
 
 «Добавить в корзину» открывает информацию о прототипе. Счётчик корзины,
 заказы, localStorage, авторизация, поиск, фильтры, аналитика и сеть отсутствуют.
@@ -230,6 +258,6 @@ Backend сохраняет проверенный snapshot конфигурац�
 - Контраст текста, copper, синего, CTA, selected/disabled state проверен отдельно от декоративных линий.
 - Ссылки, labels, IDs и `aria-controls` согласованы; `git diff --check` проходит.
 
-[Материалы визуального ревью](review/README.md) сохраняют v1 и добавляют v2.
+[Материалы визуального ревью](review/README.md) сохраняют v1/v2/v2.1 и добавляют v3.
 Снимки не используются runtime. Проверка одного браузера не заменяет ручной
 приёмочный прогон во всех целевых браузерах.
