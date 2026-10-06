@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- No favicon until the final brand assets are approved. -->
+    <link rel="icon" href="data:," />
+    <title>Навигация — KORSAC Prototype</title>
+    <link rel="stylesheet" href="assets/css/tokens.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/pages.css" />
+    <script src="assets/js/prototype.js" defer></script>
+  </head>
+  <body>
+    <a class="k-skip" href="#main">Перейти к содержанию</a>
+    <div class="k-prototype-note">
+      <div class="k-container">
+        Статический UI-прототип v1 · цены и опции — демонстрационные данные
+      </div>
+    </div>
+    <header class="k-header">
+      <div class="k-container k-header-inner">
+        <!-- Temporary text wordmark. Not an approved production logo. -->
+        <a
+          class="k-wordmark"
+          href="index.html"
+          aria-label="KORSAC — навигация прототипа"
+          >KORSAC</a
+        >
+        <nav class="k-nav" aria-label="Основная навигация">
+          <a href="product.html#configurator">Компьютеры</a
+          ><a href="product.html">Для игр</a
+          ><button
+            class="k-button k-button--text"
+            type="button"
+            data-dialog-open="scope-dialog"
+          >
+            Для работы</button
+          ><a href="product.html#assembly">О KORSAC</a
+          ><a href="product.html#warranty">Поддержка</a>
+        </nav>
+        <div class="k-header-actions">
+          <button
+            class="k-button k-button--icon k-search-entry"
+            type="button"
+            data-dialog-open="scope-dialog"
+            aria-label="Поиск — информация о прототипе"
+          >
+            Поиск
+          </button>
+          <button
+            class="k-button k-button--icon"
+            type="button"
+            data-dialog-open="scope-dialog"
+            aria-label="Корзина — информация о прототипе"
+          >
+            Корзина
+          </button>
+          <button
+            class="k-button k-button--icon k-mobile-toggle"
+            type="button"
+            data-dialog-open="menu-drawer"
+            aria-controls="menu-drawer"
+            aria-expanded="false"
+            aria-label="Открыть меню"
+          >
+            ☰
+          </button>
+        </div>
+      </div>
+    </header>
+    <main id="main">
+      <div class="k-container k-index">
+        <div class="k-stack">
+          <span class="k-eyebrow">Design foundation / v1</span>
+          <h1>KORSAC UI Prototype</h1>
+          <p class="k-lead">
+            Визуальная система и продуктовая страница. Основа для обсуждения и
+            дальнейшего переноса в Bitrix.
+          </p>
+        </div>
+        <div class="k-grid">
+          <a class="k-panel k-index-card" href="ui.html"
+            ><span class="k-eyebrow">01 / Система</span>
+            <h2>UI Kit →</h2>
+            <p class="k-muted">Токены, компоненты и состояния интерфейса.</p></a
+          ><a class="k-panel k-index-card" href="product.html"
+            ><span class="k-eyebrow">02 / Продукт</span>
+            <h2>PLAY 1440 →</h2>
+            <p class="k-muted">
+              Сценарий, контролируемая настройка и подача продукта.
+            </p></a
+          >
+        </div>
+        <p class="k-small k-muted">
+          Финальные логотип, фотографии и результаты измерений появятся на
+          следующих этапах.
+        </p>
+      </div>
+    </main>
+    <footer class="k-footer">
+      <div class="k-container">
+        <div class="k-footer-grid">
+          <div class="k-footer-brand k-stack k-stack--tight">
+            <a class="k-wordmark" href="index.html">KORSAC</a>
+            <p class="k-muted">Точно под задачу.</p>
+            <p class="k-small k-muted">KORSAC by King-Komp</p>
+          </div>
+          <nav aria-label="Продукт">
+            <span class="k-eyebrow">Продукт</span
+            ><a href="product.html">PLAY 1440</a
+            ><a href="product.html#configurator">Настроить</a
+            ><a href="ui.html">UI Kit</a>
+          </nav>
+          <nav aria-label="Информация">
+            <span class="k-eyebrow">Информация</span
+            ><a href="product.html#assembly">Сборка и тестирование</a
+            ><a href="product.html#warranty">Гарантия и поддержка</a
+            ><a href="product.html#faq">Вопросы и ответы</a>
+          </nav>
+        </div>
+        <div class="k-footer-bottom k-small k-muted">
+          <span>Визуальный прототип · не интернет-магазин</span
+          ><span>Юридические сведения и документы — после согласования</span>
+        </div>
+      </div>
+    </footer>
+    <dialog class="k-dialog" id="scope-dialog" aria-labelledby="scope-title">
+      <div class="k-dialog-header">
+        <h2 id="scope-title">О статическом прототипе</h2>
+        <button
+          class="k-button k-button--icon"
+          type="button"
+          data-dialog-close
+          aria-label="Закрыть окно"
+        >
+          ×
+        </button>
+      </div>
+      <div class="k-stack">
+        <p>
+          Здесь проверяем визуальную систему KORSAC. Поиск, корзина и линейка
+          для работы появятся на следующих этапах.
+        </p>
+        <p class="k-muted">
+          Выбор опций меняет только состояние контролов. Цена остаётся примером,
+          данные не сохраняются.
+        </p>
+        <a href="ui.html">Посмотреть UI Kit</a>
+      </div>
+    </dialog>
+    <dialog
+      class="k-dialog k-drawer"
+      id="menu-drawer"
+      aria-labelledby="menu-title"
+    >
+      <div class="k-dialog-header">
+        <h2 id="menu-title">Навигация</h2>
+        <button
+          class="k-button k-button--icon"
+          type="button"
+          data-dialog-close
+          aria-label="Закрыть меню"
+        >
+          ×
+        </button>
+      </div>
+      <nav class="k-drawer-nav" aria-label="Мобильная навигация">
+        <a href="index.html">Прототип</a
+        ><a href="product.html">Компьютеры · Для игр</a
+        ><a href="product.html#configurator">Настроить PLAY 1440</a
+        ><a href="product.html#assembly">О KORSAC</a
+        ><a href="product.html#warranty">Поддержка</a
+        ><a href="ui.html">UI Kit</a>
+      </nav>
+      <p class="k-small k-muted">
+        Линейка для работы и поиск — на следующих этапах.
+      </p>
+    </dialog>
+    <div
+      class="k-toast-region"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+      data-toast-region
+    ></div>
+  </body>
+</html>

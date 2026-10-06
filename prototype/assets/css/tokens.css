@@ -1,0 +1,73 @@
+:root {
+  color-scheme: dark;
+  --korsac-bg: #0b0e13;
+  --korsac-surface: #141922;
+  --korsac-raised: #1a202a;
+  --korsac-blue: #397bff;
+  --korsac-copper: #c38e5d;
+  --korsac-text: #f4f6f8;
+  --korsac-muted: #929cab;
+
+  --k-bg: var(--korsac-bg);
+  --k-surface: var(--korsac-surface);
+  --k-surface-hover: var(--korsac-raised);
+  --k-border: #2c3442;
+  --k-border-strong: #667385;
+  --k-text: var(--korsac-text);
+  --k-secondary: #b4becc;
+  --k-muted: var(--korsac-muted);
+  --k-disabled: #7d8898;
+  --k-accent: var(--korsac-blue);
+  /* Darker CTA fill keeps white button labels above WCAG AA contrast. */
+  --k-accent-fill: #245ddd;
+  --k-accent-hover: #2b66e4;
+  --k-accent-active: #1d4ebc;
+  --k-link: #83abff;
+  --k-focus: #a4c1ff;
+  --k-selected: #152443;
+  --k-success: #a1cfb8;
+  --k-warning: #d9bd8f;
+  --k-danger: #ffa7ac;
+  --k-scrim: rgb(0 0 0 / 72%);
+  --k-identity: var(--korsac-copper);
+
+  --k-font:
+    Inter, Manrope, Geist, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  --k-font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --k-display: clamp(2.5rem, 5vw, 4.75rem);
+  --k-h1: clamp(2rem, 4vw, 3.5rem);
+  --k-h2: clamp(1.625rem, 2.5vw, 2.5rem);
+  --k-h3: 1.25rem;
+  --k-body-lg: 1.125rem;
+  --k-body: 1rem;
+  --k-body-sm: 0.875rem;
+  --k-caption: 0.75rem;
+  --k-label: 0.8125rem;
+  --k-price-lg: clamp(2rem, 3vw, 2.5rem);
+  --k-price: 1.5rem;
+  --k-technical: 0.875rem;
+  --k-leading: 1.6;
+
+  --k-space-1: 4px;
+  --k-space-2: 8px;
+  --k-space-3: 12px;
+  --k-space-4: 16px;
+  --k-space-5: 20px;
+  --k-space-6: 24px;
+  --k-space-8: 32px;
+  --k-space-10: 40px;
+  --k-space-12: 48px;
+  --k-space-16: 64px;
+  --k-space-20: 80px;
+  --k-space-24: 96px;
+  --k-radius-sm: 6px;
+  --k-radius-md: 10px;
+  --k-radius-lg: 16px;
+  --k-shadow: 0 12px 32px rgb(0 0 0 / 20%);
+  --k-content-width: 1360px;
+  --k-gutter: clamp(16px, 4vw, 48px);
+  --k-duration: 160ms;
+  /* Structural media queries: 600px (cards), 900px (desktop shell),
+     1100px (configurator aside). CSS variables cannot be used in queries. */
+}

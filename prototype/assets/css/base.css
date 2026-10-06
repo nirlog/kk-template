@@ -1,0 +1,161 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--k-space-6);
+}
+body {
+  margin: 0;
+  background: var(--k-bg);
+  color: var(--k-text);
+  font-family: var(--k-font);
+  font-size: var(--k-body);
+  line-height: var(--k-leading);
+}
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+button,
+a,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+button {
+  cursor: pointer;
+}
+button:disabled {
+  cursor: not-allowed;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+dl,
+figure {
+  margin: 0;
+}
+h1,
+h2,
+h3 {
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+h1 {
+  font-size: var(--k-h1);
+}
+h2 {
+  font-size: var(--k-h2);
+}
+h3 {
+  font-size: var(--k-h3);
+}
+p {
+  max-width: 65ch;
+}
+a {
+  color: var(--k-link);
+  text-underline-offset: 4px;
+}
+a:hover {
+  color: var(--k-focus);
+}
+:focus-visible {
+  outline: 2px solid var(--k-focus);
+  outline-offset: 4px;
+}
+small {
+  font-size: var(--k-caption);
+}
+fieldset {
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+legend {
+  padding: 0;
+  margin-bottom: var(--k-space-4);
+  font-size: var(--k-h3);
+  font-weight: 600;
+}
+[hidden] {
+  display: none !important;
+}
+::selection {
+  background: var(--k-accent-active);
+  color: var(--k-text);
+}
+.k-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.k-skip {
+  position: fixed;
+  top: var(--k-space-4);
+  left: var(--k-space-4);
+  z-index: 30;
+  transform: translateY(-200%);
+  background: var(--k-text);
+  color: var(--k-bg);
+  padding: var(--k-space-3);
+}
+.k-skip:focus {
+  transform: none;
+}
+.k-muted {
+  color: var(--k-muted);
+}
+.k-small {
+  font-size: var(--k-body-sm);
+}
+.k-eyebrow {
+  font: 500 var(--k-caption) / 1.5 var(--k-font-mono);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--k-secondary);
+}
+.k-lead {
+  font-size: var(--k-body-lg);
+  color: var(--k-secondary);
+}
+.k-back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--k-space-2);
+  font-size: var(--k-body-sm);
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
