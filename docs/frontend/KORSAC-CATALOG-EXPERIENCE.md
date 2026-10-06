@@ -34,7 +34,9 @@ PLAY — текущая линейка. CREATE/WORK представлены н�
 
 Navigator показывает четыре ступени: **1080 → 1440 → 1440 PRO → 4K**.
 Нет числовой шкалы производительности, FPS или процентов. Под 1440 находится
-отдельная ветка **MINI**: тот же целевой сценарий, компактный Mini-ITX.
+компактная ветка **MINI** с подписью **«Тот же 1440p · Mini-ITX»**. Она
+вложена в узел 1440; короткий соединитель идёт от его rail и на desktop,
+и в мобильной сетке. Дополнительных текстовых блоков вокруг ветки нет.
 При выборе MINI общий узел 1440 сохраняет сигнал связи, а выбранным control
 становится MINI. Связь задаётся HTML `data-catalog-parent`, не положением
 элемента в DOM и не порядком в JS-массиве.
@@ -50,7 +52,8 @@ Navigator показывает четыре ступени: **1080 → 1440 → 
 Четыре основных control и отдельная MINI-button — нативные кнопки с
 `aria-pressed`, `aria-controls` и visible focus. Выбор обновляет preview,
 identifier, активную rail и отметку соответствующей карточки. Текст «Выбрано»,
-наклонная отметка control и pressed-state дополняют цвет. Кнопка в карточке
+наклонная отметка control и pressed-state дополняют цвет. После enhancement
+название модели в карточке становится нативной selection-button; оно
 и сценарная рекомендация вызывают тот же setter. Hover/focus не выбирают
 модель автоматически. Нет autoplay, карусели, swipe-зависимости, фильтров,
 сортировки и изменений URL/history. Выбор модели не управляет scroll/focus.
@@ -64,10 +67,12 @@ identifier, активную rail и отметку соответствующе
 нет hotspots, airflow, внутренних сценариев или повторного hero reveal.
 Подпись явно обозначает условную схему.
 
-Все пять source cards постоянно доступны ниже. На desktop PLAY 1440 занимает
-две колонки и получает чуть больший приоритет. Остальные продукты используют
-ту же структуру: индекс, сценарий, открытая engineering rail, media, название
-и сдержанный baseline. Карточки не окружены одинаковыми rounded panels.
+Все пять source cards постоянно доступны ниже как слой быстрого просмотра.
+Каждая показывает индекс/модель, сценарий, маркер форм-фактора, GPU-класс,
+базовые RAM/SSD и одну CTA **«Подробнее»**. Длинные purpose/setup copy, CPU,
+схема, цена и дополнительная CTA остаются в полном source HTML для preview,
+но скрыты в линейке. Повторного product-detail layout нет. PLAY 1440
+выделяется rail, индексом и акцентом; ширина и структура всех карточек одинаковы.
 Hover/focus кратко удлиняют rail; 3D tilt и narrative-анимации отсутствуют.
 
 Для PLAY 1440 «Подробнее» ведёт на `product.html`, «Настроить» — на его
@@ -93,12 +98,18 @@ checkbox disabled; понятная status-подпись объясняет, к
 фокус к последнему изменённому checkbox без прокрутки. Постоянный раздел
 сравнения под линейкой содержит инструкцию, выбранные названия и то же действие.
 
-Native dialog показывает product columns и семь строк: сценарий, графический
-класс, RAM default, SSD default, форм-фактор, область настройки и назначение.
-Данные читаются из source cards в момент открытия. Desktop subgrid выравнивает
-одноимённые строки; mobile складывает продукты вертикально, с собственной
-подписью каждой строки. Заголовок и close-control закреплены внутри dialog
-при вертикальной прокрутке. Горизонтальный scroll не требуется. Dialog имеет
+Native dialog содержит семантическую HTML-таблицу с model column headers
+и property row headers. Desktop сохраняет все семь свойств: сценарий,
+графический класс, RAM default, SSD default, форм-фактор, область настройки
+и назначение. Данные читаются из source cards в момент открытия.
+
+На mobile ≤767 px сравнение идёт **по строкам свойств**: одна общая подпись,
+затем 2–3 значения рядом в выровненных колонках. Видны пять коротких строк:
+сценарий, GPU-класс, RAM, SSD и форм-фактор. Полные purpose/setup prose
+скрыты; они доступны в desktop comparison и подробном preview. Заголовки
+моделей закреплены над свойствами при прокрутке. Header с close-button
+остаётся вне внутренней scroll-region, доступной с клавиатуры.
+Горизонтальный scroll не требуется. Dialog имеет
 именованный заголовок, close-button, Escape, focus containment, inert-фон и
 возврат фокуса к открывшей кнопке через общий `prototype.js`.
 
@@ -117,6 +128,7 @@ Native dialog показывает product columns и семь строк: сц�
 | ----------------------------------------------------------------- | ----------------------------------------- |
 | `data-catalog-model`                                              | Локальный model key source card           |
 | `data-catalog-title` / `data-catalog-property`                    | Название и фактический baseline           |
+| `data-catalog-compact`                                            | Короткое значение для mobile comparison   |
 | `data-catalog-content` / `data-catalog-actions`                   | Media, copy и CTA для derived preview     |
 | `data-catalog-recommendation`                                     | Authored recommendation template          |
 | `data-catalog-selection`                                          | Текущий presentation key конкретного root |
@@ -124,8 +136,10 @@ Native dialog показывает product columns и семь строк: сц�
 | `data-catalog-compare`                                            | Native checkbox отдельного сравнения      |
 
 Map хранит ссылки на карточки, не копии hardware/spec/price в JS-массивах.
-Preview — клонированные derived views исходного HTML; comparison переносит
-только `textContent` по ключам из HTML template. В runtime нет второго
+Source cards видны как компактная линейка; полные свойства остаются в их
+HTML. Preview клонируется до enhancement заголовка карточки и сохраняет
+подробности и обе CTA. Comparison переносит безопасный `textContent`
+и authored `data-catalog-compact` по ключам строк из HTML template. В runtime нет второго
 справочника SKU или четырёх независимых массивов контента. UI Kit содержит
 намеренные HTML fixtures; production сможет рендерить оба варианта из одного
 серверного шаблона. Model keys не являются XML_ID или будущим API contract.
@@ -158,9 +172,11 @@ placeholder не является фотографией, физической �
 с явной подписью сценария 1440. Preview располагает небольшой силуэт рядом
 с названием, затем explanation, baseline и CTA. Повторная техническая register
 строка скрыта; выбранная модель читается в основном заголовке рядом с controls.
-Карточки идут вертикально, с компактным media рядом с названием и 2×2 hardware
-baseline. Проверенная высота карточек примерно **543–602 px**, вместо серии
-огромных media-panels. Tablet сохраняет обычный flow и две колонки карточек.
+Карточки идут вертикально без повторных media и длинного назначения.
+Проверенная высота карточек примерно **400–423 px** на 320/375/430 px;
+высота получается из содержимого, без fixed height. Tablet сохраняет обычный
+flow и две колонки карточек. На mobile comparison это короткая матрица,
+а не вертикальная последовательность полных product blocks.
 
 Без JS видны семейства, сценарные anchor-links, все пять карточек и раздел
 объяснения 1440/PRO/MINI. Anchor ведёт прямо к соответствующей карточке;
@@ -190,11 +206,16 @@ DOM positions. Цена, stock, compatibility и basket остаются backend
 
 ## Проверка и human acceptance
 
-[Review assets](review/README.md) содержат пять catalog PNG и короткий MP4.
+[Review assets](review/README.md) содержат шесть обновлённых catalog PNG,
+включая mobile comparison 1440/MINI/PRO, и короткий MP4.
 Automated HTTP Chromium-проверки покрывают четыре страницы при
 320/375/430/768/1024/1280/1440 px, все selection routes, stable preview,
 MAX3/удаление/очистку сравнения, keyboard/dialog focus, touch375/430,
-no-JS320, rapid input и live reduced motion. Цены статичны, runtime-запросы
+no-JS320, rapid input и live reduced motion. Дополнительные проверки
+320/375/430/768/1440 px подтверждают одну видимую CTA и три факта на каждой
+равной по ширине карточке, связь MINI с 1440, aligned values сравнения
+2/3 моделей и native table semantics. При высоте viewport 500 px проверены
+keyboard PageDown и закрепление model header; close-control остаётся видимым. Цены статичны, runtime-запросы
 только локальные. Axe и regression shared/product controls фиксируются в PR.
 
 `file://` заблокирован политикой браузера среды; relative classic resources
@@ -205,7 +226,8 @@ no-JS320, rapid input и live reduced motion. Цены статичны, runtime
 1. За несколько секунд читается лестница 1080 → 1440 → PRO → 4K и отдельная MINI-ветка.
 2. Выбор 1440 → PRO объясняет другой игровой класс, GPU и SSD default.
 3. MINI объясняет компактное исполнение сценария 1440p.
-4. Сравнение 1440/PRO показывает назначение и документированный baseline.
+4. Desktop сравнение 1440/PRO показывает назначение и baseline; на mobile
+   значения 1440/MINI/PRO сравниваются рядом по пяти коротким свойствам.
 5. На 375 px сценарий, выбранная модель и переход в карточку находятся быстро,
    без horizontal overflow; motion остаётся коротким и спокойным.
 

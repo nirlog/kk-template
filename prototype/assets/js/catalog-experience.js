@@ -1,4 +1,4 @@
-/* Scoped presentation only. Model content comes from the visible HTML cards.
+/* Scoped presentation only. Model content comes from the HTML source cards.
    No catalog API, price calculation, persistence, routing or business rules. */
 (() => {
   "use strict";
@@ -28,9 +28,9 @@
     let ghost;
 
     const title = (card) =>
-      [...card.querySelector("[data-catalog-title]").children]
-        .map((part) => part.textContent.trim())
-        .join(" ")
+      card
+        .querySelector("[data-catalog-title]")
+        .textContent.trim()
         .replace(/\s+/g, " ");
 
     // Derived views; the source cards remain visible and authoritative.
@@ -60,6 +60,16 @@
       panel.append(recommendation);
       previewContent.append(panel);
       panels.set(code, panel);
+
+      // The model title selects the detailed preview; the card keeps one CTA.
+      // Wrap only after cloning, so the preview retains a plain heading.
+      const heading = card.querySelector("[data-catalog-title]");
+      const pick = card.querySelector("button[data-catalog-pick]");
+      if (pick) {
+        pick.className = "k-catalog-title-button";
+        pick.replaceChildren(...heading.childNodes);
+        heading.append(pick);
+      }
     });
 
     const stopMotion = () => {
@@ -203,20 +213,41 @@
       if (!comparison || !compareTemplate || selected.length < 2) return;
       comparison.replaceChildren();
       comparison.style.setProperty("--k-compare-count", selected.length);
+      const matrix = compareTemplate.content.cloneNode(true);
+      const header = matrix.querySelector("thead tr");
+      const rows = [
+        ...matrix.querySelectorAll("[data-catalog-compare-property]"),
+      ];
+      const prefix = comparison.closest("dialog").id;
+      rows.forEach((row) => {
+        row.querySelector("th").id =
+          `${prefix}-${row.dataset.catalogCompareProperty}`;
+      });
       selected.forEach((check) => {
         const card = cards.get(check.dataset.catalogCompare);
-        const column = compareTemplate.content.cloneNode(true);
-        column.querySelector("[data-catalog-compare-title]").textContent =
-          title(card);
-        column
-          .querySelectorAll("[data-catalog-compare-property]")
-          .forEach((output) => {
-            output.textContent = card.querySelector(
-              `[data-catalog-property="${output.dataset.catalogCompareProperty}"]`,
-            ).textContent;
-          });
-        comparison.append(column);
+        const model = document.createElement("th");
+        model.scope = "col";
+        model.id = `${prefix}-${check.dataset.catalogCompare}`;
+        model.textContent = title(card);
+        header.append(model);
+        rows.forEach((row) => {
+          const source = card.querySelector(
+            `[data-catalog-property="${row.dataset.catalogCompareProperty}"]`,
+          );
+          const value = document.createElement("td");
+          value.headers = `${row.querySelector("th").id} ${model.id}`;
+          const full = document.createElement("span");
+          full.className = "k-compare-full";
+          full.textContent = source.textContent.trim().replace(/\s+/g, " ");
+          const compact = document.createElement("span");
+          compact.className = "k-compare-compact";
+          compact.textContent =
+            source.dataset.catalogCompact || full.textContent;
+          value.append(full, compact);
+          row.append(value);
+        });
       });
+      comparison.append(matrix);
     };
 
     root.addEventListener("click", (event) => {
