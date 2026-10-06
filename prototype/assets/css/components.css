@@ -505,7 +505,6 @@ textarea.k-control {
   display: flex;
   flex-direction: column;
   gap: 0;
-  counter-reset: navigation;
   border-top: 1px solid var(--k-border);
 }
 .k-drawer-nav a {
@@ -516,10 +515,8 @@ textarea.k-control {
   color: var(--k-text);
   border-bottom: 1px solid var(--k-border);
   text-decoration: none;
-  counter-increment: navigation;
 }
-.k-drawer-nav a::before {
-  content: counter(navigation, decimal-leading-zero);
+.k-drawer-nav .k-nav-index {
   flex: 0 0 20px;
   color: var(--k-identity);
   font: 400 var(--k-caption) / 1.5 var(--k-font-mono);

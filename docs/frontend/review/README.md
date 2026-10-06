@@ -15,6 +15,7 @@ manifest конфигурации, SYSTEM ID и примитивы визуал�
 - [Конфигуратор v2](configurator-v2-desktop.png).
 - [SYSTEM ID v2](system-id-v2.png).
 - [Motion playground](motion-ui.png).
+- [Мобильное меню v2 — явные индексы 01–06](drawer-v2-mobile.png).
 
 Захват v2: Chromium 151, reduced motion, desktop 1440×1080 px, mobile
 375×1000 px. Дополнительные desktop-фрагменты сняты при 1440×1440 px,
@@ -25,6 +26,11 @@ manifest конфигурации, SYSTEM ID и примитивы визуал�
 [`prototype/ui.html`](../../../prototype/ui.html): hero, validation,
 selection, SYSTEM ID и section index повторяются отдельными кнопками.
 Параметры захвата и фактические результаты проверок фиксируются в PR.
+
+Для принятия v2 baseline требуется человеческое ревью движения в браузере:
+hero, подтверждение выбора, validation sweep, SYSTEM ID, мобильное меню
+и `prefers-reduced-motion`. Автоматические проверки и PNG не заменяют
+эту проверку ощущения движения.
 
 ## Static UI Foundation v1
 
