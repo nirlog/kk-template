@@ -1058,6 +1058,7 @@
                 id="motion-hero"
                 data-motion="hero"
               >
+                <span class="k-frame-trace" aria-hidden="true"></span>
                 <span class="k-eyebrow" data-motion-step="marker"
                   >PLAY / 1440</span
                 ><span
@@ -1065,7 +1066,7 @@
                   data-motion-step="media"
                   aria-hidden="true"
                 ></span
-                ><strong data-motion-step="title">1440</strong
+                ><strong data-motion-step="designation">1440</strong
                 ><span class="k-small k-muted" data-motion-step="facts"
                   >32 ГБ · 1 ТБ</span
                 ><span
@@ -1089,19 +1090,41 @@
                 class="k-validation k-validation--pending"
                 id="motion-validation"
                 data-motion="validation"
+                role="status"
+                aria-live="polite"
+                aria-atomic="true"
               >
                 <span class="k-validation-rail" aria-hidden="true"></span
                 ><span class="k-validation-label">Пересчитываем…</span
                 ><small class="k-muted">Только визуальное состояние</small>
               </div>
-              <button
-                class="k-button k-button--secondary"
-                type="button"
-                data-motion-replay="motion-validation"
-                aria-label="Повторить: Калибровочная линия"
-              >
-                Повторить →
-              </button>
+              <div class="k-motion-actions">
+                <button
+                  class="k-button k-button--secondary"
+                  type="button"
+                  data-motion-replay="motion-validation"
+                  data-motion-state="pending"
+                  aria-label="Повторить: Калибровочная линия"
+                >
+                  Пересчёт →
+                </button>
+                <button
+                  class="k-button k-button--secondary"
+                  type="button"
+                  data-motion-replay="motion-validation"
+                  data-motion-state="confirmed"
+                >
+                  Подтверждено →
+                </button>
+                <button
+                  class="k-button k-button--secondary"
+                  type="button"
+                  data-motion-replay="motion-validation"
+                  data-motion-state="error"
+                >
+                  Ошибка →
+                </button>
+              </div>
             </article>
             <article class="k-motion-example k-stack">
               <h3>Подтверждение выбора</h3>
@@ -1110,10 +1133,20 @@
                 id="motion-selection"
                 data-motion="selection"
               >
-                <span class="k-eyebrow">OPTION / ACTIVE</span
-                ><strong>64 ГБ DDR5</strong
-                ><span class="k-rail" aria-hidden="true"></span
-                ><span class="k-small k-muted">Состояние видно сразу.</span>
+                <label class="k-option">
+                  <input type="radio" name="motion-option" checked />
+                  <span class="k-option-content">
+                    <span class="k-eyebrow">OPTION / ACTIVE</span>
+                    <strong>64 ГБ DDR5</strong>
+                  </span>
+                </label>
+                <dl>
+                  <div class="k-manifest-row">
+                    <dt>Память</dt>
+                    <dd><span data-motion-step="summary">64 ГБ DDR5</span></dd>
+                  </div>
+                </dl>
+                <span class="k-small k-muted">Состояние видно сразу.</span>
               </div>
               <button
                 class="k-button k-button--secondary"
@@ -1131,8 +1164,10 @@
                 id="motion-passport"
                 data-motion="passport"
               >
-                <div class="k-passport-head" data-motion-step="frame">
-                  <span class="k-eyebrow">KORSAC / SYSTEM ID</span
+                <span class="k-frame-trace" aria-hidden="true"></span>
+                <div class="k-passport-head">
+                  <span class="k-eyebrow" data-motion-step="marker"
+                    >KORSAC / SYSTEM ID</span
                   ><span class="k-registration" data-motion-step="registration"
                     >REG / 01</span
                   >

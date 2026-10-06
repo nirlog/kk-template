@@ -248,7 +248,6 @@
         (control instanceof HTMLInputElement &&
           ["radio", "checkbox"].includes(control.type)),
     );
-    const summary = config.querySelector("[data-config-summary]");
     const displayLabel = (control) => {
       const option =
         control instanceof HTMLSelectElement
@@ -282,7 +281,10 @@
         .forEach((output) => {
           if (output.textContent === label) return;
           output.textContent = label;
-          if (animate) runMotion(output, "k-summary-resolve");
+          if (animate) {
+            runMotion(output, "k-summary-resolve");
+            runMotion(output.closest(".k-manifest-row"), "k-row-confirm");
+          }
         });
     };
     summaryKeys.forEach((key) => updateLabel(key, false));
@@ -294,9 +296,8 @@
       )
         return;
       updateLabel(control.dataset.summaryKey, true);
-      runMotion(summary);
       const option = control.closest('[data-motion="selection"]');
-      if (option && option !== summary) runMotion(option);
+      if (option) runMotion(option);
     });
   });
 
@@ -305,7 +306,26 @@
     button.addEventListener("click", (event) => {
       event.preventDefault();
       const target = document.getElementById(button.dataset.motionReplay);
-      if (target && motionKinds.has(target.dataset.motion)) runMotion(target);
+      if (!target || !motionKinds.has(target.dataset.motion)) return;
+      // UI Kit only: a reviewer chooses a visual state. No timed request or
+      // automatic pending → confirmed transition imitates a real calculation.
+      if (target.dataset.motion === "validation") {
+        const labels = {
+          pending: "Пересчитываем…",
+          confirmed: "Конфигурация пересчитана · пример",
+          error: "Не удалось пересчитать · пример",
+        };
+        const kind = button.dataset.motionState;
+        if (Object.hasOwn(labels, kind)) {
+          stopMotion(target);
+          Object.keys(labels).forEach((state) =>
+            target.classList.toggle(`k-validation--${state}`, state === kind),
+          );
+          target.querySelector(".k-validation-label").textContent =
+            labels[kind];
+        }
+      }
+      runMotion(target);
     });
   });
   document

@@ -170,5 +170,6 @@ legend {
   [data-motion-step] {
     opacity: 1 !important;
     transform: none !important;
+    clip-path: none !important;
   }
 }

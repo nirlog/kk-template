@@ -72,6 +72,7 @@
   --k-motion-instant: 80ms;
   --k-motion-fast: 140ms;
   --k-motion-base: 220ms;
+  --k-motion-brand: 320ms;
   --k-motion-slow: 420ms;
   --k-motion-reveal: 620ms;
   --k-ease-standard: cubic-bezier(0.2, 0, 0.2, 1);

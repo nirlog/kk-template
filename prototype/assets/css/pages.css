@@ -186,6 +186,12 @@
   align-self: start;
   margin-top: auto;
 }
+.k-motion-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--k-space-2);
+  margin-top: auto;
+}
 .k-motion-example .k-frame {
   padding: var(--k-space-6);
 }
@@ -210,7 +216,6 @@
 .k-motion-index-demo {
   min-height: 220px;
 }
-.k-motion-selection-demo .k-rail,
 .k-motion-stage .k-rail {
   background: var(--k-accent);
 }
@@ -671,6 +676,8 @@
   }
   .k-stage-object > .k-small {
     font-size: var(--k-caption);
+    position: relative;
+    top: -2px;
   }
   .k-stage-meta {
     inset: var(--k-space-3) var(--k-space-4) auto;

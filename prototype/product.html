@@ -91,6 +91,7 @@
           data-motion-auto
         >
           <figure class="k-hero-media k-frame" data-motion-step="frame">
+            <span class="k-frame-trace" aria-hidden="true"></span>
             <div class="k-stage-meta" data-motion-step="marker">
               <span class="k-eyebrow">KORSAC / PLAY</span
               ><span class="k-registration">REV. 2026.1</span>
@@ -101,7 +102,11 @@
                 >Место для фотографии продукта</span
               >
             </div>
-            <span class="k-stage-guide" aria-hidden="true"></span>
+            <span
+              class="k-stage-guide"
+              data-motion-step="geometry"
+              aria-hidden="true"
+            ></span>
             <figcaption class="k-media-caption k-eyebrow">
               <span>01 / STANDARD</span><span>Airflow · визуальный макет</span>
             </figcaption>
@@ -114,24 +119,27 @@
               class="k-hero-title"
               id="product-title"
               aria-label="KORSAC PLAY 1440"
-              data-motion-step="title"
             >
-              <span class="k-hero-brand">KORSAC / PLAY</span
-              ><span class="k-hero-number">1440</span>
+              <span class="k-hero-brand" data-motion-step="marker"
+                >KORSAC / PLAY</span
+              ><span class="k-hero-number" data-motion-step="designation"
+                >1440</span
+              >
             </h1>
-            <p class="k-hero-scenario" data-motion-step="title">
+            <p class="k-hero-scenario" data-motion-step="copy">
               Для игр в 1440p.
             </p>
-            <p class="k-hero-description k-muted" data-motion-step="title">
-              Без переплаты за производительность, которая нужна
-              уже для 4K.
+            <p class="k-hero-description k-muted" data-motion-step="copy">
+              Без переплаты за производительность, которая нужна уже для 4K.
             </p>
-            <div class="k-hero-action" data-motion-step="cta">
-              <div>
+            <div class="k-hero-action">
+              <div data-motion-step="price">
                 <p class="k-price k-price--large">от 179 900 ₽</p>
                 <p class="k-price-note">Цена — пример</p>
               </div>
-              <a class="k-button" href="#configurator">Настроить →</a>
+              <a class="k-button" href="#configurator" data-motion-step="cta"
+                >Настроить →</a
+              >
             </div>
             <dl class="k-hero-specs" data-motion-step="facts">
               <div>
@@ -1023,11 +1031,13 @@
             data-motion="passport"
             data-motion-observe
           >
+            <span class="k-frame-trace" aria-hidden="true"></span>
             <div class="k-section-index">
               <span>08</span><span>SYSTEM / PASSPORT</span>
             </div>
-            <div class="k-passport-head" data-motion-step="frame">
-              <span class="k-eyebrow">KORSAC / SYSTEM ID</span
+            <div class="k-passport-head">
+              <span class="k-eyebrow" data-motion-step="marker"
+                >KORSAC / SYSTEM ID</span
               ><span class="k-registration" data-motion-step="registration"
                 >REG / 01</span
               >
