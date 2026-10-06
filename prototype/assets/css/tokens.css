@@ -22,6 +22,8 @@
   --k-accent-fill: #245ddd;
   --k-accent-hover: #2b66e4;
   --k-accent-active: #1d4ebc;
+  --k-electric-hover: #6699ff;
+  --k-electric-active: #528bff;
   --k-link: #83abff;
   --k-focus: #a4c1ff;
   --k-selected: #152443;
@@ -32,8 +34,7 @@
   --k-identity: var(--korsac-copper);
 
   --k-font:
-    Inter, Manrope, Geist, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
+    system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --k-font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
   --k-display: clamp(2.5rem, 5vw, 4.75rem);
   --k-h1: clamp(2rem, 4vw, 3.5rem);
@@ -61,13 +62,25 @@
   --k-space-16: 64px;
   --k-space-20: 80px;
   --k-space-24: 96px;
-  --k-radius-sm: 6px;
-  --k-radius-md: 10px;
-  --k-radius-lg: 16px;
+  --k-radius-sm: 2px;
+  --k-radius-md: 3px;
+  --k-radius-lg: 4px;
   --k-shadow: 0 12px 32px rgb(0 0 0 / 20%);
   --k-content-width: 1360px;
   --k-gutter: clamp(16px, 4vw, 48px);
-  --k-duration: 160ms;
-  /* Structural media queries: 600px (cards), 900px (desktop shell),
-     1100px (configurator aside). CSS variables cannot be used in queries. */
+  /* Motion is finite, event-driven and never controls availability. */
+  --k-motion-instant: 80ms;
+  --k-motion-fast: 140ms;
+  --k-motion-base: 220ms;
+  --k-motion-brand: 320ms;
+  --k-motion-slow: 420ms;
+  --k-motion-reveal: 620ms;
+  --k-ease-standard: cubic-bezier(0.2, 0, 0.2, 1);
+  --k-ease-enter: cubic-bezier(0.16, 1, 0.3, 1);
+  --k-ease-exit: cubic-bezier(0.4, 0, 1, 1);
+  --k-ease-precision: cubic-bezier(0.65, 0, 0.35, 1);
+  --k-duration: var(--k-motion-fast);
+  /* Structural media queries: 600px (compact components), 900px (columns),
+     1100px (desktop navigation and configurator aside).
+     CSS variables cannot be used in queries. */
 }
