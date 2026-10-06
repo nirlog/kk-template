@@ -1,4 +1,4 @@
-# KORSAC — Static UI Prototype / Interactive Product Experience v3
+# KORSAC — Static UI Prototype / Interactive Product Experience v3.1
 
 ## Назначение
 
@@ -12,8 +12,8 @@
 Identity Primitives и motion; `product.html` демонстрирует PLAY 1440.
 Подробные решения и будущие точки интеграции описаны в
 [Visual & Motion Direction](KORSAC-VISUAL-MOTION-DIRECTION.md).
-Product Stage, native-scroll Explorer и связь сцены с опциями добавлены в
-[Interactive Product Experience v3](KORSAC-INTERACTIVE-PRODUCT-EXPERIENCE.md).
+Product Stage, synchronized Explorer и связь сцены с опциями добавлены в
+[Interactive Product Experience v3.1](KORSAC-INTERACTIVE-PRODUCT-EXPERIENCE.md).
 
 Источники продуктового содержания:
 
@@ -180,17 +180,18 @@ compatibility/availability rules и конфигурационного API.
 Подпись demo price сохраняется в интерфейсе. Состояния confirmed/pending/error
 в UI Kit — визуальные примеры будущего расчёта, а не результат валидации сборки.
 
-## Interactive Product Experience v3
+## Interactive Product Experience v3.1
 
 `product-experience.js` создаёт scoped controllers относительно
 `data-product-experience`: hero, Explorer и сцена конфигуратора получают
-выбранные подписи из тех же native controls. На большом desktop Explorer
-использует sticky внутри раздела и IntersectionObserver для пяти semantic
-narrative steps; ручной выбор сохраняется до следующего шага после прокрутки.
-На mobile/tablet и коротких экранах сцена в обычном потоке с кнопками.
-Прокрутка, focus и URL не управляются состоянием сцены.
+выбранные подписи из тех же native controls. На desktop Explorer
+использует обычную двухколоночную композицию сцены и единой detail-панели.
+Кнопки контекстов, hotspots и Prev/Next вызывают один state controller;
+счётчик 00/05–05/05, labels и highlight обновляются синхронно. На mobile/tablet
+сцена, controls, explanation и navigation следуют обычным потоком.
+Скролл, focus и URL не управляются состоянием сцены.
 
-Пять button-hotspots открывают HTML-пояснения под схемой. Корпус меняет
+Пять button-hotspots открывают синхронизированные HTML-пояснения. Корпус меняет
 условный силуэт; RAM — метаданные; SSD/SSD2 — подписи и второй слот.
 SYSTEM ID показывает preview выбранных labels. Контексты измерений сохраняют
 пустые метрики, а четыре всегда видимых этапа сборки имеют focus/click-пояснения.
@@ -199,7 +200,7 @@ SYSTEM ID показывает preview выбранных labels. Контекс
 
 В UI Kit добавлены Interactive Product Primitives с отдельным playground.
 Архитектура слоёв, события, адаптивность и будущий media/kk.korsac adapter
-описаны в [документе v3](KORSAC-INTERACTIVE-PRODUCT-EXPERIENCE.md).
+описаны в [документе v3.1](KORSAC-INTERACTIVE-PRODUCT-EXPERIENCE.md).
 
 «Добавить в корзину» открывает информацию о прототипе. Счётчик корзины,
 заказы, localStorage, авторизация, поиск, фильтры, аналитика и сеть отсутствуют.
@@ -258,6 +259,6 @@ Backend сохраняет проверенный snapshot конфигурац�
 - Контраст текста, copper, синего, CTA, selected/disabled state проверен отдельно от декоративных линий.
 - Ссылки, labels, IDs и `aria-controls` согласованы; `git diff --check` проходит.
 
-[Материалы визуального ревью](review/README.md) сохраняют v1/v2/v2.1 и добавляют v3.
+[Материалы визуального ревью](review/README.md) сохраняют v1/v2/v2.1 и добавляют v3.1; исходные v3 сохранены в архиве.
 Снимки не используются runtime. Проверка одного браузера не заменяет ручной
 приёмочный прогон во всех целевых браузерах.

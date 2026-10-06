@@ -1,4 +1,4 @@
-# KORSAC — Interactive Product Experience v3
+# KORSAC — Interactive Product Experience v3.1
 
 ## Назначение
 
@@ -37,7 +37,7 @@ Explorer и адаптивную компоновку. `prototype/assets/js/prod
 Hero сохраняет обзор и реагирует на вариант корпуса. Explorer изучает систему.
 Конфигуратор показывает область, связанную с текущим hardware-control.
 UI Kit демонстрирует тот же контроллер в разделе **Interactive Product
-Primitives**: кнопки, hotspots, панель, narrative-пример и native fixture.
+Primitives**: кнопки, hotspots, панель, синхронизированные detail/Prev/Next и native fixture.
 
 Слои отдельной сцены:
 
@@ -68,35 +68,75 @@ Primitives**: кнопки, hotspots, панель, narrative-пример и na
 
 Кнопки контекстов используют `aria-pressed`. Hotspots имеют русские
 `aria-label`, `aria-controls`, `aria-expanded` и обычную Tab-навигацию.
-Enter/Space открывают соответствующую панель под схемой. Hover лишь меняет
+Enter/Space открывают соответствующее пояснение в detail-зоне Explorer
+или под отдельной сценой конфигуратора. Hover лишь меняет
 стиль кнопки. Модальность, автоматический перенос фокуса и hover-only
 пояснения не используются.
 
-## Native scroll / System Explorer
+## Synchronized Product Explorer
 
-Пять семантических articles рассказывают об охлаждении, графике, платформе,
-накопителях и подготовке. Все находятся в исходном HTML.
-Desktop при ширине от 1100 px и высоте от 820 px получает две колонки:
-сцену с `position: sticky; top: 24px` и последовательность рассказа.
-Sticky ограничен своим grid-контейнером и заканчивается вместе с Explorer.
+Explorer — компактный модуль «сцена → выбор аспекта → объяснение». При ширине
+от 1100 px обычный grid делит пространство примерно 55/45 между Product Stage
+с controls и единой detail-зоной. Sticky, scroll-driven переключение и длинная
+последовательность articles в Explorer отсутствуют. Прежние viewport-якоря
+брендового motion остаются в `prototype.js`; продуктовый controller не
+создаёт observer и не следит за scroll position, resize или URL/history.
 
-`IntersectionObserver` наблюдает только эти пять semantic steps. Узкая полоса
-39–41% высоты viewport определяет текущий контекст чтения. Она независима
-от двух прежних брендовых observer anchors в `prototype.js`; другие секции
-не получают scroll reveal. Код не слушает wheel/touchmove, не пишет scroll
-position, не блокирует прокрутку и не меняет URL/history при смене состояния.
+### Одно состояние
 
-Ручная кнопка или hotspot действует сразу. Контроллер запоминает текущий
-article и позицию прокрутки: queued observer callback не отменяет действие
-при той же позиции. Скролл внутри того же article сохраняет ручной выбор;
-новый article после реального перемещения снова задаёт narrative-контекст.
-Активная полоса получает `aria-current="step"`; сцена не является `aria-live`.
+`data-stage-state` конкретного экземпляра — authoritative presentation state.
+Единый порядок `explorerStates` в JS: overview, airflow, graphics, platform,
+storage, validation. Один `setStageState(state, context)` синхронно меняет
+highlight сцены, `aria-pressed` controls, active hotspot, видимый HTML article,
+identifier, счётчик и кнопки соседних аспектов. Независимых slider/narrative
+state и глобального singleton нет. Счётчик всегда **00 / 05 … 05 / 05**:
+обзор имеет номер 00, затем пять инженерных аспектов.
 
-До 1099 px и на низком desktop sticky и автоматическое переключение отключены.
-Сцена, кнопки и весь рассказ идут обычным потоком. На mobile кнопки контекстов
-размещены в две колонки; hotspots остаются touch/keyboard-доступными.
-У каждого article есть дополнительная кнопка «Посмотреть на схеме».
-Она обновляет сцену, сохраняя scroll position и фокус пользователя.
+Все пути ввода используют этот же метод:
+
+- Контекстная кнопка задаёт state напрямую.
+- Hotspot задаёт state и при необходимости CPU/memory subannotation platform.
+- Prev/Next читают текущий `data-stage-state`, находят его в `explorerStates`
+  и выбирают соседа; labels берутся из русских context controls.
+- Разрешённое hardware-событие меняет контекст только сцены конфигуратора
+  или UI Kit fixture. На странице текущая инспекция Explorer сохраняется.
+
+Prev disabled на overview, Next disabled на validation. Нет looping,
+autoplay, таймеров переключения, swipe-зависимости или horizontal scroll track.
+Prev/Next — настоящие buttons высотой минимум 44 px. Они сохраняют естественную
+keyboard-навигацию; controller не вызывает focus или scroll.
+
+### Detail и annotations
+
+Все шесть explanations находятся в HTML как `[data-explorer-slide]` /
+`[data-stage-panel]`: индекс, heading, короткий текст и factual note.
+CPU/memory — дополнительные paragraphs внутри единственного platform article;
+они не добавляют седьмой основной state и не участвуют в Prev/Next order.
+Их IDs остаются целями `aria-controls` соответствующих hotspots.
+Platform и storage используют `data-stage-output` из native controls, поэтому
+подписи обновляются также внутри временно невидимых explanations.
+
+В enhanced mode articles занимают один grid slot: только активный виден.
+Остальные получают `hidden` и `inert`. Scoped CSS оставляет их невидимые
+intrinsic размеры в grid через `visibility: hidden`, сохраняя высоту модуля
+и footer при переключении. Аналогично устроено место subannotations.
+Неактивные элементы исключены из accessibility tree и Tab-порядка;
+проверено браузерным accessibility snapshot. Большого fixed/min-height,
+JS-измерения высоты и задержки замены текста нет.
+
+До 1099 px схема, controls, detail и navigation идут обычным DOM-потоком.
+Mobile использует 2×3 context buttons и более компактную схему, сохраняя
+44×44 hit areas hotspots. Caption остаётся явным: это условная схема.
+Выбор кнопки/hotspot обновляет рядом counter и explanation; из detail-footer
+Prev/Next меняют ту же видимую панель, без необходимости возвращаться к
+позднему article или прокручивать страницу программно. No-JS показывает
+все шесть explanations обычной последовательностью и overview-схему;
+дополнительные controls скрыты до enhancement.
+
+На Chromium 1440×1080 высота раздела уменьшилась с 3242 до 837 px;
+на 375 px — с 3383 до примерно 1103 px. При смене шести states и двух
+platform subannotations высота стабильна на контрольных ширинах.
+Эти размеры включают heading и отступы, а не только схему.
 
 ## Конфигуратор → сцена → паспорт
 
@@ -116,8 +156,8 @@ option внутри `[data-prototype-config]`. Контроллер перечи
 | ОС, software, service | Только прежние строки manifest |
 
 `focusin` hardware-control выбирает контекст конфигуратора; `change`
-синхронизирует подписи всех экземпляров. В Explorer текущий смысловой state
-сохраняется. Интеракция с одной сценой не переключает остальные сцены.
+синхронизирует подписи всех экземпляров. В Explorer текущий смысловой state и CPU/memory subannotation
+сохраняются; обновляются только выбранные labels и case/slot media flags. Интеракция с одной сценой не переключает остальные сцены.
 На большом desktop компактная сцена конфигуратора закрепляется только внутри
 группы case/RAM/SSD/SSD2. При работе с памятью и накопителями реакция остаётся
 рядом с controls; сцена не перекрывает следующий ряд. ОС/software/service и
@@ -147,12 +187,12 @@ Hero сохраняет обзор. Автопроигрывания и carousel
 
 Локальный DOM event `korsac:stage-motion` на конкретной сцене передаёт работу
 существующему cancellable motion runner в `prototype.js`.
-`korsac:stage-control` сообщает Explorer о ручном выборе внутри его сцены.
 Контроллер обновляет смысловое состояние синхронно, затем запускает feedback.
 
-Stage resolve использует существующий `--k-motion-brand` (320 ms) и
+Stage и detail resolve используют существующий `--k-motion-brand` (320 ms) и
 `--k-ease-precision`: панель смещается на 8 px, декоративная rail раскрывается,
-при смене корпуса media получает короткий clip/translate. Полный hero reveal
+при смене корпуса media получает короткий clip/translate. Detail heading/index
+получают тот же 8 px mask/resolve, техническая rail — конечный line resolve. Полный hero reveal
 при переключении не повторяется. Нет задержки клика, вращения, большого zoom
 или обязательного исчезновения текста.
 
@@ -161,11 +201,11 @@ fallback удаляют служебные классы. Последний nati
 При reduced motion state/labels меняются сразу, expressive motion отключён;
 смена настройки во время движения отменяет активные последовательности.
 
-Без JS сцены показывают `overview`, narrative и все annotation-пояснения
+Без JS сцены показывают `overview`, шесть explanations и annotation-пояснения
 доступны, native controls остаются обычными controls. Только дополнительные
 кнопки и интерактивные пояснения скрыты до enhancement. При этом label sync
 не работает; HTML явно остаётся прототипом. Контекстные панели не объявляются
-через live region: скролл не создаёт поток screen-reader announcements.
+через live region: быстрый выбор не создаёт поток screen-reader announcements.
 Прежний manifest сохраняет polite feedback от явного изменения опции.
 
 ## Замена схемы реальными media
@@ -199,40 +239,44 @@ Stage controller остаётся локальным presentation-слоем. П
 чтение заменяется адаптером к ConfiguratorCore; нельзя переносить prototype
 текст или DOM flags в business-state либо использовать их как XML_ID/API
 contract. Цена поступает из authoritative ответа; сервер проверяет selection,
-доступность, совместимость и snapshot корзины. CSS, semantic narrative,
-контекстные панели и ограниченный sticky могут перейти в template/theme
+доступность, совместимость и snapshot корзины. CSS, синхронизированные detail-панели,
+context/Prev/Next controls и ограниченный pin конфигуратора могут перейти в template/theme
 без замены всей interaction architecture.
 
 ## Проверка и human acceptance
 
-[Review assets и запись](review/README.md) показывают v3 отдельно от v1/v2/v2.1.
-Автоматические проверки: layout всех трёх страниц при
-320/375/430/768/900/1024/1280/1440 px; native wheel и manual/observer priority;
-case/RAM/SSD/SSD2/manifest/passport; статичность всех цен; 31 быстрый повтор;
-hotspot Tab/Enter/Space и touch; tablet/короткий desktop; no-JS 320 px;
-reduced motion и переключение настройки во время движения; WCAG axe,
-отсутствие console errors и внешних runtime-запросов. Детали и ограничения
-зафиксированы в PR. Проверки выполнены в Chromium; HTTP проверен,
-`file://` заблокирован политикой браузера среды. Firefox/Safari не проверены.
+[Актуальные review assets и запись v3.1](review/README.md) показывают
+синхронизированный Explorer; материалы v3 сохранены как архив предыдущего head.
+Автоматически проверяются: layout всех трёх страниц при
+320/375/430/768/900/1024/1280/1440 px; все четыре пути ввода и disabled boundaries;
+единый counter; стабильность высоты states/subannotations; отсутствие scroll/URL
+изменений от выбора; native case/RAM/SSD/SSD2/manifest/passport и независимость
+Explorer; статичность цен; rapid Next/Prev и motion cleanup; Tab/Enter/Space,
+touch375/430×800; no-JS320; live reduced-motion; WCAG axe и отсутствие console
+errors/external runtime requests. Результаты и ограничения фиксируются в PR.
+Chromium проверен по HTTP; `file://` заблокирован политикой браузера среды.
+Firefox/Safari и физические screen-reader/device прогоны не выполнены.
 
-Перед принятием baseline человек должен пройти в браузере:
+Перед принятием v3.1 человек проверяет в браузере:
 
-- Обычную прокрутку Explorer, ручные кнопки, hotspots и возвращение к рассказу.
-- North → RAM 64 → SSD 2 ТБ → второй SSD; проверить scene/manifest/passport.
-- Быстрое переключение корпусов и доступ к controls во время resolve.
-- Четыре этапа сборки и контексты пустых измерений.
-- Keyboard, touch, drawer, native selects, no-JS и reduced motion.
+- Охлаждение → Next → Графика: stage/detail/control/counter согласованы.
+- GPU hotspot и Platform → Prev → Graphics: обратная синхронизация.
+- CPU/memory subannotations без отдельных main slides.
+- North → RAM64 → SSD2ТБ → второй SSD: подписи верны, цена статична,
+  текущий Explorer context сохраняется.
+- Mobile375/430: local feedback кнопок/hotspots/footer без специального
+  возврата к сцене; keyboard, no-JS и reduced motion.
 
-Вопросы ревью A–H: interaction объясняет продукт и ощущается содержательным?
-Stage предсказуем? Скролл естественный? Конфигуратор связан со сценой?
-Схема пригодна для будущих фото? Плотность не уводит в HUD/tech-demo?
-Presentation architecture переносима в kk.korsac?
-Запись и автоматический прогон дают доказательства поведения, но не
-подтверждают человеческую оценку motion feel или visual acceptance.
+Вопросы A–G: модуль существенно короче? Сцена и пояснение ощущаются одной
+системой? Все пути ввода согласованы? Опыт похож на изучение продукта?
+Mobile даёт местный видимый feedback? Упрощение сохраняет интерактивность?
+DOM controller проще связать с ConfiguratorCore/renderer?
+Архитектурные и поведенческие проверки дают ответы для ревью, но не заменяют
+человеческую оценку visual/motion feel.
 
 ## Границы
 
-В v3 нет Bitrix/PHP, API, pricing, Cart, inventory, compatibility engine,
+В v3.1 нет Bitrix/PHP, API, pricing, Cart, inventory, compatibility engine,
 финальных фото, выдуманных benchmarks, WebGL/3D/canvas, parallax,
 custom cursor, scroll interception и внешних animation libraries.
 Каталог, checkout, account, поиск и финальная главная страница вне задачи.

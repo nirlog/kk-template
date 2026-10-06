@@ -273,29 +273,90 @@
   gap: var(--k-space-12);
   align-items: start;
 }
-.k-explorer-pin {
-  min-width: 0;
-  width: 100%;
-  max-width: 680px;
-}
-.k-explorer-story {
+.k-explorer-layout > .k-product-stage {
   min-width: 0;
 }
-.k-narrative-step {
+.k-explorer-detail {
   display: grid;
-  align-content: center;
-  gap: var(--k-space-5);
-  padding: var(--k-space-8) 0 var(--k-space-8) var(--k-space-6);
-  border-left: 2px solid var(--k-border);
+  grid-template-rows: auto 1fr auto;
+  align-self: stretch;
+  gap: var(--k-space-4);
+  padding-top: var(--k-space-5);
+  border-top: 1px solid var(--k-border-strong);
+  min-width: 0;
 }
-.k-narrative-step[data-active="true"] {
-  border-left-color: var(--k-accent);
+.k-explorer-register {
+  display: flex;
+  align-items: center;
+  gap: var(--k-space-3);
 }
-.k-narrative-step h3 {
-  max-width: 20ch;
+[data-explorer-counter] {
+  color: var(--k-identity);
+  white-space: nowrap;
 }
-.k-narrative-step > button {
-  justify-self: start;
+.k-explorer-rail {
+  flex: 1;
+  min-width: var(--k-space-4);
+  height: 1px;
+  background: var(--k-border-strong);
+  transform-origin: left;
+}
+.k-explorer-slide {
+  display: grid;
+  align-content: start;
+  gap: var(--k-space-4);
+  padding-block: var(--k-space-2);
+}
+.k-explorer-slide h3 {
+  max-width: 22ch;
+  font-size: var(--k-h3);
+}
+.k-explorer-slide > p:not(.k-eyebrow) {
+  color: var(--k-secondary);
+}
+.k-explorer-slides {
+  min-width: 0;
+}
+[data-experience-ready] .k-explorer-slides,
+[data-experience-ready] .k-explorer-annotations {
+  display: grid;
+}
+[data-experience-ready] .k-explorer-slide,
+[data-experience-ready] [data-explorer-annotation] {
+  grid-area: 1 / 1;
+}
+/* Inactive/inert HTML reserves its intrinsic space but remains invisible and
+   absent from keyboard/accessibility navigation. No measured-height JS. */
+[data-experience-ready] .k-explorer-slide[hidden] {
+  display: grid !important;
+  visibility: hidden;
+  pointer-events: none;
+}
+[data-experience-ready] [data-explorer-annotation][hidden] {
+  display: block !important;
+  visibility: hidden;
+}
+[data-experience-ready] .k-explorer-state-code {
+  display: none;
+}
+.k-explorer-navigation {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--k-space-3);
+  border-top: 1px solid var(--k-border);
+  padding-top: var(--k-space-4);
+}
+.k-explorer-navigation button {
+  min-width: 0;
+  min-height: 44px;
+  padding-inline: var(--k-space-3);
+  font-size: var(--k-body-sm);
+}
+.k-explorer-navigation button:first-child {
+  justify-content: flex-start;
+}
+.k-explorer-navigation button:last-child {
+  justify-content: flex-end;
 }
 .k-config-station {
   display: grid;
@@ -303,10 +364,6 @@
 }
 .k-config-stage-pin {
   min-width: 0;
-}
-.k-interactive-kit-grid {
-  display: grid;
-  gap: var(--k-space-10);
 }
 .k-interactive-fixture {
   display: grid;
@@ -378,6 +435,24 @@
   animation: k-stage-case-resolve var(--k-motion-brand) var(--k-ease-precision)
     both;
 }
+.k-explorer-resolve .k-explorer-slide:not([hidden]) h3,
+.k-explorer-resolve .k-explorer-register {
+  animation: k-explorer-detail-resolve var(--k-motion-brand)
+    var(--k-ease-precision) both;
+}
+.k-explorer-resolve .k-explorer-rail {
+  animation: k-line-resolve var(--k-motion-brand) var(--k-ease-precision) both;
+}
+@keyframes k-explorer-detail-resolve {
+  from {
+    clip-path: inset(0 8% 0 0);
+    transform: translateX(8px);
+  }
+  to {
+    clip-path: inset(0);
+    transform: none;
+  }
+}
 @keyframes k-stage-detail-resolve {
   from {
     transform: translateX(8px);
@@ -397,14 +472,32 @@
   }
 }
 @media (min-width: 768px) {
-  .k-interactive-kit-grid {
+  .k-interactive-fixture {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+  .k-interactive-fixture > h3,
+  .k-interactive-fixture > dl {
+    grid-column: 1 / -1;
+  }
+  .k-interactive-fixture > fieldset {
+    grid-row: 2 / span 3;
+  }
+  .k-interactive-fixture > .k-field {
+    grid-column: 2;
   }
   .k-measurement-controls {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 @media (min-width: 1100px) {
+  .k-explorer-layout {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: var(--k-space-12);
+  }
+  .k-explorer-detail {
+    padding-left: var(--k-space-6);
+    border-left: 1px solid var(--k-border);
+  }
   .k-config-hardware-layout {
     padding-bottom: var(--k-space-12);
     grid-template-areas: "hardware stage";
@@ -417,23 +510,64 @@
   }
 }
 @media (min-width: 1100px) and (min-height: 820px) {
-  .k-explorer-layout {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: var(--k-space-12);
-  }
-  [data-experience-ready] .k-explorer-pin {
-    position: sticky;
-    top: var(--k-space-6);
-  }
   [data-experience-ready] .k-config-stage-pin {
     position: sticky;
     top: var(--k-space-6);
   }
-  .k-explorer-story .k-narrative-step {
-    min-height: 55vh;
+}
+@media (max-width: 1099px) {
+  [data-product-explorer] .k-stage-visual {
+    height: 200px;
+  }
+  [data-product-explorer] .k-stage-chassis {
+    transform: scale(0.7);
+  }
+  [data-product-explorer] .k-stage-caption {
+    padding-block: var(--k-space-2);
+  }
+  [data-product-explorer] .k-stage-hotspot--cpu {
+    top: 10px;
+  }
+  [data-product-explorer] .k-stage-hotspot--memory {
+    top: 54px;
+  }
+  [data-product-explorer] .k-stage-hotspot--airflow,
+  [data-product-explorer] .k-stage-hotspot--graphics {
+    top: 98px;
+  }
+  [data-product-explorer] .k-stage-hotspot--storage {
+    top: 142px;
+  }
+  .k-explorer-layout {
+    gap: var(--k-space-6);
+  }
+  .k-explorer-slide {
+    font-size: var(--k-body-sm);
   }
 }
 @media (max-width: 599px) {
+  .k-product-explorer {
+    padding-block: var(--k-space-8);
+  }
+  .k-product-explorer .k-section-heading {
+    gap: var(--k-space-4);
+    margin-bottom: var(--k-space-6);
+  }
+  .k-product-explorer .k-section-heading > p {
+    font-size: var(--k-body-sm);
+  }
+  [data-product-explorer] .k-stage-figure {
+    padding-top: var(--k-space-3);
+  }
+  [data-product-explorer] .k-stage-corner-label {
+    display: none;
+  }
+  [data-product-explorer] .k-stage-visual {
+    margin-top: var(--k-space-2);
+  }
+  [data-product-explorer] .k-stage-selection {
+    display: none;
+  }
   .k-stage-contexts {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -449,6 +583,9 @@
   }
 }
 @media (prefers-reduced-motion: reduce) {
+  .k-explorer-resolve .k-explorer-slide h3,
+  .k-explorer-resolve .k-explorer-register,
+  .k-explorer-resolve .k-explorer-rail,
   .k-stage-resolve [data-stage-panel],
   .k-stage-resolve [data-stage-overlay],
   .k-stage-resolve [data-stage-media],

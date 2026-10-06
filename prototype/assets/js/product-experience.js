@@ -2,14 +2,15 @@
    No API, pricing, compatibility, cart, persistence or generated benchmark data. */
 (() => {
   "use strict";
-  const states = new Set([
+  const explorerStates = [
     "overview",
     "airflow",
     "graphics",
     "platform",
     "storage",
     "validation",
-  ]);
+  ];
+  const states = new Set(explorerStates);
   const hardwareKeys = new Set(["case", "memory", "storage", "extra-storage"]);
   const inspection = {
     case: "overview",
@@ -53,21 +54,31 @@
         );
 
       const createStage = (stage) => {
-        const panels = [...stage.querySelectorAll("[data-stage-panel]")];
+        const explorer = stage.closest("[data-product-explorer]");
+        const panels = [
+          ...(explorer || stage).querySelectorAll("[data-stage-panel]"),
+        ];
+        const annotations = [
+          ...(explorer?.querySelectorAll("[data-explorer-annotation]") || []),
+        ];
+        const navigation = [
+          ...(explorer?.querySelectorAll("[data-explorer-step]") || []),
+        ];
         const requestMotion = (kind) => {
           stage.dataset.stageMotion = kind;
           stage.dispatchEvent(
             new CustomEvent("korsac:stage-motion", { bubbles: true }),
           );
         };
-        // State belongs to this DOM instance. An annotation is a single panel,
-        // not a second copy of hardware selection or a production JSON object.
+        // The stage DOM owns the inspection state; detail/counter/navigation
+        // are derived here. CPU/memory are platform subannotations, not slides.
         const setStageState = (state, context = {}) => {
           if (!states.has(state)) return;
           const annotation = context.annotation || state;
+          const panelKey = explorer ? state : annotation;
           if (
             panels.length &&
-            !panels.some((panel) => panel.dataset.stagePanel === annotation)
+            !panels.some((panel) => panel.dataset.stagePanel === panelKey)
           )
             return;
           const changed =
@@ -79,7 +90,11 @@
           if (context.build && Object.hasOwn(buildNames, context.build))
             stage.dataset.stageBuild = context.build;
           panels.forEach((panel) => {
-            panel.hidden = panel.dataset.stagePanel !== annotation;
+            panel.hidden = panel.dataset.stagePanel !== panelKey;
+            if (explorer) panel.inert = panel.hidden;
+          });
+          annotations.forEach((panel) => {
+            panel.hidden = panel.dataset.explorerAnnotation !== annotation;
           });
           stage
             .querySelectorAll("[data-stage-choice]")
@@ -112,23 +127,36 @@
               annotation === "memory"
                 ? `MEMORY / ${selection.memory}`
                 : technical[state];
-          stage
+          (explorer || stage)
             .querySelectorAll("[data-stage-build-label]")
             .forEach((label) => {
               label.textContent = `Что проверяем: ${buildNames[stage.dataset.stageBuild] || buildNames.assembly}`;
             });
+          if (explorer) {
+            const index = explorerStates.indexOf(state);
+            explorer.querySelector("[data-explorer-counter]").textContent =
+              `${String(index).padStart(2, "0")} / ${String(explorerStates.length - 1).padStart(2, "0")}`;
+            explorer.querySelector("[data-explorer-identifier]").textContent =
+              state.toUpperCase();
+            navigation.forEach((button) => {
+              const direction = Number(button.dataset.explorerStep);
+              const destination = explorerStates[index + direction];
+              const label = destination
+                ? stage
+                    .querySelector(`[data-stage-choice="${destination}"]`)
+                    .textContent.trim()
+                : direction < 0
+                  ? "Назад"
+                  : "Далее";
+              button.disabled = !destination;
+              button.textContent = direction < 0 ? `← ${label}` : `${label} →`;
+            });
+          }
           if (
             context.animate !== false &&
             (changed || context.force || context.caseChanged)
           )
             requestMotion(context.caseChanged ? "case" : "context");
-          if (context.source === "manual")
-            stage.dispatchEvent(
-              new CustomEvent("korsac:stage-control", {
-                bubbles: true,
-                detail: { state },
-              }),
-            );
         };
         stage
           .querySelectorAll("[data-stage-interaction]")
@@ -147,7 +175,15 @@
               : annotation || button.dataset.stageChoice;
           setStageState(state, {
             annotation: annotation || state,
-            source: "manual",
+          });
+        });
+        navigation.forEach((button) => {
+          button.addEventListener("click", () => {
+            if (button.disabled) return;
+            const index = explorerStates.indexOf(stage.dataset.stageState);
+            setStageState(
+              explorerStates[index + Number(button.dataset.explorerStep)],
+            );
           });
         });
         stage.dataset.stageBuild ||= "assembly";
@@ -179,15 +215,14 @@
           stage.dataset.stageCase = variant;
           stage.dataset.stageExtra = String(extra);
           const role = stage.dataset.stageRole;
-          const state =
-            (role === "configurator" || role === "playground") && key
-              ? inspection[key]
-              : stage.dataset.stageState;
-          const annotation =
-            key === "memory" &&
-            (role === "configurator" || role === "playground")
+          const inspect =
+            (role === "configurator" || role === "playground") && key;
+          const state = inspect ? inspection[key] : stage.dataset.stageState;
+          const annotation = inspect
+            ? key === "memory"
               ? "memory"
-              : state;
+              : state
+            : stage.dataset.stageAnnotation || state;
           setStageState(state, {
             annotation,
             animate,
@@ -211,7 +246,6 @@
           .forEach(({ setStageState }) =>
             setStageState(inspection[key], {
               annotation: key === "memory" ? "memory" : inspection[key],
-              source: "config",
             }),
           );
       });
@@ -220,91 +254,6 @@
         element.hidden = false;
       });
       experience.dataset.experienceReady = "true";
-      experience
-        .querySelectorAll("[data-product-explorer]")
-        .forEach((explorer) => {
-          const controller = controllers.find(({ stage }) =>
-            explorer.contains(stage),
-          );
-          const steps = [
-            ...explorer.querySelectorAll("[data-narrative-state]"),
-          ];
-          if (!controller) return;
-          const desktop = window.matchMedia(
-            "(min-width: 1100px) and (min-height: 820px)",
-          );
-          let observer,
-            lastCandidate = null,
-            manualScrollY = null,
-            resizeFrame;
-          const markActive = (state) =>
-            steps.forEach((step) => {
-              const active = step.dataset.narrativeState === state;
-              step.dataset.active = String(active);
-              if (active) step.setAttribute("aria-current", "step");
-              else step.removeAttribute("aria-current");
-            });
-          const currentStep = () => {
-            const line = innerHeight * 0.4;
-            const visible = steps
-              .map((step) => ({ step, rect: step.getBoundingClientRect() }))
-              .filter(({ rect }) => rect.bottom > 0 && rect.top < innerHeight);
-            return (
-              visible.find(
-                ({ rect }) => rect.top <= line && rect.bottom >= line,
-              )?.step || null
-            );
-          };
-          const manual = (state) => {
-            manualScrollY = window.scrollY;
-            lastCandidate = currentStep();
-            markActive(state);
-          };
-          controller.stage.addEventListener("korsac:stage-control", (event) =>
-            manual(event.detail.state),
-          );
-          explorer
-            .querySelectorAll("[data-narrative-choice]")
-            .forEach((button) =>
-              button.addEventListener("click", () => {
-                const state = button.dataset.narrativeChoice;
-                controller.setStageState(state, { source: "manual" });
-              }),
-            );
-          const observe = () => {
-            observer?.disconnect();
-            if (!desktop.matches || !("IntersectionObserver" in window)) return;
-            observer = new IntersectionObserver(
-              () => {
-                const candidate = currentStep();
-                if (!candidate || candidate === lastCandidate) return;
-                // A queued observer callback cannot undo a click at the same scroll
-                // position. Only a genuinely new step after scrolling can take over.
-                if (
-                  manualScrollY !== null &&
-                  Math.abs(window.scrollY - manualScrollY) < 8
-                )
-                  return;
-                lastCandidate = candidate;
-                manualScrollY = null;
-                const state = candidate.dataset.narrativeState;
-                controller.setStageState(state, { source: "scroll" });
-                markActive(state);
-              },
-              {
-                rootMargin: `-${Math.round(innerHeight * 0.39)}px 0px -${Math.round(innerHeight * 0.59)}px 0px`,
-                threshold: 0,
-              },
-            );
-            steps.forEach((step) => observer.observe(step));
-          };
-          observe();
-          desktop.addEventListener("change", observe);
-          window.addEventListener("resize", () => {
-            cancelAnimationFrame(resizeFrame);
-            resizeFrame = requestAnimationFrame(observe);
-          });
-        });
 
       const measurement = experience.querySelector(
         "[data-measurement-controls]",
@@ -354,7 +303,7 @@
         controllers
           .filter(({ stage }) => stage.dataset.stageRole !== "hero")
           .forEach(({ setStageState }) =>
-            setStageState("validation", { build: step, source: "build" }),
+            setStageState("validation", { build: step }),
           );
       };
       experience.querySelectorAll("[data-build-step]").forEach((button) => {

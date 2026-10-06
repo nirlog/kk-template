@@ -1,36 +1,55 @@
 # Материалы визуального и motion-ревью KORSAC
 
-## Interactive Product Experience v3
+## Актуальный Explorer v3.1 — synchronized state
 
-[Запись взаимодействий — MP4](interactive-v3.mp4) показывает реальный native
-wheel-scroll через пять контекстов Explorer (примерно 0–5 s), ручные кнопки
-и memory hotspot (5–8 s), смену корпусов, RAM/SSD/SSD2 и manifest (8–15 s),
-этапы сборки и соответствующую validation-сцену (15–21 s).
-RAM и второй SSD переключаются нативными стрелками клавиатуры.
-Запись сделана с normal motion, без замедления и без программного управления
-scroll position: Chromium 151, viewport 1440×1080 px, видео 960×720 px /
-25 fps, 21,16 s, около 1,0 MiB, H.264. Это только review asset.
+[Запись взаимодействий v3.1 — MP4](interactive-v31.mp4) показывает контекстные
+кнопки, GPU/memory hotspots, Next и обратный Prev, смену корпуса, RAM/SSD/SSD2
+и сохранение Explorer context. Desktop — примерно 0–16 s; mobile — 16–23 s:
+обычная короткая прокрутка, touch context/hotspot и Prev/Next с местным
+видимым пояснением. Нет замедления или автопереключения самого Explorer.
 
-Снимки v3:
+Захват: Chromium 151, normal motion, desktop viewport 1440×1080 и mobile
+375×800 с touch emulation. MP4 H.264: 960×720 / 25 fps, 22,8 s, около 1,06 MiB.
+Mobile-фрагмент расположен по центру общего видеокадра.
+Файл используется только для ревью и не загружается прототипом.
 
-- [PLAY 1440 — desktop](product-v3-desktop.png), 1440×1080 px.
-- [PLAY 1440 — mobile](product-v3-mobile.png), 375×1000 px.
-- [System Explorer — desktop](explorer-v3-desktop.png), 1440×1080 px.
-- [System Explorer — mobile](explorer-v3-mobile.png), 375×1200 px.
-- [Конфигуратор и сцена](configurator-stage-v3.png), 1440×1440 px:
-  North, 64 ГБ DDR5, основной 2 ТБ и второй SSD 1 ТБ.
-- [Interactive Product Primitives](interactive-primitives-v3.png),
-  1440×1200 px: scoped playground и отдельный native fixture.
+Актуальные PNG, снятые с reduced motion:
 
-PNG сняты в Chromium с reduced motion. Предыдущие материалы v1/v2/v2.1
-сохранены под исходными именами. Wireframe в новых снимках — условная схема,
-не фотография и не точная компоновка выбранного корпуса.
+- [PLAY 1440 — desktop](product-v31-desktop.png), 1440×1080 px.
+- [PLAY 1440 — mobile](product-v31-mobile.png), 375×1000 px.
+- [Explorer — desktop](explorer-v31-desktop.png), 1440×1080 px: AIRFLOW,
+  общий counter 01/05 и destination labels.
+- [Explorer — mobile](explorer-v31-mobile.png), 375×1200 px: весь компактный
+  модуль, controls, explanation и Prev/Next.
+- [Interactive Product Primitives](interactive-primitives-v31.png), 1440×1440 px:
+  synchronized platform и независимый native fixture с выбранной RAM 64.
+- [Конфигуратор и stage](configurator-stage-v3.png): сохранённая компоновка
+  аппаратных controls/scene; в v3.1 она не перерабатывалась.
 
-[Архитектура и live checklist v3](../KORSAC-INTERACTIVE-PRODUCT-EXPERIENCE.md)
-описывают ручной выбор, priority после прокрутки, tablet/mobile fallback,
-no-JS/reduced-motion и будущие media/kk.korsac adapters.
-Человеческое live-ревью остаётся acceptance gate: запись и автоматические
-проверки не подтверждают visual/motion acceptance.
+Высота Explorer при 1440×1080 уменьшилась 3242→837 px, при 375 px — 3383→1103 px.
+State transitions и CPU/memory subannotations не меняют высоту раздела
+на 320/375/430/768/1024/1280/1440 px. Счётчик всегда 00/05–05/05;
+навигация имеет конечные границы и не зависит от прокрутки.
+
+[Архитектура и human checklist v3.1](../KORSAC-INTERACTIVE-PRODUCT-EXPERIENCE.md)
+описывают single state, annotations, visibility/inert, normal-flow mobile,
+no-JS/reduced-motion и media/kk.korsac adapters. Человеческое live-ревью
+остаётся acceptance gate; запись и автоматические проверки его не заменяют.
+
+## Архив v3 — до synchronized Explorer
+
+Эти материалы фиксируют PR #4 на head `22d5893` и больше не являются текущей
+UX-моделью Explorer. Для ревью текущего изменения используйте файлы v3.1 выше.
+
+- [Предыдущая запись](interactive-v3.mp4).
+- [Продукт desktop](product-v3-desktop.png) / [mobile](product-v3-mobile.png).
+- [Прежний Explorer desktop](explorer-v3-desktop.png) /
+  [mobile](explorer-v3-mobile.png).
+- [Прежний UI Kit](interactive-primitives-v3.png).
+
+Предыдущие v1/v2/v2.1 assets также сохраняются под исходными именами.
+Схемы во всех материалах — placeholders, не product photography и не точная
+компоновка физического корпуса.
 
 ## Motion Visibility Pass v2.1
 
