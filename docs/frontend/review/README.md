@@ -1,5 +1,56 @@
 # Материалы визуального и motion-ревью KORSAC
 
+## Актуальный Explorer v3.1 — synchronized state
+
+[Запись взаимодействий v3.1 — MP4](interactive-v31.mp4) показывает контекстные
+кнопки, GPU/memory hotspots, Next и обратный Prev, смену корпуса, RAM/SSD/SSD2
+и сохранение Explorer context. Desktop — примерно 0–16 s; mobile — 16–23 s:
+обычная короткая прокрутка, touch context/hotspot и Prev/Next с местным
+видимым пояснением. Нет замедления или автопереключения самого Explorer.
+
+Захват: Chromium 151, normal motion, desktop viewport 1440×1080 и mobile
+375×800 с touch emulation. MP4 H.264: 960×720 / 25 fps, 22,8 s, около 1,06 MiB.
+Mobile-фрагмент расположен по центру общего видеокадра.
+Файл используется только для ревью и не загружается прототипом.
+
+Актуальные PNG, снятые с reduced motion:
+
+- [PLAY 1440 — desktop](product-v31-desktop.png), 1440×1080 px.
+- [PLAY 1440 — mobile](product-v31-mobile.png), 375×1000 px.
+- [Explorer — desktop](explorer-v31-desktop.png), 1440×1080 px: AIRFLOW,
+  общий counter 01/05 и destination labels.
+- [Explorer — mobile](explorer-v31-mobile.png), 375×1200 px: весь компактный
+  модуль, controls, explanation и Prev/Next.
+- [Interactive Product Primitives](interactive-primitives-v31.png), 1440×1440 px:
+  synchronized platform и независимый native fixture с выбранной RAM 64.
+- [Конфигуратор и stage](configurator-stage-v3.png): сохранённая компоновка
+  аппаратных controls/scene; в v3.1 она не перерабатывалась.
+
+Высота Explorer при 1440×1080 уменьшилась 3242→837 px, при 375 px — 3383→1103 px.
+State transitions и CPU/memory subannotations не меняют высоту раздела
+на 320/375/430/768/1024/1280/1440 px. Счётчик всегда 00/05–05/05;
+навигация имеет конечные границы и не зависит от прокрутки.
+
+[Архитектура и human checklist v3.1](../KORSAC-INTERACTIVE-PRODUCT-EXPERIENCE.md)
+описывают single state, annotations, visibility/inert, normal-flow mobile,
+no-JS/reduced-motion и media/kk.korsac adapters. Человеческое live-ревью
+остаётся acceptance gate; запись и автоматические проверки его не заменяют.
+
+## Архив v3 — до synchronized Explorer
+
+Эти материалы фиксируют PR #4 на head `22d5893` и больше не являются текущей
+UX-моделью Explorer. Для ревью текущего изменения используйте файлы v3.1 выше.
+
+- [Предыдущая запись](interactive-v3.mp4).
+- [Продукт desktop](product-v3-desktop.png) / [mobile](product-v3-mobile.png).
+- [Прежний Explorer desktop](explorer-v3-desktop.png) /
+  [mobile](explorer-v3-mobile.png).
+- [Прежний UI Kit](interactive-primitives-v3.png).
+
+Предыдущие v1/v2/v2.1 assets также сохраняются под исходными именами.
+Схемы во всех материалах — placeholders, не product photography и не точная
+компоновка физического корпуса.
+
 ## Motion Visibility Pass v2.1
 
 [Короткая запись движения — MP4](motion-v21.mp4) показывает нормальное

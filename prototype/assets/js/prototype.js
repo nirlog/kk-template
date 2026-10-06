@@ -90,6 +90,21 @@
     );
   };
 
+  // A scoped scene can request the same finite/reduced-motion cleanup without
+  // exposing a global stage object or replaying the narrative hero sequence.
+  document.addEventListener("korsac:stage-motion", (event) => {
+    if (
+      event.target instanceof Element &&
+      event.target.matches("[data-product-stage]")
+    ) {
+      runMotion(event.target, "k-stage-resolve");
+      const detail = event.target
+        .closest("[data-product-explorer]")
+        ?.querySelector("[data-explorer-detail]");
+      if (detail) runMotion(detail, "k-explorer-resolve");
+    }
+  });
+
   // Tabs and disclosure panels retain native content/hidden semantics.
   document.querySelectorAll("[data-tabs]").forEach((group) => {
     const tabs = [...group.querySelectorAll('[role="tab"]')];

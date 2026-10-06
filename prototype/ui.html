@@ -11,7 +11,9 @@
     <link rel="stylesheet" href="assets/css/layout.css" />
     <link rel="stylesheet" href="assets/css/components.css" />
     <link rel="stylesheet" href="assets/css/pages.css" />
+    <link rel="stylesheet" href="assets/css/product-stage.css" />
     <script src="assets/js/prototype.js" defer></script>
+    <script src="assets/js/product-experience.js" defer></script>
   </head>
   <body>
     <a class="k-skip" href="#main">Перейти к содержанию</a>
@@ -95,7 +97,8 @@
           ><a href="#prices">Цены и статусы</a><a href="#cards">Карточки</a
           ><a href="#navigation">Навигация</a
           ><a href="#overlays">Окна и уведомления</a>
-          <a href="#motion">Motion</a>
+          <a href="#motion">Motion</a
+          ><a href="#interactive">Интерактивный продукт</a>
         </nav>
         <section
           class="k-kit-section k-stack"
@@ -1239,6 +1242,493 @@
             При reduced motion подписи и выбранные состояния доступны сразу.
             Сканы и последовательное раскрытие отключены.
           </p>
+        </section>
+        <section
+          class="k-kit-section k-stack"
+          id="interactive"
+          data-product-experience
+          aria-labelledby="interactive-title"
+        >
+          <div class="k-section-index">
+            <span>10</span><span>PRODUCT / INTERACTION</span>
+          </div>
+          <h2 id="interactive-title">Interactive Product Primitives</h2>
+          <p class="k-muted">
+            Одна сцена, доступные зоны и текущая конфигурация. Hover не нужен;
+            цены остаются статическими.
+          </p>
+          <div class="k-explorer-layout" data-product-explorer>
+            <div
+              class="k-product-stage"
+              data-product-stage
+              data-stage-role="playground"
+              data-stage-state="overview"
+              data-stage-annotation="overview"
+              data-stage-case="standard"
+              data-stage-extra="false"
+              data-stage-build="assembly"
+              role="group"
+              aria-label="Исследование PLAY 1440"
+            >
+              <figure class="k-stage-figure k-frame">
+                <span class="k-stage-corner-label k-eyebrow">PLAY / 1440</span
+                ><span
+                  class="k-stage-context-label k-eyebrow"
+                  data-stage-context
+                  >Обзор системы</span
+                >
+                <div class="k-stage-visual">
+                  <div class="k-stage-base" data-stage-media aria-hidden="true">
+                    <div class="k-stage-chassis">
+                      <span class="k-stage-front"></span
+                      ><span class="k-stage-part k-stage-cpu">CPU</span
+                      ><span class="k-stage-part k-stage-memory">DDR5</span
+                      ><span class="k-stage-part k-stage-gpu">GPU</span
+                      ><span class="k-stage-part k-stage-ssd">SSD 1</span
+                      ><span class="k-stage-part k-stage-ssd2">SSD 2</span>
+                    </div>
+                  </div>
+                  <svg
+                    class="k-stage-airflow"
+                    data-stage-overlay
+                    viewBox="0 0 320 280"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <defs>
+                      <marker
+                        id="kit-stage-arrow"
+                        markerWidth="6"
+                        markerHeight="6"
+                        refX="5"
+                        refY="3"
+                        orient="auto"
+                      >
+                        <path d="M0 0L6 3L0 6" fill="currentColor" />
+                      </marker>
+                    </defs>
+                    <g
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      marker-end="url(#kit-stage-arrow)"
+                    >
+                      <path d="M20 190H115L205 96H296" />
+                      <path d="M20 216H126L216 126H296" />
+                      <path d="M20 242H138L226 156H296" />
+                    </g>
+                  </svg>
+                  <div class="k-stage-hotspots" data-stage-interaction hidden>
+                    <button
+                      class="k-stage-hotspot k-stage-hotspot--airflow"
+                      type="button"
+                      data-stage-hotspot="airflow"
+                      aria-label="Исследовать воздушный поток"
+                      aria-expanded="false"
+                      aria-controls="kit-stage-panel-airflow"
+                    >
+                      <span aria-hidden="true">01</span></button
+                    ><button
+                      class="k-stage-hotspot k-stage-hotspot--graphics"
+                      type="button"
+                      data-stage-hotspot="graphics"
+                      aria-label="Исследовать видеокарту"
+                      aria-expanded="false"
+                      aria-controls="kit-stage-panel-graphics"
+                    >
+                      <span aria-hidden="true">02</span></button
+                    ><button
+                      class="k-stage-hotspot k-stage-hotspot--cpu"
+                      type="button"
+                      data-stage-hotspot="cpu"
+                      aria-label="Исследовать процессор и охлаждение"
+                      aria-expanded="false"
+                      aria-controls="kit-stage-panel-cpu"
+                    >
+                      <span aria-hidden="true">03</span></button
+                    ><button
+                      class="k-stage-hotspot k-stage-hotspot--memory"
+                      type="button"
+                      data-stage-hotspot="memory"
+                      aria-label="Исследовать память"
+                      aria-expanded="false"
+                      aria-controls="kit-stage-panel-memory"
+                    >
+                      <span aria-hidden="true">04</span></button
+                    ><button
+                      class="k-stage-hotspot k-stage-hotspot--storage"
+                      type="button"
+                      data-stage-hotspot="storage"
+                      aria-label="Исследовать накопители"
+                      aria-expanded="false"
+                      aria-controls="kit-stage-panel-storage"
+                    >
+                      <span aria-hidden="true">05</span>
+                    </button>
+                  </div>
+                  <div
+                    class="k-stage-build-rail"
+                    data-stage-overlay
+                    aria-hidden="true"
+                  >
+                    <span data-build-marker="assembly"></span
+                    ><span data-build-marker="setup"></span
+                    ><span data-build-marker="testing"></span
+                    ><span data-build-marker="final"></span>
+                  </div>
+                </div>
+                <figcaption class="k-stage-caption">
+                  <span>Условная схема · не фотография корпуса</span
+                  ><strong data-stage-output="case">Lian Li LANCOOL 217</strong>
+                </figcaption>
+              </figure>
+              <p class="k-stage-selection k-small">
+                <span data-stage-output="memory">32 ГБ DDR5</span> ·
+                <span data-stage-output="storage">1 ТБ NVMe TLC</span>
+              </p>
+              <div
+                class="k-stage-contexts"
+                role="group"
+                data-stage-interaction
+                hidden
+                aria-label="Аспект системы"
+              >
+                <button
+                  type="button"
+                  data-stage-choice="overview"
+                  aria-pressed="true"
+                >
+                  Обзор</button
+                ><button
+                  type="button"
+                  data-stage-choice="airflow"
+                  aria-pressed="false"
+                >
+                  Охлаждение</button
+                ><button
+                  type="button"
+                  data-stage-choice="graphics"
+                  aria-pressed="false"
+                >
+                  Графика</button
+                ><button
+                  type="button"
+                  data-stage-choice="platform"
+                  aria-pressed="false"
+                >
+                  Платформа</button
+                ><button
+                  type="button"
+                  data-stage-choice="storage"
+                  aria-pressed="false"
+                >
+                  Накопители</button
+                ><button
+                  type="button"
+                  data-stage-choice="validation"
+                  aria-pressed="false"
+                >
+                  Подготовка
+                </button>
+              </div>
+            </div>
+
+            <div
+              class="k-explorer-detail"
+              id="kit-stage-detail"
+              data-explorer-detail
+              role="group"
+              aria-label="Пояснение выбранного аспекта системы"
+            >
+              <div class="k-explorer-register k-eyebrow" data-enhanced hidden>
+                <span data-explorer-counter>00 / 05</span
+                ><span data-explorer-identifier>OVERVIEW</span>
+                <span class="k-explorer-rail" aria-hidden="true"></span>
+              </div>
+              <div class="k-explorer-slides">
+                <article
+                  class="k-explorer-slide"
+                  id="kit-stage-panel-overview"
+                  data-stage-panel="overview"
+                  data-explorer-slide="overview"
+                  aria-labelledby="kit-stage-title-overview"
+                >
+                  <p class="k-eyebrow k-explorer-state-code">OVERVIEW</p>
+                  <h3 id="kit-stage-title-overview">
+                    Система под один сценарий
+                  </h3>
+
+                  <p>
+                    Ryzen 7 9700X и GeForce RTX 5070 задают класс PLAY 1440.
+                    Корпус, память и накопители можно подобрать под свою задачу,
+                    сохраняя сбалансированную основу.
+                  </p>
+                  <p class="k-small k-muted">
+                    Корпуса в макете — кандидаты shortlist, не утверждённая
+                    ревизия.
+                  </p>
+                </article>
+                <article
+                  class="k-explorer-slide"
+                  id="kit-stage-panel-airflow"
+                  data-stage-panel="airflow"
+                  data-explorer-slide="airflow"
+                  aria-labelledby="kit-stage-title-airflow"
+                >
+                  <p class="k-eyebrow k-explorer-state-code">AIRFLOW</p>
+                  <h3 id="kit-stage-title-airflow">
+                    Воздух проходит через систему
+                  </h3>
+
+                  <p>
+                    Свободный фронтальный приток и организованный отвод воздуха
+                    помогают охлаждать CPU и GPU. Башенное охлаждение и
+                    компоновку вентиляторов проверяем вместе с корпусом.
+                  </p>
+                  <p class="k-small k-muted">
+                    Схема показывает направление потока, а не расчёт
+                    температуры.
+                  </p>
+                </article>
+                <article
+                  class="k-explorer-slide"
+                  id="kit-stage-panel-graphics"
+                  data-stage-panel="graphics"
+                  data-explorer-slide="graphics"
+                  aria-labelledby="kit-stage-title-graphics"
+                >
+                  <p class="k-eyebrow k-explorer-state-code">GRAPHICS</p>
+                  <h3 id="kit-stage-title-graphics">
+                    Графика задаёт класс PLAY 1440
+                  </h3>
+
+                  <p>
+                    GeForce RTX 5070 · 12 ГБ GDDR7 — фиксированная часть модели
+                    для игрового сценария PLAY 1440. Следующий GPU-класс —
+                    другая ступень PLAY.
+                  </p>
+                  <p class="k-small k-muted">
+                    FPS и графические режимы подтвердим тестами производственной
+                    ревизии.
+                  </p>
+                </article>
+                <article
+                  class="k-explorer-slide"
+                  id="kit-stage-panel-platform"
+                  data-stage-panel="platform"
+                  data-explorer-slide="platform"
+                  aria-labelledby="kit-stage-title-platform"
+                >
+                  <p class="k-eyebrow k-explorer-state-code">PLATFORM</p>
+                  <h3 id="kit-stage-title-platform">
+                    Сбалансированная платформа
+                  </h3>
+
+                  <p>
+                    Ryzen 7 9700X, B850, DDR5 и воздушное охлаждение подбираются
+                    вместе. Профиль памяти и охлаждение требуют проверки
+                    итоговой сборки.
+                  </p>
+                  <p class="k-small">
+                    Выбранная память:
+                    <strong data-stage-output="memory">32 ГБ DDR5</strong>.
+                  </p>
+                  <div class="k-explorer-annotations">
+                    <p
+                      class="k-small k-muted"
+                      id="kit-stage-panel-cpu"
+                      data-explorer-annotation="cpu"
+                    >
+                      CPU / Ryzen 7 9700X · башенный воздушный кулер 120/140 мм
+                      класса.
+                    </p>
+                    <p
+                      class="k-small k-muted"
+                      id="kit-stage-panel-memory"
+                      data-explorer-annotation="memory"
+                    >
+                      MEMORY / DDR5 · объём выбирается под задачу; силуэт
+                      корпуса остаётся тем же.
+                    </p>
+                  </div>
+                </article>
+                <article
+                  class="k-explorer-slide"
+                  id="kit-stage-panel-storage"
+                  data-stage-panel="storage"
+                  data-explorer-slide="storage"
+                  aria-labelledby="kit-stage-title-storage"
+                >
+                  <p class="k-eyebrow k-explorer-state-code">STORAGE</p>
+                  <h3 id="kit-stage-title-storage">Место для игр и проектов</h3>
+
+                  <p>
+                    Основной NVMe PCIe 4.0 TLC входит в базу. Второй SSD можно
+                    добавить для библиотеки игр и рабочих проектов. Отдельный
+                    слот схемы показывает, выбран ли он.
+                  </p>
+                  <p class="k-small">
+                    Основной:
+                    <strong data-stage-output="storage">1 ТБ NVMe TLC</strong
+                    ><br />
+                    Второй SSD:
+                    <span data-stage-output="extra-storage">Не установлен</span>
+                  </p>
+                </article>
+                <article
+                  class="k-explorer-slide"
+                  id="kit-stage-panel-validation"
+                  data-stage-panel="validation"
+                  data-explorer-slide="validation"
+                  aria-labelledby="kit-stage-title-validation"
+                >
+                  <p class="k-eyebrow k-explorer-state-code">VALIDATION</p>
+                  <h3 id="kit-stage-title-validation">Подготовка системы</h3>
+
+                  <p>
+                    Сборка, настройка, тестирование и финальный контроль
+                    превращают компоненты в готовую систему. Это описание
+                    процесса, а не результат проверки конкретной сборки.
+                  </p>
+                  <p class="k-small k-muted" data-stage-build-label>
+                    Что проверяем: сборка и укладка кабелей
+                  </p>
+                </article>
+              </div>
+              <div
+                class="k-explorer-navigation"
+                role="group"
+                aria-label="Соседние аспекты системы"
+                data-enhanced
+                hidden
+              >
+                <button
+                  class="k-button k-button--secondary"
+                  type="button"
+                  data-explorer-step="-1"
+                  aria-controls="kit-stage-detail"
+                  disabled
+                >
+                  ← Назад
+                </button>
+                <button
+                  class="k-button k-button--secondary"
+                  type="button"
+                  data-explorer-step="1"
+                  aria-controls="kit-stage-detail"
+                >
+                  Охлаждение →
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="k-interactive-fixture" data-prototype-config>
+            <h3>Выбор → сцена → manifest</h3>
+            <fieldset>
+              <legend>Корпус · условный силуэт</legend>
+              <div class="k-stack k-stack--tight">
+                <label class="k-check"
+                  ><input
+                    type="radio"
+                    name="kit-stage-case"
+                    data-summary-key="case"
+                    data-summary-value="Lian Li LANCOOL 217"
+                    data-stage-case="standard"
+                    checked
+                  /><span>Lian Li LANCOOL 217</span></label
+                ><label class="k-check"
+                  ><input
+                    type="radio"
+                    name="kit-stage-case"
+                    data-summary-key="case"
+                    data-summary-value="Fractal Design North"
+                    data-stage-case="north"
+                  /><span>Fractal Design North</span></label
+                ><label class="k-check"
+                  ><input
+                    type="radio"
+                    name="kit-stage-case"
+                    data-summary-key="case"
+                    data-summary-value="be quiet! Pure Base 501 DX"
+                    data-stage-case="minimal"
+                  /><span>be quiet! Pure Base 501 DX</span></label
+                >
+              </div>
+            </fieldset>
+            <div class="k-field">
+              <label for="kit-stage-memory">Память</label
+              ><select
+                id="kit-stage-memory"
+                class="k-control"
+                data-summary-key="memory"
+              >
+                <option data-summary-value="32 ГБ DDR5">32 ГБ DDR5</option>
+                <option data-summary-value="64 ГБ DDR5">64 ГБ DDR5</option>
+              </select>
+            </div>
+            <div class="k-field">
+              <label for="kit-stage-storage">Основной SSD</label
+              ><select
+                id="kit-stage-storage"
+                class="k-control"
+                data-summary-key="storage"
+              >
+                <option data-summary-value="1 ТБ NVMe TLC">
+                  1 ТБ NVMe TLC
+                </option>
+                <option data-summary-value="2 ТБ NVMe TLC">
+                  2 ТБ NVMe TLC
+                </option>
+              </select>
+            </div>
+            <div class="k-field">
+              <label for="kit-stage-extra">Второй SSD</label
+              ><select
+                id="kit-stage-extra"
+                class="k-control"
+                data-summary-key="extra-storage"
+              >
+                <option
+                  data-summary-value="Не установлен"
+                  data-stage-drive="none"
+                >
+                  Не установлен
+                </option>
+                <option
+                  data-summary-value="1 ТБ NVMe"
+                  data-stage-drive="installed"
+                >
+                  1 ТБ NVMe
+                </option>
+              </select>
+            </div>
+            <dl aria-live="polite" data-config-summary>
+              <div class="k-manifest-row">
+                <dt>Корпус</dt>
+                <dd>
+                  <span data-summary-output="case">Lian Li LANCOOL 217</span>
+                </dd>
+              </div>
+              <div class="k-manifest-row">
+                <dt>Память</dt>
+                <dd><span data-summary-output="memory">32 ГБ DDR5</span></dd>
+              </div>
+              <div class="k-manifest-row">
+                <dt>SSD</dt>
+                <dd>
+                  <span data-summary-output="storage">1 ТБ NVMe TLC</span>
+                </dd>
+              </div>
+              <div class="k-manifest-row">
+                <dt>Второй SSD</dt>
+                <dd>
+                  <span data-summary-output="extra-storage">Не установлен</span>
+                </dd>
+              </div>
+            </dl>
+            <p class="k-price">179 900 ₽</p>
+            <p class="k-price-note">Статический пример · без расчёта</p>
+          </div>
         </section>
       </div>
     </main>
