@@ -1,5 +1,50 @@
 # Материалы визуального и motion-ревью KORSAC
 
+## Catalog & Product Family Experience v1 — после visual review
+
+[Каталог: обновлённая запись — MP4](catalog-v1.mp4) показывает normal motion:
+примерно 0–9,3 s — PLAY 1440 → PRO → MINI → 4K → 1080 → 1440,
+keyboard focus/selection заголовка MINI в компактной линейке и desktop
+comparison 1440/PRO; примерно 9,3–17 s — mobile touch PRO → MINI → 1440,
+местное обновление preview/CTA и сравнение 1440/MINI/PRO по свойствам.
+
+Захват: Chromium 151, desktop viewport 1440×1080 и touch-emulated mobile
+375×800. MP4 H.264: 960×720 / 25 fps, **17,04 s**, около **0,73 MiB**.
+Mobile-фрагмент расположен по центру общего кадра. Нет замедления,
+автопереключения Navigator или fake performance/price calculation.
+
+Все шесть PNG обновлены с reduced motion:
+
+- [Каталог desktop](catalog-v1-desktop.png), 1440×1200: семейства, четыре ступени,
+  одна MINI-ветка непосредственно от 1440 и подробный выбранный preview.
+- [Каталог mobile](catalog-v1-mobile.png), 375×1440: компактный selector,
+  соединённая MINI-ветка, выбранная модель, пример цены и CTA.
+- [Вся линейка PLAY](catalog-range-v1.png), 1440×1080: пять одинаковых по структуре
+  scan cards — сценарий, форм-фактор, GPU/RAM/SSD и одна CTA. PLAY 1440
+  выделен rail/индексом/акцентом без отдельного hero layout.
+- [Desktop-сравнение 1440 / PRO](catalog-compare-v1.png), 1440×1080:
+  model columns и семь свойств с семантическими заголовками строк/колонок.
+- [Mobile-сравнение 1440 / MINI / PRO](catalog-compare-v1-mobile.png), 375×800:
+  пять свойств по строкам, по три значения рядом, закреплённые model headers.
+- [Catalog Primitives](catalog-primitives-v1.png), 1344×1879: component capture
+  из UI Kit — family switch, ladder, соединённая MINI-ветка, единые scan cards,
+  независимый Navigator и comparison row.
+
+[Документ каталога](../KORSAC-CATALOG-EXPERIENCE.md) описывает единый HTML
+source, MAX3 comparison, mobile/no-JS/reduced-motion и future Bitrix mapping.
+На 320/375/430 px карточки примерно 400–423 px. Проверены матрицы 2/3 моделей
+на 320/375/430/768/1440 px, выравнивание значений, native table semantics
+и отсутствие horizontal overflow. При высоте viewport 500 px model headers
+остаются над строками после keyboard PageDown; close-control видим.
+Высота preview стабильна при переключении пяти моделей на контрольных ширинах.
+Review assets не загружаются страницами. Материалы продукта v3.1 ниже остаются
+актуальной отдельной основой; каталог не меняет Product Explorer.
+
+Human acceptance остаётся открытым: быстро ли читается компактная MINI-ветка,
+легко ли сканировать всю линейку, удобно ли сравнивать значения рядом на mobile,
+соответствует ли короткий resolve KORSAC. Запись и tests не заменяют live-оценку.
+Автоматическое слияние не выполняется.
+
 ## Актуальный Explorer v3.1 — synchronized state
 
 [Запись взаимодействий v3.1 — MP4](interactive-v31.mp4) показывает контекстные
