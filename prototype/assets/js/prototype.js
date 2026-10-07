@@ -161,7 +161,9 @@
       ...document.querySelectorAll("[data-dialog-open]"),
     ].filter((button) => button.dataset.dialogOpen === dialog.id);
     triggers.forEach((button) =>
-      button.addEventListener("click", () => {
+      button.addEventListener("click", (event) => {
+        // Utility links retain an explanatory destination without JavaScript.
+        event.preventDefault();
         if (dialog.open) return;
         opener = button;
         dialog.showModal();

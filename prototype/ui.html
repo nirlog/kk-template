@@ -13,78 +13,96 @@
     <link rel="stylesheet" href="assets/css/pages.css" />
     <link rel="stylesheet" href="assets/css/product-stage.css" />
     <link rel="stylesheet" href="assets/css/catalog.css" />
+    <link rel="stylesheet" href="assets/css/shell.css" />
+    <link rel="stylesheet" href="assets/css/homepage.css" />
     <script src="assets/js/prototype.js" defer></script>
+    <script src="assets/js/shell.js" defer></script>
     <script src="assets/js/catalog-experience.js" defer></script>
     <script src="assets/js/product-experience.js" defer></script>
   </head>
   <body>
     <a class="k-skip" href="#main">Перейти к содержанию</a>
-    <div class="k-prototype-note">
-      <div class="k-container">
-        <span class="k-registration">DIRECTION / 02</span
-        ><span>UI-прототип · цены и опции — примеры</span>
-      </div>
-    </div>
-    <header class="k-header">
-      <div class="k-shell-rail" aria-hidden="true">
-        <div class="k-container">
-          <span>KORSAC / SYSTEMS</span><span>VISUAL REV. 02</span>
-        </div>
-      </div>
-      <div class="k-container k-header-inner">
-        <!-- Temporary text wordmark. Not an approved production logo. -->
-        <a
-          class="k-wordmark"
-          href="index.html"
-          aria-label="KORSAC — навигация прототипа"
-          >KORSAC</a
+    <header class="k-site-header" data-site-shell>
+      <div class="k-container k-site-header-inner">
+        <a class="k-site-brand" href="index.html" aria-label="KORSAC — главная"
+          ><span
+            class="k-brand-mark"
+            data-brand-mark-motion
+            aria-hidden="true"
+          ></span
+          ><span class="k-brand-wordmark" data-brand-wordmark>KORSAC</span></a
         >
-        <nav class="k-nav" aria-label="Основная навигация">
+        <nav class="k-site-nav" aria-label="Основная навигация">
           <a href="catalog.html">Компьютеры</a
-          ><a href="catalog.html#play-range">Для игр</a
-          ><button
-            class="k-button k-button--text"
-            type="button"
-            data-dialog-open="scope-dialog"
-          >
-            Для работы</button
-          ><a href="product.html#assembly">О KORSAC</a
-          ><a href="product.html#warranty">Поддержка</a>
+          ><a href="product.html#configurator">Конфигуратор</a
+          ><a href="index.html#business">Для бизнеса</a
+          ><a href="product.html#warranty">Поддержка</a
+          ><a href="index.html#why">О KORSAC</a>
         </nav>
-        <div class="k-header-actions">
-          <button
-            class="k-button k-button--icon k-search-entry"
-            type="button"
+        <div class="k-site-utilities">
+          <a
+            class="k-shell-icon k-shell-desktop-action"
+            href="#site-prototype"
             data-dialog-open="scope-dialog"
-            aria-label="Поиск — информация о прототипе"
-          >
-            Поиск
-          </button>
-          <button
-            class="k-button k-button--icon"
-            type="button"
+            aria-label="Поиск"
+            title="Поиск"
+            ><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <circle cx="10.5" cy="10.5" r="6.5" />
+              <path d="m16 16 4.5 4.5" /></svg></a
+          ><a
+            class="k-shell-icon k-shell-desktop-action"
+            href="#site-prototype"
             data-dialog-open="scope-dialog"
-            aria-label="Корзина — информация о прототипе"
-          >
-            Корзина
-          </button>
-          <button
-            class="k-button k-button--icon k-mobile-toggle"
+            aria-label="Личный кабинет"
+            title="Личный кабинет"
+            ><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <circle cx="12" cy="8" r="3.5" />
+              <path d="M4.5 21v-2a7.5 7.5 0 0 1 15 0v2" /></svg></a
+          ><a
+            class="k-shell-icon"
+            href="#site-prototype"
+            data-dialog-open="scope-dialog"
+            aria-label="Корзина"
+            title="Корзина"
+            ><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M3 4h2l2 11h11l2-8H6" />
+              <circle cx="9" cy="20" r="1" />
+              <circle cx="17" cy="20" r="1" /></svg></a
+          ><button
+            class="k-shell-icon k-shell-menu"
             type="button"
             data-dialog-open="menu-drawer"
             aria-controls="menu-drawer"
             aria-expanded="false"
             aria-label="Открыть меню"
+            data-shell-enhanced
+            hidden
           >
-            ☰
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M4 8h16M4 16h16" />
+            </svg>
           </button>
+          <details class="k-shell-fallback" data-shell-fallback>
+            <summary class="k-shell-icon" aria-label="Открыть навигацию">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M4 8h16M4 16h16" />
+              </svg>
+            </summary>
+            <nav class="k-site-nav" aria-label="Навигация без JavaScript">
+              <a href="catalog.html">Компьютеры</a
+              ><a href="product.html#configurator">Конфигуратор</a
+              ><a href="index.html#business">Для бизнеса</a
+              ><a href="product.html#warranty">Поддержка</a
+              ><a href="index.html#why">О KORSAC</a>
+            </nav>
+          </details>
         </div>
       </div>
     </header>
     <main id="main">
       <div class="k-container">
         <div class="k-kit-heading k-stack">
-          <a class="k-back" href="index.html">← К прототипам</a
+          <a class="k-back" href="review.html">← К прототипам</a
           ><span class="k-eyebrow">KORSAC / VISUAL DIRECTION 02</span>
           <h1>Инженерная точность.</h1>
           <p class="k-lead">
@@ -93,7 +111,9 @@
           </p>
         </div>
         <nav class="k-kit-nav" aria-label="Разделы UI Kit">
-          <a href="#identity">Identity Primitives</a>
+          <a href="#premium-shell">Premium Site Shell</a
+          ><a href="#homepage-primitives">Homepage Primitives</a
+          ><a href="#identity">Identity Primitives</a>
           <a href="#foundation">Основа</a><a href="#buttons">Кнопки и ссылки</a
           ><a href="#forms">Формы</a><a href="#options">Опции</a
           ><a href="#prices">Цены и статусы</a><a href="#cards">Карточки</a
@@ -103,6 +123,742 @@
           ><a href="#interactive">Интерактивный продукт</a
           ><a href="#catalog-primitives">Catalog Primitives</a>
         </nav>
+        <section
+          class="k-kit-section k-stack"
+          id="premium-shell"
+          aria-labelledby="premium-shell-title"
+        >
+          <h2 id="premium-shell-title">Premium Site Shell</h2>
+          <p class="k-muted">
+            Основная оболочка страницы — тот же компонент, что на главной, в
+            каталоге и продукте. Ниже показаны состояния и мобильная анатомия.
+            Wordmark временный; слот знака ожидает финальный SVG.
+          </p>
+          <div class="k-shell-fixture">
+            <p class="k-eyebrow">Desktop / hero-integrated</p>
+            <header
+              class="k-site-header"
+              data-shell-fixture
+              data-shell-over-hero="true"
+            >
+              <div class="k-container k-site-header-inner">
+                <a
+                  class="k-site-brand"
+                  href="index.html"
+                  aria-label="KORSAC — главная"
+                  ><span
+                    class="k-brand-mark"
+                    data-brand-mark-motion
+                    aria-hidden="true"
+                  ></span
+                  ><span class="k-brand-wordmark" data-brand-wordmark
+                    >KORSAC</span
+                  ></a
+                >
+                <nav class="k-site-nav" aria-label="Основная навигация">
+                  <a href="catalog.html">Компьютеры</a
+                  ><a href="product.html#configurator">Конфигуратор</a
+                  ><a href="index.html#business">Для бизнеса</a
+                  ><a href="product.html#warranty">Поддержка</a
+                  ><a href="index.html#why">О KORSAC</a>
+                </nav>
+                <div class="k-site-utilities">
+                  <a
+                    class="k-shell-icon k-shell-desktop-action"
+                    href="#site-prototype"
+                    data-dialog-open="scope-dialog"
+                    aria-label="Поиск"
+                    title="Поиск"
+                    ><svg
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <circle cx="10.5" cy="10.5" r="6.5" />
+                      <path d="m16 16 4.5 4.5" /></svg></a
+                  ><a
+                    class="k-shell-icon k-shell-desktop-action"
+                    href="#site-prototype"
+                    data-dialog-open="scope-dialog"
+                    aria-label="Личный кабинет"
+                    title="Личный кабинет"
+                    ><svg
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <circle cx="12" cy="8" r="3.5" />
+                      <path d="M4.5 21v-2a7.5 7.5 0 0 1 15 0v2" /></svg></a
+                  ><a
+                    class="k-shell-icon"
+                    href="#site-prototype"
+                    data-dialog-open="scope-dialog"
+                    aria-label="Корзина"
+                    title="Корзина"
+                    ><svg
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path d="M3 4h2l2 11h11l2-8H6" />
+                      <circle cx="9" cy="20" r="1" />
+                      <circle cx="17" cy="20" r="1" /></svg></a
+                  ><button
+                    class="k-shell-icon k-shell-menu"
+                    type="button"
+                    data-dialog-open="menu-drawer"
+                    aria-controls="menu-drawer"
+                    aria-expanded="false"
+                    aria-label="Открыть меню"
+                    data-shell-enhanced
+                    hidden
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path d="M4 8h16M4 16h16" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </header>
+          </div>
+          <div class="k-shell-fixture">
+            <p class="k-eyebrow">Desktop / graphite surface</p>
+            <header
+              class="k-site-header"
+              data-shell-fixture
+              data-shell-over-hero="false"
+            >
+              <div class="k-container k-site-header-inner">
+                <a
+                  class="k-site-brand"
+                  href="index.html"
+                  aria-label="KORSAC — главная"
+                  ><span
+                    class="k-brand-mark"
+                    data-brand-mark-motion
+                    aria-hidden="true"
+                  ></span
+                  ><span class="k-brand-wordmark" data-brand-wordmark
+                    >KORSAC</span
+                  ></a
+                >
+                <nav class="k-site-nav" aria-label="Основная навигация">
+                  <a href="catalog.html">Компьютеры</a
+                  ><a href="product.html#configurator">Конфигуратор</a
+                  ><a href="index.html#business">Для бизнеса</a
+                  ><a href="product.html#warranty">Поддержка</a
+                  ><a href="index.html#why">О KORSAC</a>
+                </nav>
+                <div class="k-site-utilities">
+                  <a
+                    class="k-shell-icon k-shell-desktop-action"
+                    href="#site-prototype"
+                    data-dialog-open="scope-dialog"
+                    aria-label="Поиск"
+                    title="Поиск"
+                    ><svg
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <circle cx="10.5" cy="10.5" r="6.5" />
+                      <path d="m16 16 4.5 4.5" /></svg></a
+                  ><a
+                    class="k-shell-icon k-shell-desktop-action"
+                    href="#site-prototype"
+                    data-dialog-open="scope-dialog"
+                    aria-label="Личный кабинет"
+                    title="Личный кабинет"
+                    ><svg
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <circle cx="12" cy="8" r="3.5" />
+                      <path d="M4.5 21v-2a7.5 7.5 0 0 1 15 0v2" /></svg></a
+                  ><a
+                    class="k-shell-icon"
+                    href="#site-prototype"
+                    data-dialog-open="scope-dialog"
+                    aria-label="Корзина"
+                    title="Корзина"
+                    ><svg
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path d="M3 4h2l2 11h11l2-8H6" />
+                      <circle cx="9" cy="20" r="1" />
+                      <circle cx="17" cy="20" r="1" /></svg></a
+                  ><button
+                    class="k-shell-icon k-shell-menu"
+                    type="button"
+                    data-dialog-open="menu-drawer"
+                    aria-controls="menu-drawer"
+                    aria-expanded="false"
+                    aria-label="Открыть меню"
+                    data-shell-enhanced
+                    hidden
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <path d="M4 8h16M4 16h16" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </header>
+          </div>
+          <div class="k-shell-mobile-fixture">
+            <div class="k-shell-mobile-anatomy">
+              <a
+                class="k-site-brand"
+                href="index.html"
+                aria-label="KORSAC — главная"
+                ><span
+                  class="k-brand-mark"
+                  data-brand-mark-motion
+                  aria-hidden="true"
+                ></span
+                ><span class="k-brand-wordmark" data-brand-wordmark
+                  >KORSAC</span
+                ></a
+              ><span class="k-shell-icon" aria-hidden="true"
+                ><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M3 4h2l2 11h11l2-8H6" />
+                  <circle cx="9" cy="20" r="1" />
+                  <circle cx="17" cy="20" r="1" /></svg></span
+              ><button
+                class="k-shell-icon"
+                type="button"
+                data-dialog-open="menu-drawer"
+                aria-controls="menu-drawer"
+                aria-expanded="false"
+                aria-label="Открыть пример мобильного меню"
+              >
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M4 8h16M4 16h16" />
+                </svg>
+              </button>
+            </div>
+            <p class="k-small k-muted">
+              KORSAC · корзина · меню. Поиск и профиль — в drawer.
+            </p>
+          </div>
+          <details class="k-shell-footer-fixture">
+            <summary>Анатомия premium footer</summary>
+            <footer class="k-site-footer">
+              <div class="k-container">
+                <div class="k-site-footer-main">
+                  <div class="k-site-footer-brand">
+                    <a
+                      class="k-site-brand"
+                      href="index.html"
+                      aria-label="KORSAC — главная"
+                      ><span
+                        class="k-brand-mark"
+                        data-brand-mark-motion
+                        aria-hidden="true"
+                      ></span
+                      ><span class="k-brand-wordmark" data-brand-wordmark
+                        >KORSAC</span
+                      ></a
+                    >
+                    <p>Точно под задачу.</p>
+                  </div>
+                  <nav aria-label="Продукты">
+                    <h2>Продукты</h2>
+                    <a href="catalog.html">Компьютеры PLAY</a
+                    ><a href="product.html">PLAY 1440</a
+                    ><a href="product.html#configurator">Конфигуратор</a>
+                  </nav>
+                  <nav aria-label="Компания">
+                    <h2>Компания</h2>
+                    <a href="index.html#why">О KORSAC</a
+                    ><a href="index.html#business">Для бизнеса</a
+                    ><a href="index.html#build">Подход к сборке</a>
+                  </nav>
+                  <nav aria-label="Поддержка">
+                    <h2>Поддержка</h2>
+                    <a href="product.html#warranty">Гарантия и сервис</a
+                    ><a href="product.html#faq">Вопросы и ответы</a
+                    ><a href="product.html#product-passport">Паспорт системы</a>
+                  </nav>
+                </div>
+                <div class="k-site-footer-bottom">
+                  <span>KORSAC by King-Komp</span
+                  ><span>Юридические документы — после согласования</span
+                  ><a href="review.html">Материалы прототипа</a>
+                </div>
+                <p class="k-site-prototype-status" id="kit-footer-prototype">
+                  Визуальный прототип. Поиск, профиль и корзина пока недоступны.
+                </p>
+              </div>
+            </footer>
+          </details>
+        </section>
+        <section
+          class="k-kit-section k-stack"
+          id="homepage-primitives"
+          aria-labelledby="homepage-primitives-title"
+        >
+          <h2 id="homepage-primitives-title">Homepage Primitives</h2>
+          <div class="k-home-cta-fixture">
+            <p class="k-home-overline">Точно под задачу.</p>
+            <h3>Компьютеры, точно собранные под задачу.</h3>
+            <div class="k-cluster">
+              <a class="k-button k-button--primary" href="catalog.html"
+                >Выбрать компьютер →</a
+              ><a
+                class="k-button k-button--text"
+                href="product.html#configurator"
+                >Настроить свой</a
+              >
+            </div>
+          </div>
+          <div
+            class="k-home-discovery"
+            data-catalog-experience
+            data-catalog-variant="compact"
+            data-catalog-selection="play-1440"
+          >
+            <div class="k-home-discovery-layout">
+              <div
+                class="k-range-navigator"
+                role="group"
+                aria-label="Игровые сценарии PLAY"
+              >
+                <div class="k-range-ladder">
+                  <div class="k-range-step" data-catalog-rail="play-1080">
+                    <div class="k-range-node">
+                      <button
+                        class="k-range-button"
+                        type="button"
+                        data-catalog-pick="play-1080"
+                        aria-pressed="false"
+                        aria-controls="kit-home-preview"
+                        data-catalog-enhanced
+                        hidden
+                      >
+                        <span>1080p</span><small>Full HD · высокий FPS</small>
+                      </button>
+                      <a
+                        class="k-range-button"
+                        href="#kit-home-play-1080"
+                        data-catalog-fallback
+                        ><span>1080p</span
+                        ><small>Full HD · высокий FPS</small></a
+                      >
+                    </div>
+                  </div>
+                  <div class="k-range-step" data-catalog-rail="play-1440">
+                    <div class="k-range-node">
+                      <button
+                        class="k-range-button"
+                        type="button"
+                        data-catalog-pick="play-1440"
+                        aria-pressed="false"
+                        aria-controls="kit-home-preview"
+                        data-catalog-enhanced
+                        hidden
+                      >
+                        <span>1440p</span><small>Основной баланс</small>
+                      </button>
+                      <a
+                        class="k-range-button"
+                        href="#kit-home-play-1440"
+                        data-catalog-fallback
+                        ><span>1440p</span><small>Основной баланс</small></a
+                      >
+                    </div>
+                    <div
+                      class="k-range-branch"
+                      data-catalog-rail="play-1440-mini"
+                      data-catalog-parent="play-1440"
+                    >
+                      <button
+                        class="k-range-button"
+                        type="button"
+                        data-catalog-pick="play-1440-mini"
+                        aria-pressed="false"
+                        aria-controls="kit-home-preview"
+                        data-catalog-enhanced
+                        hidden
+                      >
+                        <span>MINI</span><small>Тот же 1440p · Mini-ITX</small>
+                      </button>
+                      <a
+                        class="k-range-button"
+                        href="#kit-home-play-1440-mini"
+                        data-catalog-fallback
+                        ><span>MINI</span
+                        ><small>Тот же 1440p · Mini-ITX</small></a
+                      >
+                    </div>
+                  </div>
+                  <div class="k-range-step" data-catalog-rail="play-1440-pro">
+                    <div class="k-range-node">
+                      <button
+                        class="k-range-button"
+                        type="button"
+                        data-catalog-pick="play-1440-pro"
+                        aria-pressed="false"
+                        aria-controls="kit-home-preview"
+                        data-catalog-enhanced
+                        hidden
+                      >
+                        <span>1440p PRO</span><small>Высокий FPS</small>
+                      </button>
+                      <a
+                        class="k-range-button"
+                        href="#kit-home-play-1440-pro"
+                        data-catalog-fallback
+                        ><span>1440p PRO</span><small>Высокий FPS</small></a
+                      >
+                    </div>
+                  </div>
+                  <div class="k-range-step" data-catalog-rail="play-4k">
+                    <div class="k-range-node">
+                      <button
+                        class="k-range-button"
+                        type="button"
+                        data-catalog-pick="play-4k"
+                        aria-pressed="false"
+                        aria-controls="kit-home-preview"
+                        data-catalog-enhanced
+                        hidden
+                      >
+                        <span>4K</span><small>Игры в 4K</small>
+                      </button>
+                      <a
+                        class="k-range-button"
+                        href="#kit-home-play-4k"
+                        data-catalog-fallback
+                        ><span>4K</span><small>Игры в 4K</small></a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <section
+                class="k-catalog-preview"
+                id="kit-home-preview"
+                data-catalog-preview
+                data-catalog-enhanced
+                hidden
+                aria-label="Выбранный PLAY"
+              >
+                <span class="k-sr-only" data-catalog-identifier></span>
+                <div data-catalog-preview-content></div>
+              </section>
+            </div>
+            <div class="k-home-choice-list" data-catalog-source-list>
+              <article
+                class="k-home-choice"
+                id="kit-home-play-1080"
+                data-catalog-model="play-1080"
+              >
+                <span class="k-sr-only" data-catalog-selected hidden
+                  >Выбрано</span
+                >
+                <div data-catalog-content>
+                  <figure
+                    class="k-catalog-media"
+                    data-catalog-media
+                    data-form-factor="standard"
+                  >
+                    <div class="k-catalog-silhouette" aria-hidden="true">
+                      <span class="k-catalog-front"></span
+                      ><span class="k-catalog-slot"></span>
+                    </div>
+                  </figure>
+                  <div class="k-catalog-copy">
+                    <h3 class="k-catalog-designation" data-catalog-title>
+                      <span>KORSAC PLAY </span><strong>1080</strong>
+                    </h3>
+                    <p class="k-catalog-form">Стандартный</p>
+                    <p
+                      class="k-catalog-purpose"
+                      data-catalog-property="scenario"
+                    >
+                      Full HD · высокий FPS
+                    </p>
+                    <dl class="k-home-choice-facts">
+                      <div>
+                        <dt>Графика</dt>
+                        <dd data-catalog-property="gpu">
+                          Класс RTX 5060 Ti · 16 ГБ
+                        </dd>
+                      </div>
+                      <div>
+                        <dt>Память</dt>
+                        <dd data-catalog-property="ram">32 ГБ DDR5</dd>
+                      </div>
+                      <div>
+                        <dt>SSD</dt>
+                        <dd data-catalog-property="ssd">1 ТБ NVMe</dd>
+                      </div>
+                    </dl>
+                  </div>
+                </div>
+                <div data-catalog-actions>
+                  <a
+                    class="k-button k-button--primary"
+                    href="catalog.html#catalog-play-1080"
+                    >Модель в каталоге →</a
+                  >
+                </div>
+              </article>
+              <article
+                class="k-home-choice"
+                id="kit-home-play-1440"
+                data-catalog-model="play-1440"
+              >
+                <span class="k-sr-only" data-catalog-selected hidden
+                  >Выбрано</span
+                >
+                <div data-catalog-content>
+                  <figure
+                    class="k-catalog-media"
+                    data-catalog-media
+                    data-form-factor="standard"
+                  >
+                    <div class="k-catalog-silhouette" aria-hidden="true">
+                      <span class="k-catalog-front"></span
+                      ><span class="k-catalog-slot"></span>
+                    </div>
+                  </figure>
+                  <div class="k-catalog-copy">
+                    <h3 class="k-catalog-designation" data-catalog-title>
+                      <span>KORSAC PLAY </span><strong>1440</strong>
+                    </h3>
+                    <p class="k-catalog-form">Стандартный</p>
+                    <p
+                      class="k-catalog-purpose"
+                      data-catalog-property="scenario"
+                    >
+                      1440p · высокие настройки
+                    </p>
+                    <dl class="k-home-choice-facts">
+                      <div>
+                        <dt>Графика</dt>
+                        <dd data-catalog-property="gpu">
+                          RTX 5070 · 12 ГБ GDDR7
+                        </dd>
+                      </div>
+                      <div>
+                        <dt>Память</dt>
+                        <dd data-catalog-property="ram">32 ГБ DDR5</dd>
+                      </div>
+                      <div>
+                        <dt>SSD</dt>
+                        <dd data-catalog-property="ssd">1 ТБ NVMe TLC</dd>
+                      </div>
+                    </dl>
+                  </div>
+                </div>
+                <div data-catalog-actions>
+                  <a class="k-button k-button--primary" href="product.html"
+                    >Изучить PLAY 1440 →</a
+                  >
+                </div>
+              </article>
+              <article
+                class="k-home-choice"
+                id="kit-home-play-1440-mini"
+                data-catalog-model="play-1440-mini"
+              >
+                <span class="k-sr-only" data-catalog-selected hidden
+                  >Выбрано</span
+                >
+                <div data-catalog-content>
+                  <figure
+                    class="k-catalog-media"
+                    data-catalog-media
+                    data-form-factor="mini"
+                  >
+                    <div class="k-catalog-silhouette" aria-hidden="true">
+                      <span class="k-catalog-front"></span
+                      ><span class="k-catalog-slot"></span>
+                    </div>
+                  </figure>
+                  <div class="k-catalog-copy">
+                    <h3 class="k-catalog-designation" data-catalog-title>
+                      <span>KORSAC PLAY </span><strong>1440 MINI</strong>
+                    </h3>
+                    <p class="k-catalog-form">Mini-ITX</p>
+                    <p
+                      class="k-catalog-purpose"
+                      data-catalog-property="scenario"
+                    >
+                      1440p · высокие настройки
+                    </p>
+                    <dl class="k-home-choice-facts">
+                      <div>
+                        <dt>Графика</dt>
+                        <dd data-catalog-property="gpu">
+                          Класс RTX 5070 · проверенные исполнения
+                        </dd>
+                      </div>
+                      <div>
+                        <dt>Память</dt>
+                        <dd data-catalog-property="ram">32 ГБ DDR5</dd>
+                      </div>
+                      <div>
+                        <dt>SSD</dt>
+                        <dd data-catalog-property="ssd">1 ТБ NVMe</dd>
+                      </div>
+                    </dl>
+                  </div>
+                </div>
+                <div data-catalog-actions>
+                  <a
+                    class="k-button k-button--primary"
+                    href="catalog.html#catalog-play-1440-mini"
+                    >Модель в каталоге →</a
+                  >
+                </div>
+              </article>
+              <article
+                class="k-home-choice"
+                id="kit-home-play-1440-pro"
+                data-catalog-model="play-1440-pro"
+              >
+                <span class="k-sr-only" data-catalog-selected hidden
+                  >Выбрано</span
+                >
+                <div data-catalog-content>
+                  <figure
+                    class="k-catalog-media"
+                    data-catalog-media
+                    data-form-factor="standard"
+                  >
+                    <div class="k-catalog-silhouette" aria-hidden="true">
+                      <span class="k-catalog-front"></span
+                      ><span class="k-catalog-slot"></span>
+                    </div>
+                  </figure>
+                  <div class="k-catalog-copy">
+                    <h3 class="k-catalog-designation" data-catalog-title>
+                      <span>KORSAC PLAY </span><strong>1440 PRO</strong>
+                    </h3>
+                    <p class="k-catalog-form">Стандартный</p>
+                    <p
+                      class="k-catalog-purpose"
+                      data-catalog-property="scenario"
+                    >
+                      1440p · высокий FPS / RT
+                    </p>
+                    <dl class="k-home-choice-facts">
+                      <div>
+                        <dt>Графика</dt>
+                        <dd data-catalog-property="gpu">
+                          Класс RTX 5070 Ti · 16 ГБ
+                        </dd>
+                      </div>
+                      <div>
+                        <dt>Память</dt>
+                        <dd data-catalog-property="ram">32 ГБ DDR5</dd>
+                      </div>
+                      <div>
+                        <dt>SSD</dt>
+                        <dd data-catalog-property="ssd">2 ТБ NVMe</dd>
+                      </div>
+                    </dl>
+                  </div>
+                </div>
+                <div data-catalog-actions>
+                  <a
+                    class="k-button k-button--primary"
+                    href="catalog.html#catalog-play-1440-pro"
+                    >Модель в каталоге →</a
+                  >
+                </div>
+              </article>
+              <article
+                class="k-home-choice"
+                id="kit-home-play-4k"
+                data-catalog-model="play-4k"
+              >
+                <span class="k-sr-only" data-catalog-selected hidden
+                  >Выбрано</span
+                >
+                <div data-catalog-content>
+                  <figure
+                    class="k-catalog-media"
+                    data-catalog-media
+                    data-form-factor="standard"
+                  >
+                    <div class="k-catalog-silhouette" aria-hidden="true">
+                      <span class="k-catalog-front"></span
+                      ><span class="k-catalog-slot"></span>
+                    </div>
+                  </figure>
+                  <div class="k-catalog-copy">
+                    <h3 class="k-catalog-designation" data-catalog-title>
+                      <span>KORSAC PLAY </span><strong>4K</strong>
+                    </h3>
+                    <p class="k-catalog-form">Стандартный</p>
+                    <p
+                      class="k-catalog-purpose"
+                      data-catalog-property="scenario"
+                    >
+                      4K · тяжёлая графика
+                    </p>
+                    <dl class="k-home-choice-facts">
+                      <div>
+                        <dt>Графика</dt>
+                        <dd data-catalog-property="gpu">
+                          Класс RTX 5080 · 16 ГБ
+                        </dd>
+                      </div>
+                      <div>
+                        <dt>Память</dt>
+                        <dd data-catalog-property="ram">32 ГБ DDR5</dd>
+                      </div>
+                      <div>
+                        <dt>SSD</dt>
+                        <dd data-catalog-property="ssd">2 ТБ NVMe</dd>
+                      </div>
+                    </dl>
+                  </div>
+                </div>
+                <div data-catalog-actions>
+                  <a
+                    class="k-button k-button--primary"
+                    href="catalog.html#catalog-play-4k"
+                    >Модель в каталоге →</a
+                  >
+                </div>
+              </article>
+            </div>
+            <p
+              class="k-sr-only"
+              role="status"
+              aria-live="polite"
+              aria-atomic="true"
+              data-catalog-selection-status
+            ></p>
+            <a class="k-home-range-link" href="catalog.html"
+              >Посмотреть всю линейку PLAY <span aria-hidden="true">→</span></a
+            >
+          </div>
+          <article class="k-home-trust-fixture">
+            <p class="k-home-overline">Подход KORSAC</p>
+            <h3>Продумано как система.</h3>
+            <p>
+              Начинаем со сценария. Согласуем платформу, графику, питание и
+              тепло; завершаем сборкой и проверкой.
+            </p>
+          </article>
+        </section>
         <section
           class="k-kit-section k-stack"
           id="identity"
@@ -2434,101 +3190,126 @@
         </section>
       </div>
     </main>
-    <footer class="k-footer">
+    <footer class="k-site-footer">
       <div class="k-container">
-        <div class="k-footer-grid">
-          <div class="k-footer-brand k-stack k-stack--tight">
-            <a class="k-wordmark" href="index.html">KORSAC</a>
-            <p class="k-muted">Точно под задачу.</p>
-            <p class="k-small k-muted">KORSAC by King-Komp</p>
-            <span class="k-registration k-small">KORSAC / SERIES</span>
+        <div class="k-site-footer-main">
+          <div class="k-site-footer-brand">
+            <a
+              class="k-site-brand"
+              href="index.html"
+              aria-label="KORSAC — главная"
+              ><span
+                class="k-brand-mark"
+                data-brand-mark-motion
+                aria-hidden="true"
+              ></span
+              ><span class="k-brand-wordmark" data-brand-wordmark
+                >KORSAC</span
+              ></a
+            >
+            <p>Точно под задачу.</p>
           </div>
-          <nav aria-label="Продукт">
-            <span class="k-eyebrow">Продукт</span
+          <nav aria-label="Продукты">
+            <h2>Продукты</h2>
+            <a href="catalog.html">Компьютеры PLAY</a
             ><a href="product.html">PLAY 1440</a
-            ><a href="product.html#configurator">Настроить</a
-            ><a href="ui.html">UI Kit</a>
+            ><a href="product.html#configurator">Конфигуратор</a>
           </nav>
-          <nav aria-label="Информация">
-            <span class="k-eyebrow">Информация</span
-            ><a href="product.html#assembly">Сборка и тестирование</a
-            ><a href="product.html#warranty">Гарантия и поддержка</a
-            ><a href="product.html#faq">Вопросы и ответы</a>
+          <nav aria-label="Компания">
+            <h2>Компания</h2>
+            <a href="index.html#why">О KORSAC</a
+            ><a href="index.html#business">Для бизнеса</a
+            ><a href="index.html#build">Подход к сборке</a>
+          </nav>
+          <nav aria-label="Поддержка">
+            <h2>Поддержка</h2>
+            <a href="product.html#warranty">Гарантия и сервис</a
+            ><a href="product.html#faq">Вопросы и ответы</a
+            ><a href="product.html#product-passport">Паспорт системы</a>
           </nav>
         </div>
-        <div class="k-footer-bottom k-small k-muted">
-          <span class="k-eyebrow k-footer-register"
-            >END / 02 · VISUAL PROTOTYPE</span
-          >
-          <span>Визуальный прототип · не интернет-магазин</span
-          ><span>Юридические сведения и документы — после согласования</span>
+        <div class="k-site-footer-bottom">
+          <span>KORSAC by King-Komp</span
+          ><span>Юридические документы — после согласования</span
+          ><a href="review.html">Материалы прототипа</a>
         </div>
+        <p class="k-site-prototype-status" id="site-prototype">
+          Визуальный прототип. Поиск, профиль и корзина пока недоступны.
+        </p>
       </div>
     </footer>
     <dialog class="k-dialog" id="scope-dialog" aria-labelledby="scope-title">
       <div class="k-dialog-header">
-        <h2 id="scope-title">О статическом прототипе</h2>
+        <h2 id="scope-title">О визуальном прототипе</h2>
         <button
-          class="k-button k-button--icon"
+          class="k-shell-icon"
           type="button"
           data-dialog-close
           aria-label="Закрыть окно"
         >
-          ×
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="m6 6 12 12M18 6 6 18" />
+          </svg>
         </button>
       </div>
       <div class="k-stack">
         <p>
-          Здесь проверяем визуальную систему KORSAC. Поиск, корзина и линейка
-          для работы появятся на следующих этапах.
+          Здесь можно изучить линейку PLAY и настроить пример системы. Поиск,
+          личный кабинет и корзина появятся при подключении магазина.
         </p>
         <p class="k-muted">
-          Выбор опций обновляет только подписи в сводке. Цена остаётся примером,
-          данные не сохраняются.
+          Цены — примеры. Выбор меняет подписи конфигурации; данные не
+          сохраняются.
         </p>
-        <a href="ui.html">Посмотреть UI Kit</a>
+        <a href="review.html">Материалы и страницы прототипа</a>
       </div>
     </dialog>
     <dialog
-      class="k-dialog k-drawer"
+      class="k-dialog k-drawer k-site-drawer"
       id="menu-drawer"
       aria-labelledby="menu-title"
     >
       <div class="k-dialog-header">
-        <h2 id="menu-title">Навигация</h2>
-        <button
-          class="k-button k-button--icon"
+        <a class="k-site-brand" href="index.html" aria-label="KORSAC — главная"
+          ><span
+            class="k-brand-mark"
+            data-brand-mark-motion
+            aria-hidden="true"
+          ></span
+          ><span class="k-brand-wordmark" data-brand-wordmark>KORSAC</span></a
+        ><button
+          class="k-shell-icon"
           type="button"
           data-dialog-close
           aria-label="Закрыть меню"
         >
-          ×
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="m6 6 12 12M18 6 6 18" />
+          </svg>
         </button>
       </div>
-      <nav class="k-drawer-nav" aria-label="Мобильная навигация">
-        <a href="index.html"
-          ><span class="k-eyebrow k-nav-index" aria-hidden="true">01</span
-          >Прототип</a
-        ><a href="catalog.html"
-          ><span class="k-eyebrow k-nav-index" aria-hidden="true">02</span
-          >Каталог · KORSAC PLAY</a
-        ><a href="product.html#configurator"
-          ><span class="k-eyebrow k-nav-index" aria-hidden="true">03</span
-          >Настроить PLAY 1440</a
-        ><a href="product.html#assembly"
-          ><span class="k-eyebrow k-nav-index" aria-hidden="true">04</span>О
-          KORSAC</a
-        ><a href="product.html#warranty"
-          ><span class="k-eyebrow k-nav-index" aria-hidden="true">05</span
-          >Поддержка</a
-        ><a href="ui.html"
-          ><span class="k-eyebrow k-nav-index" aria-hidden="true">06</span>UI
-          Kit</a
-        >
+      <h2 class="k-sr-only" id="menu-title">Навигация KORSAC</h2>
+      <nav class="k-site-nav" aria-label="Мобильная навигация">
+        <a href="catalog.html">Компьютеры</a
+        ><a href="product.html#configurator">Конфигуратор</a
+        ><a href="index.html#business">Для бизнеса</a
+        ><a href="product.html#warranty">Поддержка</a
+        ><a href="index.html#why">О KORSAC</a>
       </nav>
-      <p class="k-small k-muted">
-        Линейка для работы и поиск — на следующих этапах.
-      </p>
+      <div class="k-site-drawer-utilities">
+        <a href="#site-prototype"
+          ><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle cx="10.5" cy="10.5" r="6.5" />
+            <path d="m16 16 4.5 4.5" /></svg
+          >Поиск</a
+        ><a href="#site-prototype"
+          ><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="8" r="3.5" />
+            <path d="M4.5 21v-2a7.5 7.5 0 0 1 15 0v2" /></svg
+          >Личный кабинет</a
+        >
+      </div>
+      <p class="k-small k-muted">Точно под задачу.</p>
     </dialog>
     <div
       class="k-toast-region"
