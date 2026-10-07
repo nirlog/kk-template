@@ -159,10 +159,21 @@ legend {
 /* Reduced movement keeps low-amplitude feedback; no blanket animation switch. */
 @keyframes k-reduced-settle {
   from {
-    opacity: 0.86;
+    opacity: 0.76;
   }
   to {
     opacity: 1;
+  }
+}
+/* Fixed accent/background acknowledgement, with no geometry or layout changes. */
+@keyframes k-reduced-acknowledge {
+  from {
+    background-color: var(--k-selected);
+    box-shadow: inset 3px 0 var(--k-accent);
+  }
+  to {
+    background-color: var(--k-feedback-rest, transparent);
+    box-shadow: inset 3px 0 transparent;
   }
 }
 @media (prefers-reduced-motion: reduce) {

@@ -73,40 +73,65 @@ Human acceptance: optical scale/clear space, premium feel, заметность 
 
 ## Reduced Motion refinement v1
 
-[Reduced-mode feedback — normal-speed MP4](reduced-feedback-v1.mp4):
-0–10.2 s — Homepage без intro, compact discovery PRO/MINI/1440, Catalog
-MINI/PRO, Explorer graphics/platform/Next, RAM64/case, accordion и native dialog;
-затем mobile375×800 — Explorer AIRFLOW/GRAPHICS/Next и drawer. В обоих fresh
-contexts активен `prefers-reduced-motion: reduce`; timestamp intro записан,
-полная brand activation не появляется. Движение не замедлено.
-Chromium151, H.264 **1440×1080 / 25fps**, **15.32 s**, около
-**1.36 MiB**; mobile по центру. Файл полностью декодирован,
-playback/seek проверены в Chromium; runtime его не загружает.
+Обновлено после live review.
+
+[Perceptible reduced feedback — normal-speed MP4](reduced-feedback-v1.mp4):
+0–11.2 s — Homepage без intro, небольшой scroll 72px и возврат (header top-state),
+compact discovery PRO/MINI/1440, Catalog MINI/PRO, Explorer graphics/platform/Next,
+RAM 64/case, accordion и native dialog. Затем mobile 375×800 — Explorer
+AIRFLOW/GRAPHICS/Next и drawer. В обоих fresh contexts активен
+`prefers-reduced-motion: reduce`; timestamp intro записан, полной brand
+activation нет. Captured motion не замедлен; dwell между действиями — время чтения.
+Chromium 151, H.264 **1440×1080 / 25fps**, **16.44 s**, около
+**1.76 MiB**; mobile по центру. Полный decode и Chromium
+playback/seek прошли. Runtime не загружает review video.
 
 KORSAC использует **reduced-motion mode, не blanket zero-motion mode**.
-Общие tokens 80/120ms. Hero — readable opacity .9→1 за120ms, без delay;
-Catalog — немедленный semantic update и opacity .86→1 за120ms. Explorer,
-summary, selected rails, validation и native dialog/accordion сохраняют
-короткий opacity/color/border feedback. Decorative rail growth, transform,
-zoom, mask/clip sweeps и scroll reveals отключены. Brand Intro полностью
-skipped; Hero mark static eyes off; UI Kit Eye Flash disabled.
+Общие tokens: fast **110ms**, meaningful state acknowledgement **180ms**.
+Hero — simultaneous opacity **.75→1**; Catalog — opacity **.76→1** на новом
+preview, semantic state обновлён сразу. Explorer figure/panels/headings и
+manifest row получают короткий selected background + fixed 3px inset accent,
+без движения/роста. Summary, validation, dialog/drawer/accordion — opacity/color
+feedback 180ms; hover/focus/selected controls — 110ms и native immediate semantics.
+Decorative rail growth, transform/scale/clip и scroll reveals отключены.
+Brand Intro полностью skipped, Hero mark eyes off, UI Kit Eye Flash disabled.
 
-Проверены реальные keyframes/timings Reduced Motion: interactive эффекты
-80–120ms, без animated transform/clip/width/height/position и stagger.
-Normal→reduce отменяет активные entry/stage/catalog effects; дальнейшие
-взаимодействия используют короткий feedback. Возврат в no-preference не
-переигрывает Brand Intro или completed page entries. Начатый до переключения
-непространственный color transition может спокойно завершиться; новые
-переходы используют reduced tokens. Focus/native dialog semantics, labels,
-static prices, rapid input, no-JS, 40 page/width layouts, Product/Catalog/shared
-regressions и прежний daily flow/failure safety прошли. Axe: zero violations
-в12 состояниях; contrast/link checks частично incomplete.
+Actual reduced keyframes/timings проверены: без animated transform/clip/width/
+height/position и stagger. Live normal→reduce отменяет entry/stage/catalog effects;
+future interactions используют reduced feedback; back-toggle не переигрывает
+completed entry/Brand Intro. Product/Catalog/shared regressions, rapid input,
+static prices, native focus/ARIA, no-JS, daily flow/failure safety прошли.
+Mobile Explorer spacing компактнее, чтобы сохранить local explanation после
+нового sticky-anchor offset; структура и 44px hit areas сохранены. Intrinsic
+height не меняется между states. Axe: zero violations в 12 состояниях;
+contrast/link checks частично incomplete.
 
-Cloud-проверка использует Chromium media emulation; Windows animations setting
-самой ОС, Firefox/Safari, physical devices и screen reader не проверены.
-Live human review остаётся открытым: заметность короткого feedback и комфорт
-переходов при отключённых Windows animations. Не сливать автоматически.
-[Политика и implementation](../KORSAC-VISUAL-MOTION-DIRECTION.md#reduced-motion-и-отсутствие-js).
+## Sticky header / top-state correction v1
+
+- [Homepage, early scroll — desktop](header-top-state-v1-desktop.png), 1440×800.
+- [Homepage, early scroll — mobile](header-top-state-v1-mobile.png), 375×800.
+- [Catalog, scrolled](header-catalog-scroll-v1.png), 1440×1080.
+- [Product, direct configurator hash](header-product-anchor-v1.png), 1440×1080.
+
+Все public headers sticky top: 0: height 88px desktop / 64px mobile. Catalog/Product
+opaque с начала. Homepage transparent только при scrollY≤16px; при 24px уже
+opaque, хотя Hero остаётся видимым. `data-shell-at-top` sync + passive scroll/
+requestAnimationFrame заменяют whole-Hero IntersectionObserver. Background
+transition 140ms normal / 110ms reduced, без height/layout change.
+
+Проверены 18 public page/width layouts: 320/375/430/768/1024/1440; sticky y=0,
+early opacity, constant height, header-state CLS=0, native hash targets ниже
+header, direct hash/reload/scrolled history restoration до user scroll. Shared
+scroll padding = header height + 16px; configurator pin = height + 24px. Native
+modal/drawer top layer выше sticky header, Escape/focus return сохранены.
+No-JS headers остаются sticky/opaque. Shell fixtures используют top/opaque state.
+
+Cloud-проверка — Chromium media emulation. Windows OS animations setting,
+Firefox/Safari, physical devices и screen reader в cloud не проверены.
+Human gate: при Windows Animation effects OFF заметен ли отклик без spatial
+движения; остаётся ли navigation читаемой при начале scroll. Не сливать автоматически.
+[Motion policy](../KORSAC-VISUAL-MOTION-DIRECTION.md#reduced-motion-и-отсутствие-js) ·
+[Shell state](../KORSAC-SITE-SHELL.md).
 
 ## Premium Site Shell + Homepage Experience v1
 

@@ -157,10 +157,10 @@ tree. Fixed giant height и измерение высоты в JS не нужн�
 8 px mask/resolve, designation и scenario — короткий 6 px сигнал. Цена и CTA
 не скрываются. Повтор отменяет предыдущие animations и ghost; finite finished
 promises очищают эффекты. Живое включение reduced motion также отменяет их.
-При Reduced Motion `resolve()` сохраняет короткий **120 ms opacity .86 → 1**
+При Reduced Motion `resolve()` сохраняет короткий **180 ms opacity .76 → 1**
 на новом preview. Content/selection/ARIA/hidden/inert обновлены до fade; ghost,
 translate/scale/clip не создаются. Это reduced-motion mode, не zero-motion.
-Hover/focus/active color/border используют 80 ms; rail не растёт.
+Hover/focus/active color/border используют 110 ms; rail не растёт.
 Live preference change отменяет текущие effects; следующий явный выбор
 использует актуальный режим. Toggle обратно не переигрывает выбранную модель.
 Нет блокировки клика, задержанного business-state, observer, scroll interception,

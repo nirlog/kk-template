@@ -102,7 +102,7 @@ Reduced Motion при входе **записывает timestamp и сразу 
 controller отменяет effects и удаляет его. Автоматического повторения нет.
 
 Это правило относится к полной brand activation. Остальной UI использует
-**reduced-motion mode**, сохраняя opacity/color/border feedback 80–120 ms;
+**reduced-motion mode**, сохраняя opacity/color/border feedback 110–180 ms;
 Hero opacity settle не активирует глаза. [Общая motion/accessibility policy](KORSAC-VISUAL-MOTION-DIRECTION.md#reduced-motion-и-отсутствие-js).
 
 ## Composition и timing

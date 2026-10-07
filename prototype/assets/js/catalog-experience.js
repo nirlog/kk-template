@@ -88,7 +88,7 @@
         const duration =
           parseFloat(timing) * (timing.endsWith("ms") ? 1 : 1000);
         // State, labels and native semantics already changed synchronously.
-        const animation = panel.animate([{ opacity: 0.86 }, { opacity: 1 }], {
+        const animation = panel.animate([{ opacity: 0.76 }, { opacity: 1 }], {
           duration,
           easing: style.getPropertyValue("--k-ease-standard").trim(),
         });

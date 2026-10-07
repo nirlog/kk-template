@@ -1,28 +1,21 @@
 /* Public shell. The review hub retains its earlier development chrome. */
 html {
-  scroll-padding-top: var(--k-space-6);
+  --k-shell-header-height: 88px;
+  scroll-padding-top: calc(var(--k-shell-header-height) + var(--k-space-4));
 }
 .k-site-header {
-  position: relative;
+  position: sticky;
   top: 0;
   z-index: 20;
-  background: var(--k-bg);
-  transition:
-    background var(--k-motion-base) var(--k-ease-standard),
-    box-shadow var(--k-motion-base) var(--k-ease-standard);
-}
-.k-site-header[data-shell-home] {
-  position: sticky;
-}
-.k-home-page main > section[id] {
-  scroll-margin-top: 80px;
-}
-.k-site-header[data-shell-over-hero="false"] {
   background: var(--k-surface);
   box-shadow: 0 1px 0 var(--k-border);
+  transition:
+    background var(--k-motion-fast) var(--k-ease-standard),
+    box-shadow var(--k-motion-fast) var(--k-ease-standard);
 }
-.k-site-header[data-shell-over-hero="true"] {
+.k-site-header[data-shell-home][data-shell-at-top="true"] {
   background: transparent;
+  box-shadow: none;
 }
 .k-site-header-inner {
   display: flex;
@@ -257,8 +250,8 @@ html {
   padding-block: var(--k-space-8);
 }
 @media (max-width: 1099px) {
-  .k-home-page main > section[id] {
-    scroll-margin-top: 56px;
+  html {
+    --k-shell-header-height: 64px;
   }
   .k-site-header-inner {
     min-height: 64px;

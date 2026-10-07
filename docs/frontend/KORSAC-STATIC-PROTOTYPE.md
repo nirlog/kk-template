@@ -159,8 +159,8 @@ typing и декоративного прогресса нет. Основные
 нет stagger-зависимости, scanning, обязательного transform-входа и плавного
 скролла. Состояние выбора и обновлённая подпись не зависят от анимации.
 KORSAC использует reduced-motion mode, не blanket zero-motion: opacity/color/
-border feedback сохраняется на общих 80/120 ms tokens. Hero — короткий opacity
-settle без stagger; Catalog — 120 ms preview confirmation; Explorer/summary,
+border feedback сохраняется на общих 110/180 ms tokens. Hero — короткий opacity
+settle без stagger; Catalog — 180 ms preview confirmation; Explorer/summary,
 selected controls, dialog/accordion и validation остаются отзывчивыми.
 Translate/scale/clip/rail sweeps отключены; Brand Intro полностью пропущен
 с записью timestamp. Live toggle отменяет spatial motion и не переигрывает
@@ -252,9 +252,9 @@ HTML, пятью сценариями и MINI-веткой от 1440. Native det
 Общая публичная оболочка применяется к index/catalog/product/UI Kit:
 sans navigation, approved V2 lockup, inline SVG utility icons, native drawer
 и открытый footer с responsive V1/V2 lockup. Developer/version bars удалены.
-На homepage header sticky и переходит от hero к graphite за 220 ms; internal
-pages сохраняют нормальный flow. Без JS работают nav/details/CTA и все пять
-source summaries. Hero использует конечную 940 ms последовательность,
+Все public headers sticky; homepage transparent только при scrollY ≤16px, затем surface.
+Catalog/Product opaque с начала; 140ms normal/110ms reduced, без height change.
+Общий scroll padding учитывает 88/64px header +16px; configurator pin ниже него. Hero использует конечную 940 ms последовательность,
 немедленно отменяемую live reduced motion. Hero eyes off; отдельный shared
 Brand Intro длится 1500 ms, раз за rolling 24h, с реальной SVG eye geometry.
 Reduced Motion пропускает intro с timestamp write. Logo assets утверждены;
@@ -282,7 +282,7 @@ purpose/setup prose скрыты в этой матрице. Горизонта�
 
 Без JS доступны anchor-сценарии, вся линейка и обычные ссылки; enhanced
 preview/comparison скрыты. Reduced Motion оставляет мгновенный выбор и
-120 ms opacity-only confirmation вместо 320 ms spatial resolve. Карточки линейки показывают сценарий, форм-фактор, GPU,
+180 ms opacity-only confirmation вместо 320 ms spatial resolve. Карточки линейки показывают сценарий, форм-фактор, GPU,
 RAM/SSD и одну CTA; подробности и обе CTA остаются в выбранном preview. Архитектура, media adapter и перенос в `bitrix:catalog.section`
 описаны в [Catalog Experience](KORSAC-CATALOG-EXPERIENCE.md).
 
@@ -337,7 +337,7 @@ Backend сохраняет проверенный snapshot конфигурац�
 - Корпус, RAM, SSD, дополнительный накопитель, ОС, программы и сервис обновляют соответствующие подписи manifest.
 - После всех изменений опций цены hero, сводки и карточки остаются неизменными; сетевых запросов нет.
 - Motion replay работает без reload и бизнес-действий; анимации конечны и не лишают контролы доступности.
-- Reduced Motion показывает содержимое сразу, отключает spatial sequences и сохраняет 80/120 ms feedback; no-JS сохраняет смысл и native controls.
+- Reduced Motion показывает содержимое сразу, отключает spatial sequences и сохраняет 110/180 ms feedback; no-JS сохраняет смысл и native controls.
 - Homepage/shell: восемь ширин 320–1920, native utility dialogs/drawer/focus, no-JS меню/сценарии/CTA, конечный hero и live reduced motion.
 - Каталог: все пять моделей, MINI как ветка узла 1440, preview/CTA и MAX3 comparison; touch375/430, no-JS320 и live reduced motion.
 - Контраст текста, copper, синего, CTA, selected/disabled state проверен отдельно от декоративных линий.

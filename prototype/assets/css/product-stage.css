@@ -512,7 +512,7 @@
 @media (min-width: 1100px) and (min-height: 820px) {
   [data-experience-ready] .k-config-stage-pin {
     position: sticky;
-    top: var(--k-space-6);
+    top: calc(var(--k-shell-header-height, 0px) + var(--k-space-6));
   }
 }
 @media (max-width: 1099px) {
@@ -547,11 +547,21 @@
 }
 @media (max-width: 599px) {
   .k-product-explorer {
-    padding-block: var(--k-space-8);
+    padding-block: var(--k-space-4);
   }
   .k-product-explorer .k-section-heading {
-    gap: var(--k-space-4);
-    margin-bottom: var(--k-space-6);
+    gap: var(--k-space-2);
+    margin-bottom: var(--k-space-4);
+  }
+  /* Reserve the sticky header without pushing local feedback below the fold. */
+  .k-product-explorer .k-explorer-layout {
+    gap: var(--k-space-3);
+  }
+  .k-product-explorer .k-explorer-detail {
+    padding-top: var(--k-space-3);
+  }
+  .k-product-explorer .k-explorer-slide {
+    padding-block: var(--k-space-1);
   }
   .k-product-explorer .k-section-heading > p {
     font-size: var(--k-body-sm);
@@ -593,6 +603,18 @@
   .k-stage-resolve[data-stage-motion="case"] [data-stage-media],
   .k-stage-resolve[data-stage-motion="case"] .k-stage-hero-case {
     animation: k-reduced-settle var(--k-motion-reduced-base)
+      var(--k-ease-standard) both;
+  }
+  .k-stage-resolve [data-stage-panel]:not([hidden]),
+  .k-explorer-resolve .k-explorer-slide:not([hidden]) h3 {
+    animation:
+      k-reduced-settle var(--k-motion-reduced-base) var(--k-ease-standard) both,
+      k-reduced-acknowledge var(--k-motion-reduced-base) var(--k-ease-standard)
+        both;
+  }
+  .k-stage-resolve .k-stage-figure {
+    --k-feedback-rest: var(--k-surface);
+    animation: k-reduced-acknowledge var(--k-motion-reduced-base)
       var(--k-ease-standard) both;
   }
   .k-stage-part,

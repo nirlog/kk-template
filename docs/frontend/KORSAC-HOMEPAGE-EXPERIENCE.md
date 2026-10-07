@@ -81,15 +81,17 @@ promises освобождают эффекты; живое включение re
 animations. После завершения декоративная сцена неподвижна.
 
 Reduced branch в `homepage.js`: headline, description, CTA и media получают
-одновременно opacity **.9 → 1 за 120 ms**, без delay/translate/scale/clip.
+одновременно opacity **.75 → 1 за 180 ms**, без delay/translate/scale/clip.
 Текст сразу читаем, controls сразу доступны; field/guide/copper — final state.
 Это reduced-motion mode с коротким feedback, не global animation off.
 Live preference change отменяет entry effects и возвращает final state;
-обратный toggle не повторяет completed entry. Общие reduced tokens — 80/120 ms.
+обратный toggle не повторяет completed entry. Общие reduced tokens — 110/180 ms.
 Compact discovery сохраняет такой же opacity-only confirmation, как Catalog.
 
-Shell state использует один hero boundary observer и 220 ms transition
-(120 ms в Reduced Motion),
+Shared sticky header использует `data-shell-at-top`, sync `scrollY ≤ 16px`
+и passive scroll listener с одним requestAnimationFrame. Hero intersection
+не используется. Background становится opaque сразу после threshold;
+transition — 140 ms normal / 110 ms reduced, без изменения высоты. Shell
 не участвует в discovery/business state. В остальных разделах нет scroll
 motion. Автоматический Hero Eye Flash удалён после live review; coupling
 `korsac:hero-enter` больше нет. Hero totem — внешний static eyes-off

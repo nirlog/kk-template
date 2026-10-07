@@ -36,18 +36,27 @@ links имеют русские `aria-label`, visible focus и область 44
 Active state — короткая Electric Blue линия и `aria-current`. Filled pills,
 технические индексы и рамки вокруг utility actions отсутствуют.
 
-На главной header sticky, **88 px desktop / 64 px mobile**, без изменения
-размеров. Один IntersectionObserver следит за hero boundary с небольшим
-запасом высоты header. При выходе из hero появляется graphite surface;
-переход использует `--k-motion-base` **220 ms**. Нет scroll handlers,
-resize/shrink animation, blur, scroll-jacking и смещения содержимого.
-Без IO/JS остаётся стабильная тёмная поверхность.
+Все public pages (`index.html`, `catalog.html`, `product.html`) имеют sticky
+header: top0, **88px desktop / 64px mobile**, z-index20. Catalog/Product
+сразу используют opaque surface и тонкую bottom rule. Homepage прозрачна
+только при `data-shell-home[data-shell-at-top="true"]`; при scrollY >16px
+использует ту же opaque surface, даже если Hero почти полностью виден.
+Высота не меняется; scroll content не делает navigation нечитабельной.
 
-В каталоге, продукте и UI Kit header сразу тёмный и остаётся в обычном
-потоке. Это сохраняет принятую компоновку первого экрана Explorer и
-локальные product controls. Sticky здесь не требуется. Homepage anchors
-учитывают высоту закреплённой панели; внутренние страницы сохраняют обычный
-scroll padding. Layout/motion интерфейса каталога и продукта не переработаны.
+`shell.js` синхронно читает `window.scrollY`, затем passive scroll listener
+с одним requestAnimationFrame обновляет top-state. Whole-Hero IntersectionObserver
+удалён. `load`/`pageshow`/`hashchange` повторно сверяют native scroll restoration.
+При pending direct hash header консервативно opaque до native placement.
+Нет forced scroll, resize/shrink, blur, scroll-jacking или layout insertion.
+Background/rule transition — `--k-motion-fast`: **140ms normal / 110ms reduced**.
+
+Общий `scroll-padding-top` = reserved header height +16px (104/80px), вместо
+разных homepage/internal offsets. Native anchors/skip links попадают ниже
+sticky header. Desktop configurator pin учитывает header height +24px.
+Native dialog/drawer top layer находится выше header; z-index не менялся.
+Без JS все public headers остаются sticky/opaque, menu сохраняет native fallback.
+UI Kit header fixtures остаются relative внутри component capture и показывают
+состояния top/opaque; review hub сохраняет прежнюю developer shell.
 
 ## Mobile и no-JS
 
@@ -116,7 +125,7 @@ consent dependency не используются. При отказе localStora
 
 Reduced Motion записывает timestamp, но не включает overlay. Live toggle
 немедленно скрывает overlay через CSS и отменяет effects через controller.
-Возврат к normal motion не запускает intro заново. Hero/header/footer статичны.
+Возврат к normal motion не запускает intro заново. Logo в Hero/header/footer статичны.
 
 Overlay hidden по умолчанию, `aria-hidden`, без focusable content/aria-live.
 Head boot включает только presentation attribute; motion — external
@@ -127,7 +136,7 @@ controller; broken/missing CSS оставляет нативный hidden state.
 
 ## Reduced-motion mode
 
-Общий CSS сохраняет 80/120 ms opacity/color/border feedback вместо global
+Общий CSS сохраняет 110/180 ms opacity/color/border feedback вместо global
 `animation/transition: none`. Navigation underline не растёт: static rail
 появляется через opacity. Native dialogs/drawer/accordion могут коротко
 settle по opacity без translate. Focus, hover и selected/validation states

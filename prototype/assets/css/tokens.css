@@ -69,8 +69,8 @@
   --k-content-width: 1360px;
   --k-gutter: clamp(16px, 4vw, 48px);
   /* Motion is finite, event-driven and never controls availability. */
-  --k-motion-reduced-fast: 80ms;
-  --k-motion-reduced-base: 120ms;
+  --k-motion-reduced-fast: 110ms;
+  --k-motion-reduced-base: 180ms;
   --k-motion-instant: 80ms;
   --k-motion-fast: 140ms;
   --k-motion-base: 220ms;

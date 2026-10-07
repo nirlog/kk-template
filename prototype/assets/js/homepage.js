@@ -37,7 +37,7 @@
         ".k-home-hero-actions",
         "[data-home-media]",
       ].forEach((selector) =>
-        play(selector, [{ opacity: 0.9 }, { opacity: 1 }], {
+        play(selector, [{ opacity: 0.75 }, { opacity: 1 }], {
           duration: duration("--k-motion-reduced-base"),
           easing: style.getPropertyValue("--k-ease-standard").trim(),
         }),

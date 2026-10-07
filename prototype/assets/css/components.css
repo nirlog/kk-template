@@ -1205,8 +1205,8 @@ body.k-dialog-open {
   }
   .k-row-confirm,
   .k-motion-run[data-motion="selection"] .k-manifest-row {
-    animation: k-row-confirm var(--k-motion-reduced-base) var(--k-ease-standard)
-      both !important;
+    animation: k-reduced-acknowledge var(--k-motion-reduced-base)
+      var(--k-ease-standard) both !important;
   }
   .k-frame.k-motion-run[data-motion="hero"],
   .k-motion-run[data-motion="hero"] [data-motion-step="frame"],

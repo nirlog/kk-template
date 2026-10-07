@@ -146,8 +146,8 @@ validation и SYSTEM ID. Композиция, палитра, содержим�
 
 | Токен                | Длительность | Роль                                           |
 | -------------------- | ------------ | ---------------------------------------------- |
-| `--k-motion-reduced-fast` | 80 ms | Reduced Motion: hover/focus/color/border |
-| `--k-motion-reduced-base` | 120 ms | Reduced Motion: opacity/state acknowledgement |
+| `--k-motion-reduced-fast` | 110 ms | Reduced Motion: hover/focus/color/border |
+| `--k-motion-reduced-base` | 180 ms | Reduced Motion: opacity/state acknowledgement |
 | `--k-motion-instant` | 80 ms        | микросигнал                                    |
 | `--k-motion-fast`    | 140 ms       | hover/focus и короткий отклик                  |
 | `--k-motion-base`    | 220 ms       | интерфейс, угол, price/CTA                     |
@@ -222,21 +222,24 @@ Motion не блокирует hit area, не удаляет focus и не пе�
 
 KORSAC использует **reduced-motion mode, не blanket zero-motion mode**.
 `prefers-reduced-motion: reduce` уменьшает движение, сохраняя быстрый visual
-feedback. Общие tokens: `--k-motion-reduced-fast: 80ms` и
-`--k-motion-reduced-base: 120ms`; interface fast/base переходят на эту шкалу.
+feedback. Общие tokens: `--k-motion-reduced-fast: 110ms` и
+`--k-motion-reduced-base: 180ms`; interface fast/base переходят на эту шкалу.
 Нет глобального `animation/transition: none` для всего сайта.
 
 | Остаётся полностью отключённым | Сохраняется как low-motion feedback |
 | --- | --- |
-| Shared 1500 ms Brand Intro; timestamp записывается | Короткие opacity/color/border changes 80–120 ms |
-| Translate/scale entrances, clip/mask reveals | Homepage: opacity .9 → 1 для основных групп, 120 ms, без stagger |
-| Decorative rail growth/sweeps и scroll identity reveals | Catalog: opacity .86 → 1 на выбранном preview, 120 ms |
+| Shared 1500 ms Brand Intro; timestamp записывается | Короткие opacity/color/border changes 110–180 ms |
+| Translate/scale entrances, clip/mask reveals | Homepage: opacity .75 → 1 для основных групп, 180 ms, без stagger |
+| Decorative rail growth/sweeps и scroll identity reveals | Catalog: opacity .76 → 1 на выбранном preview, 180 ms |
 | Parallax/scroll-driven decoration | Explorer/summary/selected rails, validation acknowledgement |
 | UI Kit brand Eye Flash replay | Dialog/drawer/accordion opacity, hover/focus/active controls |
 
 Смысловое состояние, labels/hidden/inert/ARIA и native input обновляются
 синхронно до feedback. Текст/CTA доступны с первого кадра: opacity settle
-не начинается с нуля. Decorative Hero field/guide/copper остаются в final
+не начинается с нуля. Для perceptible feedback используется opacity .75/.76 → 1
+за 180 ms. Explorer figure/panels/headings и manifest rows кратко выделяются selected
+background и фиксированным inset accent (3 px), затем возвращаются к base.
+Это color/shadow acknowledgement, без роста линии или изменения layout. Decorative Hero field/guide/copper остаются в final
 state, Hero mark — внешний static eyes-off SVG. Product stage и Explorer
 не получают animated transform/clip; статические геометрические размеры и
 контуры сохраняются. Selected state, validation status и focus rings видимы
