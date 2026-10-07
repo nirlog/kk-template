@@ -18,7 +18,8 @@ base64-изображения или изображения производит
 Четыре `KORSAC_LOGO_*_FINAL_REVISED.svg` — неизменяемые утверждённые masters:
 ICON, TEXT, V1 (stacked), V2 (horizontal). Runtime использует semantic
 web derivatives в `brand/`; geometry, metallic gradients и palette сохранены.
-Static eyes off; hero использует настоящую eye geometry для одной вспышки.
+Static eyes off; shared Brand Intro использует настоящую eye geometry
+не чаще одного раза за rolling 24h. Hero static, без Eye Flash.
 
 [Mapping / isolation / motion](../../../docs/frontend/KORSAC-BRAND-ASSET-INTEGRATION.md).
 Логотип финальный; фотография продукта по-прежнему временная.

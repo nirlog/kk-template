@@ -81,8 +81,8 @@ KORSAC продаёт не набор комплектующих и не мак�
 - `KORSAC_LOGO_V2_FINAL_REVISED.svg` — horizontal lockup.
 
 Исходники неизменяемы. Web derivatives сохраняют facet/letter/eye geometry
-и metallic copper/silver gradients. На сайте ordinary eyes off; Hero
-один раз активирует реальные SVG eyes.
+и metallic copper/silver gradients. Shell/Hero используют static eyes off;
+общий site-entry intro активирует реальные SVG eyes.
 [Интеграция и правила вариантов](../frontend/KORSAC-BRAND-ASSET-INTEGRATION.md).
 
 ### Дополнительное направление
@@ -134,7 +134,7 @@ KORSAC продаёт не набор комплектующих и не мак�
 - агрессивную анимацию;
 - motion, блокирующий доступ к интерфейсу.
 
-Для пользователей с `prefers-reduced-motion: reduce` Eye Flash отключён полностью: глаза остаются выключенными. Header/Drawer/Footer статичны. Текущий Hero: delay 420 мс + вспышка 620 мс; общий entrance заканчивается на 1040 мс. Replay доступен только в UI Kit.
+Для пользователей с `prefers-reduced-motion: reduce` Eye Flash отключён полностью: глаза остаются выключенными. Header/Drawer/Footer/Hero статичны. Текущий shared Brand Intro длится 1500 мс, не чаще раза за rolling 24h per browser profile; reduced motion записывает timestamp и пропускает intro. Replay доступен только в UI Kit.
 
 ## 5. Цветовая система
 
@@ -421,7 +421,7 @@ korsac-mark-motion.svg
 
 Static instances загружаются как external images с выключенными глазами.
 Motion derivative — eyes-off template для одного уникально prefixed inline
-Hero SVG; UI Kit имеет собственный prefix. Сохраняются viewBox, цвета,
+site-entry SVG; UI Kit имеет собственный prefix. Сохраняются viewBox, цвета,
 градиенты и геометрия. Product photography остаётся provisional.
 
 Растр бренд-доски — только референс; runtime использует утверждённый вектор.
@@ -443,7 +443,7 @@ metallic facets теряют читаемость; dedicated favicon ещё тр
 - семейства `PLAY`, `CREATE`, `WORK`;
 - формат `PLAY 1080 / PLAY 1440 / PLAY 1440 PRO / PLAY 4K`;
 - четыре FINAL_REVISED SVG masters и web-варианты с сохранённой геометрией;
-- однократный Hero Eye Flash, static eyes off в shell.
+- shared Brand Intro раз за rolling 24h; static eyes off в shell и hero.
 
 ### Требует дальнейшей проработки
 

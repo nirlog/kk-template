@@ -85,7 +85,7 @@ Menu-button появляется только после enhancement. Без JS 
 ```
 
 `data-brand-wordmark` теперь содержит реальный asset. Empty mark slot удалён
-из статического lockup; `data-brand-mark-motion` перенесён на Hero mark.
+из статического lockup; `data-brand-mark-motion` остаётся у UI Kit replay.
 Отдельного дублирующего logo controller нет. Все static instances — external
 SVG; fragment IDs не пересекаются с документом или друг с другом.
 
@@ -95,9 +95,35 @@ CSS резервирует aspect ratio обеих версий до image load;
 сохраняет геометрию. Глаза выключены во всех статических web assets, никаких
 hover/viewport logo effects нет. Masters остаются неизменными.
 
-Hero использует один уникально prefixed inline ICON и настоящие SVG eye layers;
-реализация/тайминг описаны в [Brand Asset Integration](KORSAC-BRAND-ASSET-INTEGRATION.md).
-Однократная активация не применяется к header, drawer или footer.
+Hero использует static external ICON с eyes off. Автоматический Hero Eye
+Flash и `korsac:hero-enter` удалены. Animated geometry теперь принадлежит
+общему [Brand Intro](KORSAC-BRAND-ASSET-INTEGRATION.md), не homepage controller.
+
+## Site-entry Brand Intro
+
+Только `index.html`, `catalog.html`, `product.html`: единая декоративная
+full-viewport композиция mark → real eyes → wordmark → eyes off → exit.
+Target 1500 ms; JS watchdog 1700 ms и независимый CSS safety cutoff 1800 ms.
+`review.html`/`ui.html` не запускают intro и не расходуют eligibility.
+
+Небольшой inline head boot проверяет `korsac:brand-intro:lastShown` и пишет
+`Date.now()` **до** активации. Следующий вход/navigation/reload/new tab на том
+же origin/browser profile пропускает intro, пока не прошли rolling 24 часа.
+Это browser-local timestamp, не account/device sync; backend, cookies или
+consent dependency не используются. При отказе localStorage — sessionStorage;
+если оба недоступны, direct page access без intro. Session fallback действует
+в пределах tab session, без гарантии общей частоты между независимыми tabs.
+
+Reduced Motion записывает timestamp, но не включает overlay. Live toggle
+немедленно скрывает overlay через CSS и отменяет effects через controller.
+Возврат к normal motion не запускает intro заново. Hero/header/footer статичны.
+
+Overlay hidden по умолчанию, `aria-hidden`, без focusable content/aria-live.
+Head boot включает только presentation attribute; motion — external
+`brand-intro.js`. Нет scroll lock, inert/focus trap, focus/scroll restoration
+или layout insertion. Native controls становятся доступны после exit без
+смещения. CSS safety скрывает и отключает pointer blocking даже при отказе
+controller; broken/missing CSS оставляет нативный hidden state.
 
 ## Footer
 

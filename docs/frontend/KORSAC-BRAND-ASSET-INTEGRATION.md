@@ -7,13 +7,13 @@
 `prototype/assets/images/` неизменны, включая первоначальные blue eye shapes.
 Визуально подтверждены ICON / TEXT / V1 stacked / V2 horizontal.
 
-| Approved source master               | Web derivative в `prototype/assets/images/brand/` | Назначение                             |
-| ------------------------------------ | ------------------------------------------------- | -------------------------------------- |
-| `KORSAC_LOGO_ICON_FINAL_REVISED.svg` | `korsac-mark.svg`                                 | Static totem, UI Kit                   |
-| `KORSAC_LOGO_TEXT_FINAL_REVISED.svg` | `korsac-wordmark.svg`                             | Отдельный wordmark, UI Kit             |
-| `KORSAC_LOGO_V2_FINAL_REVISED.svg`   | `korsac-lockup-horizontal.svg`                    | Header, drawer, mobile footer          |
-| `KORSAC_LOGO_V1_FINAL_REVISED.svg`   | `korsac-lockup-stacked.svg`                       | Desktop/tablet footer                  |
-| `KORSAC_LOGO_ICON_FINAL_REVISED.svg` | `korsac-mark-motion.svg`                          | Eyes-off inline template для hero/demo |
+| Approved source master               | Web derivative в `prototype/assets/images/brand/` | Назначение                              |
+| ------------------------------------ | ------------------------------------------------- | --------------------------------------- |
+| `KORSAC_LOGO_ICON_FINAL_REVISED.svg` | `korsac-mark.svg`                                 | Static totem, UI Kit                    |
+| `KORSAC_LOGO_TEXT_FINAL_REVISED.svg` | `korsac-wordmark.svg`                             | Отдельный wordmark, UI Kit              |
+| `KORSAC_LOGO_V2_FINAL_REVISED.svg`   | `korsac-lockup-horizontal.svg`                    | Header, drawer, mobile footer           |
+| `KORSAC_LOGO_V1_FINAL_REVISED.svg`   | `korsac-lockup-stacked.svg`                       | Desktop/tablet footer                   |
+| `KORSAC_LOGO_ICON_FINAL_REVISED.svg` | `korsac-mark-motion.svg`                          | Eyes-off inline template для intro/demo |
 
 Derivatives убирают XML declaration/DOCTYPE, editor namespaces, физические
 mm dimensions и внутренние accessibility labels. Каждый ID и `url(#…)`
@@ -57,64 +57,104 @@ footer и hero реальные размеры читаются лучше.
 Hero добавляет approved ICON отдельным decorative layer за product media.
 Width: **320 px на 1280–1920**, **220 px на 1024**, **210 px на tablet**,
 **148 px на mobile**; opacity .68. Продукт остаётся foreground, размер схемы
-не увеличен. На 1024 mark смещён влево, чтобы оба глаза были видны рядом с
+не увеличен. На 1024 mark смещён влево, чтобы контур узнавался рядом с
 корпусом. Headline, copy и ранняя mobile CTA сохраняют прежнюю компоновку.
 Ambient blue уменьшен до 6%, маленький copper registration — до 18 px.
 
-Static instances — внешние `<img>`: их defs изолированы браузером. Hero
-содержит **один** inline SVG из motion template с `home-brand-` prefix.
-Единственный UI Kit demo использует `kit-brand-` prefix в другом документе.
+Static instances, включая Hero, — внешние `<img>`: их defs изолированы браузером.
+Каждая public page содержит **один** inline intro SVG с собственным prefix:
+`intro-index-`, `intro-catalog-`, `intro-product-`. Единственный UI Kit demo
+использует `kit-brand-` prefix в другом документе.
 Все fragment references переписаны вместе с IDs; source SVG не вставляются
 inline без prefix. Inline geometry сверяется с template; новые экземпляры
 должны получать собственный prefix. Product/catalog content не изменён.
 
-Выбран допустимый inline вариант вместо внутренней CSS animation external
-SVG. Inline даёт родительской странице прямую отмену WAAPI и гарантирует,
-что live reduced-motion toggle не запустит asset заново. External static
+Inline intro даёт родительской странице прямую отмену WAAPI. External static
 SVG остаются обычными локальными URLs. Motion template не содержит autoplay.
+Автоматический Hero Eye Flash удалён после live review вместе с coupling
+`korsac:hero-enter`; заменяющей hero animation нет.
 
-## KORSAC Eye Flash
+## Shared site-entry Brand Intro
 
-`brand-motion.js` обслуживает прежний `data-brand-mark-motion` hook.
-`homepage.js` отправляет `korsac:hero-enter` в начале существующей hero
-последовательности. Однократный listener запускает эффект с **420 ms delay**
-и duration `--k-motion-reveal` **620 ms**; общий entrance заканчивается через
-**1040 ms** вместо прежних 940 ms. Отдельного scroll trigger/timer loop нет.
+Brand Intro принадлежит shared public shell, не homepage. Только
+`index.html`, `catalog.html`, `product.html`; прямой вход в любую страницу
+работает одинаково. `ui.html` и `review.html` не показывают intro и не
+расходуют eligibility. Hero/Header/Drawer/Footer — static eyes off.
 
-| Время относительно flash | Состояние                       |
-| ------------------------ | ------------------------------- |
-| 0 ms                     | Eyes off                        |
-| ~112 ms                  | Быстрое появление (.85 opacity) |
-| ~217–298 ms              | Краткий peak (1 opacity)        |
-| ~434 ms                  | Затухание (.45 opacity)         |
-| 620 ms                   | Eyes off; filter освобождён     |
+Малый inline head boot читает `korsac:brand-intro:lastShown` и проверяет
+`Date.now()`. Intro eligible, если timestamp отсутствует, некорректен или
+прошло **24 × 60 × 60 × 1000 ms**. Корректный timestamp — positive safe integer,
+не из будущего. Rolling window считается от последнего eligible входа;
+navigation/reload не продлевает его. Timestamp записывается **до** установки
+`html[data-brand-intro]`, значит следующая tab обычно уже пропускает intro.
+Это не распределённый transactional lock.
 
-WAAPI меняет opacity **реальных** SVG eye groups с оригинальными eye/core
-polygons и gradients. Оригинальный `feGaussianBlur` остаётся локальным вокруг
-глаз, только на время flash. У каждой фазы существующий easing token;
-нет дополнительных glow layers, CSS-псевдоглаз, halo вокруг логотипа,
-flicker, particles, sound или pointer tracking.
+Policy — **browser/profile-local на том же origin**. Нет backend, cookie,
+account sync, cross-device sync или cookie-consent dependency. При отказе
+`localStorage` boot использует тот же key в `sessionStorage`; повторные
+переходы/reload в tab session не запускают intro. Независимые новые tabs
+не обязаны разделять session fallback. Если оба storage API недоступны,
+intro пропускается полностью. Business/configuration/cart data не сохраняются.
 
-По завершении WAAPI возвращает base `opacity="0"`, filter удаляется.
-Cancel также очищает filter/effects. Generation guard не позволяет finished
-callback предыдущего replay сбросить новое состояние. Resize/scroll не
-перезапускают hero, повторный enter event игнорируется. Header/drawer/footer
-никогда не запускают eye motion.
+Reduced Motion при входе **записывает timestamp и сразу открывает страницу**,
+без one-frame flash/overlay. Выключение preference позже в том же окне 24h
+не вызывает intro. Live Reduced Motion CSS немедленно скрывает active overlay,
+controller отменяет effects и удаляет его. Автоматического повторения нет.
 
-Reduced Motion: CSS сразу принудительно выключает opacity/filter; media-query
-listener отменяет active WAAPI. Возврат к normal motion не повторяет hero.
-No-JS и unsupported WAAPI сохраняют видимый mark с глазами off. Без WAAPI
-UI Kit replay disabled; без JS hidden. Информация/CTA от эффекта не зависят.
+## Composition и timing
 
-UI Kit **Brand Assets** показывает четыре static варианта и Eye Flash demo.
-Replay доступен только там: предыдущий запуск отменяется, новый начинается
-с нуля, final state всегда eyes off. Reduced Motion блокирует replay.
+Полноэкранный graphite, центральный approved ICON, actual SVG eye geometry,
+отдельный approved wordmark. На desktop mark 320 px; на mobile — 56vw.
+Wordmark — 220–340 px. Header/Footer/Hero sizing не меняется. Intro не содержит
+spinner, progress/percent, сообщений, audio, particles или RGB/glitch.
+
+| Фаза                         | Время от начала видимого intro       |
+| ---------------------------- | ------------------------------------ |
+| Mark resolve                 | 0–220 ms                             |
+| Eye activation / peak / fade | 250–950 ms; peak примерно 446–649 ms |
+| Wordmark resolve             | 450–850 ms                           |
+| Eyes off / settle            | 950–1200 ms                          |
+| Overlay exit                 | 1200–1500 ms                         |
+
+Real eye/core polygons и metallic/blue gradients неизменны. Оригинальный
+localized filter активен только во время eye phase; opacity достигает 1
+на коротком plateau и возвращается к base `opacity="0"`. Full mark opacity
+1 обеспечивает заметность в центре. Нет псевдоглаз или full-logo halo.
+Timing tokens — в `brand-intro.css`; easing использует существующий token.
+Часы последовательности следуют видимому CSS overlay, а не времени download
+head resources. Поздний controller догоняет этот clock либо пропускает expired
+intro, не растягивая блокировку. Intro — brand presentation, не actual loader.
+
+## Failure safety и interaction
+
+Overlay `hidden` по умолчанию. Только eligible head attribute включает его
+через CSS. Boot ограничен timestamp policy / Reduced Motion / атрибутом;
+actual motion находится в external `brand-intro.js`. Homepage controller
+больше не связан с brand activation. `brand-motion.js` — только UI Kit replay.
+
+Нормальная completion удаляет overlay и attribute на 1500 ms. Независимый
+JS watchdog завершает его до 1700 ms при потере finished promises. CSS safety
+на 1800 ms скрывает overlay и отключает pointer events даже при missing/broken
+controller. Missing CSS оставляет native hidden state; no-JS не включает
+head attribute. Unsupported/throwing WAAPI даёт direct page access. Header,
+footer и native no-JS content не зависят от intro initialization.
+
+No layout insertion, body scroll lock, inert/focus trap, focus restoration
+или scrollTo. Overlay decorative (`aria-hidden`), без focusable content и
+aria-live. Существующий keyboard focus/scroll сохраняются при удалении.
+После exit страница сразу доступна. Повторная animation не запускается.
+
+UI Kit сохраняет manual **Replay Eye Flash** для review geometry. Его
+контроллер отменяет предыдущий запуск, использует generation guard и всегда
+завершает eyes off. Reduced/unsupported motion блокирует replay. Public
+replay controls отсутствуют; UI Kit не запускает site-entry policy.
 
 ## Accessibility
 
 Logo home link имеет единственное имя `KORSAC — главная`; внешнее image —
 `alt=""`. Исходные внутренние `role/aria-label` удалены из web derivatives.
-Hero wrapper/inline SVG декоративны (`aria-hidden`, `focusable="false"`).
+Hero image имеет пустой `alt`; intro wrapper/inline SVG декоративны
+(`aria-hidden`, `focusable="false"`).
 UI Kit static figures имеют осмысленный image alt; demo один `role="img"`
 на wrapper и отдельный status для review button. Нет повторного KORSAC
 announcement внутри hero или фокусируемых SVG paths.
@@ -125,7 +165,7 @@ announcement внутри hero или фокусируемых SVG paths.
 | -------------------------------- | ------------------------------------------------------ |
 | Header/footer static derivatives | Template asset directory и обычные local SVG URLs      |
 | Responsive footer picture        | `header.php` / `footer.php` template markup            |
-| Animated hero mark               | Homepage include/component, один prefixed SVG template |
+| Shared entry overlay             | Public template/include, один prefixed SVG template    |
 | Eye presentation controller      | Local template JS/CSS с теми же hooks и reduced motion |
 
 Не хранить artwork как PHP strings; approved masters остаются отдельно от
@@ -134,12 +174,16 @@ web assets. У каждого будущего inline instance свой prefix. 
 
 ## Validation и review
 
-[Материалы](review/README.md) содержат 11 новых PNG и normal-speed Eye Flash
-MP4. Chromium HTTP: 40 page/width layouts; native drawer/dialog/anchors;
+[Материалы](review/README.md) содержат обновлённые brand PNG, full-viewport
+rest/active intro composition и normal-speed first-entry MP4. Chromium HTTP: 40 page/width layouts; native drawer/dialog/anchors;
 catalog/scenario/comparison/MAX3; Product v3.1/Explorer/configurator/static
-prices; no-JS; finite/reduced motion; 25 быстрых replay. Проверены masters,
+prices; no-JS; finite/reduced motion; 25 быстрых UI Kit replay. Проверены masters,
 geometry/gradients/fragments и загрузка logo с задержкой без CLS на
-320/768/1440/1920. Обе eye shapes видны рядом с PC на восьми ширинах.
+320/768/1440/1920. Daily flow: clear key → direct Catalog intro → Product/Home/
+reload/new tab skip → expired timestamp intro. Missing/malformed/future values,
+initial/live reduced, local/session denial, both storage unavailable,
+missing controller/CSS, lost promises, throwing WAAPI и delayed script/CSS
+проверены. Intro layout без overflow на восьми ширинах, focus/scroll не меняются.
 Axe WCAG2A/AA+2.1AA: zero violations в 12 состояниях; некоторые contrast/link
 checks incomplete, полного screen-reader audit нет.
 
@@ -154,10 +198,10 @@ premium feel и заметность/сдержанность flash в живо�
 - B: V2 даёт целый lockup при 164/140 px, помещаясь в прежний header и 320 px mobile.
 - C: V1 создаёт выраженный desktop endpoint; V2 компактнее в mobile footer.
 - D: static variants сохраняют глаза off и не применяют filters/animation.
-- E: peak краткий, blue локален вокруг настоящих eyes; субъективный motion feel требует human review.
-- F: finish/cancel/replay возвращаются к base eyes-off; live toggle не оставляет glow.
-- G: external isolation и уникальные inline prefixes исключают fragment collisions текущих экземпляров.
-- H: CSS/JS reduced motion выключают effect полностью; возврат не повторяет hero.
+- E: реальная activation вынесена в центр короткого site-entry intro; субъективная заметность требует повторного live review.
+- F: finish/cancel/watchdogs завершают intro; live toggle не оставляет blocker/glow.
+- G: static Hero external, intro имеет один prefix на public page; UI Kit — отдельный prefix.
+- H: Reduced Motion пропускает intro, записывает timestamp и не включает его после preference toggle.
 - I: approved artwork заменяет placeholders без новых navigation rails/chrome.
 - J: большой offset totem приближает атмосферу hero к brand direction; фотография пока provisional.
 - K: semantic local assets и прежние shell hooks подходят для template/include migration.

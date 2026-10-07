@@ -26,8 +26,9 @@ python3 -m http.server 8000 --bind 127.0.0.1 --directory prototype
 Главная использует компактный вариант того же HTML-driven catalog controller.
 Публичная оболочка общая на homepage/catalog/product/UI Kit; developer rails
 сохранены только в review hub. Утверждённые SVG используются в header/drawer,
-responsive footer и hero; короткая вспышка глаз играет один раз. Фотография
-продукта пока заменена нейтральной схемой.
+responsive footer и статическом hero. Общий site-entry Brand Intro играет
+не чаще раза за rolling 24h в browser profile; reduced motion пропускает его.
+Фотография продукта пока заменена нейтральной схемой.
 Выбранные hardware-опции обновляют сцену, сводку и SYSTEM ID preview;
 цены остаются статическими. Explorer синхронизирует сцену и пояснение
 через context buttons, hotspots и Prev/Next, сохраняя обычную прокрутку.

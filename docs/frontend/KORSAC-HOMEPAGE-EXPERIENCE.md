@@ -63,8 +63,7 @@ CTA или header. Будущая фотография вставляется к
 ## Motion
 
 `assets/js/homepage.js` запускает однократную WAAPI последовательность с
-существующими duration/easing tokens. Основная композиция — **940 ms**;
-после интеграции Eye Flash полная последовательность заканчивается через **1040 ms**:
+существующими duration/easing tokens. Основная композиция — **940 ms**:
 
 | Слой                             | Начало | Длительность |
 | -------------------------------- | ------ | ------------ |
@@ -83,14 +82,15 @@ animations. После завершения декоративная сцена 
 
 Shell state использует один hero boundary observer и 220 ms transition,
 не участвует в discovery/business state. В остальных разделах нет scroll
-motion. `korsac:hero-enter` запускает [Eye Flash](KORSAC-BRAND-ASSET-INTEGRATION.md)
-через прежний `data-brand-mark-motion` hook: delay 420 ms, duration 620 ms.
-Это реальные SVG eyes утверждённого ICON; после эффекта глаза снова выключены.
-Hero использует один inline SVG с `home-brand-` prefix; static shell assets
-изолированы как external images. UI Kit имеет отдельный `kit-brand-` prefix
-и replay. No-JS / reduced motion / unsupported WAAPI оставляют статический знак.
-CSS reduced-motion override выключает глаза сразу, JS отменяет active effects;
-возврат к normal motion не переигрывает hero.
+motion. Автоматический Hero Eye Flash удалён после live review; coupling
+`korsac:hero-enter` больше нет. Hero totem — внешний static eyes-off
+`korsac-mark.svg`. Замещающая hero animation не добавлена.
+
+[Brand Intro](KORSAC-BRAND-ASSET-INTEGRATION.md) — отдельное общее shell
+поведение при первом eligible входе на index/catalog/product: rolling 24h
+per browser profile/origin. Он не принадлежит homepage, пропускается при
+Reduced Motion и не требует backend/cookie/account sync. Intro не меняет
+layout hero, scroll/focus и раннюю CTA; после его выхода страница доступна.
 
 ## Компактный discovery
 

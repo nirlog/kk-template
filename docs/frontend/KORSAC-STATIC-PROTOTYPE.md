@@ -21,7 +21,7 @@ MINI-ветку, scoped controller и future Bitrix mapping.
 [Homepage v1](KORSAC-HOMEPAGE-EXPERIENCE.md) и [Premium Shell](KORSAC-SITE-SHELL.md)
 описывают публичную оболочку и editorial journey.
 [Brand Asset Integration](KORSAC-BRAND-ASSET-INTEGRATION.md) описывает
-утверждённые SVG и однократную вспышку глаз; фотография остаётся provisional.
+утверждённые SVG и общий site-entry intro; фотография остаётся provisional.
 
 Источники продуктового содержания:
 
@@ -48,6 +48,7 @@ prototype/
     │   ├── pages.css
     │   ├── product-stage.css
     │   ├── catalog.css
+    │   ├── brand-intro.css
     │   ├── brand.css
     │   ├── shell.css
     │   └── homepage.css
@@ -55,6 +56,7 @@ prototype/
     │   ├── prototype.js
     │   ├── product-experience.js
     │   ├── catalog-experience.js
+    │   ├── brand-intro.js
     │   ├── brand-motion.js
     │   ├── shell.js
     │   └── homepage.js
@@ -226,7 +228,9 @@ SYSTEM ID показывает preview выбранных labels. Контекс
 описаны в [документе v3.1](KORSAC-INTERACTIVE-PRODUCT-EXPERIENCE.md).
 
 «Добавить в корзину» открывает информацию о прототипе. Счётчик корзины,
-заказы, localStorage, авторизация, поиск, фильтры, аналитика и сеть отсутствуют.
+заказы, авторизация, поиск, фильтры, аналитика и API отсутствуют.
+Local/sessionStorage используется только для presentation frequency Brand Intro,
+не для конфигурации, цены, корзины или пользовательских данных.
 
 ## Premium Site Shell и Homepage v1
 
@@ -244,8 +248,9 @@ sans navigation, approved V2 lockup, inline SVG utility icons, native drawer
 На homepage header sticky и переходит от hero к graphite за 220 ms; internal
 pages сохраняют нормальный flow. Без JS работают nav/details/CTA и все пять
 source summaries. Hero использует конечную 940 ms последовательность,
-немедленно отменяемую live reduced motion. Eye Flash запускается на 420 ms,
-заканчивается на 1040 ms и использует реальные SVG eyes. Logo assets утверждены;
+немедленно отменяемую live reduced motion. Hero eyes off; отдельный shared
+Brand Intro длится 1500 ms, раз за rolling 24h, с реальной SVG eye geometry.
+Reduced Motion пропускает intro с timestamp write. Logo assets утверждены;
 отдельный media slot ожидает фотографии. Подробнее — в документах выше.
 
 ## Catalog & Product Family Experience v1
