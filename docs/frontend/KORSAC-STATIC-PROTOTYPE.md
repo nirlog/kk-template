@@ -1,4 +1,4 @@
-# KORSAC — Static UI Prototype / Product v3.1 / Catalog v1
+# KORSAC — Static UI Prototype / Homepage & Shell v1 / Product v3.1 / Catalog v1
 
 ## Назначение
 
@@ -8,8 +8,9 @@
 основа v1 сохраняется: семантический HTML, нативные контролы, адаптивность,
 видимый фокус, CSS-токены и запуск без сборки.
 
-`index.html` помогает перейти к страницам; `ui.html` показывает компоненты,
-Identity/Catalog Primitives и motion; `product.html` демонстрирует PLAY 1440.
+`index.html` — редакционная главная KORSAC; прежний навигационный хаб
+сохранён в `review.html`. `ui.html` показывает Shell/Homepage/Identity/Catalog
+Primitives и motion; `product.html` демонстрирует PLAY 1440.
 `catalog.html` показывает сценарный выбор PLAY и сравнение продуктовых классов.
 Подробные решения и будущие точки интеграции описаны в
 [Visual & Motion Direction](KORSAC-VISUAL-MOTION-DIRECTION.md).
@@ -17,6 +18,8 @@ Product Stage, synchronized Explorer и связь сцены с опциями 
 [Interactive Product Experience v3.1](KORSAC-INTERACTIVE-PRODUCT-EXPERIENCE.md).
 [Catalog Experience v1](KORSAC-CATALOG-EXPERIENCE.md) описывает PLAY ladder,
 MINI-ветку, scoped controller и future Bitrix mapping.
+[Homepage v1](KORSAC-HOMEPAGE-EXPERIENCE.md) и [Premium Shell](KORSAC-SITE-SHELL.md)
+описывают новую публичную оболочку, editorial journey и будущие assets.
 
 Источники продуктового содержания:
 
@@ -30,6 +33,7 @@ MINI-ветку, scoped controller и future Bitrix mapping.
 ```text
 prototype/
 ├── index.html
+├── review.html
 ├── ui.html
 ├── product.html
 ├── catalog.html
@@ -41,11 +45,15 @@ prototype/
     │   ├── components.css
     │   ├── pages.css
     │   ├── product-stage.css
-    │   └── catalog.css
+    │   ├── catalog.css
+    │   ├── shell.css
+    │   └── homepage.css
     ├── js/
     │   ├── prototype.js
     │   ├── product-experience.js
-    │   └── catalog-experience.js
+    │   ├── catalog-experience.js
+    │   ├── shell.js
+    │   └── homepage.js
     └── images/README.md
 ```
 
@@ -57,7 +65,7 @@ prototype/
 python3 -m http.server 8000 --bind 127.0.0.1 --directory prototype
 ```
 
-Откройте `/index.html`, `/ui.html`, `/product.html`, `/catalog.html` на локальном порту 8000.
+Откройте `/index.html`, `/ui.html`, `/product.html`, `/catalog.html`, `/review.html` на локальном порту 8000.
 Установка пакетов, сборка и Bitrix не требуются. Архитектура рассчитана
 на актуальные Chrome, Edge, Firefox и Safari; фактический список проверенных
 браузеров и ограничения проверки нужно фиксировать в PR.
@@ -80,8 +88,9 @@ PLAY 1440 и его сценарий 1440p. Stage оставляет место 
 
 Страница чередует плотность: process rail, конфигуратор, открытая narrative
 полоса, технические характеристики, зона измерений, связанная линия сборки,
-паспорт SYSTEM ID и FAQ. Header, drawer, footer и карточка продукта используют
-те же индексы и направляющие.
+паспорт SYSTEM ID и FAQ. Product/catalog content сохраняет эти примитивы;
+public header/drawer/footer теперь использует более спокойный Shell v1.
+Прежние development rails остаются в review hub.
 
 ## Токены и CSS
 
@@ -109,11 +118,13 @@ Electric Blue — сигнал выбора, фокуса и действия. C
 | ------------------- | ---------------------------------------------------------------- |
 | `tokens.css`        | Значения, семантические роли, duration/easing                    |
 | `base.css`          | Reset, текст, ссылки, focus, reduced motion                      |
-| `layout.css`        | Контейнер, grid, stack, cluster, shell                           |
+| `layout.css`        | Контейнер, grid, stack, cluster, прежняя review shell            |
 | `components.css`    | Контролы, рамки, направляющие, паспорт, motion-примитивы         |
 | `pages.css`         | Компоновка UI Kit, hero и разделов продукта                      |
 | `product-stage.css` | Product Stage, контексты, Explorer, interactive fixture          |
 | `catalog.css`       | Family navigation, scenario rail, карточки, preview и comparison |
+| `shell.css`         | Общие public header, icons, native mobile navigation и footer    |
+| `homepage.css`      | Editorial hero/discovery/feature/trust/ownership                 |
 
 ## Identity Primitives и Motion System
 
@@ -212,6 +223,25 @@ SYSTEM ID показывает preview выбранных labels. Контекс
 «Добавить в корзину» открывает информацию о прототипе. Счётчик корзины,
 заказы, localStorage, авторизация, поиск, фильтры, аналитика и сеть отсутствуют.
 
+## Premium Site Shell и Homepage v1
+
+Главная строит путь от сообщения «Компьютеры, точно собранные под задачу.»
+к выбору PLAY, одному featured 1440 и рассказу об архитектуре/сборке/SYSTEM ID.
+Нет повторных full-range cards, comparison dialog и шестисценарного Explorer.
+Discovery — компактный экземпляр принятого `catalog-experience.js` с authored
+HTML, пятью сценариями и MINI-веткой от 1440. Native details раскрывают один
+аспект featured продукта и структуру будущего паспорта; результаты тестов
+и реальные записи не выдуманы.
+
+Общая публичная оболочка применяется к index/catalog/product/UI Kit:
+sans navigation, text wordmark slot, inline SVG utility icons, native drawer
+и открытый footer с большим wordmark. Developer/version bars удалены.
+На homepage header sticky и переходит от hero к graphite за 220 ms; internal
+pages сохраняют нормальный flow. Без JS работают nav/details/CTA и все пять
+source summaries. Hero использует конечную 940 ms последовательность,
+немедленно отменяемую live reduced motion. Brand/media slots ожидают
+утверждённые logo SVG и фотографии. Подробнее — в двух новых документах выше.
+
 ## Catalog & Product Family Experience v1
 
 Каталог начинает discovery с четырёх сценарных ступеней PLAY и отдельной
@@ -289,10 +319,11 @@ Backend сохраняет проверенный snapshot конфигурац�
 - После всех изменений опций цены hero, сводки и карточки остаются неизменными; сетевых запросов нет.
 - Motion replay работает без reload и бизнес-действий; анимации конечны и не лишают контролы доступности.
 - Reduced motion показывает содержимое сразу и отключает последовательности; no-JS сохраняет смысл и native controls.
+- Homepage/shell: восемь ширин 320–1920, native utility dialogs/drawer/focus, no-JS меню/сценарии/CTA, конечный hero и live reduced motion.
 - Каталог: все пять моделей, MINI как ветка узла 1440, preview/CTA и MAX3 comparison; touch375/430, no-JS320 и live reduced motion.
 - Контраст текста, copper, синего, CTA, selected/disabled state проверен отдельно от декоративных линий.
 - Ссылки, labels, IDs и `aria-controls` согласованы; `git diff --check` проходит.
 
-[Материалы визуального ревью](review/README.md) сохраняют product v1/v2/v2.1/v3.1 и добавляют catalog v1; исходные v3 сохранены в архиве.
+[Материалы визуального ревью](review/README.md) сохраняют product v1/v2/v2.1/v3.1 и добавляют homepage/shell v1; исходные v3 и catalog captures сохраняются.
 Снимки не используются runtime. Проверка одного браузера не заменяет ручной
 приёмочный прогон во всех целевых браузерах.

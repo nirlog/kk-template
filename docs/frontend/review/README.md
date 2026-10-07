@@ -1,5 +1,58 @@
 # Материалы визуального и motion-ревью KORSAC
 
+## Premium Site Shell + Homepage Experience v1
+
+[Normal-motion запись — MP4](homepage-v1.mp4): примерно **0–9,8 s** — initial
+hero, переход header к graphite, PRO → MINI → 1440, featured inspection,
+раскрытие содержания SYSTEM ID и footer; **9,8–17,5 s** — mobile hero,
+native drawer, touch scenario selection и переход в PLAY 1440.
+
+Chromium 151, desktop 1440×1080 / touch-emulated mobile 375×800.
+H.264 **960×720 / 25 fps**, **17,48 s**, около **0,51 MiB**. Mobile по центру
+общего кадра. Это обычная скорость; без autoplay, замедления, fake progress
+и runtime video background. Файл предназначен только для ревью.
+
+Основные PNG, reduced motion:
+
+- [Homepage desktop](homepage-v1-desktop.png), 1440×1080.
+- [Homepage mobile](homepage-v1-mobile.png), 375×800: header, headline, CTA и часть схемы в первом viewport.
+- [Homepage wide](homepage-v1-wide.png), 1920×1080.
+- [Premium header](shell-header-v1.png), 1440×88: navigation и utility icons без developer rails.
+- [Premium footer](shell-footer-v1.png), 1440×394: большой wordmark, группы и тихая prototype note.
+- [Compact scenario discovery](homepage-scenario-v1.png), 1440×1080: 1440/MINI branch и краткий preview.
+- [Mobile drawer](shell-drawer-v1-mobile.png), 375×800: native navigation без numeric indices.
+- [Featured PLAY 1440](homepage-feature-v1.png), 1440×1080: native inspection открыта, GPU-зона выделена.
+- [Ownership / SYSTEM ID](homepage-ownership-v1.png), 1440×1080: структура паспорта без verification claims.
+- [Catalog с новой оболочкой](shell-catalog-v1.png), 1440×1080.
+- [Product с новой оболочкой](shell-product-v1.png), 1440×1080.
+- [Premium Shell Primitives](shell-primitives-v1.png), 1344×821: header states, mobile anatomy/drawer entry и footer disclosure.
+- [Homepage Primitives](homepage-primitives-v1.png), 1344×1066: CTA composition, отдельный compact selector и trust block.
+
+[Homepage architecture](../KORSAC-HOMEPAGE-EXPERIENCE.md) и
+[Site Shell / asset integration](../KORSAC-SITE-SHELL.md) описывают authored
+HTML, future SVG/photography slots, no-JS и Bitrix mapping. Схемы не являются
+product photography; text wordmark не является финальным logo asset.
+
+Проверены пять страниц на 320/375/430/768/1024/1280/1440/1920 px без horizontal
+overflow. Preview height delta — 0 px для пяти моделей на каждой ширине.
+Hero заканчивается через 940 ms и отменяется при live reduced motion.
+На 320/375/430×800 primary hero CTA заканчивается примерно на 414/414/428 px;
+схема начинается примерно на 490/490/452 px. Header не меняет размер при
+переходе от hero. Native dialogs/drawer/details, keyboard, no-JS navigation,
+сценарии и scoped UIKit независимость проверены. Catalog MAX3/mobile matrix
+и Product v3.1 synchronization/static pricing regressions прошли.
+Axe WCAG2A/AA+2.1AA: zero violations; contrast/link-in-text-block часть
+результатов остаётся incomplete. Полноценный screen-reader run не проводился.
+
+Human gate остаётся открытым: premium feel оболочки, ясность hero с первого
+экрана, естественный переход Homepage → Catalog → Product и motion в живом
+браузере. Нужна проверка на целевых браузерах/устройствах. Не сливать автоматически.
+
+Ниже сохранены принятые catalog/product материалы. Они фиксируют исходную
+оболочку соответствующих PR; актуальный public shell показывают новые
+`shell-catalog-v1.png` / `shell-product-v1.png` выше. Контентные
+взаимодействия прежних версий сохраняются.
+
 ## Catalog & Product Family Experience v1 — после visual review
 
 [Каталог: обновлённая запись — MP4](catalog-v1.mp4) показывает normal motion:

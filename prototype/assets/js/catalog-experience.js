@@ -44,20 +44,21 @@
       panel.append(
         card.querySelector("[data-catalog-actions]").cloneNode(true),
       );
-      const recommendation = document.createElement("aside");
-      recommendation.className = "k-catalog-recommendation";
-      recommendation.setAttribute("aria-label", "Другой сценарий");
-      recommendation.append(
-        card
-          .querySelector("[data-catalog-recommendation]")
-          .content.cloneNode(true),
+      const recommendationTemplate = card.querySelector(
+        "[data-catalog-recommendation]",
       );
-      recommendation
-        .querySelectorAll("[data-catalog-pick]")
-        .forEach((button) => {
-          if (!cards.has(button.dataset.catalogPick)) button.remove();
-        });
-      panel.append(recommendation);
+      if (recommendationTemplate) {
+        const recommendation = document.createElement("aside");
+        recommendation.className = "k-catalog-recommendation";
+        recommendation.setAttribute("aria-label", "Другой сценарий");
+        recommendation.append(recommendationTemplate.content.cloneNode(true));
+        recommendation
+          .querySelectorAll("[data-catalog-pick]")
+          .forEach((button) => {
+            if (!cards.has(button.dataset.catalogPick)) button.remove();
+          });
+        panel.append(recommendation);
+      }
       previewContent.append(panel);
       panels.set(code, panel);
 
@@ -147,7 +148,8 @@
       root.dataset.catalogSelection = code;
       cards.forEach((card, key) => {
         card.dataset.catalogActive = String(key === code);
-        card.querySelector("[data-catalog-selected]").hidden = key !== code;
+        const marker = card.querySelector("[data-catalog-selected]");
+        if (marker) marker.hidden = key !== code;
       });
       panels.forEach((panel, key) => {
         panel.hidden = key !== code;
@@ -182,6 +184,7 @@
 
     const selectedChecks = () => checks.filter((check) => check.checked);
     const syncCompare = () => {
+      if (!checks.length) return; // Compact homepage variant has no comparison.
       const selected = selectedChecks();
       checks.forEach((check) => {
         check.disabled = selected.length >= 3 && !check.checked;
