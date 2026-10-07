@@ -74,13 +74,22 @@ CTA или header. Будущая фотография вставляется к
 | CTA, 8 px без скрытия            | 420 ms | 220 ms       |
 | Copper registration              | 620 ms | 320 ms       |
 
-Opacity используется только у декоративного поля. Смысловой текст/CTA
+В normal mode opacity используется только у декоративного поля. Смысловой текст/CTA
 не скрываются; transform не блокирует native focus/click. Нет replay loop,
 autoplay, mouse-follow, scroll-jacking и fade-up каждого раздела. Finished
 promises освобождают эффекты; живое включение reduced motion отменяет active
 animations. После завершения декоративная сцена неподвижна.
 
-Shell state использует один hero boundary observer и 220 ms transition,
+Reduced branch в `homepage.js`: headline, description, CTA и media получают
+одновременно opacity **.9 → 1 за 120 ms**, без delay/translate/scale/clip.
+Текст сразу читаем, controls сразу доступны; field/guide/copper — final state.
+Это reduced-motion mode с коротким feedback, не global animation off.
+Live preference change отменяет entry effects и возвращает final state;
+обратный toggle не повторяет completed entry. Общие reduced tokens — 80/120 ms.
+Compact discovery сохраняет такой же opacity-only confirmation, как Catalog.
+
+Shell state использует один hero boundary observer и 220 ms transition
+(120 ms в Reduced Motion),
 не участвует в discovery/business state. В остальных разделах нет scroll
 motion. Автоматический Hero Eye Flash удалён после live review; coupling
 `korsac:hero-enter` больше нет. Hero totem — внешний static eyes-off

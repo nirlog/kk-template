@@ -125,6 +125,16 @@ Head boot включает только presentation attribute; motion — exter
 смещения. CSS safety скрывает и отключает pointer blocking даже при отказе
 controller; broken/missing CSS оставляет нативный hidden state.
 
+## Reduced-motion mode
+
+Общий CSS сохраняет 80/120 ms opacity/color/border feedback вместо global
+`animation/transition: none`. Navigation underline не растёт: static rail
+появляется через opacity. Native dialogs/drawer/accordion могут коротко
+settle по opacity без translate. Focus, hover и selected/validation states
+остаются видимыми и не ждут motion completion. Hero/каталог/Explorer используют
+[общую policy](KORSAC-VISUAL-MOTION-DIRECTION.md#reduced-motion-и-отсутствие-js).
+Полный site-entry Brand Intro по-прежнему skipped с timestamp write.
+
 ## Footer
 
 Один главный жест — утверждённый stacked metallic lockup с «Точно под задачу.».

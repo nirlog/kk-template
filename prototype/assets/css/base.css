@@ -156,20 +156,33 @@ legend {
   gap: var(--k-space-2);
   font-size: var(--k-body-sm);
 }
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
+/* Reduced movement keeps low-amplitude feedback; no blanket animation switch. */
+@keyframes k-reduced-settle {
+  from {
+    opacity: 0.86;
   }
+  to {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
-    animation: none !important;
-    transition: none !important;
     scroll-behavior: auto !important;
   }
-  [data-motion-step] {
-    opacity: 1 !important;
-    transform: none !important;
-    clip-path: none !important;
+  a,
+  button,
+  input,
+  select,
+  textarea,
+  summary,
+  [role="tab"],
+  .k-option-content {
+    transition:
+      color var(--k-motion-reduced-fast) var(--k-ease-standard),
+      background-color var(--k-motion-reduced-fast) var(--k-ease-standard),
+      border-color var(--k-motion-reduced-fast) var(--k-ease-standard),
+      box-shadow var(--k-motion-reduced-fast) var(--k-ease-standard);
   }
 }

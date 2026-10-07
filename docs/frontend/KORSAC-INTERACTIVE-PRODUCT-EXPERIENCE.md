@@ -198,8 +198,13 @@ Stage и detail resolve используют существующий `--k-motio
 
 Повтор прерывает motion только своего экземпляра; animationend и конечный
 fallback удаляют служебные классы. Последний native input определяет итог.
-При reduced motion state/labels меняются сразу, expressive motion отключён;
-смена настройки во время движения отменяет активные последовательности.
+При Reduced Motion state/labels меняются сразу; пространственный stage/clip
+и rail sweep отключены. Stage panel/detail/case используют opacity-only settle
+120 ms, summary/manifest — 120 ms opacity/color acknowledgement; selected
+controls, parts и hotspot border/color — 80 ms. Dialog/accordion — 120 ms opacity.
+Это reduced-motion mode, не blanket zero-motion. CSS branch сохраняет static
+геометрию сцены. Live preference change отменяет effects/frames/timers;
+будущие input используют reduced feedback, обратный toggle не повторяет hero.
 
 Без JS сцены показывают `overview`, шесть explanations и annotation-пояснения
 доступны, native controls остаются обычными controls. Только дополнительные

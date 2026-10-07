@@ -158,6 +158,13 @@ typing и декоративного прогресса нет. Основные
 При `prefers-reduced-motion: reduce` значимое содержимое видно сразу:
 нет stagger-зависимости, scanning, обязательного transform-входа и плавного
 скролла. Состояние выбора и обновлённая подпись не зависят от анимации.
+KORSAC использует reduced-motion mode, не blanket zero-motion: opacity/color/
+border feedback сохраняется на общих 80/120 ms tokens. Hero — короткий opacity
+settle без stagger; Catalog — 120 ms preview confirmation; Explorer/summary,
+selected controls, dialog/accordion и validation остаются отзывчивыми.
+Translate/scale/clip/rail sweeps отключены; Brand Intro полностью пропущен
+с записью timestamp. Live toggle отменяет spatial motion и не переигрывает
+completed entry при возврате. [Policy](KORSAC-VISUAL-MOTION-DIRECTION.md#reduced-motion-и-отсутствие-js).
 Базовый CSS не скрывает содержимое ради будущего reveal; оно читается без JS.
 
 ## Адаптивность и доступность
@@ -274,8 +281,8 @@ purpose/setup prose скрыты в этой матрице. Горизонта�
 Рекомендации authored по сценарию и не используют ценовые пороги.
 
 Без JS доступны anchor-сценарии, вся линейка и обычные ссылки; enhanced
-preview/comparison скрыты. Reduced motion оставляет мгновенный выбор без
-320 ms resolve. Карточки линейки показывают сценарий, форм-фактор, GPU,
+preview/comparison скрыты. Reduced Motion оставляет мгновенный выбор и
+120 ms opacity-only confirmation вместо 320 ms spatial resolve. Карточки линейки показывают сценарий, форм-фактор, GPU,
 RAM/SSD и одну CTA; подробности и обе CTA остаются в выбранном preview. Архитектура, media adapter и перенос в `bitrix:catalog.section`
 описаны в [Catalog Experience](KORSAC-CATALOG-EXPERIENCE.md).
 
@@ -330,7 +337,7 @@ Backend сохраняет проверенный snapshot конфигурац�
 - Корпус, RAM, SSD, дополнительный накопитель, ОС, программы и сервис обновляют соответствующие подписи manifest.
 - После всех изменений опций цены hero, сводки и карточки остаются неизменными; сетевых запросов нет.
 - Motion replay работает без reload и бизнес-действий; анимации конечны и не лишают контролы доступности.
-- Reduced motion показывает содержимое сразу и отключает последовательности; no-JS сохраняет смысл и native controls.
+- Reduced Motion показывает содержимое сразу, отключает spatial sequences и сохраняет 80/120 ms feedback; no-JS сохраняет смысл и native controls.
 - Homepage/shell: восемь ширин 320–1920, native utility dialogs/drawer/focus, no-JS меню/сценарии/CTA, конечный hero и live reduced motion.
 - Каталог: все пять моделей, MINI как ветка узла 1440, preview/CTA и MAX3 comparison; touch375/430, no-JS320 и live reduced motion.
 - Контраст текста, copper, синего, CTA, selected/disabled state проверен отдельно от декоративных линий.

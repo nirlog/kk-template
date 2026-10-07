@@ -8,7 +8,7 @@
     active.clear();
   };
   document.querySelectorAll("[data-home-hero]").forEach((hero) => {
-    if (reduced.matches || !hero.animate) return;
+    if (!hero.animate) return;
     const style = getComputedStyle(hero);
     const duration = (token) => {
       const raw = style.getPropertyValue(token).trim();
@@ -29,6 +29,21 @@
         () => active.delete(animation),
       );
     };
+    if (reduced.matches) {
+      // Readable from the first frame; no spatial entrance or stagger.
+      [
+        "[data-home-headline]",
+        ".k-home-hero-description",
+        ".k-home-hero-actions",
+        "[data-home-media]",
+      ].forEach((selector) =>
+        play(selector, [{ opacity: 0.9 }, { opacity: 1 }], {
+          duration: duration("--k-motion-reduced-base"),
+          easing: style.getPropertyValue("--k-ease-standard").trim(),
+        }),
+      );
+      return;
+    }
     play(".k-home-media-field", [{ opacity: 0.3 }, { opacity: 1 }], {
       duration: slow,
       easing: enter,
@@ -75,6 +90,7 @@
     );
   });
   reduced.addEventListener("change", () => {
-    if (reduced.matches) stop();
+    // Both preference changes settle entry effects; neither replays them.
+    stop();
   });
 })();

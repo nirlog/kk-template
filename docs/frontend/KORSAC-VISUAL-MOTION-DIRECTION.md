@@ -146,6 +146,8 @@ validation и SYSTEM ID. Композиция, палитра, содержим�
 
 | Токен                | Длительность | Роль                                           |
 | -------------------- | ------------ | ---------------------------------------------- |
+| `--k-motion-reduced-fast` | 80 ms | Reduced Motion: hover/focus/color/border |
+| `--k-motion-reduced-base` | 120 ms | Reduced Motion: opacity/state acknowledgement |
 | `--k-motion-instant` | 80 ms        | микросигнал                                    |
 | `--k-motion-fast`    | 140 ms       | hover/focus и короткий отклик                  |
 | `--k-motion-base`    | 220 ms       | интерфейс, угол, price/CTA                     |
@@ -218,14 +220,40 @@ Motion не блокирует hit area, не удаляет focus и не пе�
 
 ### Reduced Motion и отсутствие JS
 
-При `prefers-reduced-motion: reduce` последовательности и их задержки
-отключены: содержимое доступно сразу, нет scanning, transform entrance
-или clip/stagger, необходимого для чтения. Переключение настройки во время
-проигрывания отменяет frames/timers, снимает run-классы и возвращает обычные
-границы рамки. Состояние выбора и pending/confirmed/error остаются видимыми,
-а summary label меняется немедленно. Начальный CSS не скрывает смысловые
-элементы в ожидании JS. Без JS читаются страницы, manifest базовой конфигурации,
-вкладки/FAQ и работают нативные контролы; replay и summary sync требуют JS.
+KORSAC использует **reduced-motion mode, не blanket zero-motion mode**.
+`prefers-reduced-motion: reduce` уменьшает движение, сохраняя быстрый visual
+feedback. Общие tokens: `--k-motion-reduced-fast: 80ms` и
+`--k-motion-reduced-base: 120ms`; interface fast/base переходят на эту шкалу.
+Нет глобального `animation/transition: none` для всего сайта.
+
+| Остаётся полностью отключённым | Сохраняется как low-motion feedback |
+| --- | --- |
+| Shared 1500 ms Brand Intro; timestamp записывается | Короткие opacity/color/border changes 80–120 ms |
+| Translate/scale entrances, clip/mask reveals | Homepage: opacity .9 → 1 для основных групп, 120 ms, без stagger |
+| Decorative rail growth/sweeps и scroll identity reveals | Catalog: opacity .86 → 1 на выбранном preview, 120 ms |
+| Parallax/scroll-driven decoration | Explorer/summary/selected rails, validation acknowledgement |
+| UI Kit brand Eye Flash replay | Dialog/drawer/accordion opacity, hover/focus/active controls |
+
+Смысловое состояние, labels/hidden/inert/ARIA и native input обновляются
+синхронно до feedback. Текст/CTA доступны с первого кадра: opacity settle
+не начинается с нуля. Decorative Hero field/guide/copper остаются в final
+state, Hero mark — внешний static eyes-off SVG. Product stage и Explorer
+не получают animated transform/clip; статические геометрические размеры и
+контуры сохраняются. Selected state, validation status и focus rings видимы
+независимо от animation; не нужно ждать completion.
+
+Live normal → reduce отменяет активные WAAPI/CSS effects и pending frames/timers,
+возвращает итоговое состояние без spatial движения. Будущие взаимодействия
+используют reduced feedback. Возврат в no-preference не повторяет entry/intro;
+identity anchors, встреченные при reduce, считаются уже просмотренными.
+Смысловые элементы не скрыты в ожидании JS. Без JS читаются страницы,
+manifest базовой конфигурации, вкладки/FAQ и работают нативные контролы;
+replay и summary sync требуют JS.
+
+[Motion/accessibility review](review/README.md#reduced-motion-refinement-v1)
+фиксирует Chromium media emulation и remaining human gate. Windows animations
+setting поступает через browser media query; реальная Windows-система в cloud
+не доступна, проверка проведена с `prefers-reduced-motion: reduce`.
 
 ## Подписи конфигурации и статические цены
 

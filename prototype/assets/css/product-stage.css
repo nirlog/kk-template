@@ -583,14 +583,23 @@
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .k-explorer-resolve .k-explorer-slide h3,
-  .k-explorer-resolve .k-explorer-register,
-  .k-explorer-resolve .k-explorer-rail,
-  .k-stage-resolve [data-stage-panel],
   .k-stage-resolve [data-stage-overlay],
-  .k-stage-resolve [data-stage-media],
-  .k-stage-resolve .k-stage-hero-case {
-    transform: none !important;
-    clip-path: none !important;
+  .k-explorer-resolve .k-explorer-rail {
+    animation: none !important;
+  }
+  .k-explorer-resolve .k-explorer-slide:not([hidden]) h3,
+  .k-explorer-resolve .k-explorer-register,
+  .k-stage-resolve [data-stage-panel]:not([hidden]),
+  .k-stage-resolve[data-stage-motion="case"] [data-stage-media],
+  .k-stage-resolve[data-stage-motion="case"] .k-stage-hero-case {
+    animation: k-reduced-settle var(--k-motion-reduced-base)
+      var(--k-ease-standard) both;
+  }
+  .k-stage-part,
+  .k-stage-hotspot span {
+    transition:
+      color var(--k-motion-reduced-fast) var(--k-ease-standard),
+      background-color var(--k-motion-reduced-fast) var(--k-ease-standard),
+      border-color var(--k-motion-reduced-fast) var(--k-ease-standard);
   }
 }

@@ -101,6 +101,10 @@ Reduced Motion при входе **записывает timestamp и сразу 
 не вызывает intro. Live Reduced Motion CSS немедленно скрывает active overlay,
 controller отменяет effects и удаляет его. Автоматического повторения нет.
 
+Это правило относится к полной brand activation. Остальной UI использует
+**reduced-motion mode**, сохраняя opacity/color/border feedback 80–120 ms;
+Hero opacity settle не активирует глаза. [Общая motion/accessibility policy](KORSAC-VISUAL-MOTION-DIRECTION.md#reduced-motion-и-отсутствие-js).
+
 ## Composition и timing
 
 Полноэкранный graphite, центральный approved ICON, actual SVG eye geometry,

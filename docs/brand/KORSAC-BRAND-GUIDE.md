@@ -136,6 +136,12 @@ KORSAC продаёт не набор комплектующих и не мак�
 
 Для пользователей с `prefers-reduced-motion: reduce` Eye Flash отключён полностью: глаза остаются выключенными. Header/Drawer/Footer/Hero статичны. Текущий shared Brand Intro длится 1500 мс, не чаще раза за rolling 24h per browser profile; reduced motion записывает timestamp и пропускает intro. Replay доступен только в UI Kit.
 
+Reduced Motion — режим уменьшенного движения, не глобальное отключение
+feedback: interface сохраняет opacity/color/border acknowledgement 80–120 ms.
+Translate/scale/clip entrances и decorative sweeps выключены. Brand Intro
+и UI Kit Eye Flash полностью skipped; Hero mark всегда static eyes off.
+[Motion/accessibility policy](../frontend/KORSAC-VISUAL-MOTION-DIRECTION.md#reduced-motion-и-отсутствие-js).
+
 ## 5. Цветовая система
 
 Рабочая палитра v0.1:

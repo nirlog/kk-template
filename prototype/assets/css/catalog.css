@@ -870,3 +870,14 @@
     display: inline;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .k-catalog-card::before,
+  .k-catalog-card:hover::before,
+  .k-catalog-card:focus-within::before,
+  .k-catalog-card[data-catalog-active="true"]::before {
+    width: 28px;
+    transition: background-color var(--k-motion-reduced-fast)
+      var(--k-ease-standard);
+  }
+}

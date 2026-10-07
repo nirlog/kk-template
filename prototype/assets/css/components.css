@@ -1170,19 +1170,43 @@ body.k-dialog-open {
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .k-motion-run [data-motion-step],
+  /* Disable finite spatial sequences, then opt interactive feedback back in. */
+  .k-motion-run,
+  .k-motion-run *,
+  .k-motion-run::before,
+  .k-motion-run::after,
+  .k-motion-run *::before,
+  .k-motion-run *::after,
+  .k-row-confirm::before,
+  .k-spinner::after {
+    animation: none !important;
+  }
+  .k-motion-run[data-motion="hero"] [data-motion-step="designation"],
+  .k-motion-run[data-motion="hero"] [data-motion-step="copy"],
+  .k-motion-run[data-motion="hero"] [data-motion-step="price"],
+  .k-motion-run[data-motion="hero"] [data-motion-step="cta"],
+  .k-motion-run[data-motion="selection"] [data-motion-step="summary"],
+  .k-motion-run[data-motion="validation"] .k-validation-label,
   .k-summary-resolve,
   .k-dialog-enter,
+  .k-dialog-enter.k-drawer,
   .k-accordion-enter {
-    opacity: 1 !important;
-    transform: none !important;
-    clip-path: none !important;
+    animation: k-reduced-settle var(--k-motion-reduced-base)
+      var(--k-ease-standard) both !important;
   }
-  .k-motion-run .k-rail,
-  .k-motion-run .k-section-index::after,
-  .k-section-index.k-motion-run::after,
-  .k-motion-run .k-option-content::before {
-    transform: none !important;
+  .k-motion-run[data-motion="selection"]
+    input:checked
+    + .k-option-content::before,
+  .k-motion-run[data-motion="selection"]
+    input:checked
+    + .k-option-content::after {
+    animation: k-reduced-settle var(--k-motion-reduced-fast)
+      var(--k-ease-standard) both !important;
+  }
+  .k-row-confirm,
+  .k-motion-run[data-motion="selection"] .k-manifest-row {
+    animation: k-row-confirm var(--k-motion-reduced-base) var(--k-ease-standard)
+      both !important;
   }
   .k-frame.k-motion-run[data-motion="hero"],
   .k-motion-run[data-motion="hero"] [data-motion-step="frame"],
@@ -1193,13 +1217,9 @@ body.k-dialog-open {
   .k-system-id.k-motion-run[data-motion="passport"] {
     border-left-color: var(--k-identity);
   }
-  .k-motion-run[data-motion] .k-frame-trace {
-    display: none;
-  }
-  .k-motion-run .k-option-content::after,
-  .k-frame.k-motion-run::before {
-    clip-path: none !important;
-  }
+  .k-row-confirm::before,
+  .k-motion-run[data-motion] .k-frame-trace,
+  .k-motion-run[data-motion="selection"] .k-manifest-row::before,
   .k-motion-run[data-motion="validation"] .k-validation-rail::before {
     display: none;
   }

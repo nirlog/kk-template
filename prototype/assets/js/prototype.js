@@ -25,13 +25,27 @@
     activeMotion.delete(target);
   };
 
+  // Decorative identity anchors remain quiet; interactive classes have
+  // opacity/color-only CSS branches in reduced mode, including legacy heroes.
   const runMotion = (target, className = "k-motion-run") => {
     if (!target) return;
     stopMotion(target);
     target.classList.remove(className);
-    if (reducedMotion.matches || !target.isConnected) return;
+    if (!target.isConnected) return;
+    if (
+      reducedMotion.matches &&
+      className === "k-motion-run" &&
+      ["passport", "index"].includes(target.dataset.motion)
+    )
+      return;
 
-    const state = { className, frames: [], timeout: undefined, onEnd: null };
+    const state = {
+      className,
+      reduced: reducedMotion.matches,
+      frames: [],
+      timeout: undefined,
+      onEnd: null,
+    };
     activeMotion.set(target, state);
     const current = () => activeMotion.get(target) === state;
     // Two frames restart the CSS animation without a forced layout. A later
@@ -42,7 +56,10 @@
         state.frames.push(
           requestAnimationFrame(() => {
             if (!current()) return;
-            if (reducedMotion.matches || !target.isConnected) {
+            if (
+              state.reduced !== reducedMotion.matches ||
+              !target.isConnected
+            ) {
               stopMotion(target);
               return;
             }
@@ -356,7 +373,7 @@
   const revealed = new Set();
   let observer;
   const observeAnchors = () => {
-    if (reducedMotion.matches || !("IntersectionObserver" in window)) return;
+    if (!("IntersectionObserver" in window)) return;
     observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -375,7 +392,8 @@
   observeAnchors();
   reducedMotion.addEventListener("change", () => {
     observer?.disconnect();
-    if (reducedMotion.matches) [...activeMotion.keys()].forEach(stopMotion);
-    else observeAnchors();
+    [...activeMotion.keys()].forEach(stopMotion);
+    // Anchors encountered while reduced are consumed without animation.
+    observeAnchors();
   });
 })();

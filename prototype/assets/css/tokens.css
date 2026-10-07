@@ -69,6 +69,8 @@
   --k-content-width: 1360px;
   --k-gutter: clamp(16px, 4vw, 48px);
   /* Motion is finite, event-driven and never controls availability. */
+  --k-motion-reduced-fast: 80ms;
+  --k-motion-reduced-base: 120ms;
   --k-motion-instant: 80ms;
   --k-motion-fast: 140ms;
   --k-motion-base: 220ms;
@@ -83,4 +85,11 @@
   /* Structural media queries: 600px (compact components), 900px (columns),
      1100px (desktop navigation and configurator aside).
      CSS variables cannot be used in queries. */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --k-motion-fast: var(--k-motion-reduced-fast);
+    --k-motion-base: var(--k-motion-reduced-base);
+  }
 }

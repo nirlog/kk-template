@@ -317,3 +317,15 @@ html {
     text-decoration: underline;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .k-site-nav a::after {
+    transform: none;
+    opacity: 0;
+    transition: opacity var(--k-motion-reduced-fast) var(--k-ease-standard);
+  }
+  .k-site-nav a:hover::after,
+  .k-site-nav a[aria-current]::after {
+    opacity: 1;
+  }
+}
