@@ -1,5 +1,50 @@
 # Материалы визуального и motion-ревью KORSAC
 
+## Brand Asset Integration & Logo Motion v1
+
+[Eye Flash — normal-speed MP4](brand-eye-motion-v1.mp4): homepage entrance
+(один запуск), затем отдельный UI Kit replay. Знак начинает с eyes off,
+коротко активирует реальные blue eyes и возвращается к resting state.
+Chromium 151, 1440×1080 / 25 fps H.264, **5.48 s**, около **0.90 MiB**. Запись без замедления и runtime autoplay;
+повторный запуск существует только в UI Kit. Encode полностью декодирован;
+в Chromium проверены playback и seek.
+
+PNG:
+
+- [Brand Assets / UI Kit](brand-assets-v1.png), 1344×826: ICON/TEXT/V2/V1 и reduced-motion demo.
+- [Header desktop](brand-header-v1-desktop.png), 1440×88: static horizontal V2.
+- [Header mobile](brand-header-v1-mobile.png), 375×64: V2, Cart/Menu 44×44.
+- [Footer desktop](brand-footer-v1-desktop.png), 1440×478: stacked V1.
+- [Footer mobile](brand-footer-v1-mobile.png), 375×700: compact horizontal V2.
+- [Homepage desktop](homepage-brand-v1-desktop.png), 1440×1080.
+- [Homepage wide](homepage-brand-v1-wide.png), 1920×1080.
+- [Homepage mobile](homepage-brand-v1-mobile.png), 375×800: CTA прежней высоты, mark ниже текста.
+- [Drawer mobile](brand-drawer-v1-mobile.png), 375×800.
+- [Eye off](brand-eye-off-v1.png) / [Eye peak](brand-eye-active-v1.png), 321×287: pose captures для сравнения.
+
+Обычные PNG сняты с reduced motion; active PNG фиксирует штатный peak WAAPI,
+не меняя SVG geometry/цвета. MP4 показывает реальную скорость. All masters
+byte-identical; derivative paths/facets/eyes/strokes/gradients/viewBox сохранены.
+Static SVG изолированы external images, единственный hero inline получает
+`home-brand-` prefix, UI Kit — `kit-brand-`.
+
+40 page/width layouts 320–1920, Product/Catalog/Configurator/Explorer и shared
+regressions прошли. Hero delay 420 + flash 620 = 1040 ms; заканчивается eyes off.
+Live reduced motion отменяет effect, возврат не запускает hero повторно.
+25 быстрых replay, no-JS, unsupported SVG WAAPI и rapid reload/resize проверены.
+Задержанная SVG загрузка не меняет header/hero/footer geometry и не создаёт
+CLS на 320/768/1440/1920. Новых ошибок/failed images/external runtime requests нет.
+Axe WCAG2A/AA+2.1AA: zero violations в 12 состояниях; некоторые contrast/link
+checks incomplete. Firefox/Safari, physical devices и screen reader не проверены.
+
+[Mapping, implementation и self-review A–L](../KORSAC-BRAND-ASSET-INTEGRATION.md).
+Human acceptance: optical scale/clear space, premium feel, заметность и
+сдержанность flash в живом браузере. Не сливать автоматически.
+
+Материалы ниже — предыдущие accepted baselines с временным text wordmark;
+новые PNG выше показывают текущую approved identity. Product photography
+всё ещё временная; brand assets уже финальные.
+
 ## Premium Site Shell + Homepage Experience v1
 
 [Normal-motion запись — MP4](homepage-v1.mp4): примерно **0–9,8 s** — initial

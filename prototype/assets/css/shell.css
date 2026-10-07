@@ -32,33 +32,23 @@ html {
   min-height: 88px;
 }
 .k-site-brand {
-  display: inline-grid;
-  grid-template-columns: var(--k-brand-mark-size, 0px) auto;
-  gap: var(--k-brand-mark-gap, 0px);
+  display: inline-flex;
   align-items: center;
+  min-height: 44px;
   color: var(--k-text);
   text-decoration: none;
   flex-shrink: 0;
 }
-.k-brand-mark {
+.k-brand-wordmark {
   display: block;
-  width: var(--k-brand-mark-size, 0px);
+  width: var(--k-brand-wordmark-width, 164px);
 }
-.k-brand-mark > :is(svg, img) {
+.k-brand-wordmark > img {
+  display: block;
   width: 100%;
   height: auto;
-}
-.k-brand-wordmark {
-  font: 650 1.3rem / 1 var(--k-font);
-  letter-spacing: 0.16em;
-}
-.k-brand-wordmark > :is(svg, img) {
-  display: block;
-  width: var(--k-brand-wordmark-width, 108px);
-  height: auto;
-}
-.k-site-footer-brand {
-  --k-brand-wordmark-width: clamp(220px, 25vw, 360px);
+  aspect-ratio: 15240 / 3386.66;
+  object-fit: contain;
 }
 .k-site-nav {
   display: flex;
@@ -190,10 +180,6 @@ html {
   grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr));
   gap: var(--k-space-8);
 }
-.k-site-footer-brand .k-brand-wordmark {
-  font-size: clamp(2.5rem, 5.5vw, 5.5rem);
-  letter-spacing: 0.07em;
-}
 .k-site-footer-brand > p {
   font-size: var(--k-body-lg);
   color: var(--k-secondary);
@@ -292,8 +278,8 @@ html {
   .k-site-utilities {
     gap: var(--k-space-1);
   }
-  .k-brand-wordmark {
-    font-size: 1.125rem;
+  .k-site-brand {
+    --k-brand-wordmark-width: 140px;
   }
   .k-site-footer-main {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -310,9 +296,6 @@ html {
   .k-site-footer-main {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--k-space-8) var(--k-space-4);
-  }
-  .k-site-footer-brand .k-brand-wordmark {
-    font-size: clamp(2.5rem, 12vw, 4rem);
   }
   .k-site-footer nav:last-child {
     grid-column: 1 / -1;

@@ -19,7 +19,9 @@ Product Stage, synchronized Explorer и связь сцены с опциями 
 [Catalog Experience v1](KORSAC-CATALOG-EXPERIENCE.md) описывает PLAY ladder,
 MINI-ветку, scoped controller и future Bitrix mapping.
 [Homepage v1](KORSAC-HOMEPAGE-EXPERIENCE.md) и [Premium Shell](KORSAC-SITE-SHELL.md)
-описывают новую публичную оболочку, editorial journey и будущие assets.
+описывают публичную оболочку и editorial journey.
+[Brand Asset Integration](KORSAC-BRAND-ASSET-INTEGRATION.md) описывает
+утверждённые SVG и однократную вспышку глаз; фотография остаётся provisional.
 
 Источники продуктового содержания:
 
@@ -46,15 +48,17 @@ prototype/
     │   ├── pages.css
     │   ├── product-stage.css
     │   ├── catalog.css
+    │   ├── brand.css
     │   ├── shell.css
     │   └── homepage.css
     ├── js/
     │   ├── prototype.js
     │   ├── product-experience.js
     │   ├── catalog-experience.js
+    │   ├── brand-motion.js
     │   ├── shell.js
     │   └── homepage.js
-    └── images/README.md
+    └── images/ — approved masters, brand/ web derivatives и README.md
 ```
 
 Откройте `prototype/index.html` в браузере. Относительные CSS/JS рассчитаны
@@ -124,6 +128,7 @@ Electric Blue — сигнал выбора, фокуса и действия. C
 | `product-stage.css` | Product Stage, контексты, Explorer, interactive fixture          |
 | `catalog.css`       | Family navigation, scenario rail, карточки, preview и comparison |
 | `shell.css`         | Общие public header, icons, native mobile navigation и footer    |
+| `brand.css`         | Approved artwork sizing, responsive footer, hero mark и UIKit    |
 | `homepage.css`      | Editorial hero/discovery/feature/trust/ownership                 |
 
 ## Identity Primitives и Motion System
@@ -234,13 +239,14 @@ HTML, пятью сценариями и MINI-веткой от 1440. Native det
 и реальные записи не выдуманы.
 
 Общая публичная оболочка применяется к index/catalog/product/UI Kit:
-sans navigation, text wordmark slot, inline SVG utility icons, native drawer
-и открытый footer с большим wordmark. Developer/version bars удалены.
+sans navigation, approved V2 lockup, inline SVG utility icons, native drawer
+и открытый footer с responsive V1/V2 lockup. Developer/version bars удалены.
 На homepage header sticky и переходит от hero к graphite за 220 ms; internal
 pages сохраняют нормальный flow. Без JS работают nav/details/CTA и все пять
 source summaries. Hero использует конечную 940 ms последовательность,
-немедленно отменяемую live reduced motion. Brand/media slots ожидают
-утверждённые logo SVG и фотографии. Подробнее — в двух новых документах выше.
+немедленно отменяемую live reduced motion. Eye Flash запускается на 420 ms,
+заканчивается на 1040 ms и использует реальные SVG eyes. Logo assets утверждены;
+отдельный media slot ожидает фотографии. Подробнее — в документах выше.
 
 ## Catalog & Product Family Experience v1
 
@@ -276,7 +282,8 @@ RAM/SSD и одну CTA; подробности и обе CTA остаются �
 а выбор LANCOOL 217 в макете не утверждает производственный default.
 MINI остаётся отдельным товаром.
 
-Wordmark — временный текст, не финальный логотип. Wireframe — placeholder
+Публичная shell/hero identity — утверждённые SVG; прежний review hub
+сохраняет исторический text wordmark. Wireframe — placeholder
 для будущей фотографии. SYSTEM ID показывает паспорт с вымышленным номером
 без fake QR/barcode. Производительность содержит структуру будущих измерений:
 игра, разрешение, preset, AVG FPS, 1% low, температура, шум и методика;

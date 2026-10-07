@@ -9,6 +9,7 @@
   };
   document.querySelectorAll("[data-home-hero]").forEach((hero) => {
     if (reduced.matches || !hero.animate) return;
+    hero.dispatchEvent(new Event("korsac:hero-enter"));
     const style = getComputedStyle(hero);
     const duration = (token) => {
       const raw = style.getPropertyValue(token).trim();

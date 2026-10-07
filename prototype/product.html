@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- No favicon until the final brand assets are approved. -->
+    <!-- Detailed approved mark needs a dedicated small-size favicon; see brand docs. -->
     <link rel="icon" href="data:," />
     <title>PLAY 1440 — KORSAC Prototype</title>
     <link rel="stylesheet" href="assets/css/tokens.css" />
@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="assets/css/pages.css" />
     <link rel="stylesheet" href="assets/css/product-stage.css" />
     <link rel="stylesheet" href="assets/css/shell.css" />
+    <link rel="stylesheet" href="assets/css/brand.css" />
     <script src="assets/js/prototype.js" defer></script>
     <script src="assets/js/shell.js" defer></script>
     <script src="assets/js/product-experience.js" defer></script>
@@ -22,13 +23,13 @@
     <header class="k-site-header" data-site-shell>
       <div class="k-container k-site-header-inner">
         <a class="k-site-brand" href="index.html" aria-label="KORSAC — главная"
-          ><span
-            class="k-brand-mark"
-            data-brand-mark-motion
-            aria-hidden="true"
-          ></span
-          ><span class="k-brand-wordmark" data-brand-wordmark>KORSAC</span></a
-        >
+          ><span class="k-brand-wordmark" data-brand-wordmark
+            ><img
+              src="assets/images/brand/korsac-lockup-horizontal.svg"
+              width="450"
+              height="100"
+              alt="" /></span
+        ></a>
         <nav class="k-site-nav" aria-label="Основная навигация">
           <a href="catalog.html" aria-current="true">Компьютеры</a
           ><a href="product.html#configurator">Конфигуратор</a
@@ -2103,15 +2104,16 @@
               class="k-site-brand"
               href="index.html"
               aria-label="KORSAC — главная"
-              ><span
-                class="k-brand-mark"
-                data-brand-mark-motion
-                aria-hidden="true"
-              ></span
-              ><span class="k-brand-wordmark" data-brand-wordmark
-                >KORSAC</span
-              ></a
-            >
+              ><picture class="k-brand-footer-lockup" data-brand-wordmark
+                ><source
+                  media="(max-width: 599px)"
+                  srcset="assets/images/brand/korsac-lockup-horizontal.svg" />
+                <img
+                  src="assets/images/brand/korsac-lockup-stacked.svg"
+                  width="10160"
+                  height="7197"
+                  alt="" /></picture
+            ></a>
             <p>Точно под задачу.</p>
           </div>
           <nav aria-label="Продукты">
@@ -2176,12 +2178,12 @@
     >
       <div class="k-dialog-header">
         <a class="k-site-brand" href="index.html" aria-label="KORSAC — главная"
-          ><span
-            class="k-brand-mark"
-            data-brand-mark-motion
-            aria-hidden="true"
-          ></span
-          ><span class="k-brand-wordmark" data-brand-wordmark>KORSAC</span></a
+          ><span class="k-brand-wordmark" data-brand-wordmark
+            ><img
+              src="assets/images/brand/korsac-lockup-horizontal.svg"
+              width="450"
+              height="100"
+              alt="" /></span></a
         ><button
           class="k-shell-icon"
           type="button"

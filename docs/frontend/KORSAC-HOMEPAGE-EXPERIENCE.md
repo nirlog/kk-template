@@ -39,12 +39,19 @@ brand board, AI-generated PC, внешних шрифтов, видео-фона
 небольшую линию. Основные заголовки используют системный sans, mono остаётся
 у model identifiers и паспорта.
 
+Утверждённый медный mark имеет ширину 320 px на 1280/1440/1920,
+220 px на 1024, 210 px на tablet и 148 px на mobile; opacity .68.
+Он смещён от схемы, глаза остаются видны, а продукт находится перед ним.
+Blue ambient уменьшен до 6%, registration line до 18 px. Headline/CTA
+и размер схемы сохраняются. Логотип уже финальный; схема продукта временная.
+
 Слои figure:
 
 1. `k-home-media-field` — декоративное поле.
 2. `data-home-media` / `k-home-media-base` — заменяемая схема или `<picture>`.
 3. `k-home-media-identity` — отдельные guide/copper layers, `aria-hidden`.
-4. `figcaption` — честная подпись изображения.
+4. `k-home-brand-mark` — отдельный decorative ICON за product media, с известным aspect ratio.
+5. `figcaption` — честная подпись изображения.
 
 Base media занимает определённую область figure, не задаёт layout headline,
 CTA или header. Будущая фотография вставляется как `picture/source/img`:
@@ -56,7 +63,8 @@ CTA или header. Будущая фотография вставляется к
 ## Motion
 
 `assets/js/homepage.js` запускает однократную WAAPI последовательность с
-существующими duration/easing tokens. Полная длительность — **940 ms**:
+существующими duration/easing tokens. Основная композиция — **940 ms**;
+после интеграции Eye Flash полная последовательность заканчивается через **1040 ms**:
 
 | Слой                             | Начало | Длительность |
 | -------------------------------- | ------ | ------------ |
@@ -75,8 +83,14 @@ animations. После завершения декоративная сцена 
 
 Shell state использует один hero boundary observer и 220 ms transition,
 не участвует в discovery/business state. В остальных разделах нет scroll
-motion. Future eyes hook описан в [Shell](KORSAC-SITE-SHELL.md); SVG/eye layers
-не выдуманы и эффект сейчас не реализован.
+motion. `korsac:hero-enter` запускает [Eye Flash](KORSAC-BRAND-ASSET-INTEGRATION.md)
+через прежний `data-brand-mark-motion` hook: delay 420 ms, duration 620 ms.
+Это реальные SVG eyes утверждённого ICON; после эффекта глаза снова выключены.
+Hero использует один inline SVG с `home-brand-` prefix; static shell assets
+изолированы как external images. UI Kit имеет отдельный `kit-brand-` prefix
+и replay. No-JS / reduced motion / unsupported WAAPI оставляют статический знак.
+CSS reduced-motion override выключает глаза сразу, JS отменяет active effects;
+возврат к normal motion не переигрывает hero.
 
 ## Компактный discovery
 
@@ -166,7 +180,7 @@ Self-review A–G:
 - B: identity сохраняется через композицию, designation, copper и управляемый выбор без REV/DIRECTION chrome.
 - C: hero/редакционная структура эмоциональнее scan catalog; aggressive gaming language отсутствует.
 - D: precision остаётся в сценариях, базовых фактах и процессе, не в каждой рамке.
-- E: отдельные brand/media slots позволяют вставить утверждённые SVG/photography без новой структуры.
+- E: утверждённые brand SVG интегрированы в прежние hooks; отдельный media slot остаётся готовым к фотографии.
 - F: hero/discovery/feature/final CTA ведут в существующие Catalog и PLAY 1440.
 - G: Homepage editorial, Catalog discovery/compare, Product inspection/configuration имеют разные роли.
 

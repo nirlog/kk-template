@@ -17,7 +17,7 @@ header/footer нет. `review.html` сохраняет прежнюю оболо
 
 ## Header
 
-Desktop: text wordmark, пять навигационных ссылок и Search / Account / Cart.
+Desktop: утверждённый horizontal SVG lockup, пять навигационных ссылок и Search / Account / Cart.
 Иконки — локальный inline SVG с `aria-hidden` и без icon library. Utility
 links имеют русские `aria-label`, visible focus и область 44×44 px. Без JS
 они ведут к пояснению в footer; JS открывает существующий native dialog,
@@ -62,38 +62,46 @@ Menu-button появляется только после enhancement. Без JS 
 поэтому включение JS не меняет высоту header. Utility anchors ведут к
 `#site-prototype`, где честно объяснена граница прототипа.
 
-## Brand slot и будущие assets
+## Approved brand assets
 
-Текущий `KORSAC` — временный текст, не финальный логотип. Ни fox/totem SVG,
-ни custom letterforms, ни raster tracing не созданы.
-
-Стабильный lockup:
+Публичный Header и Drawer используют `assets/images/brand/korsac-lockup-horizontal.svg`
+из утверждённого V2. Width: **164 px desktop / 140 px mobile**, без увеличения
+88/64 px header. Link сохраняет один `aria-label="KORSAC — главная"`, image —
+пустой `alt`. Иконки utility остаются 44×44 px. Знак и wordmark не анимируются.
+Практический header gap — 32 px desktop / 12 px mobile; это layout spacing,
+не формальная brand clear-space норма.
 
 ```html
 <a class="k-site-brand" href="index.html" aria-label="KORSAC — главная">
-  <span class="k-brand-mark" data-brand-mark-motion aria-hidden="true"></span>
-  <span class="k-brand-wordmark" data-brand-wordmark>KORSAC</span>
+  <span class="k-brand-wordmark" data-brand-wordmark>
+    <img
+      src="assets/images/brand/korsac-lockup-horizontal.svg"
+      width="450"
+      height="100"
+      alt=""
+    />
+  </span>
 </a>
 ```
 
-После утверждения знак вставляется в `k-brand-mark`, wordmark SVG — в
-`data-brand-wordmark`. `--k-brand-mark-size` и `--k-brand-mark-gap` выделяют
-место под знак; сейчас оба равны 0. `--k-brand-wordmark-width` задаёт ширину
-SVG, footer использует свой масштаб. Задавайте реальный `viewBox`/dimensions
-asset и сохраняйте доступное название ссылки. `COMPUTERS` добавляется только
-в согласованный extended lockup, не в каждый header по умолчанию.
+`data-brand-wordmark` теперь содержит реальный asset. Empty mark slot удалён
+из статического lockup; `data-brand-mark-motion` перенесён на Hero mark.
+Отдельного дублирующего logo controller нет. Все static instances — external
+SVG; fragment IDs не пересекаются с документом или друг с другом.
 
-`data-brand-mark-motion` — будущая точка подключения короткой вспышки глаз
-внутри **утверждённого** SVG. Сейчас hook не запускает эффекты. Eye layers
-и их конечная последовательность подключаются после появления вектора,
-с тем же reduced-motion cleanup. Выдуманных glowing eyes нет.
+Footer: V1 stacked lockup шириной **224 px**. До 600 px тот же `<picture>`
+переключает asset на horizontal V2 шириной **200 px**, сохраняя компактность.
+CSS резервирует aspect ratio обеих версий до image load; `object-fit: contain`
+сохраняет геометрию. Глаза выключены во всех статических web assets, никаких
+hover/viewport logo effects нет. Masters остаются неизменными.
 
-Layout probe с нейтральным 32 px слотом проверил header height и отсутствие
-overflow на 320/768/1440/1920 px. Это проверка размеров, не разработка знака.
+Hero использует один уникально prefixed inline ICON и настоящие SVG eye layers;
+реализация/тайминг описаны в [Brand Asset Integration](KORSAC-BRAND-ASSET-INTEGRATION.md).
+Однократная активация не применяется к header, drawer или footer.
 
 ## Footer
 
-Один главный жест — большой спокойный wordmark с «Точно под задачу.».
+Один главный жест — утверждённый stacked metallic lockup с «Точно под задачу.».
 Рядом открытые группы «Продукты», «Компания», «Поддержка»; без карточек,
 serial markers, повторной рамки и набора декоративных rails. На mobile бренд
 отделён от двух колонок ссылок; support занимает следующую строку.
@@ -107,7 +115,8 @@ Bottom line: `KORSAC by King-Komp`, placeholder юридических доку�
 
 `Premium Site Shell` показывает hero-integrated и graphite состояния,
 utility icons, мобильную анатомию и нативное открытие реального drawer.
-Footer anatomy раскрывается через `details`. Сам UI Kit использует публичную
+Footer anatomy раскрывается через `details`; Brand Assets показывает все варианты
+и отдельный безопасный Eye Flash replay. Сам UI Kit использует публичную
 оболочку; developer metadata находится в содержании, не над header.
 `review.html` обеспечивает отдельный доступ ко всем prototype pages.
 

@@ -12,3 +12,13 @@ base64-изображения или изображения производит
 Будущие согласованные фотографии: локальные оптимизированные файлы с размерами,
 осмысленным `alt` и сохранённым соотношением сторон. Декоративным изображениям
 нужен пустой `alt`; название опции всегда остаётся рядом текстом.
+
+## Approved brand assets
+
+Четыре `KORSAC_LOGO_*_FINAL_REVISED.svg` — неизменяемые утверждённые masters:
+ICON, TEXT, V1 (stacked), V2 (horizontal). Runtime использует semantic
+web derivatives в `brand/`; geometry, metallic gradients и palette сохранены.
+Static eyes off; hero использует настоящую eye geometry для одной вспышки.
+
+[Mapping / isolation / motion](../../../docs/frontend/KORSAC-BRAND-ASSET-INTEGRATION.md).
+Логотип финальный; фотография продукта по-прежнему временная.

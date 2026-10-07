@@ -20,7 +20,9 @@ KORSAC — точный инженерный инструмент. Интерф�
 Эта грамматика повторяется в header/footer, product stage, конфигураторе,
 измерительном блоке, паспорте и каталожной карточке. Она может перейти
 в каталог, корзину и checkout через те же rails, индексы и состояния.
-Wordmark остаётся текстовым; финальный логотип здесь не проектируется.
+В версии v2 wordmark был текстовым.
+[Brand Asset Integration](KORSAC-BRAND-ASSET-INTEGRATION.md) использует
+утверждённые SVG masters для современной public shell и hero.
 В [Premium Site Shell v1](KORSAC-SITE-SHELL.md) публичные header/footer
 становятся спокойнее: grammar v2 остаётся у продуктового содержания,
 а version/registration chrome сохраняется только в review hub.
