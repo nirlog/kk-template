@@ -5,8 +5,8 @@
 [Commerce — normal-speed MP4](commerce-v1.mp4): две конфигурации PLAY 1440,
 полная конфигурация, quantity/demo totals, remove → empty → restore,
 Checkout Individual → Company, CDEK dialog/выбор примера, Cash → Invoice,
-focused validation и `DEMO / ORDER` success. **23.32 s**, H.264
-**1440×1080 / 25 fps**, около **2.19 MiB**, без звука и изменения скорости.
+focused validation и `DEMO / ORDER` success. **21.60 s**, H.264
+**1440×1080 / 25 fps**, около **2.05 MiB**, без звука и изменения скорости.
 Chromium 151 / HTTP / normal motion. Полный decode и browser playback/seek
 проверены; графитный первый кадр — начало захвата. Видео только для review.
 
@@ -20,16 +20,23 @@ Cart:
 
 Checkout / Success / UI Kit:
 
-- [Desktop](checkout-v1-desktop.png), 1440×2071 — one-page guest flow, sticky summary.
-- [Mobile](checkout-v1-mobile.png), 375×2397 — компактный order disclosure, normal-flow CTA.
-- [Company](checkout-v1-company.png), 1440×2350 — contact wording, реквизиты и invoice.
-- [Company mobile](checkout-v1-company-mobile.png), 375×2757.
-- [Validation](checkout-v1-validation.png), 1440×2450 — focused summary + visible errors.
+- [Desktop](checkout-v1-desktop.png), 1440×2150 — one-page guest flow, sticky summary.
+- [Mobile](checkout-v1-mobile.png), 375×2475 — компактный order disclosure, normal-flow CTA.
+- [Company](checkout-v1-company.png), 1440×2484 — demo contact wording, реквизиты и общий payment sample set.
+- [Company mobile](checkout-v1-company-mobile.png), 375×2932.
+- [Validation](checkout-v1-validation.png), 1440×2528 — focused summary + visible errors.
 - [Delivery dialog](checkout-v1-delivery-dialog.png), 1440×1080 — нейтральный map/list
   placeholder, без физического адреса и внешних запросов.
 - [Success](order-success-v1.png), 1440×1080 — `DEMO / ORDER`, реального заказа нет.
 - [Commerce Primitives](commerce-primitives-v1.png), 1344×1236 — quantity/cart line,
   CONFIG, summary/CTA, native choices, field/error и empty state.
+
+Уточнение владельца проекта: payment/delivery availability, restrictions/compatibility
+и order-property sets/required flags принадлежат Bitrix. СБП/Наличные/Счёт — один
+нейтральный авторский набор для обоих buyer modes, без frontend payment matrix.
+Buyer switch сохраняет выбранный метод. Company-property visibility/required —
+явно demo-only fixture, заменяемый Bitrix-provided descriptors. СДЭК — один sample,
+не frontend policy доступных способов.
 
 Screenshots — resting states, reduced context; normal-speed MP4 показывает finite
 transactional feedback. Transactional pages никогда не запускают Brand Intro и
@@ -44,8 +51,11 @@ Checkout/Success открывают исходный demo order; локальн�
   states: без horizontal overflow, sticky height 88/64px, bounded fields/content.
 - Quantity minimum 1 / 13 systems; integer totals, remove/restore/empty, status
   message и focus recovery; native full-config disclosure/edit path.
-- Guest/company required fields, email/phone presence, disabled irrelevant fields,
-  payment switching/restored retail choice, mandatory delivery/consent.
+- Guest/company demo required fields, email/phone presence, disabled inactive demo
+  property group, buyer-independent payment choice, authored delivery/consent validation.
+- Все три sample methods selectable в обоих buyer modes на восьми ширинах;
+  extra native method row и изменённые demo property metadata не требуют новой
+  JS matrix/layout. Backend availability не вычисляется в контроллере.
 - Error links сохраняются при взаимодействиях, delivery error opens dialog;
   touch cart, native buyer arrows, modal Tab/Escape/focus return. Short 375×480
   viewport не скрывает focused field под fixed CTA: CTA находится в обычном потоке.

@@ -159,7 +159,11 @@
                 ></p>
               </div>
             </div>
-            <fieldset class="k-company-fields" data-company-fields>
+            <fieldset
+              class="k-company-fields"
+              data-company-fields
+              data-demo-property-group="company"
+            >
               <legend>Реквизиты компании</legend>
               <p class="k-small k-muted" data-company-fallback>
                 Для режима «Компания». При отсутствии JavaScript заполните эти
@@ -174,7 +178,7 @@
                     id="company-name"
                     type="text"
                     autocomplete="organization"
-                    data-company-required
+                    data-demo-company-required
                     aria-describedby="company-name-error"
                     data-error-label="Название организации"
                   />
@@ -192,7 +196,7 @@
                     id="company-inn"
                     type="text"
                     inputmode="numeric"
-                    data-company-required
+                    data-demo-company-required
                     aria-describedby="company-inn-error"
                     data-error-label="ИНН"
                   />
@@ -222,8 +226,8 @@
                 </div>
               </div>
               <p class="k-small k-muted">
-                Счёт без НДС. Реквизиты остаются частью заказа; проверка
-                организации появится при интеграции.
+                Реквизиты в макете — пример набора полей заказа. Проверка
+                организации не подключена.
               </p>
             </fieldset>
           </section>
@@ -270,8 +274,8 @@
                 hidden
               ></p>
               <p class="k-small k-muted">
-                Стоимость доставки будет рассчитана. Курьерский способ появится
-                там, где его поддерживает интеграция.
+                Стоимость доставки будет рассчитана. Показан один пример;
+                доступные способы появятся при реальном оформлении.
               </p>
             </div>
             <div class="k-delivery-fallback" data-delivery-fallback>
@@ -337,9 +341,9 @@
             <fieldset>
               <legend class="k-sr-only">Способ оплаты</legend>
               <p class="k-small k-muted k-payment-intro" data-payment-copy>
-                Выберите удобный способ. Оплата в прототипе не проводится.
+                Способы показаны для примера. Оплата в прототипе не проводится.
               </p>
-              <div data-retail-payments>
+              <div data-demo-payment-methods>
                 <label class="k-commerce-choice"
                   ><input
                     id="payment-sbp"
@@ -370,8 +374,6 @@
                     ></span
                   ></label
                 >
-              </div>
-              <div data-invoice-payment>
                 <label class="k-commerce-choice"
                   ><input
                     id="payment-invoice"
@@ -382,7 +384,7 @@
                     required
                   /><span
                     ><strong>Счёт без НДС</strong
-                    ><small>Для компании · по реквизитам заказа</small></span
+                    ><small>По реквизитам заказа · пример</small></span
                   ></label
                 >
               </div>
@@ -462,8 +464,9 @@
             <noscript
               ><p class="k-small k-muted">
                 Доступна нативная проверка обязательных полей. Компания:
-                заполните реквизиты и выберите счёт. Кнопка откроет статический
-                пример результата; контакты не передаются.
+                заполните пример реквизитов. Способ оплаты выбирается отдельно.
+                Кнопка откроет статический пример результата; контакты не
+                передаются.
               </p></noscript
             >
           </section>

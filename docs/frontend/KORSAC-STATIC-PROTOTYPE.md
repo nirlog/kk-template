@@ -374,3 +374,8 @@ Cart/Checkout/Success не имеют Brand Intro boot/overlay/controller и н�
 Cart CTA и Checkout явно поясняют: новый документ использует исходный demo order.
 Нативная форма без JS остаётся доступной; личные поля не сериализуются в URL.
 [Полная архитектура и future mapping](KORSAC-CART-CHECKOUT-EXPERIENCE.md).
+
+Checkout methods/properties также backend-owned: Bitrix определяет availability,
+restrictions/compatibility и required order-property sets. UI отображает этот
+контекст, без buyer→payment/delivery matrix. Текущие методы — общий authored
+sample set; условные company fields — demo-only fixture, заменяемый Bitrix data.

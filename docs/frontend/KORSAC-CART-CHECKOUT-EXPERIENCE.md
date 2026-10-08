@@ -13,6 +13,34 @@ pricing/logistics/payment API, настоящего заказа или basket p
 
 Основа: `main` на `7acd51ab55746dd3c6681aec2d51aaf101dc315f`, включающий PR #7.
 
+## Владелец методов, ограничений и свойств заказа — Bitrix
+
+**Bitrix конфигурирует доступные способы оплаты/доставки, их restrictions и
+compatibility, а также наборы/обязательность order properties для текущего
+контекста заказа. Frontend только отображает то, что Bitrix предоставляет.**
+Нельзя выводить availability из buyer type, способа оплаты/доставки, полей
+организации или собственной матрицы в JS. Frontend не дублирует эти правила.
+
+В prototype СБП, Наличные и Счёт без НДС — нейтральный авторский sample set,
+всегда видимый для обоих buyer modes. Выбор покупателя не скрывает, не отключает
+и не переизбирает payment method. Это не обещание доступности всех трёх в магазине.
+СДЭК — один delivery fixture, не эксклюзивный production provider.
+
+`renderDemoBuyerProperties`, `data-demo-property-group` и
+`data-demo-company-required` явно обозначают **demo-only** видимость и required
+flags полей компании. Обязательность остальных HTML inputs также авторский
+validation fixture. В production этот demo switch заменяется backend-provided
+order-property descriptors (labels, types, required/available flags, values,
+validation errors), а не превращается в client-side business rules.
+
+Методы отображаются обычными native selection rows в одном списке без
+buyer-specific wrappers или count/position selectors. Свойства — fieldset/grid,
+которые переносят дополнительные/удалённые поля. При интеграции меняются
+backend-provided списки и attributes; layout не требует фиксированного количества
+методов/полей. Frontend сохраняет UI focus/selected/error feedback и отправляет
+выбор owner; Bitrix остаётся владельцем разрешённого контекста и окончательной
+проверки. Production IDs/schema/frontend adapter этим PR не объявляются.
+
 ## Страницы, shell и Brand Intro
 
 - `prototype/cart.html`: обычный public shell, sticky opaque header, native drawer,
@@ -99,22 +127,24 @@ wizard, hardware editor и account gate отсутствуют. Контактн
 name, tel, email, правильные type/inputmode/autocomplete. Поля имеют font-size
 16px. Имя/Телефон/Email — обязательны.
 
-Native buyer radios выбирают «Частное лицо / Компания». Компания получает:
+Native buyer radios демонстрируют «Частное лицо / Компания». Company fixture:
 Контактное лицо, Телефон, Email, Название организации, ИНН; КПП необязателен.
-У выключенного company fieldset поля disabled, conditional required снят.
-В активном company mode организация/ИНН обязательны. Нет company lookup,
-DaData, production INN regex или фиктивной проверки реквизитов.
+У выключенного demo company fieldset inputs disabled, conditional required снят.
+В активном **demo** режиме организация/ИНН обязательны. Это пример UI состояния,
+не production property-set правило; набор и flags будут поступать из Bitrix.
+Нет company lookup, DaData, production INN regex или проверки реквизитов.
 
-Individual: СБП / Наличные. Company: Счёт без НДС и текст о реквизитах.
-Неактуальные payment radios disabled и hidden; invoice выбирается при переходе
-к Company. При возврате сохраняется последний retail выбор. Все choices —
-компактные native selection rows, без provider logos, QR, карты, кредитов,
-рассрочки или финансовой логики.
+СБП / Наличные / Счёт без НДС показаны в общем sample list независимо от buyer.
+Все choices — компактные native selection rows. Ни payment selection, ни delivery
+list не меняются от buyer switch. Нет provider logos, QR, карты, кредитов,
+рассрочки или финансовой логики. Реальная доступность определяется Bitrix.
 
 ## Delivery / СДЭК
 
-Один CDEK вариант: пункт выдачи / постамат. Курьер — будущая возможность там,
-где он поддерживается backend integration; сейчас выбрать/обещать его нельзя.
+Один авторский CDEK пример: пункт выдачи / постамат. Это sample delivery UI,
+не frontend policy доступных методов. Реальный список, ограничения, совместимость
+и связанные delivery properties предоставляет Bitrix / настроенная интеграция.
+Frontend не решает, каким покупателям доступны СДЭК, курьер или другие способы.
 
 «Выбрать пункт выдачи» открывает native dialog. Authored picker переносится
 из открытого no-JS блока в dialog; radio сохраняет `form="checkout-form"`.
@@ -125,7 +155,9 @@ Individual: СБП / Наличные. Company: Счёт без НДС и тек
 доставочных тарифов, `0 ₽`, сроков или stock/shipping promises. Выбранное
 состояние: «Пункт выдачи выбран · пример, без физического адреса».
 Native selection сразу становится состоянием формы; Escape закрывает dialog,
-сохраняя выбранный пример. Доставка required, стоимость остаётся неизвестной.
+сохраняя выбранный пример. Pickup required — авторский validation fixture;
+в production соответствующее свойство/обязательность задаёт Bitrix. Стоимость
+остаётся неизвестной.
 
 ## Review, comment, consent и submit
 
@@ -153,7 +185,8 @@ consent проверяются; aggressive input-time validation отсутст�
 неудачной отправки выбор radio/checkbox обновляет ошибки; текстовые поля
 перепроверяются на submit. Blur не удаляет строки ошибок под pending pointer click.
 До submit пользователя не
-прерывают. Нет exact production phone/INN regex.
+прерывают. Нет exact production phone/INN regex. Production required/property errors
+приходят из Bitrix; локальная native validation не заменяет проверку backend.
 
 У полей есть visible text errors, `aria-invalid` и `aria-describedby`; при
 ошибке доставки ссылка открывает dialog и фокусирует native point radio.
@@ -204,9 +237,9 @@ Success их не читает. Company required conditional / custom summary д
 | Quantity                                | Sale basket quantity                                                                                        |
 | Remove                                  | Sale basket item removal                                                                                    |
 | Checkout                                | `bitrix:sale.order.ajax` или KORSAC wrapper/template                                                        |
-| Buyer/company fields                    | Bitrix order properties                                                                                     |
-| Delivery/pickup                         | Bitrix delivery services / CDEK integration                                                                 |
-| Payment choices                         | Bitrix payment systems                                                                                      |
+| Buyer/company fields                    | Bitrix order properties: набор, типы, required/available flags и ошибки                                     |
+| Delivery/pickup                         | Bitrix delivery services / CDEK integration: список и restrictions/compatibility                            |
+| Payment choices                         | Bitrix payment systems: доступные методы/ограничения/compatibility для текущего order context               |
 | Subtotal/final total                    | Sale order calculation, включая delivery/discount/tax                                                       |
 | Success                                 | Реальный order state/result: order number, payment instruction, delivery status, contact/email confirmation |
 
@@ -223,7 +256,7 @@ arithmetic/controller заменяются реальным owner, не расш
 - C: base/core specs открыты; вторичные опции в native disclosure.
 - D: одна страница, без marketing nav/intro, ровная иерархия четырёх секций.
 - E: guest contacts → delivery → payment → consent → static success, без аккаунта.
-- F: компания имеет отдельный блок реквизитов, contact wording и invoice-first flow.
+- F: компания имеет отдельный блок реквизитов, contact wording и пример property-group flow без payment exclusivity.
 - G: normal-flow CTA, 16px native inputs, touch controls, focused errors; реальный
   software keyboard требует human review на физическом устройстве.
 - H: только authored integer display arithmetic; нет component-based pricing/persistence.

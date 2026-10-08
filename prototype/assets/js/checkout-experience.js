@@ -1,5 +1,7 @@
 /* One-page checkout presentation only. Authored order never persists or sends
-   contacts. Native validity and local UI state; success is a static document. */
+   contacts. Property visibility/required flags below are authored demo fixtures,
+   not production availability rules. Bitrix owns methods, restrictions and
+   order-property sets. Native validity; success is a static document. */
 (() => {
   "use strict";
   const root = document.querySelector("[data-checkout-experience]");
@@ -8,8 +10,6 @@
   const buyerRadios = [...form.querySelectorAll('input[name="demo-buyer"]')];
   const company = form.querySelector("[data-company-fields]");
   const companyControls = [...company.querySelectorAll("input")];
-  const retail = form.querySelector("[data-retail-payments]");
-  const invoice = form.querySelector("[data-invoice-payment]");
   const summary = form.querySelector("[data-checkout-errors]");
   const errorList = summary.querySelector("[data-checkout-error-list]");
   const point = root.querySelector("#demo-point");
@@ -19,7 +19,6 @@
   const reduced = matchMedia("(prefers-reduced-motion: reduce)");
   const effects = new Set();
   let attempted = false;
-  let lastRetail = "sbp";
   const acknowledge = (target) => {
     if (!target?.animate) return;
     const duration = parseFloat(
@@ -46,25 +45,16 @@
       error.textContent = "";
     }
   };
-  const renderBuyer = () => {
+  const renderDemoBuyerProperties = () => {
     const isCompany =
       buyerRadios.find((control) => control.checked)?.value === "company";
-    if (isCompany) {
-      const current = retail.querySelector("input:checked");
-      if (current) lastRetail = current.value;
-    }
     company.hidden = !isCompany;
     companyControls.forEach((control) => {
       control.disabled = !isCompany;
       control.required =
-        isCompany && control.hasAttribute("data-company-required");
+        isCompany && control.hasAttribute("data-demo-company-required");
       const label = form.querySelector(`label[for="${control.id}"]`);
-      const base =
-        control.id === "company-name"
-          ? "Название организации"
-          : control.id === "company-inn"
-            ? "ИНН"
-            : "КПП";
+      const base = control.dataset.errorLabel;
       label.textContent = `${base}${control.required ? " *" : " · необязательно"}`;
       clearError(control);
     });
@@ -73,19 +63,6 @@
     form.querySelector('label[for="buyer-name"]').firstChild.textContent =
       `${nameLabel} `;
     name.dataset.errorLabel = nameLabel;
-    retail.hidden = isCompany;
-    invoice.hidden = !isCompany;
-    retail.querySelectorAll("input").forEach((control) => {
-      control.disabled = isCompany;
-      control.checked = !isCompany && control.value === lastRetail;
-      clearError(control);
-    });
-    const invoiceRadio = invoice.querySelector("input");
-    invoiceRadio.disabled = !isCompany;
-    invoiceRadio.checked = isCompany;
-    root.querySelector("[data-payment-copy]").textContent = isCompany
-      ? "Для компании — счёт без НДС по указанным реквизитам. В прототипе счёт не выставляется."
-      : "Выберите удобный способ. Оплата в прототипе не проводится.";
   };
   const fieldMessage = (control) => {
     if (control.id === "demo-point")
@@ -166,10 +143,10 @@
   compact.addEventListener("change", () => {
     review.open = !compact.matches;
   });
-  renderBuyer();
+  renderDemoBuyerProperties();
   buyerRadios.forEach((control) =>
     control.addEventListener("change", () => {
-      renderBuyer();
+      renderDemoBuyerProperties();
       acknowledge(
         company.hidden ? form.querySelector(".k-contact-fields") : company,
       );
