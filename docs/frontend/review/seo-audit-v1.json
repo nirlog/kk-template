@@ -1,0 +1,146 @@
+{
+  "pages": [
+    {
+      "page": "prototype/404.html",
+      "title": "Страница не найдена — KORSAC",
+      "schema_types": [],
+      "errors": [],
+      "warnings": [
+        "No approved og:image; production social artwork remains pending",
+        "Prototype canonical/og:url intentionally omitted; production follows page-type policy and approved host"
+      ]
+    },
+    {
+      "page": "prototype/500.html",
+      "title": "Что-то пошло не так — KORSAC",
+      "schema_types": [],
+      "errors": [],
+      "warnings": [
+        "No approved og:image; production social artwork remains pending",
+        "Prototype canonical/og:url intentionally omitted; production follows page-type policy and approved host"
+      ]
+    },
+    {
+      "page": "prototype/503.html",
+      "title": "KORSAC временно недоступен",
+      "schema_types": [],
+      "errors": [],
+      "warnings": [
+        "No approved og:image; production social artwork remains pending",
+        "Prototype canonical/og:url intentionally omitted; production follows page-type policy and approved host"
+      ]
+    },
+    {
+      "page": "prototype/cart.html",
+      "title": "Корзина — KORSAC",
+      "schema_types": [],
+      "errors": [],
+      "warnings": [
+        "No approved og:image; production social artwork remains pending",
+        "Prototype canonical/og:url intentionally omitted; production follows page-type policy and approved host"
+      ]
+    },
+    {
+      "page": "prototype/catalog.html",
+      "title": "Игровые компьютеры PLAY — KORSAC",
+      "schema_types": [
+        "BreadcrumbList",
+        "CollectionPage",
+        "ListItem"
+      ],
+      "errors": [],
+      "warnings": [
+        "No approved og:image; production social artwork remains pending",
+        "Prototype canonical/og:url intentionally omitted; production follows page-type policy and approved host",
+        "Relative schema URLs/IDs are semantic-review only; production needs absolute canonical URLs"
+      ]
+    },
+    {
+      "page": "prototype/checkout.html",
+      "title": "Оформление заказа — KORSAC",
+      "schema_types": [],
+      "errors": [],
+      "warnings": [
+        "No approved og:image; production social artwork remains pending",
+        "Prototype canonical/og:url intentionally omitted; production follows page-type policy and approved host"
+      ]
+    },
+    {
+      "page": "prototype/contacts.html",
+      "title": "Контакты — KORSAC",
+      "schema_types": [
+        "BreadcrumbList",
+        "ContactPage",
+        "ListItem"
+      ],
+      "errors": [],
+      "warnings": [
+        "No approved og:image; production social artwork remains pending",
+        "Prototype canonical/og:url intentionally omitted; production follows page-type policy and approved host",
+        "Relative schema URLs/IDs are semantic-review only; production needs absolute canonical URLs"
+      ]
+    },
+    {
+      "page": "prototype/index.html",
+      "title": "KORSAC — компьютеры, точно собранные под задачу",
+      "schema_types": [
+        "Organization",
+        "WebSite"
+      ],
+      "errors": [],
+      "warnings": [
+        "No approved og:image; production social artwork remains pending",
+        "Prototype canonical/og:url intentionally omitted; production follows page-type policy and approved host",
+        "Relative schema URLs/IDs are semantic-review only; production needs absolute canonical URLs"
+      ]
+    },
+    {
+      "page": "prototype/order-success.html",
+      "title": "Заказ принят · демонстрация — KORSAC",
+      "schema_types": [],
+      "errors": [],
+      "warnings": [
+        "No approved og:image; production social artwork remains pending",
+        "Prototype canonical/og:url intentionally omitted; production follows page-type policy and approved host"
+      ]
+    },
+    {
+      "page": "prototype/product.html",
+      "title": "PLAY 1440 — игровой компьютер KORSAC",
+      "schema_types": [
+        "Brand",
+        "BreadcrumbList",
+        "ListItem",
+        "Product"
+      ],
+      "errors": [],
+      "warnings": [
+        "No approved og:image; production social artwork remains pending",
+        "Prototype canonical/og:url intentionally omitted; production follows page-type policy and approved host",
+        "Relative schema URLs/IDs are semantic-review only; production needs absolute canonical URLs"
+      ]
+    },
+    {
+      "page": "prototype/review.html",
+      "title": "Материалы прототипа — KORSAC",
+      "schema_types": [],
+      "errors": [],
+      "warnings": [
+        "No approved og:image; production social artwork remains pending",
+        "Prototype canonical/og:url intentionally omitted; production follows page-type policy and approved host"
+      ]
+    },
+    {
+      "page": "prototype/ui.html",
+      "title": "UI Kit — KORSAC Prototype",
+      "schema_types": [],
+      "errors": [],
+      "warnings": [
+        "No approved og:image; production social artwork remains pending",
+        "Prototype canonical/og:url intentionally omitted; production follows page-type policy and approved host"
+      ]
+    }
+  ],
+  "errors": 0,
+  "warnings": 28
+}

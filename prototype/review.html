@@ -5,13 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Dedicated small-size favicon remains pending; approved SVG assets exist. -->
     <link rel="icon" href="data:," />
-    <title>Навигация — KORSAC Prototype</title>
+    <title>Материалы прототипа — KORSAC</title>
     <link rel="stylesheet" href="assets/css/tokens.css" />
     <link rel="stylesheet" href="assets/css/base.css" />
     <link rel="stylesheet" href="assets/css/layout.css" />
     <link rel="stylesheet" href="assets/css/components.css" />
     <link rel="stylesheet" href="assets/css/pages.css" />
     <script src="assets/js/prototype.js" defer></script>
+
+    <!-- prototype = noindex environment; production policy is page-specific. -->
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <meta
+      name="description"
+      content="Навигация по страницам и review-материалам прототипа KORSAC: интерфейсы, контакты, ошибки и SEO-контракт."
+    />
+    <meta property="og:title" content="Материалы прототипа — KORSAC" />
+    <meta
+      property="og:description"
+      content="Навигация по страницам и review-материалам прототипа KORSAC: интерфейсы, контакты, ошибки и SEO-контракт."
+    />
+    <meta property="og:site_name" content="KORSAC" />
+    <meta property="og:type" content="website" />
   </head>
   <body>
     <a class="k-skip" href="#main">Перейти к содержанию</a>
@@ -135,6 +149,41 @@
             </p></a
           >
         </div>
+        <div class="k-grid">
+          <a class="k-panel k-index-card" href="contacts.html"
+            ><span class="k-eyebrow">Generic pages / v1</span>
+            <h2>Контакты →</h2></a
+          ><a class="k-panel k-index-card" href="404.html"
+            ><span class="k-eyebrow">Generic pages / v1</span>
+            <h2>404 · Страница не найдена →</h2></a
+          ><a class="k-panel k-index-card" href="500.html"
+            ><span class="k-eyebrow">Generic pages / v1</span>
+            <h2>500 · Внутренняя ошибка →</h2></a
+          ><a class="k-panel k-index-card" href="503.html"
+            ><span class="k-eyebrow">Generic pages / v1</span>
+            <h2>503 · Временная недоступность →</h2></a
+          >
+        </div>
+        <p class="k-small k-muted">
+          Страницы ошибок — визуальные прототипы. Открытие статического файла и
+          обычный файловый сервер не задают HTTP 404/500/503; production-статус
+          обязан вернуть сервер.
+        </p>
+        <nav class="k-stack k-stack--tight" aria-label="SEO и архитектура">
+          <a
+            href="https://github.com/nirlog/kk-template/blob/feat/korsac-ia-seo-foundation/docs/frontend/KORSAC-INFORMATION-ARCHITECTURE.md"
+            >IA и матрица индексирования →</a
+          ><a
+            href="https://github.com/nirlog/kk-template/blob/feat/korsac-ia-seo-foundation/docs/frontend/KORSAC-SEO-FOUNDATION.md"
+            >SEO и Bitrix-контракт →</a
+          ><a
+            href="https://github.com/nirlog/kk-template/blob/feat/korsac-ia-seo-foundation/docs/frontend/KORSAC-GENERIC-PAGES.md"
+            >Контакты и HTTP-ошибки →</a
+          ><a
+            href="https://github.com/nirlog/kk-template/blob/feat/korsac-ia-seo-foundation/docs/frontend/review/seo-foundation-v1.md"
+            >Результаты локального SEO-аудита →</a
+          >
+        </nav>
         <p class="k-small k-muted">
           Утверждённые SVG уже используются на публичных страницах. Фотографии
           продукта и результаты измерений появятся на следующих этапах.

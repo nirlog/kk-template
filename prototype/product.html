@@ -38,7 +38,7 @@
     </script>
     <!-- Detailed approved mark needs a dedicated small-size favicon; see brand docs. -->
     <link rel="icon" href="data:," />
-    <title>PLAY 1440 — KORSAC Prototype</title>
+    <title>PLAY 1440 — игровой компьютер KORSAC</title>
     <link rel="stylesheet" href="assets/css/tokens.css" />
     <link rel="stylesheet" href="assets/css/base.css" />
     <link rel="stylesheet" href="assets/css/layout.css" />
@@ -52,6 +52,65 @@
     <script src="assets/js/prototype.js" defer></script>
     <script src="assets/js/shell.js" defer></script>
     <script src="assets/js/product-experience.js" defer></script>
+
+    <!-- prototype = noindex environment; production policy is page-specific. -->
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <meta
+      name="description"
+      content="KORSAC PLAY 1440: архитектура игровой системы, обзор компонентов, выбор памяти, накопителя и корпуса."
+    />
+    <meta property="og:title" content="PLAY 1440 — игровой компьютер KORSAC" />
+    <meta
+      property="og:description"
+      content="KORSAC PLAY 1440: архитектура игровой системы, обзор компонентов, выбор памяти, накопителя и корпуса."
+    />
+    <meta property="og:site_name" content="KORSAC" />
+    <meta property="og:type" content="website" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Product",
+            "name": "KORSAC PLAY 1440",
+            "brand": {
+              "@type": "Brand",
+              "name": "KORSAC"
+            },
+            "model": "PLAY 1440",
+            "category": "Игровые компьютеры",
+            "description": "Система PLAY для игр в 1440p с выбором памяти, накопителя и корпуса."
+          },
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Главная",
+                "item": "index.html"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Компьютеры"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "PLAY",
+                "item": "catalog.html"
+              },
+              {
+                "@type": "ListItem",
+                "position": 4,
+                "name": "PLAY 1440"
+              }
+            ]
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <div
@@ -678,8 +737,12 @@
     <main id="main" data-product-experience>
       <div class="k-container">
         <nav class="k-breadcrumb" aria-label="Хлебные крошки">
-          <a href="index.html">Главная</a> /
-          <span aria-current="page">PLAY 1440</span>
+          <ol>
+            <li><a href="index.html">Главная</a></li>
+            <li><span>Компьютеры</span></li>
+            <li><a href="catalog.html">PLAY</a></li>
+            <li><span aria-current="page">PLAY 1440</span></li>
+          </ol>
         </nav>
         <section
           class="k-hero k-hero-v2"
@@ -2708,6 +2771,7 @@
           </nav>
           <nav aria-label="Поддержка">
             <h2>Поддержка</h2>
+            <a href="contacts.html">Контакты</a>
             <a href="product.html#warranty">Гарантия и сервис</a
             ><a href="product.html#faq">Вопросы и ответы</a
             ><a href="product.html#product-passport">Паспорт системы</a>
