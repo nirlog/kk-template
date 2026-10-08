@@ -1,0 +1,123 @@
+/* Approved artwork retains its geometry and palette. Static instances are external. */
+.k-brand-footer-lockup {
+  display: block;
+  width: 224px;
+  aspect-ratio: 10160 / 7196.66;
+}
+.k-brand-footer-lockup img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.k-home-brand-mark {
+  position: absolute;
+  left: 0;
+  top: 40px;
+  width: clamp(260px, 25vw, 320px);
+  aspect-ratio: 8043.32 / 7196.66;
+  opacity: 0.68;
+  pointer-events: none;
+}
+.k-home-brand-mark > img,
+.k-brand-demo-mark > svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.k-home-product-media--hero .k-home-media-base {
+  justify-items: end;
+  padding-right: 24px;
+}
+.k-home-product-media--hero .k-home-media-field {
+  background: radial-gradient(
+    ellipse at 65% 45%,
+    rgb(57 123 255 / 6%),
+    transparent 60%
+  );
+}
+.k-home-product-media--hero .k-home-copper-detail {
+  width: 18px;
+}
+.k-brand-assets-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--k-space-8);
+}
+.k-brand-asset-example > div {
+  display: grid;
+  place-items: center;
+  min-height: 220px;
+}
+.k-brand-asset-example img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: contain;
+}
+.k-brand-asset-example figcaption {
+  color: var(--k-muted);
+  font-size: var(--k-caption);
+}
+.k-brand-motion-demo {
+  display: grid;
+  grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--k-space-12);
+  margin-top: var(--k-space-8);
+}
+.k-brand-demo-mark {
+  width: min(100%, 300px);
+  aspect-ratio: 8043.32 / 7196.66;
+}
+.k-brand-motion-demo button {
+  align-self: start;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-brand-mark-motion] [data-korsac-part="eyes"] {
+    opacity: 0 !important;
+    filter: none !important;
+  }
+}
+@media (max-width: 1099px) {
+  .k-home-brand-mark {
+    width: 220px;
+    left: calc(100% - 430px);
+  }
+}
+@media (max-width: 899px) {
+  .k-home-brand-mark {
+    width: 210px;
+    top: 24px;
+    left: 0;
+  }
+  .k-brand-assets-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 599px) {
+  .k-brand-footer-lockup {
+    width: 200px;
+    aspect-ratio: 15240 / 3386.66;
+  }
+  .k-home-brand-mark {
+    width: 148px;
+    top: 32px;
+    left: 4px;
+  }
+  .k-home-product-media--hero .k-home-media-base {
+    padding-right: 12px;
+  }
+  .k-brand-motion-demo {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--k-space-6);
+  }
+  .k-brand-demo-mark {
+    width: 220px;
+  }
+  .k-brand-asset-example > div {
+    min-height: 150px;
+  }
+  .k-brand-asset-example img {
+    max-height: 125px;
+  }
+}

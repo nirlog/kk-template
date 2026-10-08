@@ -19,7 +19,9 @@ Product Stage, synchronized Explorer и связь сцены с опциями 
 [Catalog Experience v1](KORSAC-CATALOG-EXPERIENCE.md) описывает PLAY ladder,
 MINI-ветку, scoped controller и future Bitrix mapping.
 [Homepage v1](KORSAC-HOMEPAGE-EXPERIENCE.md) и [Premium Shell](KORSAC-SITE-SHELL.md)
-описывают новую публичную оболочку, editorial journey и будущие assets.
+описывают публичную оболочку и editorial journey.
+[Brand Asset Integration](KORSAC-BRAND-ASSET-INTEGRATION.md) описывает
+утверждённые SVG и общий site-entry intro; фотография остаётся provisional.
 
 Источники продуктового содержания:
 
@@ -46,15 +48,19 @@ prototype/
     │   ├── pages.css
     │   ├── product-stage.css
     │   ├── catalog.css
+    │   ├── brand-intro.css
+    │   ├── brand.css
     │   ├── shell.css
     │   └── homepage.css
     ├── js/
     │   ├── prototype.js
     │   ├── product-experience.js
     │   ├── catalog-experience.js
+    │   ├── brand-intro.js
+    │   ├── brand-motion.js
     │   ├── shell.js
     │   └── homepage.js
-    └── images/README.md
+    └── images/ — approved masters, brand/ web derivatives и README.md
 ```
 
 Откройте `prototype/index.html` в браузере. Относительные CSS/JS рассчитаны
@@ -124,6 +130,7 @@ Electric Blue — сигнал выбора, фокуса и действия. C
 | `product-stage.css` | Product Stage, контексты, Explorer, interactive fixture          |
 | `catalog.css`       | Family navigation, scenario rail, карточки, preview и comparison |
 | `shell.css`         | Общие public header, icons, native mobile navigation и footer    |
+| `brand.css`         | Approved artwork sizing, responsive footer, hero mark и UIKit    |
 | `homepage.css`      | Editorial hero/discovery/feature/trust/ownership                 |
 
 ## Identity Primitives и Motion System
@@ -151,6 +158,13 @@ typing и декоративного прогресса нет. Основные
 При `prefers-reduced-motion: reduce` значимое содержимое видно сразу:
 нет stagger-зависимости, scanning, обязательного transform-входа и плавного
 скролла. Состояние выбора и обновлённая подпись не зависят от анимации.
+KORSAC использует reduced-motion mode, не blanket zero-motion: opacity/color/
+border feedback сохраняется на общих 110/180 ms tokens. Hero — короткий opacity
+settle без stagger; Catalog — 180 ms preview confirmation; Explorer/summary,
+selected controls, dialog/accordion и validation остаются отзывчивыми.
+Translate/scale/clip/rail sweeps отключены; Brand Intro полностью пропущен
+с записью timestamp. Live toggle отменяет spatial motion и не переигрывает
+completed entry при возврате. [Policy](KORSAC-VISUAL-MOTION-DIRECTION.md#reduced-motion-и-отсутствие-js).
 Базовый CSS не скрывает содержимое ради будущего reveal; оно читается без JS.
 
 ## Адаптивность и доступность
@@ -221,7 +235,9 @@ SYSTEM ID показывает preview выбранных labels. Контекс
 описаны в [документе v3.1](KORSAC-INTERACTIVE-PRODUCT-EXPERIENCE.md).
 
 «Добавить в корзину» открывает информацию о прототипе. Счётчик корзины,
-заказы, localStorage, авторизация, поиск, фильтры, аналитика и сеть отсутствуют.
+заказы, авторизация, поиск, фильтры, аналитика и API отсутствуют.
+Local/sessionStorage используется только для presentation frequency Brand Intro,
+не для конфигурации, цены, корзины или пользовательских данных.
 
 ## Premium Site Shell и Homepage v1
 
@@ -234,13 +250,15 @@ HTML, пятью сценариями и MINI-веткой от 1440. Native det
 и реальные записи не выдуманы.
 
 Общая публичная оболочка применяется к index/catalog/product/UI Kit:
-sans navigation, text wordmark slot, inline SVG utility icons, native drawer
-и открытый footer с большим wordmark. Developer/version bars удалены.
-На homepage header sticky и переходит от hero к graphite за 220 ms; internal
-pages сохраняют нормальный flow. Без JS работают nav/details/CTA и все пять
-source summaries. Hero использует конечную 940 ms последовательность,
-немедленно отменяемую live reduced motion. Brand/media slots ожидают
-утверждённые logo SVG и фотографии. Подробнее — в двух новых документах выше.
+sans navigation, approved V2 lockup, inline SVG utility icons, native drawer
+и открытый footer с responsive V1/V2 lockup. Developer/version bars удалены.
+Все public headers sticky; homepage transparent только при scrollY ≤16px, затем surface.
+Catalog/Product opaque с начала; 140ms normal/110ms reduced, без height change.
+Общий scroll padding учитывает 88/64px header +16px; configurator pin ниже него. Hero использует конечную 940 ms последовательность,
+немедленно отменяемую live reduced motion. Hero eyes off; отдельный shared
+Brand Intro длится 1500 ms, раз за rolling 24h, с реальной SVG eye geometry.
+Reduced Motion пропускает intro с timestamp write. Logo assets утверждены;
+отдельный media slot ожидает фотографии. Подробнее — в документах выше.
 
 ## Catalog & Product Family Experience v1
 
@@ -263,8 +281,8 @@ purpose/setup prose скрыты в этой матрице. Горизонта�
 Рекомендации authored по сценарию и не используют ценовые пороги.
 
 Без JS доступны anchor-сценарии, вся линейка и обычные ссылки; enhanced
-preview/comparison скрыты. Reduced motion оставляет мгновенный выбор без
-320 ms resolve. Карточки линейки показывают сценарий, форм-фактор, GPU,
+preview/comparison скрыты. Reduced Motion оставляет мгновенный выбор и
+180 ms opacity-only confirmation вместо 320 ms spatial resolve. Карточки линейки показывают сценарий, форм-фактор, GPU,
 RAM/SSD и одну CTA; подробности и обе CTA остаются в выбранном preview. Архитектура, media adapter и перенос в `bitrix:catalog.section`
 описаны в [Catalog Experience](KORSAC-CATALOG-EXPERIENCE.md).
 
@@ -276,7 +294,8 @@ RAM/SSD и одну CTA; подробности и обе CTA остаются �
 а выбор LANCOOL 217 в макете не утверждает производственный default.
 MINI остаётся отдельным товаром.
 
-Wordmark — временный текст, не финальный логотип. Wireframe — placeholder
+Публичная shell/hero identity — утверждённые SVG; прежний review hub
+сохраняет исторический text wordmark. Wireframe — placeholder
 для будущей фотографии. SYSTEM ID показывает паспорт с вымышленным номером
 без fake QR/barcode. Производительность содержит структуру будущих измерений:
 игра, разрешение, preset, AVG FPS, 1% low, температура, шум и методика;
@@ -318,7 +337,7 @@ Backend сохраняет проверенный snapshot конфигурац�
 - Корпус, RAM, SSD, дополнительный накопитель, ОС, программы и сервис обновляют соответствующие подписи manifest.
 - После всех изменений опций цены hero, сводки и карточки остаются неизменными; сетевых запросов нет.
 - Motion replay работает без reload и бизнес-действий; анимации конечны и не лишают контролы доступности.
-- Reduced motion показывает содержимое сразу и отключает последовательности; no-JS сохраняет смысл и native controls.
+- Reduced Motion показывает содержимое сразу, отключает spatial sequences и сохраняет 110/180 ms feedback; no-JS сохраняет смысл и native controls.
 - Homepage/shell: восемь ширин 320–1920, native utility dialogs/drawer/focus, no-JS меню/сценарии/CTA, конечный hero и live reduced motion.
 - Каталог: все пять моделей, MINI как ветка узла 1440, preview/CTA и MAX3 comparison; touch375/430, no-JS320 и live reduced motion.
 - Контраст текста, copper, синего, CTA, selected/disabled state проверен отдельно от декоративных линий.

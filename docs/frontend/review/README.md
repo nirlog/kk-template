@@ -1,5 +1,138 @@
 # Материалы визуального и motion-ревью KORSAC
 
+## Brand Asset Integration & Site-entry Intro v1
+
+[Brand Intro — normal-speed MP4](brand-eye-motion-v1.mp4): первый прямой вход
+в Catalog, переход в Product → Homepage → reload без повтора intro; затем
+отдельный fresh browser context: прямой вход в Product на mobile и drawer.
+Оба intro показывают actual SVG eyes, короткий localized blue glow, approved
+wordmark, eyes off и переход к странице. В начале фрагментов — короткий
+пустой graphite кадр захвата; последовательность не замедлена.
+Chromium 151, desktop 1440×1080 / touch-emulated mobile 375×800.
+H.264 **1440×1080 / 25 fps**, **11.96 s**, около **1.59 MiB**.
+Mobile по центру общего кадра. Encode полностью декодирован; в Chromium
+проверены playback и seek. Файл предназначен только для review.
+
+PNG:
+
+- [Resting intro — desktop](brand-intro-rest-v1.png), 1440×1080: mark/wordmark, eyes off.
+- [Active intro — desktop](brand-intro-active-v1.png), 1440×1080: реальный eye peak.
+- [Resting intro — mobile](brand-intro-rest-v1-mobile.png), 375×800.
+- [Brand Assets / UI Kit](brand-assets-v1.png), 1344×826: ICON/TEXT/V2/V1 и reduced-motion demo.
+- [Header desktop](brand-header-v1-desktop.png), 1440×88: static horizontal V2.
+- [Header mobile](brand-header-v1-mobile.png), 375×64: V2, Cart/Menu 44×44.
+- [Footer desktop](brand-footer-v1-desktop.png), 1440×478: stacked V1.
+- [Footer mobile](brand-footer-v1-mobile.png), 375×700: compact horizontal V2.
+- [Homepage desktop](homepage-brand-v1-desktop.png), 1440×1080: static eyes-off Hero.
+- [Homepage wide](homepage-brand-v1-wide.png), 1920×1080.
+- [Homepage mobile](homepage-brand-v1-mobile.png), 375×800: прежняя ранняя CTA.
+- [Drawer mobile](brand-drawer-v1-mobile.png), 375×800.
+- [Intro eye off](brand-eye-off-v1.png) / [Intro eye peak](brand-eye-active-v1.png), 320×287.
+
+Intro PNG — pose captures штатного WAAPI sequence (rest 1050 ms / peak 600 ms),
+без изменений geometry/цвета. Остальные обновлённые PNG — reduced motion.
+MP4 показывает реальную скорость. Masters byte-identical; derivative
+geometry/eyes/strokes/gradients/viewBox сохранены. Header/Footer/Hero — external
+static SVG; один inline intro на public document получает `intro-index-`,
+`intro-catalog-` или `intro-product-`; UI Kit demo — `kit-brand-`.
+
+Общий intro работает только в `index.html`, `catalog.html`, `product.html`.
+**1500 ms**; JS watchdog 1700 ms; независимый CSS cutoff 1800 ms. Hero Eye Flash
+и `korsac:hero-enter` coupling удалены. Public replay/loop отсутствуют;
+manual Eye Flash доступен только в UI Kit.
+
+Policy: key `korsac:brand-intro:lastShown`, rolling **24h** от последнего
+eligible входа. Timestamp записывается до visual sequence. Browser/profile-local
+на одном origin, без backend/cookie/account/cross-device synchronization.
+LocalStorage unavailable → sessionStorage fallback для этой tab session;
+независимые tabs не обязаны разделять fallback. Оба API unavailable → skip.
+Initial Reduced Motion записывает timestamp и сразу открывает страницу;
+live toggle отменяет intro, выключение preference не повторяет его.
+
+Проверен точный daily flow: clear → direct Catalog intro → Product skip →
+Homepage skip → reload skip → new tab skip → timestamp старше 24h → intro.
+Missing/malformed/future values, rapid tabs, initial/live Reduced Motion,
+local/session denial, no-JS, missing controller/CSS, delayed script/CSS,
+lost finished promises и throwing WAAPI прошли. Failure safety не оставляет
+pointer blocker. Overlay decorative, без focus/scroll changes; cleanup не
+создаёт CLS. Intro без overflow на 320–1920 px.
+
+40 page/width layouts, Product/Catalog/Configurator/Explorer/shared regressions
+прошли; static prices и no-JS сохранены. 25 rapid UI Kit replay завершаются eyes off.
+SVG masters/inline copies/IDs/local resources проверены. Axe WCAG2A/AA+2.1AA:
+zero violations в 12 состояниях; некоторые contrast/link checks incomplete.
+Firefox/Safari, physical devices и screen reader не проверены.
+
+[Mapping, implementation и self-review A–L](../KORSAC-BRAND-ASSET-INTEGRATION.md).
+Human acceptance: optical scale/clear space, premium feel, заметность глаз и
+ритм intro в живом браузере. Не сливать автоматически.
+
+Материалы ниже — предыдущие accepted baselines с временным text wordmark;
+новые PNG выше показывают текущую approved identity. Product photography
+всё ещё временная; brand assets уже финальные.
+
+## Reduced Motion refinement v1
+
+Обновлено после live review.
+
+[Perceptible reduced feedback — normal-speed MP4](reduced-feedback-v1.mp4):
+0–11.2 s — Homepage без intro, небольшой scroll 72px и возврат (header top-state),
+compact discovery PRO/MINI/1440, Catalog MINI/PRO, Explorer graphics/platform/Next,
+RAM 64/case, accordion и native dialog. Затем mobile 375×800 — Explorer
+AIRFLOW/GRAPHICS/Next и drawer. В обоих fresh contexts активен
+`prefers-reduced-motion: reduce`; timestamp intro записан, полной brand
+activation нет. Captured motion не замедлен; dwell между действиями — время чтения.
+Chromium 151, H.264 **1440×1080 / 25fps**, **16.44 s**, около
+**1.76 MiB**; mobile по центру. Полный decode и Chromium
+playback/seek прошли. Runtime не загружает review video.
+
+KORSAC использует **reduced-motion mode, не blanket zero-motion mode**.
+Общие tokens: fast **110ms**, meaningful state acknowledgement **180ms**.
+Hero — simultaneous opacity **.75→1**; Catalog — opacity **.76→1** на новом
+preview, semantic state обновлён сразу. Explorer figure/panels/headings и
+manifest row получают короткий selected background + fixed 3px inset accent,
+без движения/роста. Summary, validation, dialog/drawer/accordion — opacity/color
+feedback 180ms; hover/focus/selected controls — 110ms и native immediate semantics.
+Decorative rail growth, transform/scale/clip и scroll reveals отключены.
+Brand Intro полностью skipped, Hero mark eyes off, UI Kit Eye Flash disabled.
+
+Actual reduced keyframes/timings проверены: без animated transform/clip/width/
+height/position и stagger. Live normal→reduce отменяет entry/stage/catalog effects;
+future interactions используют reduced feedback; back-toggle не переигрывает
+completed entry/Brand Intro. Product/Catalog/shared regressions, rapid input,
+static prices, native focus/ARIA, no-JS, daily flow/failure safety прошли.
+Mobile Explorer spacing компактнее, чтобы сохранить local explanation после
+нового sticky-anchor offset; структура и 44px hit areas сохранены. Intrinsic
+height не меняется между states. Axe: zero violations в 12 состояниях;
+contrast/link checks частично incomplete.
+
+## Sticky header / top-state correction v1
+
+- [Homepage, early scroll — desktop](header-top-state-v1-desktop.png), 1440×800.
+- [Homepage, early scroll — mobile](header-top-state-v1-mobile.png), 375×800.
+- [Catalog, scrolled](header-catalog-scroll-v1.png), 1440×1080.
+- [Product, direct configurator hash](header-product-anchor-v1.png), 1440×1080.
+
+Все public headers sticky top: 0: height 88px desktop / 64px mobile. Catalog/Product
+opaque с начала. Homepage transparent только при scrollY≤16px; при 24px уже
+opaque, хотя Hero остаётся видимым. `data-shell-at-top` sync + passive scroll/
+requestAnimationFrame заменяют whole-Hero IntersectionObserver. Background
+transition 140ms normal / 110ms reduced, без height/layout change.
+
+Проверены 18 public page/width layouts: 320/375/430/768/1024/1440; sticky y=0,
+early opacity, constant height, header-state CLS=0, native hash targets ниже
+header, direct hash/reload/scrolled history restoration до user scroll. Shared
+scroll padding = header height + 16px; configurator pin = height + 24px. Native
+modal/drawer top layer выше sticky header, Escape/focus return сохранены.
+No-JS headers остаются sticky/opaque. Shell fixtures используют top/opaque state.
+
+Cloud-проверка — Chromium media emulation. Windows OS animations setting,
+Firefox/Safari, physical devices и screen reader в cloud не проверены.
+Human gate: при Windows Animation effects OFF заметен ли отклик без spatial
+движения; остаётся ли navigation читаемой при начале scroll. Не сливать автоматически.
+[Motion policy](../KORSAC-VISUAL-MOTION-DIRECTION.md#reduced-motion-и-отсутствие-js) ·
+[Shell state](../KORSAC-SITE-SHELL.md).
+
 ## Premium Site Shell + Homepage Experience v1
 
 [Normal-motion запись — MP4](homepage-v1.mp4): примерно **0–9,8 s** — initial

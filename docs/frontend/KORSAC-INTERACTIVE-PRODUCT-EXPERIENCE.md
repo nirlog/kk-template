@@ -198,8 +198,19 @@ Stage и detail resolve используют существующий `--k-motio
 
 Повтор прерывает motion только своего экземпляра; animationend и конечный
 fallback удаляют служебные классы. Последний native input определяет итог.
-При reduced motion state/labels меняются сразу, expressive motion отключён;
-смена настройки во время движения отменяет активные последовательности.
+При Reduced Motion state/labels меняются сразу; пространственный stage/clip
+и rail sweep отключены. Stage panel/detail/case используют opacity-only settle
+180 ms, summary/manifest — 180 ms opacity/color/accent acknowledgement; selected
+controls, parts и hotspot border/color — 110 ms. Dialog/accordion — 180 ms opacity.
+Stage figure/panels, Explorer heading и manifest row получают краткий selected
+background и fixed 3 px inset blue accent, без border/layout/growth движения.
+Это reduced-motion mode, не blanket zero-motion. CSS branch сохраняет static
+геометрию сцены. Live preference change отменяет effects/frames/timers;
+будущие input используют reduced feedback, обратный toggle не повторяет hero.
+Mobile Explorer сохраняет ту же структуру и 44px hotspots/controls; внутренние
+spacing tokens компактнее на ≤599px, чтобы после80px sticky-anchor offset
+локальное пояснение оставалось в первом practical viewport. Нет forced scroll.
+Desktop configurator pin стоит ниже88px header +24px gap.
 
 Без JS сцены показывают `overview`, шесть explanations и annotation-пояснения
 доступны, native controls остаются обычными controls. Только дополнительные

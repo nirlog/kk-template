@@ -512,7 +512,7 @@
 @media (min-width: 1100px) and (min-height: 820px) {
   [data-experience-ready] .k-config-stage-pin {
     position: sticky;
-    top: var(--k-space-6);
+    top: calc(var(--k-shell-header-height, 0px) + var(--k-space-6));
   }
 }
 @media (max-width: 1099px) {
@@ -547,11 +547,21 @@
 }
 @media (max-width: 599px) {
   .k-product-explorer {
-    padding-block: var(--k-space-8);
+    padding-block: var(--k-space-4);
   }
   .k-product-explorer .k-section-heading {
-    gap: var(--k-space-4);
-    margin-bottom: var(--k-space-6);
+    gap: var(--k-space-2);
+    margin-bottom: var(--k-space-4);
+  }
+  /* Reserve the sticky header without pushing local feedback below the fold. */
+  .k-product-explorer .k-explorer-layout {
+    gap: var(--k-space-3);
+  }
+  .k-product-explorer .k-explorer-detail {
+    padding-top: var(--k-space-3);
+  }
+  .k-product-explorer .k-explorer-slide {
+    padding-block: var(--k-space-1);
   }
   .k-product-explorer .k-section-heading > p {
     font-size: var(--k-body-sm);
@@ -583,14 +593,35 @@
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .k-explorer-resolve .k-explorer-slide h3,
-  .k-explorer-resolve .k-explorer-register,
-  .k-explorer-resolve .k-explorer-rail,
-  .k-stage-resolve [data-stage-panel],
   .k-stage-resolve [data-stage-overlay],
-  .k-stage-resolve [data-stage-media],
-  .k-stage-resolve .k-stage-hero-case {
-    transform: none !important;
-    clip-path: none !important;
+  .k-explorer-resolve .k-explorer-rail {
+    animation: none !important;
+  }
+  .k-explorer-resolve .k-explorer-slide:not([hidden]) h3,
+  .k-explorer-resolve .k-explorer-register,
+  .k-stage-resolve [data-stage-panel]:not([hidden]),
+  .k-stage-resolve[data-stage-motion="case"] [data-stage-media],
+  .k-stage-resolve[data-stage-motion="case"] .k-stage-hero-case {
+    animation: k-reduced-settle var(--k-motion-reduced-base)
+      var(--k-ease-standard) both;
+  }
+  .k-stage-resolve [data-stage-panel]:not([hidden]),
+  .k-explorer-resolve .k-explorer-slide:not([hidden]) h3 {
+    animation:
+      k-reduced-settle var(--k-motion-reduced-base) var(--k-ease-standard) both,
+      k-reduced-acknowledge var(--k-motion-reduced-base) var(--k-ease-standard)
+        both;
+  }
+  .k-stage-resolve .k-stage-figure {
+    --k-feedback-rest: var(--k-surface);
+    animation: k-reduced-acknowledge var(--k-motion-reduced-base)
+      var(--k-ease-standard) both;
+  }
+  .k-stage-part,
+  .k-stage-hotspot span {
+    transition:
+      color var(--k-motion-reduced-fast) var(--k-ease-standard),
+      background-color var(--k-motion-reduced-fast) var(--k-ease-standard),
+      border-color var(--k-motion-reduced-fast) var(--k-ease-standard);
   }
 }

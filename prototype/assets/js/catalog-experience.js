@@ -81,8 +81,27 @@
     };
 
     const resolve = (panel, oldMedia) => {
-      if (reduced.matches || !panel.animate) return;
+      if (!panel.animate) return;
       const style = getComputedStyle(root);
+      if (reduced.matches) {
+        const timing = style.getPropertyValue("--k-motion-reduced-base").trim();
+        const duration =
+          parseFloat(timing) * (timing.endsWith("ms") ? 1 : 1000);
+        // State, labels and native semantics already changed synchronously.
+        const animation = panel.animate([{ opacity: 0.76 }, { opacity: 1 }], {
+          duration,
+          easing: style.getPropertyValue("--k-ease-standard").trim(),
+        });
+        animations.push(animation);
+        const current = animations;
+        animation.finished.then(
+          () => {
+            if (animations === current) stopMotion();
+          },
+          () => {},
+        );
+        return;
+      }
       const timing = style.getPropertyValue("--k-motion-brand").trim();
       const duration = parseFloat(timing) * (timing.endsWith("ms") ? 1 : 1000);
       const easing = style.getPropertyValue("--k-ease-precision").trim();
@@ -291,7 +310,7 @@
       if (modelOpener?.isConnected) modelOpener.focus();
     });
     reduced.addEventListener("change", () => {
-      if (reduced.matches) stopMotion();
+      stopMotion();
     });
 
     // Enhanced controls appear only after the local controller is ready.

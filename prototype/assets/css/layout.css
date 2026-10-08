@@ -265,3 +265,15 @@
     margin-bottom: var(--k-space-6);
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .k-nav a::after {
+    transform: none;
+    opacity: 0;
+    transition: opacity var(--k-motion-reduced-fast) var(--k-ease-standard);
+  }
+  .k-nav a:hover::after,
+  .k-nav a[aria-current]::after {
+    opacity: 1;
+  }
+}

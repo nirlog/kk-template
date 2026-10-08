@@ -17,7 +17,7 @@ header/footer нет. `review.html` сохраняет прежнюю оболо
 
 ## Header
 
-Desktop: text wordmark, пять навигационных ссылок и Search / Account / Cart.
+Desktop: утверждённый horizontal SVG lockup, пять навигационных ссылок и Search / Account / Cart.
 Иконки — локальный inline SVG с `aria-hidden` и без icon library. Utility
 links имеют русские `aria-label`, visible focus и область 44×44 px. Без JS
 они ведут к пояснению в footer; JS открывает существующий native dialog,
@@ -36,18 +36,27 @@ links имеют русские `aria-label`, visible focus и область 44
 Active state — короткая Electric Blue линия и `aria-current`. Filled pills,
 технические индексы и рамки вокруг utility actions отсутствуют.
 
-На главной header sticky, **88 px desktop / 64 px mobile**, без изменения
-размеров. Один IntersectionObserver следит за hero boundary с небольшим
-запасом высоты header. При выходе из hero появляется graphite surface;
-переход использует `--k-motion-base` **220 ms**. Нет scroll handlers,
-resize/shrink animation, blur, scroll-jacking и смещения содержимого.
-Без IO/JS остаётся стабильная тёмная поверхность.
+Все public pages (`index.html`, `catalog.html`, `product.html`) имеют sticky
+header: top0, **88px desktop / 64px mobile**, z-index20. Catalog/Product
+сразу используют opaque surface и тонкую bottom rule. Homepage прозрачна
+только при `data-shell-home[data-shell-at-top="true"]`; при scrollY >16px
+использует ту же opaque surface, даже если Hero почти полностью виден.
+Высота не меняется; scroll content не делает navigation нечитабельной.
 
-В каталоге, продукте и UI Kit header сразу тёмный и остаётся в обычном
-потоке. Это сохраняет принятую компоновку первого экрана Explorer и
-локальные product controls. Sticky здесь не требуется. Homepage anchors
-учитывают высоту закреплённой панели; внутренние страницы сохраняют обычный
-scroll padding. Layout/motion интерфейса каталога и продукта не переработаны.
+`shell.js` синхронно читает `window.scrollY`, затем passive scroll listener
+с одним requestAnimationFrame обновляет top-state. Whole-Hero IntersectionObserver
+удалён. `load`/`pageshow`/`hashchange` повторно сверяют native scroll restoration.
+При pending direct hash header консервативно opaque до native placement.
+Нет forced scroll, resize/shrink, blur, scroll-jacking или layout insertion.
+Background/rule transition — `--k-motion-fast`: **140ms normal / 110ms reduced**.
+
+Общий `scroll-padding-top` = reserved header height +16px (104/80px), вместо
+разных homepage/internal offsets. Native anchors/skip links попадают ниже
+sticky header. Desktop configurator pin учитывает header height +24px.
+Native dialog/drawer top layer находится выше header; z-index не менялся.
+Без JS все public headers остаются sticky/opaque, menu сохраняет native fallback.
+UI Kit header fixtures остаются relative внутри component capture и показывают
+состояния top/opaque; review hub сохраняет прежнюю developer shell.
 
 ## Mobile и no-JS
 
@@ -62,38 +71,82 @@ Menu-button появляется только после enhancement. Без JS 
 поэтому включение JS не меняет высоту header. Utility anchors ведут к
 `#site-prototype`, где честно объяснена граница прототипа.
 
-## Brand slot и будущие assets
+## Approved brand assets
 
-Текущий `KORSAC` — временный текст, не финальный логотип. Ни fox/totem SVG,
-ни custom letterforms, ни raster tracing не созданы.
-
-Стабильный lockup:
+Публичный Header и Drawer используют `assets/images/brand/korsac-lockup-horizontal.svg`
+из утверждённого V2. Width: **164 px desktop / 140 px mobile**, без увеличения
+88/64 px header. Link сохраняет один `aria-label="KORSAC — главная"`, image —
+пустой `alt`. Иконки utility остаются 44×44 px. Знак и wordmark не анимируются.
+Практический header gap — 32 px desktop / 12 px mobile; это layout spacing,
+не формальная brand clear-space норма.
 
 ```html
 <a class="k-site-brand" href="index.html" aria-label="KORSAC — главная">
-  <span class="k-brand-mark" data-brand-mark-motion aria-hidden="true"></span>
-  <span class="k-brand-wordmark" data-brand-wordmark>KORSAC</span>
+  <span class="k-brand-wordmark" data-brand-wordmark>
+    <img
+      src="assets/images/brand/korsac-lockup-horizontal.svg"
+      width="450"
+      height="100"
+      alt=""
+    />
+  </span>
 </a>
 ```
 
-После утверждения знак вставляется в `k-brand-mark`, wordmark SVG — в
-`data-brand-wordmark`. `--k-brand-mark-size` и `--k-brand-mark-gap` выделяют
-место под знак; сейчас оба равны 0. `--k-brand-wordmark-width` задаёт ширину
-SVG, footer использует свой масштаб. Задавайте реальный `viewBox`/dimensions
-asset и сохраняйте доступное название ссылки. `COMPUTERS` добавляется только
-в согласованный extended lockup, не в каждый header по умолчанию.
+`data-brand-wordmark` теперь содержит реальный asset. Empty mark slot удалён
+из статического lockup; `data-brand-mark-motion` остаётся у UI Kit replay.
+Отдельного дублирующего logo controller нет. Все static instances — external
+SVG; fragment IDs не пересекаются с документом или друг с другом.
 
-`data-brand-mark-motion` — будущая точка подключения короткой вспышки глаз
-внутри **утверждённого** SVG. Сейчас hook не запускает эффекты. Eye layers
-и их конечная последовательность подключаются после появления вектора,
-с тем же reduced-motion cleanup. Выдуманных glowing eyes нет.
+Footer: V1 stacked lockup шириной **224 px**. До 600 px тот же `<picture>`
+переключает asset на horizontal V2 шириной **200 px**, сохраняя компактность.
+CSS резервирует aspect ratio обеих версий до image load; `object-fit: contain`
+сохраняет геометрию. Глаза выключены во всех статических web assets, никаких
+hover/viewport logo effects нет. Masters остаются неизменными.
 
-Layout probe с нейтральным 32 px слотом проверил header height и отсутствие
-overflow на 320/768/1440/1920 px. Это проверка размеров, не разработка знака.
+Hero использует static external ICON с eyes off. Автоматический Hero Eye
+Flash и `korsac:hero-enter` удалены. Animated geometry теперь принадлежит
+общему [Brand Intro](KORSAC-BRAND-ASSET-INTEGRATION.md), не homepage controller.
+
+## Site-entry Brand Intro
+
+Только `index.html`, `catalog.html`, `product.html`: единая декоративная
+full-viewport композиция mark → real eyes → wordmark → eyes off → exit.
+Target 1500 ms; JS watchdog 1700 ms и независимый CSS safety cutoff 1800 ms.
+`review.html`/`ui.html` не запускают intro и не расходуют eligibility.
+
+Небольшой inline head boot проверяет `korsac:brand-intro:lastShown` и пишет
+`Date.now()` **до** активации. Следующий вход/navigation/reload/new tab на том
+же origin/browser profile пропускает intro, пока не прошли rolling 24 часа.
+Это browser-local timestamp, не account/device sync; backend, cookies или
+consent dependency не используются. При отказе localStorage — sessionStorage;
+если оба недоступны, direct page access без intro. Session fallback действует
+в пределах tab session, без гарантии общей частоты между независимыми tabs.
+
+Reduced Motion записывает timestamp, но не включает overlay. Live toggle
+немедленно скрывает overlay через CSS и отменяет effects через controller.
+Возврат к normal motion не запускает intro заново. Logo в Hero/header/footer статичны.
+
+Overlay hidden по умолчанию, `aria-hidden`, без focusable content/aria-live.
+Head boot включает только presentation attribute; motion — external
+`brand-intro.js`. Нет scroll lock, inert/focus trap, focus/scroll restoration
+или layout insertion. Native controls становятся доступны после exit без
+смещения. CSS safety скрывает и отключает pointer blocking даже при отказе
+controller; broken/missing CSS оставляет нативный hidden state.
+
+## Reduced-motion mode
+
+Общий CSS сохраняет 110/180 ms opacity/color/border feedback вместо global
+`animation/transition: none`. Navigation underline не растёт: static rail
+появляется через opacity. Native dialogs/drawer/accordion могут коротко
+settle по opacity без translate. Focus, hover и selected/validation states
+остаются видимыми и не ждут motion completion. Hero/каталог/Explorer используют
+[общую policy](KORSAC-VISUAL-MOTION-DIRECTION.md#reduced-motion-и-отсутствие-js).
+Полный site-entry Brand Intro по-прежнему skipped с timestamp write.
 
 ## Footer
 
-Один главный жест — большой спокойный wordmark с «Точно под задачу.».
+Один главный жест — утверждённый stacked metallic lockup с «Точно под задачу.».
 Рядом открытые группы «Продукты», «Компания», «Поддержка»; без карточек,
 serial markers, повторной рамки и набора декоративных rails. На mobile бренд
 отделён от двух колонок ссылок; support занимает следующую строку.
@@ -107,7 +160,8 @@ Bottom line: `KORSAC by King-Komp`, placeholder юридических доку�
 
 `Premium Site Shell` показывает hero-integrated и graphite состояния,
 utility icons, мобильную анатомию и нативное открытие реального drawer.
-Footer anatomy раскрывается через `details`. Сам UI Kit использует публичную
+Footer anatomy раскрывается через `details`; Brand Assets показывает все варианты
+и отдельный безопасный Eye Flash replay. Сам UI Kit использует публичную
 оболочку; developer metadata находится в содержании, не над header.
 `review.html` обеспечивает отдельный доступ ко всем prototype pages.
 

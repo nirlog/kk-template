@@ -2,6 +2,8 @@
 
 Дата: 2026-09-28
 
+Утверждённые SVG и web-интеграция: 2026-10-07.
+
 Статус: рабочая бренд-система, согласованная для дальнейшей разработки сайта и продукта.
 
 ## 1. Бренд
@@ -69,6 +71,20 @@ KORSAC продаёт не набор комплектующих и не мак�
 - в знаке должен считываться образ корсака;
 - желательно развивать идею отрицательного пространства или геометрии, связанной с буквой `K`.
 
+### Утверждённые векторные исходники
+
+В `prototype/assets/images/` сохранены approved masters:
+
+- `KORSAC_LOGO_ICON_FINAL_REVISED.svg` — тотем;
+- `KORSAC_LOGO_TEXT_FINAL_REVISED.svg` — wordmark;
+- `KORSAC_LOGO_V1_FINAL_REVISED.svg` — stacked lockup;
+- `KORSAC_LOGO_V2_FINAL_REVISED.svg` — horizontal lockup.
+
+Исходники неизменяемы. Web derivatives сохраняют facet/letter/eye geometry
+и metallic copper/silver gradients. Shell/Hero используют static eyes off;
+общий site-entry intro активирует реальные SVG eyes.
+[Интеграция и правила вариантов](../frontend/KORSAC-BRAND-ASSET-INTEGRATION.md).
+
 ### Дополнительное направление
 
 Элементы **варианта C** допустимо использовать как более атмосферную и премиальную интерпретацию основного образа:
@@ -118,7 +134,13 @@ KORSAC продаёт не набор комплектующих и не мак�
 - агрессивную анимацию;
 - motion, блокирующий доступ к интерфейсу.
 
-Для пользователей с `prefers-reduced-motion: reduce` анимация должна быть отключена или сведена к простому fade.
+Для пользователей с `prefers-reduced-motion: reduce` Eye Flash отключён полностью: глаза остаются выключенными. Header/Drawer/Footer/Hero статичны. Текущий shared Brand Intro длится 1500 мс, не чаще раза за rolling 24h per browser profile; reduced motion записывает timestamp и пропускает intro. Replay доступен только в UI Kit.
+
+Reduced Motion — режим уменьшенного движения, не глобальное отключение
+feedback: interface сохраняет opacity/color/border acknowledgement 110–180 ms.
+Translate/scale/clip entrances и decorative sweeps выключены. Brand Intro
+и UI Kit Eye Flash полностью skipped; Hero mark всегда static eyes off.
+[Motion/accessibility policy](../frontend/KORSAC-VISUAL-MOTION-DIRECTION.md#reduced-motion-и-отсутствие-js).
 
 ## 5. Цветовая система
 
@@ -174,7 +196,7 @@ Sand / Copper используется экономно для:
 - увеличенный tracking;
 - кастомная работа с буквами `K`, `R`, `A` приветствуется.
 
-Финальный wordmark должен быть разработан как самостоятельный векторный знак, а не как обычный текст, набранный готовым шрифтом.
+Утверждённый wordmark существует как самостоятельный SVG (`TEXT` и lockups), а не текст, набранный интерфейсным шрифтом. Геометрия букв не меняется при web-интеграции.
 
 ### Интерфейс
 
@@ -390,23 +412,27 @@ CTA:
 - слово `KORSAC` с разными написаниями;
 - второй независимый тотемный знак без необходимости.
 
-## 16. Технические требования к будущим бренд-ассетам
+## 16. Технические требования к бренд-ассетам
 
-Когда финальный логотип будет отрисован в векторе, в репозитории должны появиться как минимум:
+Утверждённые masters находятся в `prototype/assets/images/` (см. раздел 3).
+Семантические runtime SVG — в `prototype/assets/images/brand/`:
 
 ```text
-docs/brand/assets/
-├── logo/
-│   ├── korsac-primary.svg
-│   ├── korsac-primary-dark.svg
-│   ├── korsac-monochrome.svg
-│   └── korsac-totem.svg
-├── favicon/
-├── motion/
-└── references/
+korsac-mark.svg
+korsac-wordmark.svg
+korsac-lockup-horizontal.svg
+korsac-lockup-stacked.svg
+korsac-mark-motion.svg
 ```
 
-Не использовать AI-рендер бренд-доски как финальный production logo. Он является визуальным направлением и референсом; финальный знак должен быть отдельно выстроен в векторе с проверенной геометрией.
+Static instances загружаются как external images с выключенными глазами.
+Motion derivative — eyes-off template для одного уникально prefixed inline
+site-entry SVG; UI Kit имеет собственный prefix. Сохраняются viewBox, цвета,
+градиенты и геометрия. Product photography остаётся provisional.
+
+Растр бренд-доски — только референс; runtime использует утверждённый вектор.
+Не создавать самостоятельно monochrome/simplified artwork. На 16 px
+metallic facets теряют читаемость; dedicated favicon ещё требуется.
 
 ## 17. Статус решений v0.1
 
@@ -421,17 +447,17 @@ docs/brand/assets/
 - слоган `Точно под задачу.` как рабочий основной;
 - сценарный принцип продуктовых линеек;
 - семейства `PLAY`, `CREATE`, `WORK`;
-- формат `PLAY 1080 / PLAY 1440 / PLAY 1440 PRO / PLAY 4K`.
+- формат `PLAY 1080 / PLAY 1440 / PLAY 1440 PRO / PLAY 4K`;
+- четыре FINAL_REVISED SVG masters и web-варианты с сохранённой геометрией;
+- shared Brand Intro раз за rolling 24h; static eyes off в shell и hero.
 
 ### Требует дальнейшей проработки
 
-- финальная геометрия логотипа;
-- финальный wordmark;
 - точный фирменный шрифт;
 - юридическая проверка названия и товарного знака;
 - проверка доменов и социальных аккаунтов;
-- production SVG assets;
+- dedicated small-size favicon и финальные clear-space стандарты;
 - конкретные правила photographic style;
 - финальная упаковка;
 - дизайн KORSAC SYSTEM ID;
-- motion prototype.
+- human live-motion / target-browser acceptance.

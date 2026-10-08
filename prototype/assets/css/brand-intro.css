@@ -1,0 +1,63 @@
+/* Eligibility is decided before body parsing. Default/failure state is direct access. */
+.k-brand-intro {
+  display: none;
+  --k-intro-mark-duration: 220ms;
+  --k-intro-eye-delay: 250ms;
+  --k-intro-eye-duration: 700ms;
+  --k-intro-wordmark-delay: 450ms;
+  --k-intro-wordmark-duration: 400ms;
+  --k-intro-exit-delay: 1200ms;
+  --k-intro-exit-duration: 300ms;
+}
+html[data-brand-intro] .k-brand-intro[hidden] {
+  display: grid !important;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  place-items: center;
+  background: var(--k-bg, #0b0e13);
+  /* Independent of controller loading, WAAPI and completion promises. */
+  animation: k-brand-intro-safety 1800ms steps(1, end) forwards;
+}
+.k-brand-intro-content {
+  display: grid;
+  justify-items: center;
+  gap: 24px;
+}
+.k-brand-intro-mark {
+  width: min(320px, 56vw);
+  aspect-ratio: 8043.32 / 7196.66;
+  opacity: 0;
+}
+.k-brand-intro-mark svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.k-brand-intro-wordmark {
+  width: clamp(220px, 38vw, 340px);
+  height: auto;
+  aspect-ratio: 15240 / 3386.66;
+  object-fit: contain;
+  opacity: 0;
+}
+@keyframes k-brand-intro-safety {
+  from {
+    visibility: visible;
+    pointer-events: auto;
+  }
+  to {
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+@media (max-width: 599px) {
+  .k-brand-intro-content {
+    gap: 16px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-brand-intro] .k-brand-intro[hidden] {
+    display: none !important;
+  }
+}
