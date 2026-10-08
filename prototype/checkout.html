@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="data:," />
+    <title>Оформление заказа — KORSAC</title>
+    <link rel="stylesheet" href="assets/css/tokens.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/shell.css" />
+    <link rel="stylesheet" href="assets/css/brand.css" />
+    <link rel="stylesheet" href="assets/css/cart.css" />
+    <link rel="stylesheet" href="assets/css/checkout.css" />
+    <script src="assets/js/prototype.js" defer></script>
+    <script src="assets/js/shell.js" defer></script>
+    <script src="assets/js/checkout-experience.js" defer></script>
+  </head>
+  <body class="k-commerce-page">
+    <a class="k-skip" href="#main">Перейти к содержанию</a>
+    <header class="k-site-header k-transaction-header">
+      <div class="k-container k-transaction-header-inner">
+        <a class="k-site-brand" href="index.html" aria-label="KORSAC — главная"
+          ><span class="k-brand-wordmark"
+            ><img
+              src="assets/images/brand/korsac-lockup-horizontal.svg"
+              width="450"
+              height="100"
+              alt="" /></span></a
+        ><span class="k-transaction-label"
+          ><span class="k-transaction-desktop">Оформление заказа</span
+          ><span class="k-transaction-mobile">Оформление</span></span
+        ><a class="k-transaction-back" href="cart.html"
+          ><span aria-hidden="true">←</span>
+          <span class="k-transaction-desktop">Вернуться в корзину</span
+          ><span class="k-transaction-mobile">Назад</span></a
+        >
+      </div>
+    </header>
+    <main
+      class="k-commerce-main k-container"
+      id="main"
+      data-checkout-experience
+    >
+      <div class="k-commerce-heading k-checkout-heading">
+        <div>
+          <p class="k-eyebrow">Без регистрации</p>
+          <h1>Оформление заказа</h1>
+        </div>
+        <p class="k-muted">Контакты, доставка и оплата — на одной странице.</p>
+      </div>
+      <p class="k-commerce-demo-note" id="checkout-demo-notice">
+        Прототип оформления — заказ не отправляется. Здесь используется исходный
+        демонстрационный заказ.
+      </p>
+      <div class="k-checkout-grid">
+        <form
+          id="checkout-form"
+          action="order-success.html"
+          method="get"
+          aria-describedby="checkout-demo-notice"
+          data-demo-checkout-form
+        >
+          <div
+            class="k-error-summary"
+            tabindex="-1"
+            data-checkout-errors
+            hidden
+          >
+            <h2>Проверьте данные заказа</h2>
+            <ul data-checkout-error-list></ul>
+          </div>
+          <section class="k-checkout-section" aria-labelledby="buyer-heading">
+            <h2 id="buyer-heading">
+              <span aria-hidden="true">01</span> Покупатель
+            </h2>
+            <fieldset class="k-buyer-types">
+              <legend class="k-sr-only">Тип покупателя</legend>
+              <label class="k-commerce-choice"
+                ><input
+                  id="buyer-individual"
+                  type="radio"
+                  name="demo-buyer"
+                  value="individual"
+                  checked
+                /><span
+                  ><strong>Частное лицо</strong><small>Для себя</small></span
+                ></label
+              ><label class="k-commerce-choice"
+                ><input
+                  id="buyer-company"
+                  type="radio"
+                  name="demo-buyer"
+                  value="company"
+                /><span
+                  ><strong>Компания</strong><small>Для команды</small></span
+                ></label
+              >
+            </fieldset>
+            <div class="k-contact-fields">
+              <div class="k-field" data-checkout-field>
+                <label for="buyer-name"
+                  >Имя <span aria-hidden="true">*</span></label
+                ><input
+                  class="k-control"
+                  id="buyer-name"
+                  type="text"
+                  required
+                  autocomplete="name"
+                  aria-describedby="buyer-name-error"
+                  data-error-label="Имя"
+                />
+                <p
+                  class="k-error"
+                  id="buyer-name-error"
+                  data-field-error
+                  hidden
+                ></p>
+              </div>
+              <div class="k-field" data-checkout-field>
+                <label for="buyer-phone"
+                  >Телефон <span aria-hidden="true">*</span></label
+                ><input
+                  class="k-control"
+                  id="buyer-phone"
+                  type="tel"
+                  required
+                  autocomplete="tel"
+                  inputmode="tel"
+                  aria-describedby="buyer-phone-error"
+                  data-error-label="Телефон"
+                />
+                <p
+                  class="k-error"
+                  id="buyer-phone-error"
+                  data-field-error
+                  hidden
+                ></p>
+              </div>
+              <div class="k-field" data-checkout-field>
+                <label for="buyer-email"
+                  >Email <span aria-hidden="true">*</span></label
+                ><input
+                  class="k-control"
+                  id="buyer-email"
+                  type="email"
+                  required
+                  autocomplete="email"
+                  inputmode="email"
+                  aria-describedby="buyer-email-error"
+                  data-error-label="Email"
+                />
+                <p
+                  class="k-error"
+                  id="buyer-email-error"
+                  data-field-error
+                  hidden
+                ></p>
+              </div>
+            </div>
+            <fieldset
+              class="k-company-fields"
+              data-company-fields
+              data-demo-property-group="company"
+            >
+              <legend>Реквизиты компании</legend>
+              <p class="k-small k-muted" data-company-fallback>
+                Для режима «Компания». При отсутствии JavaScript заполните эти
+                поля, если заказываете от организации.
+              </p>
+              <div class="k-contact-fields">
+                <div class="k-field" data-checkout-field>
+                  <label for="company-name"
+                    >Название организации · необязательно</label
+                  ><input
+                    class="k-control"
+                    id="company-name"
+                    type="text"
+                    autocomplete="organization"
+                    data-demo-company-required
+                    aria-describedby="company-name-error"
+                    data-error-label="Название организации"
+                  />
+                  <p
+                    class="k-error"
+                    id="company-name-error"
+                    data-field-error
+                    hidden
+                  ></p>
+                </div>
+                <div class="k-field" data-checkout-field>
+                  <label for="company-inn">ИНН · необязательно</label
+                  ><input
+                    class="k-control"
+                    id="company-inn"
+                    type="text"
+                    inputmode="numeric"
+                    data-demo-company-required
+                    aria-describedby="company-inn-error"
+                    data-error-label="ИНН"
+                  />
+                  <p
+                    class="k-error"
+                    id="company-inn-error"
+                    data-field-error
+                    hidden
+                  ></p>
+                </div>
+                <div class="k-field" data-checkout-field>
+                  <label for="company-kpp">КПП · необязательно</label
+                  ><input
+                    class="k-control"
+                    id="company-kpp"
+                    type="text"
+                    inputmode="numeric"
+                    aria-describedby="company-kpp-error"
+                    data-error-label="КПП"
+                  />
+                  <p
+                    class="k-error"
+                    id="company-kpp-error"
+                    data-field-error
+                    hidden
+                  ></p>
+                </div>
+              </div>
+              <p class="k-small k-muted">
+                Реквизиты в макете — пример набора полей заказа. Проверка
+                организации не подключена.
+              </p>
+            </fieldset>
+          </section>
+          <section
+            class="k-checkout-section"
+            aria-labelledby="delivery-heading"
+          >
+            <h2 id="delivery-heading">
+              <span aria-hidden="true">02</span> Доставка
+            </h2>
+            <fieldset>
+              <legend class="k-sr-only">Способ доставки</legend>
+              <label class="k-commerce-choice"
+                ><input
+                  id="delivery-cdek"
+                  type="radio"
+                  name="demo-delivery"
+                  value="cdek"
+                  checked
+                  required
+                /><span
+                  ><strong>СДЭК</strong
+                  ><small>Пункт выдачи / постамат · макет</small></span
+                ></label
+              >
+            </fieldset>
+            <div class="k-delivery-selection">
+              <p data-delivery-summary>Пункт выдачи ещё не выбран.</p>
+              <button
+                class="k-button k-button--secondary"
+                type="button"
+                id="delivery-open"
+                aria-describedby="demo-point-error"
+                data-dialog-open="delivery-dialog"
+                data-checkout-enhanced
+                hidden
+              >
+                Выбрать пункт выдачи
+              </button>
+              <p
+                class="k-error"
+                id="demo-point-error"
+                data-delivery-error
+                hidden
+              ></p>
+              <p class="k-small k-muted">
+                Стоимость доставки будет рассчитана. Показан один пример;
+                доступные способы появятся при реальном оформлении.
+              </p>
+            </div>
+            <div class="k-delivery-fallback" data-delivery-fallback>
+              <h3>Выбор пункта · демонстрация</h3>
+              <div class="k-delivery-picker" data-delivery-picker>
+                <p class="k-small k-muted">
+                  Макет выбора. Карта и поиск не подключены; адресов, сроков и
+                  стоимости нет.
+                </p>
+                <div class="k-field">
+                  <label for="delivery-search">Город или адрес</label
+                  ><input
+                    class="k-control"
+                    type="search"
+                    id="delivery-search"
+                    placeholder="Поиск будет доступен позже"
+                    disabled
+                  />
+                </div>
+                <div
+                  class="k-delivery-map"
+                  aria-label="Нейтральная область будущей карты"
+                >
+                  <span>Карта пунктов выдачи</span
+                  ><small>Без подключения к картам</small>
+                </div>
+                <fieldset>
+                  <legend>Пункты выдачи · макет</legend>
+                  <label class="k-commerce-choice"
+                    ><input
+                      id="demo-point"
+                      type="radio"
+                      name="demo-point"
+                      value="review-only"
+                      required
+                      form="checkout-form"
+                      aria-describedby="demo-point-error"
+                    /><span
+                      ><strong>Демонстрационный пункт</strong
+                      ><small
+                        >Без физического адреса · только для проверки
+                        выбора</small
+                      ></span
+                    ></label
+                  >
+                </fieldset>
+                <button
+                  class="k-button k-button--full"
+                  type="button"
+                  data-confirm-point
+                  data-checkout-enhanced
+                  hidden
+                >
+                  Подтвердить пример
+                </button>
+              </div>
+            </div>
+          </section>
+          <section class="k-checkout-section" aria-labelledby="payment-heading">
+            <h2 id="payment-heading">
+              <span aria-hidden="true">03</span> Оплата
+            </h2>
+            <fieldset>
+              <legend class="k-sr-only">Способ оплаты</legend>
+              <p class="k-small k-muted k-payment-intro" data-payment-copy>
+                Способы показаны для примера. Оплата в прототипе не проводится.
+              </p>
+              <div data-demo-payment-methods>
+                <label class="k-commerce-choice"
+                  ><input
+                    id="payment-sbp"
+                    aria-describedby="payment-error"
+                    type="radio"
+                    name="demo-payment"
+                    value="sbp"
+                    checked
+                    required
+                  /><span
+                    ><strong>СБП</strong
+                    ><small
+                      >Инструкция появится после реального оформления</small
+                    ></span
+                  ></label
+                ><label class="k-commerce-choice"
+                  ><input
+                    id="payment-cash"
+                    aria-describedby="payment-error"
+                    type="radio"
+                    name="demo-payment"
+                    value="cash"
+                    required
+                  /><span
+                    ><strong>Наличные</strong
+                    ><small
+                      >Порядок оплаты уточняется при оформлении</small
+                    ></span
+                  ></label
+                >
+                <label class="k-commerce-choice"
+                  ><input
+                    id="payment-invoice"
+                    aria-describedby="payment-error"
+                    type="radio"
+                    name="demo-payment"
+                    value="invoice"
+                    required
+                  /><span
+                    ><strong>Счёт без НДС</strong
+                    ><small>По реквизитам заказа · пример</small></span
+                  ></label
+                >
+              </div>
+              <p
+                class="k-error"
+                id="payment-error"
+                data-payment-error
+                hidden
+              ></p>
+            </fieldset>
+          </section>
+          <section
+            class="k-checkout-section k-checkout-final"
+            aria-labelledby="review-heading"
+          >
+            <h2 id="review-heading">
+              <span aria-hidden="true">04</span> Подтверждение
+            </h2>
+            <details class="k-commerce-disclosure k-order-comment">
+              <summary>Комментарий к заказу · необязательно</summary>
+              <div class="k-field">
+                <label for="order-comment">Что уточнить при оформлении</label
+                ><textarea
+                  class="k-control"
+                  id="order-comment"
+                  rows="3"
+                ></textarea>
+              </div>
+            </details>
+            <div class="k-field" data-checkout-field>
+              <label class="k-check k-consent"
+                ><input
+                  type="checkbox"
+                  id="order-consent"
+                  required
+                  aria-describedby="order-consent-error"
+                  data-error-label="Согласие с документами"
+                /><span
+                  >Согласен с обработкой персональных данных и условиями
+                  заказа.</span
+                ></label
+              >
+              <p class="k-small k-muted">
+                <a href="#legal-notice">Политика конфиденциальности · макет</a>
+                и <a href="#legal-notice">условия продажи · макет</a>.
+              </p>
+              <p
+                class="k-error"
+                id="order-consent-error"
+                data-field-error
+                hidden
+              ></p>
+            </div>
+            <details
+              class="k-commerce-disclosure k-small k-muted"
+              id="legal-notice"
+            >
+              <summary>Документы — на согласовании</summary>
+              <p>
+                Это обозначение места будущих документов, а не юридическое
+                соглашение. Согласие проверяет только состояние интерфейса
+                прототипа.
+              </p>
+            </details>
+            <div class="k-submit-total">
+              <span>Итого по товарам</span><strong>359 800 ₽</strong>
+            </div>
+            <p class="k-small k-muted">
+              2 системы. Доставка будет рассчитана отдельно. Цены — примеры.
+            </p>
+            <button class="k-button k-button--full" type="submit">
+              Оформить заказ
+            </button>
+            <p class="k-small k-muted">
+              Прототип оформления — заказ не отправляется.
+            </p>
+            <noscript
+              ><p class="k-small k-muted">
+                Доступна нативная проверка обязательных полей. Компания:
+                заполните пример реквизитов. Способ оплаты выбирается отдельно.
+                Кнопка откроет статический пример результата; контакты не
+                передаются.
+              </p></noscript
+            >
+          </section>
+        </form>
+        <aside class="k-checkout-summary" aria-label="Сводка заказа">
+          <details class="k-order-review" data-order-review>
+            <summary>
+              <span>Ваш заказ <small>2 системы</small></span
+              ><strong>359 800 ₽</strong>
+            </summary>
+            <div class="k-order-review-content">
+              <ul class="k-order-lines">
+                <li>
+                  <div>
+                    <strong>PLAY 1440 <span>CONFIG / 01</span></strong
+                    ><small>32 ГБ · 1 ТБ · Lian Li</small>
+                  </div>
+                  <span>1 × 179 900 ₽</span>
+                </li>
+                <li>
+                  <div>
+                    <strong>PLAY 1440 <span>CONFIG / 02</span></strong
+                    ><small>64 ГБ · 2 ТБ · Fractal North</small>
+                  </div>
+                  <span>1 × 179 900 ₽</span>
+                </li>
+              </ul>
+              <dl class="k-order-totals">
+                <div>
+                  <dt>Товары</dt>
+                  <dd data-demo-subtotal>359 800 ₽</dd>
+                </div>
+                <div class="k-order-delivery">
+                  <dt>Доставка</dt>
+                  <dd>Рассчитывается при оформлении</dd>
+                </div>
+                <div class="k-order-total">
+                  <dt>Итого по товарам</dt>
+                  <dd data-demo-total>359 800 ₽</dd>
+                </div>
+              </dl>
+              <a href="cart.html">Изменить корзину →</a>
+              <p class="k-small k-muted">
+                Выбранная конфигурация остаётся отдельной строкой заказа.
+              </p>
+            </div>
+          </details>
+        </aside>
+      </div>
+    </main>
+    <footer class="k-transaction-footer">
+      <div class="k-container">
+        <div class="k-transaction-footer-inner">
+          <a
+            class="k-site-brand"
+            href="index.html"
+            aria-label="KORSAC — главная"
+            ><span class="k-brand-wordmark"
+              ><img
+                src="assets/images/brand/korsac-lockup-horizontal.svg"
+                width="450"
+                height="100"
+                alt="" /></span></a
+          ><span class="k-small k-muted">KORSAC by King-Komp</span
+          ><a href="review.html">Материалы прототипа</a>
+        </div>
+        <p class="k-small k-muted">
+          Визуальный прототип. Заказы, оплата и доставка не подключены.
+        </p>
+      </div>
+    </footer>
+    <dialog
+      class="k-dialog k-delivery-dialog"
+      id="delivery-dialog"
+      aria-labelledby="delivery-dialog-title"
+    >
+      <div class="k-dialog-header">
+        <h2 id="delivery-dialog-title">Выбор пункта · макет</h2>
+        <button
+          class="k-shell-icon"
+          type="button"
+          data-dialog-close
+          aria-label="Закрыть выбор пункта"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="m6 6 12 12M18 6 6 18" />
+          </svg>
+        </button>
+      </div>
+      <div data-delivery-dialog-content></div>
+    </dialog>
+  </body>
+</html>

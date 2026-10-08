@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="data:," />
+    <title>Заказ принят · демонстрация — KORSAC</title>
+    <link rel="stylesheet" href="assets/css/tokens.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/shell.css" />
+    <link rel="stylesheet" href="assets/css/brand.css" />
+    <link rel="stylesheet" href="assets/css/cart.css" />
+    <link rel="stylesheet" href="assets/css/checkout.css" />
+    <script src="assets/js/prototype.js" defer></script>
+    <script src="assets/js/shell.js" defer></script>
+  </head>
+  <body class="k-commerce-page">
+    <a class="k-skip" href="#main">Перейти к содержанию</a>
+    <header class="k-site-header k-transaction-header">
+      <div class="k-container k-transaction-header-inner">
+        <a class="k-site-brand" href="index.html" aria-label="KORSAC — главная"
+          ><span class="k-brand-wordmark"
+            ><img
+              src="assets/images/brand/korsac-lockup-horizontal.svg"
+              width="450"
+              height="100"
+              alt="" /></span></a
+        ><span class="k-transaction-label"
+          ><span class="k-transaction-desktop">Результат оформления</span
+          ><span class="k-transaction-mobile">Результат</span></span
+        ><a class="k-transaction-back" href="cart.html"
+          ><span aria-hidden="true">←</span>
+          <span class="k-transaction-desktop">Вернуться в корзину</span
+          ><span class="k-transaction-mobile">Назад</span></a
+        >
+      </div>
+    </header>
+    <main class="k-commerce-main k-container" id="main">
+      <div class="k-success-layout">
+        <section class="k-success-message" aria-labelledby="success-title">
+          <img
+            class="k-success-mark"
+            src="assets/images/brand/korsac-mark.svg"
+            width="112"
+            height="100"
+            alt=""
+          />
+          <p class="k-config-tag">DEMO / ORDER</p>
+          <h1 id="success-title">Заказ принят</h1>
+          <p class="k-lead">Так будет выглядеть завершение оформления.</p>
+          <p class="k-commerce-demo-note">
+            Это демонстрационный результат. Реальный заказ не создан, контакты
+            не переданы, оплата не проведена.
+          </p>
+          <ol class="k-success-next">
+            <li>
+              <strong>Подтверждение заказа</strong
+              ><span
+                >В магазине здесь появятся номер заказа и подтверждение
+                контактов.</span
+              >
+            </li>
+            <li>
+              <strong>Оплата и доставка</strong
+              ><span
+                >Инструкции по выбранному способу оплаты и статус доставки будут
+                доступны после реального оформления.</span
+              >
+            </li>
+            <li>
+              <strong>Связь по заказу</strong
+              ><span
+                >Email-подтверждение и уточнение деталей появятся при
+                интеграции. Сейчас сообщения не отправляются.</span
+              >
+            </li>
+          </ol>
+          <a class="k-button" href="catalog.html">Вернуться к компьютерам</a>
+        </section>
+        <aside
+          class="k-order-summary k-success-summary"
+          aria-labelledby="success-summary-title"
+        >
+          <p class="k-eyebrow">Демонстрационный заказ</p>
+          <h2 id="success-summary-title">2 системы PLAY 1440</h2>
+          <ul class="k-order-lines">
+            <li>
+              <div>
+                <strong>PLAY 1440 <span>CONFIG / 01</span></strong
+                ><small>32 ГБ · 1 ТБ · Lian Li</small>
+              </div>
+              <span>1 × 179 900 ₽</span>
+            </li>
+            <li>
+              <div>
+                <strong>PLAY 1440 <span>CONFIG / 02</span></strong
+                ><small>64 ГБ · 2 ТБ · Fractal North</small>
+              </div>
+              <span>1 × 179 900 ₽</span>
+            </li>
+          </ul>
+          <dl class="k-order-totals">
+            <div>
+              <dt>Товары</dt>
+              <dd data-demo-subtotal>359 800 ₽</dd>
+            </div>
+            <div class="k-order-delivery">
+              <dt>Доставка</dt>
+              <dd>Рассчитывается при оформлении</dd>
+            </div>
+            <div class="k-order-total">
+              <dt>Итого по товарам</dt>
+              <dd data-demo-total>359 800 ₽</dd>
+            </div>
+          </dl>
+          <p class="k-small k-muted">
+            Исходный пример: CONFIG / 01 и CONFIG / 02. Данные формы и изменения
+            корзины сюда не переносятся.
+          </p>
+        </aside>
+      </div>
+    </main>
+    <footer class="k-transaction-footer">
+      <div class="k-container">
+        <div class="k-transaction-footer-inner">
+          <a
+            class="k-site-brand"
+            href="index.html"
+            aria-label="KORSAC — главная"
+            ><span class="k-brand-wordmark"
+              ><img
+                src="assets/images/brand/korsac-lockup-horizontal.svg"
+                width="450"
+                height="100"
+                alt="" /></span></a
+          ><span class="k-small k-muted">KORSAC by King-Komp</span
+          ><a href="review.html">Материалы прототипа</a>
+        </div>
+        <p class="k-small k-muted">
+          Визуальный прототип. Заказы, оплата и доставка не подключены.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
