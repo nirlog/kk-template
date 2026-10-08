@@ -62,7 +62,7 @@ Width: **320 px на 1280–1920**, **220 px на 1024**, **210 px на tablet**
 Ambient blue уменьшен до 6%, маленький copper registration — до 18 px.
 
 Static instances, включая Hero, — внешние `<img>`: их defs изолированы браузером.
-Каждая public page содержит **один** inline intro SVG с собственным prefix:
+Каждая browsing public page (Homepage/Catalog/Product) содержит **один** inline intro SVG с собственным prefix:
 `intro-index-`, `intro-catalog-`, `intro-product-`. Единственный UI Kit demo
 использует `kit-brand-` prefix в другом документе.
 Все fragment references переписаны вместе с IDs; source SVG не вставляются
@@ -73,6 +73,15 @@ Inline intro даёт родительской странице прямую о�
 SVG остаются обычными локальными URLs. Motion template не содержит autoplay.
 Автоматический Hero Eye Flash удалён после live review вместе с coupling
 `korsac:hero-enter`; заменяющей hero animation нет.
+
+## Transactional exception — Cart & Checkout v1
+
+`cart.html`, `checkout.html`, `order-success.html` используют статическую approved
+identity, **полностью исключены из daily Brand Intro** и не consume/stamp его
+eligibility. На них отсутствуют inline intro boot/SVG overlay и intro CSS/JS.
+Блокирующая brand activation не участвует в завершении заказа. Policy browsing
+Homepage/Catalog/Product сохранена; UI Kit/review по-прежнему исключены.
+[Commerce architecture](KORSAC-CART-CHECKOUT-EXPERIENCE.md).
 
 ## Shared site-entry Brand Intro
 

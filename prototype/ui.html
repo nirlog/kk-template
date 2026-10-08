@@ -16,6 +16,9 @@
     <link rel="stylesheet" href="assets/css/shell.css" />
     <link rel="stylesheet" href="assets/css/brand.css" />
     <link rel="stylesheet" href="assets/css/homepage.css" />
+    <link rel="stylesheet" href="assets/css/cart.css" />
+    <link rel="stylesheet" href="assets/css/checkout.css" />
+    <script src="assets/js/cart-experience.js" defer></script>
     <script src="assets/js/prototype.js" defer></script>
     <script src="assets/js/shell.js" defer></script>
     <script src="assets/js/brand-motion.js" defer></script>
@@ -62,8 +65,7 @@
               <path d="M4.5 21v-2a7.5 7.5 0 0 1 15 0v2" /></svg></a
           ><a
             class="k-shell-icon"
-            href="#site-prototype"
-            data-dialog-open="scope-dialog"
+            href="cart.html"
             aria-label="Корзина"
             title="Корзина"
             ><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -797,8 +799,7 @@
                       <path d="M4.5 21v-2a7.5 7.5 0 0 1 15 0v2" /></svg></a
                   ><a
                     class="k-shell-icon"
-                    href="#site-prototype"
-                    data-dialog-open="scope-dialog"
+                    href="cart.html"
                     aria-label="Корзина"
                     title="Корзина"
                     ><svg
@@ -887,8 +888,7 @@
                       <path d="M4.5 21v-2a7.5 7.5 0 0 1 15 0v2" /></svg></a
                   ><a
                     class="k-shell-icon"
-                    href="#site-prototype"
-                    data-dialog-open="scope-dialog"
+                    href="cart.html"
                     aria-label="Корзина"
                     title="Корзина"
                     ><svg
@@ -1006,7 +1006,8 @@
                   ><a href="review.html">Материалы прототипа</a>
                 </div>
                 <p class="k-site-prototype-status" id="kit-footer-prototype">
-                  Визуальный прототип. Поиск, профиль и корзина пока недоступны.
+                  Визуальный прототип. Поиск и профиль пока недоступны. Корзина
+                  и оформление — демонстрация.
                 </p>
               </div>
             </footer>
@@ -3797,6 +3798,239 @@
           </dialog>
         </section>
       </div>
+      <section
+        class="k-section k-container k-commerce-primitives"
+        id="commerce-primitives"
+        aria-labelledby="commerce-title"
+      >
+        <div class="k-section-heading">
+          <div>
+            <p class="k-eyebrow">Commerce Primitives / v1</p>
+            <h2 id="commerce-title">Корзина и оформление</h2>
+          </div>
+          <p class="k-muted">
+            Спокойные транзакционные состояния той же системы KORSAC. Все данные
+            — примеры.
+          </p>
+        </div>
+        <div class="k-commerce-specimen-grid">
+          <div data-demo-cart>
+            <article
+              class="k-cart-line"
+              data-demo-cart-line
+              data-cart-config="02"
+              data-demo-unit-price-minor="17990000"
+              aria-labelledby="ui-02-title"
+            >
+              <div class="k-cart-line-heading">
+                <div>
+                  <p class="k-eyebrow">KORSAC PLAY</p>
+                  <h2 id="ui-02-title">
+                    1440 <span class="k-cart-scenario">Игры в 1440p</span>
+                  </h2>
+                </div>
+                <span class="k-config-tag">CONFIG / 02</span>
+              </div>
+              <div class="k-cart-line-body">
+                <figure
+                  class="k-cart-media k-cart-media--north"
+                  aria-label="Схема корпуса: Fractal Design North. Кандидат, не фотография."
+                >
+                  <div class="k-cart-tower" aria-hidden="true">
+                    <span></span><span></span><span></span>
+                  </div>
+                  <figcaption>ATX · схема</figcaption>
+                </figure>
+                <div class="k-cart-hardware">
+                  <dl class="k-cart-specs">
+                    <div>
+                      <dt>CPU</dt>
+                      <dd>Ryzen 7 9700X</dd>
+                    </div>
+                    <div>
+                      <dt>GPU</dt>
+                      <dd>GeForce RTX 5070 · 12 ГБ</dd>
+                    </div>
+                    <div>
+                      <dt>RAM</dt>
+                      <dd class="k-cart-difference">64 ГБ DDR5</dd>
+                    </div>
+                    <div>
+                      <dt>SSD</dt>
+                      <dd class="k-cart-difference">2 ТБ NVMe TLC</dd>
+                    </div>
+                    <div>
+                      <dt>Корпус</dt>
+                      <dd class="k-cart-difference">Fractal Design North</dd>
+                    </div>
+                  </dl>
+                  <p class="k-cart-extras k-small k-muted">
+                    Windows 11 · макет · Microsoft Office Trial
+                  </p>
+                  <details class="k-commerce-disclosure">
+                    <summary>Показать всю конфигурацию</summary>
+                    <dl class="k-cart-specs k-cart-full-specs">
+                      <div>
+                        <dt>Второй SSD</dt>
+                        <dd>1 ТБ NVMe</dd>
+                      </div>
+                      <div>
+                        <dt>ОС</dt>
+                        <dd>Windows 11 · макет</dd>
+                      </div>
+                      <div>
+                        <dt>Софт</dt>
+                        <dd>Microsoft Office Trial</dd>
+                      </div>
+                      <div>
+                        <dt>Сервис</dt>
+                        <dd>Помощь с первым запуском</dd>
+                      </div>
+                    </dl>
+                    <p class="k-small k-muted">
+                      Корпус — кандидат из текущего shortlist.
+                    </p>
+                  </details>
+                </div>
+              </div>
+              <div class="k-cart-line-bottom">
+                <div class="k-cart-price">
+                  <strong data-demo-line-total>179 900 ₽</strong
+                  ><span class="k-small k-muted"
+                    >179 900 ₽ / система · пример</span
+                  >
+                </div>
+                <div
+                  class="k-quantity"
+                  role="group"
+                  aria-label="Количество PLAY 1440, CONFIG / 02"
+                >
+                  <button
+                    type="button"
+                    data-demo-step="-1"
+                    data-cart-enhanced
+                    hidden
+                    disabled
+                    aria-label="Уменьшить количество CONFIG / 02"
+                  >
+                    −</button
+                  ><span class="k-quantity-value"
+                    ><span class="k-sr-only">Количество: </span
+                    ><output data-demo-quantity>1</output></span
+                  ><button
+                    type="button"
+                    data-demo-step="1"
+                    data-cart-enhanced
+                    hidden
+                    aria-label="Увеличить количество CONFIG / 02"
+                  >
+                    +
+                  </button>
+                </div>
+              </div>
+              <div class="k-cart-line-actions">
+                <a href="product.html#configurator">Изменить конфигурацию</a
+                ><button
+                  type="button"
+                  class="k-button k-button--text"
+                  data-demo-remove
+                  data-cart-enhanced
+                  hidden
+                  aria-label="Удалить CONFIG / 02"
+                >
+                  Удалить
+                </button>
+              </div>
+            </article>
+            <div class="k-cart-undo" data-cart-undo hidden>
+              <span data-cart-undo-label></span
+              ><button
+                class="k-button k-button--text"
+                type="button"
+                data-demo-restore
+              >
+                Восстановить
+              </button>
+            </div>
+            <p class="k-sr-only" role="status" data-cart-status></p>
+          </div>
+          <div class="k-stack">
+            <section class="k-panel k-stack">
+              <h3>Сводка и действие</h3>
+              <dl class="k-order-totals">
+                <div>
+                  <dt>Товары</dt>
+                  <dd>179 900 ₽</dd>
+                </div>
+                <div class="k-order-delivery">
+                  <dt>Доставка</dt>
+                  <dd>Будет рассчитана</dd>
+                </div>
+                <div class="k-order-total">
+                  <dt>Итого по товарам</dt>
+                  <dd>179 900 ₽</dd>
+                </div>
+              </dl>
+              <a class="k-button" href="checkout.html">Перейти к оформлению</a>
+            </section>
+            <fieldset>
+              <legend>Доставка · пример</legend>
+              <label class="k-commerce-choice"
+                ><input
+                  id="ui-commerce-delivery"
+                  type="radio"
+                  name="ui-commerce-delivery"
+                  value="cdek"
+                  checked
+                /><span
+                  ><strong>СДЭК</strong
+                  ><small>Пункт выдачи · пример</small></span
+                ></label
+              >
+            </fieldset>
+            <fieldset>
+              <legend>Оплата · пример</legend>
+              <label class="k-commerce-choice"
+                ><input
+                  id="ui-commerce-payment"
+                  type="radio"
+                  name="ui-commerce-payment"
+                  value="invoice"
+                  checked
+                /><span
+                  ><strong>Счёт без НДС</strong
+                  ><small>Для компании</small></span
+                ></label
+              >
+            </fieldset>
+            <div class="k-field">
+              <label for="ui-commerce-error">Email · состояние ошибки</label
+              ><input
+                class="k-control"
+                id="ui-commerce-error"
+                type="email"
+                value="example"
+                aria-invalid="true"
+                aria-describedby="ui-commerce-error-message"
+              />
+              <p class="k-error" id="ui-commerce-error-message">
+                Укажите email в формате name@example.ru.
+              </p>
+            </div>
+            <section class="k-cart-empty k-cart-empty--specimen">
+              <h3>В корзине пока нет системы.</h3>
+              <a class="k-button k-button--secondary" href="catalog.html"
+                >Выбрать KORSAC</a
+              >
+            </section>
+          </div>
+        </div>
+        <p class="k-small k-muted">
+          CONFIG / 02 — идентификатор конфигурации в макете, не SYSTEM ID.
+          Арифметика количества используется только для показа; сводка справа —
+          отдельный статический specimen.
+        </p>
+      </section>
     </main>
     <footer class="k-site-footer">
       <div class="k-container">
@@ -3843,7 +4077,8 @@
           ><a href="review.html">Материалы прототипа</a>
         </div>
         <p class="k-site-prototype-status" id="site-prototype">
-          Визуальный прототип. Поиск, профиль и корзина пока недоступны.
+          Визуальный прототип. Поиск и профиль пока недоступны. Корзина и
+          оформление — демонстрация.
         </p>
       </div>
     </footer>
@@ -3864,7 +4099,8 @@
       <div class="k-stack">
         <p>
           Здесь можно изучить линейку PLAY и настроить пример системы. Поиск,
-          личный кабинет и корзина появятся при подключении магазина.
+          личный кабинет появятся при подключении магазина. Корзина и оформление
+          — демонстрация.
         </p>
         <p class="k-muted">
           Цены — примеры. Выбор меняет подписи конфигурации; данные не

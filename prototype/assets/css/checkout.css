@@ -1,0 +1,501 @@
+/* Transactional shell and one-page guest checkout; no marketing entrance. */
+.k-transaction-header-inner {
+  min-height: 88px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 32px;
+}
+.k-transaction-label {
+  justify-self: center;
+  color: var(--k-secondary);
+  font-size: var(--k-body-sm);
+}
+.k-transaction-back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--k-body-sm);
+  min-height: 44px;
+  text-decoration: none;
+}
+.k-transaction-mobile {
+  display: none;
+}
+.k-transaction-footer {
+  border-top: 1px solid var(--k-border);
+  padding-block: 32px;
+}
+.k-transaction-footer-inner {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 16px;
+}
+.k-transaction-footer a {
+  font-size: var(--k-body-sm);
+}
+.k-checkout-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 680px) minmax(300px, 360px);
+  justify-content: space-between;
+  gap: 64px;
+  align-items: start;
+  margin-top: 32px;
+}
+.k-checkout-grid > * {
+  min-width: 0;
+}
+.k-checkout-section {
+  padding-block: 32px;
+  border-top: 1px solid var(--k-border);
+}
+.k-checkout-section:first-of-type {
+  padding-top: 0;
+  border: 0;
+}
+.k-checkout-section > h2 {
+  font-size: 1.375rem;
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.k-checkout-section h2 > span {
+  font: 500 var(--k-caption) / 1.4 var(--k-font-mono);
+  color: var(--k-identity);
+}
+.k-buyer-types {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.k-commerce-choice {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 16px;
+  min-height: 64px;
+  border: 1px solid var(--k-border);
+  background: var(--k-surface);
+  cursor: pointer;
+  transition:
+    background-color var(--k-motion-fast) var(--k-ease-standard),
+    border-color var(--k-motion-fast) var(--k-ease-standard);
+}
+.k-commerce-choice + .k-commerce-choice {
+  margin-top: 8px;
+}
+.k-commerce-choice input {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  accent-color: var(--k-accent-fill);
+  margin: 0;
+}
+.k-commerce-choice span {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+.k-commerce-choice strong {
+  font-size: var(--k-body-sm);
+  font-weight: 600;
+}
+.k-commerce-choice small {
+  color: var(--k-muted);
+  font-size: var(--k-caption);
+  line-height: 1.5;
+}
+.k-commerce-choice:hover {
+  border-color: var(--k-border-strong);
+}
+.k-commerce-choice:has(input:checked) {
+  background: var(--k-selected);
+  border-left-color: var(--k-accent);
+  box-shadow: inset 2px 0 var(--k-accent);
+}
+.k-commerce-choice:has(input:focus-visible) {
+  outline: 2px solid var(--k-focus);
+  outline-offset: 4px;
+}
+.k-commerce-choice:has(input[aria-invalid="true"]) {
+  border-color: var(--k-danger);
+}
+.k-buyer-types .k-commerce-choice {
+  margin: 0;
+}
+.k-contact-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  max-width: 640px;
+}
+.k-contact-fields > :first-child {
+  grid-column: 1/-1;
+  max-width: 400px;
+}
+.k-contact-fields input {
+  font-size: 1rem;
+}
+.k-company-fields {
+  border-left: 2px solid var(--k-identity);
+  padding: 24px 0 0 20px;
+  margin-top: 24px;
+}
+.k-company-fields legend {
+  float: left;
+  width: 100%;
+  font-size: 1.125rem;
+  margin-bottom: 16px;
+}
+.k-company-fields > .k-contact-fields {
+  clear: both;
+}
+.k-company-fields > p {
+  margin-block: 0 16px;
+}
+.k-company-fields > p:last-child {
+  margin-block: 16px 0;
+}
+.k-delivery-selection {
+  display: grid;
+  justify-items: start;
+  gap: 12px;
+  margin-top: 20px;
+}
+.k-delivery-picker {
+  display: grid;
+  gap: 20px;
+}
+.k-delivery-picker > p {
+  max-width: 55ch;
+}
+.k-delivery-map {
+  display: grid;
+  gap: 8px;
+  place-content: center;
+  text-align: center;
+  min-height: 180px;
+  color: var(--k-secondary);
+  border: 1px solid var(--k-border);
+  background:
+    linear-gradient(
+      90deg,
+      transparent 49.5%,
+      var(--k-border) 49.5% 50%,
+      transparent 50%
+    ),
+    linear-gradient(
+      0deg,
+      transparent 49.5%,
+      var(--k-border) 49.5% 50%,
+      transparent 50%
+    ),
+    var(--k-bg);
+  background-size: 48px 48px;
+}
+.k-delivery-map span,
+.k-delivery-map small {
+  padding-inline: 8px;
+  background: var(--k-bg);
+}
+.k-delivery-dialog {
+  max-width: 640px;
+}
+.k-payment-intro {
+  margin-bottom: 16px;
+}
+.k-order-comment {
+  margin-bottom: 24px;
+}
+.k-consent {
+  font-size: var(--k-body-sm);
+}
+.k-submit-total {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  border-top: 1px solid var(--k-border);
+  padding-top: 24px;
+  margin-top: 24px;
+}
+.k-submit-total strong {
+  font-size: 1.625rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+.k-checkout-final > .k-button {
+  margin-top: 20px;
+}
+.k-checkout-final > p {
+  margin-top: 12px;
+}
+.k-checkout-summary {
+  position: sticky;
+  top: calc(var(--k-shell-header-height) + 24px);
+  background: var(--k-surface);
+  border-top: 2px solid var(--k-identity);
+  padding: 24px;
+}
+.k-order-review > summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 12px;
+  justify-content: space-between;
+  cursor: pointer;
+  list-style: none;
+  min-height: 44px;
+}
+.k-order-review > summary::-webkit-details-marker {
+  display: none;
+}
+.k-order-review > summary > span {
+  font-weight: 600;
+}
+.k-order-review summary small {
+  display: block;
+  color: var(--k-muted);
+  font-weight: 400;
+}
+.k-order-review summary strong {
+  font-size: 1.25rem;
+  font-variant-numeric: tabular-nums;
+}
+.k-order-review > summary::after {
+  content: "+";
+  color: var(--k-secondary);
+}
+.k-order-review[open] > summary::after {
+  content: "−";
+}
+.k-order-review-content {
+  display: grid;
+  gap: 24px;
+  padding-top: 20px;
+}
+.k-order-lines {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 20px;
+}
+.k-order-lines li {
+  display: grid;
+  gap: 8px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--k-border);
+}
+.k-order-lines strong {
+  font-size: var(--k-body-sm);
+  font-weight: 500;
+}
+.k-order-lines strong > span {
+  display: block;
+  font: var(--k-caption) / 1.4 var(--k-font-mono);
+  color: var(--k-identity);
+  margin-top: 4px;
+}
+.k-order-lines small {
+  display: block;
+  color: var(--k-muted);
+  margin-top: 4px;
+}
+.k-order-lines li > span {
+  font-size: var(--k-body-sm);
+  font-variant-numeric: tabular-nums;
+}
+.k-error-summary {
+  border: 1px solid var(--k-danger);
+  border-left: 3px solid var(--k-danger);
+  padding: 20px;
+  margin-bottom: 32px;
+  background: var(--k-surface);
+}
+.k-error-summary h2 {
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+}
+.k-error-summary ul {
+  padding-left: 20px;
+  font-size: var(--k-body-sm);
+}
+.k-error-summary li + li {
+  margin-top: 8px;
+}
+.k-success-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 640px) minmax(300px, 360px);
+  gap: 64px;
+  justify-content: space-between;
+  align-items: start;
+}
+.k-success-message {
+  display: grid;
+  justify-items: start;
+  gap: 24px;
+}
+.k-success-mark {
+  width: 96px;
+  height: auto;
+}
+.k-success-message h1 {
+  font-size: clamp(2rem, 3vw, 3rem);
+}
+.k-success-message > .k-lead {
+  max-width: 35ch;
+}
+.k-success-next {
+  list-style: none;
+  padding: 0;
+  counter-reset: next;
+  display: grid;
+  gap: 24px;
+  margin-block: 8px;
+}
+.k-success-next li {
+  counter-increment: next;
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr);
+  gap: 4px 12px;
+}
+.k-success-next li::before {
+  content: "0" counter(next);
+  color: var(--k-identity);
+  font: var(--k-caption) / 1.6 var(--k-font-mono);
+  grid-row: span 2;
+}
+.k-success-next strong {
+  font-size: var(--k-body-sm);
+  font-weight: 500;
+}
+.k-success-next span {
+  font-size: var(--k-body-sm);
+  color: var(--k-secondary);
+}
+@media (max-width: 1099px) {
+  .k-transaction-header-inner {
+    min-height: 64px;
+  }
+  .k-checkout-grid,
+  .k-success-layout {
+    gap: 32px;
+    grid-template-columns: minmax(0, 1fr) 300px;
+  }
+  .k-transaction-back {
+    font-size: var(--k-body-sm);
+  }
+  .k-contact-fields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .k-contact-fields > :first-child {
+    max-width: none;
+  }
+}
+@media (max-width: 899px) {
+  .k-checkout-grid,
+  .k-success-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .k-checkout-summary {
+    grid-row: 1;
+    position: static;
+    padding: 16px 20px;
+  }
+  .k-checkout-grid {
+    gap: 24px;
+  }
+  .k-contact-fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .k-contact-fields > :first-child {
+    max-width: 400px;
+  }
+  .k-success-summary {
+    position: static;
+  }
+}
+@media (max-width: 599px) {
+  .k-transaction-header-inner {
+    gap: 12px;
+  }
+  .k-transaction-header .k-brand-wordmark {
+    width: 100px;
+  }
+  .k-transaction-desktop {
+    display: none;
+  }
+  .k-transaction-mobile {
+    display: inline;
+  }
+  .k-transaction-label {
+    font-size: var(--k-caption);
+  }
+  .k-transaction-back {
+    gap: 4px;
+    font-size: var(--k-caption);
+  }
+  .k-checkout-heading h1 {
+    font-size: 2rem;
+  }
+  .k-contact-fields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .k-contact-fields > :first-child {
+    max-width: none;
+  }
+  .k-company-fields {
+    padding-left: 16px;
+  }
+  .k-buyer-types {
+    gap: 8px;
+  }
+  .k-commerce-choice {
+    padding: 12px;
+    gap: 8px;
+  }
+  .k-buyer-types .k-commerce-choice {
+    align-items: start;
+  }
+  .k-buyer-types .k-commerce-choice input {
+    margin-top: 2px;
+  }
+  .k-buyer-types .k-commerce-choice strong {
+    font-size: var(--k-label);
+  }
+  .k-checkout-section {
+    padding-block: 24px;
+  }
+  .k-delivery-map {
+    min-height: 132px;
+  }
+  .k-success-layout {
+    gap: 40px;
+  }
+  .k-transaction-footer-inner {
+    gap: 16px;
+  }
+  .k-transaction-footer .k-brand-wordmark {
+    width: 120px;
+  }
+}
+/* Consent stays a single readable label even under compact generic .k-check rules. */
+.k-consent {
+  flex-wrap: nowrap;
+}
+.k-consent > span {
+  min-width: 0;
+}
+
+.k-delivery-fallback {
+  margin-top: 24px;
+}
+.k-delivery-fallback > h3 {
+  margin-bottom: 16px;
+  font-size: 1.125rem;
+}

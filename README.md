@@ -2,7 +2,7 @@
 
 Документация бренда и продуктовой архитектуры KORSAC, а также статический
 прототип сайта с Premium Site Shell / Homepage v1, каталогом PLAY v1
-и Interactive Product Experience v3.1 на визуальной основе v2.1.
+Interactive Product Experience v3.1 и Cart & Checkout Experience v1 на визуальной основе v2.1.
 
 ## Prototype
 
@@ -11,9 +11,12 @@
 
 - [prototype/index.html](prototype/index.html) — главная KORSAC, редакционный путь к выбору системы.
 - [prototype/review.html](prototype/review.html) — сохранённая навигация для дизайнеров и разработчиков.
-- [prototype/ui.html](prototype/ui.html) — Premium Shell / Homepage / Identity / Interactive / Catalog Primitives и motion-примеры.
+- [prototype/ui.html](prototype/ui.html) — Premium Shell / Homepage / Identity / Interactive / Catalog / Commerce Primitives и motion-примеры.
 - [prototype/catalog.html](prototype/catalog.html) — выбор сценария PLAY, MINI-ветка, вся линейка и сравнение классов.
 - [prototype/product.html](prototype/product.html) — PLAY 1440, System Explorer, сцена конфигуратора и SYSTEM ID.
+- [prototype/cart.html](prototype/cart.html) — две конфигурации PLAY 1440, количество, demo totals и empty state.
+- [prototype/checkout.html](prototype/checkout.html) — guest/company checkout, СДЭК placeholder, payment и validation.
+- [prototype/order-success.html](prototype/order-success.html) — явно демонстрационный результат оформления.
 
 Для проверки через HTTP из корня репозитория:
 
@@ -28,6 +31,7 @@ python3 -m http.server 8000 --bind 127.0.0.1 --directory prototype
 сохранены только в review hub. Утверждённые SVG используются в header/drawer,
 responsive footer и статическом hero. Общий site-entry Brand Intro играет
 не чаще раза за rolling 24h в browser profile; reduced motion пропускает его.
+Cart/Checkout/Success исключены из Brand Intro и не меняют его timestamp.
 Фотография продукта пока заменена нейтральной схемой.
 Выбранные hardware-опции обновляют сцену, сводку и SYSTEM ID preview;
 цены остаются статическими. Explorer синхронизирует сцену и пояснение
@@ -35,8 +39,12 @@ responsive footer и статическом hero. Общий site-entry Brand In
 Каталог читает данные из HTML-карточек: Navigator и сравнение 2–3 моделей
 меняют только представление. MINI — компактное исполнение 1440p; PRO — более
 высокий игровой класс. CREATE/WORK пока в разработке.
-Цены, статусы, паспорт и сервисные опции — примеры. Поиск, корзина, API
-и расчёт цены не реализованы. Motion учитывает `prefers-reduced-motion`.
+Цены, статусы, паспорт и сервисные опции — примеры. Cart читает авторские HTML
+строки; quantity/remove/restore используют только prototype display arithmetic
+в integer minor units. Checkout/Success имеют исходный demo order, без переноса
+изменений между страницами, persistent basket или передачи контактов. Production
+pricing/order остаются backend-authoritative. Поиск, аккаунт и API не реализованы.
+Motion учитывает `prefers-reduced-motion`.
 
 [Brand Assets & Eye Flash](docs/frontend/KORSAC-BRAND-ASSET-INTEGRATION.md).
 [Homepage Experience v1](docs/frontend/KORSAC-HOMEPAGE-EXPERIENCE.md).
@@ -46,3 +54,5 @@ responsive footer и статическом hero. Общий site-entry Brand In
 [Interactive Product Experience v3.1](docs/frontend/KORSAC-INTERACTIVE-PRODUCT-EXPERIENCE.md).
 [Catalog & Product Family Experience v1](docs/frontend/KORSAC-CATALOG-EXPERIENCE.md).
 [Снимки и review-only MP4](docs/frontend/review/README.md).
+
+[Cart & Checkout Experience v1](docs/frontend/KORSAC-CART-CHECKOUT-EXPERIENCE.md).

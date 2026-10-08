@@ -1,5 +1,73 @@
 # Материалы визуального и motion-ревью KORSAC
 
+## Cart & Checkout Experience v1
+
+[Commerce — normal-speed MP4](commerce-v1.mp4): две конфигурации PLAY 1440,
+полная конфигурация, quantity/demo totals, remove → empty → restore,
+Checkout Individual → Company, CDEK dialog/выбор примера, Cash → Invoice,
+focused validation и `DEMO / ORDER` success. **23.32 s**, H.264
+**1440×1080 / 25 fps**, около **2.19 MiB**, без звука и изменения скорости.
+Chromium 151 / HTTP / normal motion. Полный decode и browser playback/seek
+проверены; графитный первый кадр — начало захвата. Видео только для review.
+
+Cart:
+
+- [Desktop](cart-v1-desktop.png), 1440×1729 — полный исходный заказ.
+- [Mobile](cart-v1-mobile.png), 375×3036 — цельные конфигурации без wide matrix.
+- [Two configurations](cart-v1-two-configs.png), 1344×918 — отдельные CONFIG / 01 / 02,
+  видимые RAM/SSD/Case, цены, quantity и total.
+- [Empty state](cart-v1-empty.png), 1440×1270 — shell, Catalog CTA и последний Undo.
+
+Checkout / Success / UI Kit:
+
+- [Desktop](checkout-v1-desktop.png), 1440×2071 — one-page guest flow, sticky summary.
+- [Mobile](checkout-v1-mobile.png), 375×2397 — компактный order disclosure, normal-flow CTA.
+- [Company](checkout-v1-company.png), 1440×2350 — contact wording, реквизиты и invoice.
+- [Company mobile](checkout-v1-company-mobile.png), 375×2757.
+- [Validation](checkout-v1-validation.png), 1440×2450 — focused summary + visible errors.
+- [Delivery dialog](checkout-v1-delivery-dialog.png), 1440×1080 — нейтральный map/list
+  placeholder, без физического адреса и внешних запросов.
+- [Success](order-success-v1.png), 1440×1080 — `DEMO / ORDER`, реального заказа нет.
+- [Commerce Primitives](commerce-primitives-v1.png), 1344×1236 — quantity/cart line,
+  CONFIG, summary/CTA, native choices, field/error и empty state.
+
+Screenshots — resting states, reduced context; normal-speed MP4 показывает finite
+transactional feedback. Transactional pages никогда не запускают Brand Intro и
+не consume/stamp его eligibility. Cart работает с authored demo values: **prototype
+display arithmetic only**, integer unit amount × quantity, без component pricing.
+Checkout/Success открывают исходный demo order; локальные изменения Cart не
+переносятся. Перед переходом это явно пояснено; persistence не реализован.
+
+Проверено:
+
+- 24 новых page/width layouts на 320/375/430/768/1024/1280/1440/1920, company/dialog
+  states: без horizontal overflow, sticky height 88/64px, bounded fields/content.
+- Quantity minimum 1 / 13 systems; integer totals, remove/restore/empty, status
+  message и focus recovery; native full-config disclosure/edit path.
+- Guest/company required fields, email/phone presence, disabled irrelevant fields,
+  payment switching/restored retail choice, mandatory delivery/consent.
+- Error links сохраняются при взаимодействиях, delivery error opens dialog;
+  touch cart, native buyer arrows, modal Tab/Escape/focus return. Short 375×480
+  viewport не скрывает focused field под fixed CTA: CTA находится в обычном потоке.
+- No-JS: authored Cart / Checkout link; обе customer groups, native choices,
+  всегда видимый pickup block и native required/error focus. Contact/company/comment
+  fields не сериализуются в GET navigation. Валидный JS submit — static document,
+  без payload/order endpoint; success не утверждает реальных действий.
+- Reduced Motion: opacity-only 180ms acknowledgement, immediate color/selected
+  rails, no transform/clip/stagger; live toggle cancels effects; intro отсутствует.
+- Homepage 40 page/width layouts, Catalog/Product/shared controllers, sticky header
+  top/hash/reload/restoration/no-JS/native layering regressions прошли. Existing
+  approved assets, browsing scripts и motion tokens не изменены.
+- Axe WCAG2A/AA + 2.1AA: zero violations в 16 состояниях. Часть contrast/ARIA/link
+  checks incomplete. Syntax, HTML nesting/IDs/local resources, document links и
+  `git diff --check` прошли; console errors/failed resources не обнаружены.
+
+[Architecture, production pricing boundary и self-review A–J](../KORSAC-CART-CHECKOUT-EXPERIENCE.md).
+Human review остаётся обязательным для скорости сканирования двух конфигураций,
+B2B tone, нормального/reduced отклика и реальной software keyboard на устройстве.
+Cloud: Chromium media/touch emulation; Windows OS, Firefox/Safari, physical devices
+и screen reader не проверены. Не сливать автоматически.
+
 ## Brand Asset Integration & Site-entry Intro v1
 
 [Brand Intro — normal-speed MP4](brand-eye-motion-v1.mp4): первый прямой вход

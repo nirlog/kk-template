@@ -20,8 +20,9 @@ header/footer нет. `review.html` сохраняет прежнюю оболо
 Desktop: утверждённый horizontal SVG lockup, пять навигационных ссылок и Search / Account / Cart.
 Иконки — локальный inline SVG с `aria-hidden` и без icon library. Utility
 links имеют русские `aria-label`, visible focus и область 44×44 px. Без JS
-они ведут к пояснению в footer; JS открывает существующий native dialog,
-сохраняя URL. Реальных поиска, аккаунта и корзины нет.
+Search/Account ведут к пояснению в footer; JS открывает существующий native
+dialog, сохраняя URL. Cart ведёт в `cart.html` с авторским demo order.
+Реальных поиска, аккаунта и production basket нет.
 
 Маршруты:
 
@@ -36,7 +37,7 @@ links имеют русские `aria-label`, visible focus и область 44
 Active state — короткая Electric Blue линия и `aria-current`. Filled pills,
 технические индексы и рамки вокруг utility actions отсутствуют.
 
-Все public pages (`index.html`, `catalog.html`, `product.html`) имеют sticky
+Browsing pages (`index.html`, `catalog.html`, `product.html`) и Cart имеют sticky
 header: top0, **88px desktop / 64px mobile**, z-index20. Catalog/Product
 сразу используют opaque surface и тонкую bottom rule. Homepage прозрачна
 только при `data-shell-home[data-shell-at-top="true"]`; при scrollY >16px
@@ -194,3 +195,14 @@ Human acceptance: header должен читаться как спокойная
 ссылки и target browsers. Снимки и MP4 не заменяют live-review. PR не сливается
 автоматически. `file://` ограничен политикой среды; Firefox/Safari и физические
 устройства не проверены.
+
+## Transactional extension — Cart & Checkout v1
+
+Cart использует обычный sticky opaque public header и footer. Public Cart icon
+на Homepage/Catalog/Product/Cart ведёт в `cart.html`; Search/Account остаются
+prototype placeholders. Cart count badge отсутствует. Checkout/Success используют
+calm sticky logo/title/back shell и компактный footer без marketing nav.
+Высота остаётся 88/64px; shared anchor padding сохраняется. Native delivery
+modal/drawer остаются выше sticky header. На этих трёх страницах Brand Intro
+полностью отсутствует, timestamp не читается/не записывается.
+[Cart & Checkout architecture](KORSAC-CART-CHECKOUT-EXPERIENCE.md).

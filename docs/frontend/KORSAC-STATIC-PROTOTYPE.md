@@ -10,8 +10,11 @@
 
 `index.html` — редакционная главная KORSAC; прежний навигационный хаб
 сохранён в `review.html`. `ui.html` показывает Shell/Homepage/Identity/Catalog
-Primitives и motion; `product.html` демонстрирует PLAY 1440.
+/ Commerce Primitives и motion; `product.html` демонстрирует PLAY 1440.
 `catalog.html` показывает сценарный выбор PLAY и сравнение продуктовых классов.
+`cart.html`, `checkout.html`, `order-success.html` — авторский commerce demo.
+[Cart & Checkout v1](KORSAC-CART-CHECKOUT-EXPERIENCE.md) описывает distinct configs,
+guest/company flow, delivery/payment, no-JS и production pricing boundary.
 Подробные решения и будущие точки интеграции описаны в
 [Visual & Motion Direction](KORSAC-VISUAL-MOTION-DIRECTION.md).
 Product Stage, synchronized Explorer и связь сцены с опциями добавлены в
@@ -39,6 +42,9 @@ prototype/
 ├── ui.html
 ├── product.html
 ├── catalog.html
+├── cart.html
+├── checkout.html
+├── order-success.html
 └── assets/
     ├── css/
     │   ├── tokens.css
@@ -48,6 +54,8 @@ prototype/
     │   ├── pages.css
     │   ├── product-stage.css
     │   ├── catalog.css
+    │   ├── cart.css
+    │   ├── checkout.css
     │   ├── brand-intro.css
     │   ├── brand.css
     │   ├── shell.css
@@ -56,6 +64,8 @@ prototype/
     │   ├── prototype.js
     │   ├── product-experience.js
     │   ├── catalog-experience.js
+    │   ├── cart-experience.js
+    │   ├── checkout-experience.js
     │   ├── brand-intro.js
     │   ├── brand-motion.js
     │   ├── shell.js
@@ -71,7 +81,8 @@ prototype/
 python3 -m http.server 8000 --bind 127.0.0.1 --directory prototype
 ```
 
-Откройте `/index.html`, `/ui.html`, `/product.html`, `/catalog.html`, `/review.html` на локальном порту 8000.
+Откройте `/review.html` на локальном порту 8000: ссылки ведут ко всем страницам,
+включая Cart, Checkout и Success.
 Установка пакетов, сборка и Bitrix не требуются. Архитектура рассчитана
 на актуальные Chrome, Edge, Firefox и Safari; фактический список проверенных
 браузеров и ограничения проверки нужно фиксировать в PR.
@@ -208,7 +219,9 @@ compatibility/availability rules и конфигурационного API.
 
 **Регрессионное правило:** изменение любых опций не меняет цену hero,
 сводки или карточки продукта. Цены и дельты остаются статическими числами
-в HTML; JS не выполняет `price += delta` или иной ценовой арифметики.
+в HTML; browsing controllers не выполняют `price += delta` или иной ценовой
+арифметики. Cart имеет отдельное явно обозначенное display-only исключение,
+описанное в [Commerce v1](KORSAC-CART-CHECKOUT-EXPERIENCE.md).
 Подпись demo price сохраняется в интерфейсе. Состояния confirmed/pending/error
 в UI Kit — визуальные примеры будущего расчёта, а не результат валидации сборки.
 
@@ -235,7 +248,8 @@ SYSTEM ID показывает preview выбранных labels. Контекс
 описаны в [документе v3.1](KORSAC-INTERACTIVE-PRODUCT-EXPERIENCE.md).
 
 «Добавить в корзину» открывает информацию о прототипе. Счётчик корзины,
-заказы, авторизация, поиск, фильтры, аналитика и API отсутствуют.
+реальные заказы, авторизация, поиск, фильтры, аналитика и API отсутствуют.
+Cart/Checkout представлены отдельными авторскими demo pages.
 Local/sessionStorage используется только для presentation frequency Brand Intro,
 не для конфигурации, цены, корзины или пользовательских данных.
 
@@ -346,3 +360,17 @@ Backend сохраняет проверенный snapshot конфигурац�
 [Материалы визуального ревью](review/README.md) сохраняют product v1/v2/v2.1/v3.1 и добавляют homepage/shell v1; исходные v3 и catalog captures сохраняются.
 Снимки не используются runtime. Проверка одного браузера не заменяет ручной
 приёмочный прогон во всех целевых браузерах.
+
+## Cart & Checkout v1 — явное исключение для demo arithmetic
+
+Browsing hardware selections по-прежнему меняют только labels/scenes; static
+prices не вычисляются. Отдельный `cart-experience.js` допускает **prototype
+display arithmetic only**: авторская integer unit price × quantity и сумма
+видимых строк. Цены компонентов не читаются. Production pricing, discounts,
+delivery/tax/surcharges/final total принадлежат backend / Bitrix Sale.
+
+Cart/Checkout/Success не имеют Brand Intro boot/overlay/controller и не меняют
+его timestamp. Нет browser-side persistent basket и передачи контактов.
+Cart CTA и Checkout явно поясняют: новый документ использует исходный demo order.
+Нативная форма без JS остаётся доступной; личные поля не сериализуются в URL.
+[Полная архитектура и future mapping](KORSAC-CART-CHECKOUT-EXPERIENCE.md).
