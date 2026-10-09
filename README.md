@@ -90,4 +90,17 @@ Projects реализованы в следующем stage ниже; Bitrix mig
 - [Content/source/SEO/Bitrix contract](docs/frontend/KORSAC-PROJECTS-EXPERIENCE.md).
 - [Review screenshots и QA](docs/frontend/review/projects-v1.md).
 
-Projects доступны через Homepage trust и footer; PLAY/family hierarchy сохранены. Факты сверены с оригиналами King-Komp; source фотографии сохранены локально: previews всех трёх проектов и gallery белой сборки. Equipment, System Passport и Bitrix не реализованы.
+Projects доступны через Homepage trust и footer; PLAY/family hierarchy сохранены. Факты сверены с оригиналами King-Komp; source фотографии сохранены локально: previews всех трёх проектов и gallery белой сборки. Equipment реализован в следующем stage ниже; System Passport и Bitrix не реализованы.
+
+### Equipment / Simple Product Experience v1
+
+- [Оборудование](prototype/equipment.html) → [Мониторы](prototype/monitors.html).
+- [MSI MAG 274QF X24](prototype/monitor.html) — ordinary Product, без PC Explorer/CONFIG.
+- [Смешанная корзина](prototype/cart.html#cart-monitor) — две системы PLAY и отдельный монитор.
+- [Content/media/cart/Bitrix contract](docs/frontend/KORSAC-EQUIPMENT-EXPERIENCE.md).
+- [Review screenshots и QA](docs/frontend/review/equipment-v1.md).
+
+10 уникальных реальных моделей MSI/LG (PLAY — 4, CREATE — 4, WORK — 5) сверены с карточками King-Komp и спецификациями
+производителей. Фото локальные; цены явно обозначены как примеры. Production
+price/availability/basket принадлежат Bitrix. Shared Media Viewer отложен;
+System Passport и Bitrix migration не начаты. Human review требуется до merge.

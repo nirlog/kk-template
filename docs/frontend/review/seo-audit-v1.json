@@ -111,11 +111,57 @@
       ]
     },
     {
+      "page": "prototype/equipment.html",
+      "title": "Оборудование под вашу задачу — KORSAC",
+      "schema_types": [
+        "BreadcrumbList",
+        "CollectionPage",
+        "ListItem"
+      ],
+      "errors": [],
+      "warnings": [
+        "No approved og:image; production social artwork remains pending",
+        "Prototype canonical/og:url intentionally omitted; production follows page-type policy and approved host",
+        "Relative schema URLs/IDs are semantic-review only; production needs absolute canonical URLs"
+      ]
+    },
+    {
       "page": "prototype/index.html",
       "title": "KORSAC — компьютеры, точно собранные под задачу",
       "schema_types": [
         "Organization",
         "WebSite"
+      ],
+      "errors": [],
+      "warnings": [
+        "No approved og:image; production social artwork remains pending",
+        "Prototype canonical/og:url intentionally omitted; production follows page-type policy and approved host",
+        "Relative schema URLs/IDs are semantic-review only; production needs absolute canonical URLs"
+      ]
+    },
+    {
+      "page": "prototype/monitor.html",
+      "title": "MSI MAG 274QF X24 — монитор 27″ WQHD — KORSAC",
+      "schema_types": [
+        "Brand",
+        "BreadcrumbList",
+        "ListItem",
+        "Product"
+      ],
+      "errors": [],
+      "warnings": [
+        "No approved og:image; production social artwork remains pending",
+        "Prototype canonical/og:url intentionally omitted; production follows page-type policy and approved host",
+        "Relative schema URLs/IDs are semantic-review only; production needs absolute canonical URLs"
+      ]
+    },
+    {
+      "page": "prototype/monitors.html",
+      "title": "Мониторы для PLAY, CREATE и WORK — KORSAC",
+      "schema_types": [
+        "BreadcrumbList",
+        "CollectionPage",
+        "ListItem"
       ],
       "errors": [],
       "warnings": [
@@ -217,5 +263,5 @@
     }
   ],
   "errors": 0,
-  "warnings": 43
+  "warnings": 52
 }

@@ -467,3 +467,23 @@ hero, подтверждение выбора, validation sweep, SYSTEM ID, мо
 - [Project detail — desktop](project-v1-desktop.png), [mobile](project-v1-mobile.png).
 
 Обновлённые screenshots показывают реальные локальные previews и narrative gallery. [Gallery desktop](project-gallery-v1-desktop.png), [mobile](project-gallery-v1-mobile.png). [Source manifest](projects-media-sources.json). Lightbox/MP4 не добавлены. Historical King-Komp origin явен; это не KORSAC product entities. Current audit: [JSON](seo-audit-v1.json). Предыдущие stage assets — исторические baselines. Human visual review требуется до merge.
+
+## Equipment / Simple Product Experience v1
+
+[Equipment content/media/cart contract](../KORSAC-EQUIPMENT-EXPERIENCE.md) ·
+[Review report](equipment-v1.md) · [Product source ledger](equipment-product-sources.json) ·
+[Media source manifest](equipment-media-sources.json).
+
+- [Equipment hub — desktop](equipment-v1-desktop.png), [mobile](equipment-v1-mobile.png).
+- [Monitors — desktop](monitors-v1-desktop.png), [mobile](monitors-v1-mobile.png).
+- [Monitor detail — desktop](monitor-v1-desktop.png), [mobile](monitor-v1-mobile.png).
+- [Mixed cart — desktop](equipment-cart-v1-desktop.png), [mobile](equipment-cart-v1-mobile.png).
+- [Monitor alternate views — desktop component](monitor-gallery-v1-desktop.png).
+
+10 unique verified monitors: PLAY — 4, CREATE — 4, WORK — 5; shared models используют одну entity/URL, реальные локальные изображения, ordinary Product
+и отдельная cart line без CONFIG. Цены — явно отмеченные примеры; schema не
+содержит Offer/Review/rating. Нет нового motion/lightbox/MP4; shared Media Viewer
+отложен. Previous stage PNG/MP4 — исторические baselines. Current deterministic
+audit: [SEO JSON](seo-audit-v1.json), [curation JSON](monitor-curation-v1.json).
+Hub/category desktop/mobile PNG refreshed after assortment expansion; unchanged detail/cart captures retained.
+Human visual review required; do not auto-merge.

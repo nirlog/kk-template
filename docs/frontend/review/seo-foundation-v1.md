@@ -10,19 +10,21 @@ Base: `main` at `0b48224f7698b44f66808d53adbe94631c78be48`.
 ```sh
 python3 tools/seo_audit.py
 python3 tools/seo_audit.py --json
-python3 -m unittest discover -s tools -p 'test_seo_audit.py'
+python3 -m unittest discover -s tools -p 'test_*.py'
+python3 tools/monitor_curation_audit.py
 ```
 
-Результат: **17 страниц, 0 ошибок, 43 intentional warnings**.
-[Детерминированный JSON output](seo-audit-v1.json). Семнадцать fixture tests
+Результат: **20 страниц, 0 ошибок, 52 intentional warnings**.
+[Детерминированный JSON output](seo-audit-v1.json). 27 tests (20 SEO + 7 monitor curation)
 прошли: staging guard, canonical, metadata/H1, IDs/links/images, invalid/unsafe
 JSON-LD и implicit offers/review properties; дополнительно non-final breadcrumb
 URLs, URL string / `item.@id`, invalid URL/list shapes и final-item omission.
 Family pages дополнительно требуют CollectionPage/BreadcrumbList без Product;
 новые filenames участвуют в staging/IDs/H1/link guards. Projects list/detail
 требуют CollectionPage/Article + BreadcrumbList; Product/Offer/Review запрещены.
-Добавлены Projects schema/media negative fixture tests без ослабления старых guards. Все текущие img имеют
-размеры/alt.
+Добавлены Projects и Equipment schema/media negative fixture tests без ослабления старых guards. Все текущие img имеют
+размеры/alt. Equipment hub/category запрещают Product; monitor detail требует
+Product.image из реально видимого local media. Commercial guards прежние.
 
 | HTML                 | Detected JSON-LD types (recursive)       |
 | -------------------- | ---------------------------------------- |
@@ -35,6 +37,9 @@ Family pages дополнительно требуют CollectionPage/Breadcrumb
 | `computers.html`     | BreadcrumbList, CollectionPage, ListItem |
 | `contacts.html`      | BreadcrumbList, ContactPage, ListItem    |
 | `create.html`        | BreadcrumbList, CollectionPage, ListItem |
+| `equipment.html`     | BreadcrumbList, CollectionPage, ListItem |
+| `monitors.html`      | BreadcrumbList, CollectionPage, ListItem |
+| `monitor.html`       | Brand, BreadcrumbList, ListItem, Product |
 | `index.html`         | Organization, WebSite                    |
 | `order-success.html` | Нет                                      |
 | `product.html`       | Brand, BreadcrumbList, ListItem, Product |
@@ -48,15 +53,15 @@ Production indexability: [единая полная матрица](../KORSAC-IN
 с Page type / URL / index policy / canonical / breadcrumbs / schema / sitemap /
 Bitrix owner. Content-only published entities indexable; Cart/Checkout/Success,
 Search/Account, filters/sort/configurations/review/errors не создают indexable
-сущности. В этом review **все** 17 страниц noindex/nofollow/noarchive.
+сущности. В этом review **все** 20 страниц noindex/nofollow/noarchive.
 
 Known intentional warnings:
 
-- 17 × canonical/og:url не заданы в prototype. Production следует page-type
+- 20 × canonical/og:url не заданы в prototype. Production следует page-type
   policy: approved-host self-canonical только для подходящих content pages;
   ошибки/транзакции не ждут canonical.
-- 17 × нет approved og:image; social artwork остаётся future production slot.
-- 9 × local schema URLs/fragment IDs для semantic review. Bitrix преобразует
+- 20 × нет approved og:image; social artwork остаётся future production slot.
+- 12 × local schema URLs/fragment IDs для semantic review. Bitrix преобразует
   реальные entities в absolute canonical URLs; hostname сейчас не выдуман.
 
 Computer Families v1 добавил настоящий hub: «Компьютеры» теперь UI link и

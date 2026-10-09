@@ -1,0 +1,1745 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script>
+      /* Presentation frequency only; write before any visual activation. */
+      (() => {
+        const key = "korsac:brand-intro:lastShown";
+        const now = Date.now();
+        const recent = (raw) => {
+          const value = Number(raw);
+          return (
+            Number.isSafeInteger(value) &&
+            value > 0 &&
+            value <= now &&
+            now - value < 24 * 60 * 60 * 1000
+          );
+        };
+        try {
+          if (recent(localStorage.getItem(key))) return;
+          localStorage.setItem(key, String(now));
+        } catch {
+          try {
+            if (recent(sessionStorage.getItem(key))) return;
+            sessionStorage.setItem(key, String(now));
+          } catch {
+            return;
+          }
+        }
+        try {
+          if (!matchMedia("(prefers-reduced-motion: reduce)").matches)
+            document.documentElement.dataset.brandIntro = String(now);
+        } catch {
+          /* Unsupported preferences: direct page access. */
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:," />
+    <title>Мониторы для PLAY, CREATE и WORK — KORSAC</title>
+    <link rel="stylesheet" href="assets/css/tokens.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/shell.css" />
+    <link rel="stylesheet" href="assets/css/brand.css" />
+    <link rel="stylesheet" href="assets/css/brand-intro.css" />
+    <link rel="stylesheet" href="assets/css/equipment.css" />
+    <script src="assets/js/brand-intro.js" defer></script>
+    <script src="assets/js/prototype.js" defer></script>
+    <script src="assets/js/shell.js" defer></script>
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <meta
+      name="description"
+      content="Подборка из 10 реальных мониторов MSI и LG: четыре варианта для PLAY, четыре для CREATE и пять для WORK. Проверенные характеристики и статические примеры цен."
+    />
+    <meta
+      property="og:title"
+      content="Мониторы для PLAY, CREATE и WORK — KORSAC"
+    />
+    <meta
+      property="og:description"
+      content="Подборка из 10 реальных мониторов MSI и LG: четыре варианта для PLAY, четыре для CREATE и пять для WORK. Проверенные характеристики и статические примеры цен."
+    />
+    <meta property="og:site_name" content="KORSAC" />
+    <meta property="og:type" content="website" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "name": "Мониторы",
+            "description": "Подборка из 10 реальных мониторов MSI и LG: четыре варианта для PLAY, четыре для CREATE и пять для WORK. Проверенные характеристики и статические примеры цен.",
+            "url": "monitors.html"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Главная",
+                "item": "index.html"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Оборудование",
+                "item": "equipment.html"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Мониторы"
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body class="k-equipment-page">
+    <div
+      class="k-brand-intro"
+      data-brand-intro-overlay
+      aria-hidden="true"
+      hidden
+    >
+      <div class="k-brand-intro-content">
+        <div class="k-brand-intro-mark">
+          <svg
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            style="
+              shape-rendering: geometricPrecision;
+              text-rendering: geometricPrecision;
+              image-rendering: optimizeQuality;
+              fill-rule: evenodd;
+              clip-rule: evenodd;
+            "
+            viewBox="0 0 8043.32 7196.66"
+            id="intro-monitors-korsac-logo-icon"
+            preserveAspectRatio="xMidYMid meet"
+            focusable="false"
+          >
+            <defs>
+              <clipPath id="intro-monitors-id0">
+                <path
+                  d="M1854.8 3546.45l-387.77 -300.37 -284.7 -230.55 273.77 -31.61 220.98 -23.69 84.86 263.99 92.86 322.23z"
+                />
+              </clipPath>
+              <clipPath id="intro-monitors-id1">
+                <path
+                  d="M6289.38 3546.45l387.77 -300.37 284.7 -230.55 -273.77 -31.61 -220.98 -23.69 -84.86 263.99 -92.86 322.23z"
+                />
+              </clipPath>
+
+              <linearGradient
+                id="intro-monitors-korsac-metal-highlight"
+                x1="0"
+                y1="0"
+                x2="1"
+                y2="1"
+              >
+                <stop offset="0%" stop-color="#F7DDC0" />
+                <stop offset="33%" stop-color="#E9B37B" />
+                <stop offset="66%" stop-color="#C87845" />
+                <stop offset="100%" stop-color="#884825" />
+              </linearGradient>
+              <linearGradient
+                id="intro-monitors-korsac-metal-light"
+                x1="0"
+                y1="0"
+                x2="1"
+                y2="1"
+              >
+                <stop offset="0%" stop-color="#EDC7A2" />
+                <stop offset="33%" stop-color="#DA9D6A" />
+                <stop offset="66%" stop-color="#B66B40" />
+                <stop offset="100%" stop-color="#784026" />
+              </linearGradient>
+              <linearGradient
+                id="intro-monitors-korsac-metal-gold"
+                x1="0"
+                y1="0"
+                x2="1"
+                y2="1"
+              >
+                <stop offset="0%" stop-color="#E9BC84" />
+                <stop offset="33%" stop-color="#CE8A54" />
+                <stop offset="66%" stop-color="#A95B32" />
+                <stop offset="100%" stop-color="#68361F" />
+              </linearGradient>
+              <linearGradient
+                id="intro-monitors-korsac-metal-mid"
+                x1="0"
+                y1="0"
+                x2="1"
+                y2="1"
+              >
+                <stop offset="0%" stop-color="#DDA572" />
+                <stop offset="33%" stop-color="#BF794B" />
+                <stop offset="66%" stop-color="#94512F" />
+                <stop offset="100%" stop-color="#5B301D" />
+              </linearGradient>
+              <linearGradient
+                id="intro-monitors-korsac-metal-mid-dark"
+                x1="0"
+                y1="0"
+                x2="1"
+                y2="1"
+              >
+                <stop offset="0%" stop-color="#C78B5C" />
+                <stop offset="33%" stop-color="#A55E39" />
+                <stop offset="66%" stop-color="#7A4227" />
+                <stop offset="100%" stop-color="#442619" />
+              </linearGradient>
+              <linearGradient
+                id="intro-monitors-korsac-metal-dark"
+                x1="0"
+                y1="0"
+                x2="1"
+                y2="1"
+              >
+                <stop offset="0%" stop-color="#B97748" />
+                <stop offset="33%" stop-color="#8E4B2C" />
+                <stop offset="66%" stop-color="#62341F" />
+                <stop offset="100%" stop-color="#382118" />
+              </linearGradient>
+              <linearGradient
+                id="intro-monitors-korsac-metal-deep"
+                x1="0"
+                y1="0"
+                x2="1"
+                y2="1"
+              >
+                <stop offset="0%" stop-color="#A6663E" />
+                <stop offset="33%" stop-color="#7B4228" />
+                <stop offset="66%" stop-color="#552E1D" />
+                <stop offset="100%" stop-color="#291812" />
+              </linearGradient>
+              <linearGradient
+                id="intro-monitors-korsac-eye-gradient"
+                x1="0"
+                y1="0.5"
+                x2="1"
+                y2="0.5"
+              >
+                <stop offset="0%" stop-color="#1738F4" />
+                <stop offset="33%" stop-color="#297FFF" />
+                <stop offset="62%" stop-color="#32C9FF" />
+                <stop offset="100%" stop-color="#155CFF" />
+              </linearGradient>
+              <linearGradient
+                id="intro-monitors-korsac-eye-core-gradient"
+                x1="0"
+                y1="0.5"
+                x2="1"
+                y2="0.5"
+              >
+                <stop offset="0%" stop-color="#79DFFF" />
+                <stop offset="50%" stop-color="#E4FDFF" />
+                <stop offset="100%" stop-color="#63B8FF" />
+              </linearGradient>
+              <linearGradient
+                id="intro-monitors-korsac-silver"
+                x1="0"
+                y1="0"
+                x2="0"
+                y2="1"
+              >
+                <stop offset="0%" stop-color="#FFFFFF" />
+                <stop offset="28%" stop-color="#F3F5F7" />
+                <stop offset="55%" stop-color="#C4CAD1" />
+                <stop offset="76%" stop-color="#F9FAFB" />
+                <stop offset="100%" stop-color="#A9B1BA" />
+              </linearGradient>
+              <filter
+                id="intro-monitors-korsac-eye-glow"
+                x="-70%"
+                y="-70%"
+                width="240%"
+                height="240%"
+              >
+                <feGaussianBlur stdDeviation="18" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+              <linearGradient
+                id="intro-monitors-korsac-shading-left"
+                x1="1467.03"
+                y1="3246.08"
+                x2="1854.8"
+                y2="3546.45"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop offset="0%" stop-color="#5E3522" />
+                <stop offset="35%" stop-color="#9F5D3A" />
+                <stop offset="67%" stop-color="#D49B6C" />
+                <stop offset="100%" stop-color="#F0C8A0" />
+              </linearGradient>
+              <linearGradient
+                id="intro-monitors-korsac-shading-right"
+                x1="6677.15"
+                y1="3246.08"
+                x2="6289.38"
+                y2="3546.45"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop offset="0%" stop-color="#5E3522" />
+                <stop offset="35%" stop-color="#9F5D3A" />
+                <stop offset="67%" stop-color="#D49B6C" />
+                <stop offset="100%" stop-color="#F0C8A0" />
+              </linearGradient>
+            </defs>
+            <g id="intro-monitors-korsac-totem" data-korsac-part="totem">
+              <g id="intro-monitors-korsac-icon-left">
+                <g class="korsac-shading">
+                  <g
+                    style="clip-path: url(#intro-monitors-id0)"
+                    class="korsac-shading-fill"
+                  >
+                    <rect
+                      x="1447.03"
+                      y="3226.08"
+                      width="427.77"
+                      height="340.3699999999999"
+                      fill="url(#intro-monitors-korsac-shading-left)"
+                    />
+                  </g>
+                  <polygon
+                    class="korsac-facet-outline"
+                    points="1854.8,3546.45 1467.03,3246.08 1182.33,3015.53 1456.1,2983.92 1677.08,2960.23 1761.94,3224.22 "
+                    style="
+                      fill: url(#intro-monitors-korsac-shading-left);
+                      stroke: #6f4328;
+                      stroke-width: 10;
+                      stroke-linejoin: round;
+                      stroke-miterlimit: 6;
+                    "
+                  />
+                </g>
+                <polygon
+                  class="korsac-facet"
+                  points="423.91,324.25 2504.11,3052.85 1264.97,1624.06 1677.08,2960.23 1182.34,3015.54 "
+                  style="
+                    fill: url(#intro-monitors-korsac-metal-dark);
+                    stroke: #6f4328;
+                    stroke-width: 10;
+                    stroke-linejoin: round;
+                    stroke-miterlimit: 6;
+                  "
+                  data-korsac-part="facet"
+                />
+                <polygon
+                  class="korsac-facet"
+                  points="423.91,324.25 3406.15,2859 2400.92,2923.85 "
+                  style="
+                    fill: url(#intro-monitors-korsac-metal-mid);
+                    stroke: #6f4328;
+                    stroke-width: 10;
+                    stroke-linejoin: round;
+                    stroke-miterlimit: 6;
+                  "
+                  data-korsac-part="facet"
+                />
+                <polygon
+                  class="korsac-facet"
+                  points="3406.15,2859 2400.92,2923.85 2968.9,3633.82 "
+                  style="
+                    fill: url(#intro-monitors-korsac-metal-light);
+                    stroke: #6f4328;
+                    stroke-width: 10;
+                    stroke-linejoin: round;
+                    stroke-miterlimit: 6;
+                  "
+                  data-korsac-part="facet"
+                />
+                <polygon
+                  class="korsac-facet"
+                  points="3406.15,2859 3733.48,5119.31 2968.9,3633.82 "
+                  style="
+                    fill: url(#intro-monitors-korsac-metal-gold);
+                    stroke: #6f4328;
+                    stroke-width: 10;
+                    stroke-linejoin: round;
+                    stroke-miterlimit: 6;
+                  "
+                  data-korsac-part="facet"
+                />
+                <polygon
+                  class="korsac-facet"
+                  points="1516.18,3666.59 2444.62,4518.56 2248.01,5031.93 "
+                  style="
+                    fill: url(#intro-monitors-korsac-metal-mid-dark);
+                    stroke: #6f4328;
+                    stroke-width: 10;
+                    stroke-linejoin: round;
+                    stroke-miterlimit: 6;
+                  "
+                  data-korsac-part="facet"
+                />
+                <polygon
+                  class="korsac-facet"
+                  points="2444.62,4518.56 3012.59,5031.93 2248.01,5031.93 "
+                  style="
+                    fill: url(#intro-monitors-korsac-metal-highlight);
+                    stroke: #6f4328;
+                    stroke-width: 10;
+                    stroke-linejoin: round;
+                    stroke-miterlimit: 6;
+                  "
+                  data-korsac-part="facet"
+                />
+                <polygon
+                  class="korsac-facet"
+                  points="1567.55,3713.73 3285.66,5064.7 3012.59,5031.93 "
+                  style="
+                    fill: url(#intro-monitors-korsac-metal-mid);
+                    stroke: #6f4328;
+                    stroke-width: 10;
+                    stroke-linejoin: round;
+                    stroke-miterlimit: 6;
+                  "
+                  data-korsac-part="facet"
+                />
+                <polygon
+                  class="korsac-facet"
+                  points="3285.66,5064.7 3919.18,6932.48 3012.59,5031.93 "
+                  style="
+                    fill: url(#intro-monitors-korsac-metal-deep);
+                    stroke: #6f4328;
+                    stroke-width: 10;
+                    stroke-linejoin: round;
+                    stroke-miterlimit: 6;
+                  "
+                  data-korsac-part="facet"
+                />
+                <polygon
+                  class="korsac-facet"
+                  points="3012.59,5031.93 3919.18,6932.48 2248.01,5031.93 "
+                  style="
+                    fill: url(#intro-monitors-korsac-metal-mid-dark);
+                    stroke: #6f4328;
+                    stroke-width: 10;
+                    stroke-linejoin: round;
+                    stroke-miterlimit: 6;
+                  "
+                  data-korsac-part="facet"
+                />
+                <g
+                  id="intro-monitors-korsac-eye-left-group"
+                  class="korsac-eye-group"
+                  data-korsac-part="eyes"
+                  opacity="0"
+                >
+                  <polygon
+                    id="intro-monitors-korsac-eye-left"
+                    class="korsac-eye"
+                    points="2826.91,4158.11 3132.74,4627.79 1974.94,3655.68 "
+                    style="
+                      fill: url(#intro-monitors-korsac-eye-gradient);
+                      stroke: #397bff;
+                      stroke-width: 12;
+                      stroke-linejoin: round;
+                      stroke-miterlimit: 6;
+                    "
+                    data-korsac-part="eye"
+                  />
+                  <polygon
+                    id="intro-monitors-korsac-eye-left-core"
+                    class="korsac-eye-core"
+                    points="2794.16,4179.96 2947.08,4420.25 2335.41,3906.89 "
+                    style="
+                      fill: url(#intro-monitors-korsac-eye-core-gradient);
+                      stroke: #74d7ff;
+                      stroke-width: 7.5;
+                      stroke-linejoin: round;
+                      stroke-miterlimit: 6;
+                    "
+                    data-korsac-part="eye-core"
+                  />
+                </g>
+              </g>
+              <g id="intro-monitors-korsac-icon-right">
+                <g class="korsac-shading">
+                  <g
+                    style="clip-path: url(#intro-monitors-id1)"
+                    class="korsac-shading-fill"
+                  >
+                    <rect
+                      x="6269.38"
+                      y="3226.08"
+                      width="427.7699999999995"
+                      height="340.3699999999999"
+                      fill="url(#intro-monitors-korsac-shading-right)"
+                    />
+                  </g>
+                  <polygon
+                    class="korsac-facet-outline"
+                    points="6289.38,3546.45 6677.15,3246.08 6961.85,3015.53 6688.08,2983.92 6467.1,2960.23 6382.24,3224.22 "
+                    style="
+                      fill: url(#intro-monitors-korsac-shading-right);
+                      stroke: #6f4328;
+                      stroke-width: 10;
+                      stroke-linejoin: round;
+                      stroke-miterlimit: 6;
+                    "
+                  />
+                </g>
+                <polygon
+                  class="korsac-facet"
+                  points="7720.27,324.25 5644.88,3046.84 6879.22,1624.06 6467.1,2960.23 6961.84,3015.54 "
+                  style="
+                    fill: url(#intro-monitors-korsac-metal-dark);
+                    stroke: #6f4328;
+                    stroke-width: 10;
+                    stroke-linejoin: round;
+                    stroke-miterlimit: 6;
+                  "
+                  data-korsac-part="facet"
+                />
+                <polygon
+                  class="korsac-facet"
+                  points="7720.27,324.25 4738.03,2859 5743.26,2923.85 "
+                  style="
+                    fill: url(#intro-monitors-korsac-metal-mid);
+                    stroke: #6f4328;
+                    stroke-width: 10;
+                    stroke-linejoin: round;
+                    stroke-miterlimit: 6;
+                  "
+                  data-korsac-part="facet"
+                />
+                <polygon
+                  class="korsac-facet"
+                  points="4738.03,2859 5743.26,2923.85 5175.28,3633.82 "
+                  style="
+                    fill: url(#intro-monitors-korsac-metal-light);
+                    stroke: #6f4328;
+                    stroke-width: 10;
+                    stroke-linejoin: round;
+                    stroke-miterlimit: 6;
+                  "
+                  data-korsac-part="facet"
+                />
+                <polygon
+                  class="korsac-facet"
+                  points="4738.03,2859 4410.7,5119.31 5175.28,3633.82 "
+                  style="
+                    fill: url(#intro-monitors-korsac-metal-gold);
+                    stroke: #6f4328;
+                    stroke-width: 10;
+                    stroke-linejoin: round;
+                    stroke-miterlimit: 6;
+                  "
+                  data-korsac-part="facet"
+                />
+                <polygon
+                  class="korsac-facet"
+                  points="6628,3666.59 5699.57,4518.56 5896.17,5031.93 "
+                  style="
+                    fill: url(#intro-monitors-korsac-metal-mid-dark);
+                    stroke: #6f4328;
+                    stroke-width: 10;
+                    stroke-linejoin: round;
+                    stroke-miterlimit: 6;
+                  "
+                  data-korsac-part="facet"
+                />
+                <polygon
+                  class="korsac-facet"
+                  points="5699.57,4518.56 5131.59,5031.93 5896.17,5031.93 "
+                  style="
+                    fill: url(#intro-monitors-korsac-metal-highlight);
+                    stroke: #6f4328;
+                    stroke-width: 10;
+                    stroke-linejoin: round;
+                    stroke-miterlimit: 6;
+                  "
+                  data-korsac-part="facet"
+                />
+                <polygon
+                  class="korsac-facet"
+                  points="6576.63,3713.73 4858.52,5064.7 5131.59,5031.93 "
+                  style="
+                    fill: url(#intro-monitors-korsac-metal-mid);
+                    stroke: #6f4328;
+                    stroke-width: 10;
+                    stroke-linejoin: round;
+                    stroke-miterlimit: 6;
+                  "
+                  data-korsac-part="facet"
+                />
+                <polygon
+                  class="korsac-facet"
+                  points="4858.52,5064.7 4225,6932.48 5131.59,5031.93 "
+                  style="
+                    fill: url(#intro-monitors-korsac-metal-deep);
+                    stroke: #6f4328;
+                    stroke-width: 10;
+                    stroke-linejoin: round;
+                    stroke-miterlimit: 6;
+                  "
+                  data-korsac-part="facet"
+                />
+                <polygon
+                  class="korsac-facet"
+                  points="5131.59,5031.93 4225,6932.48 5896.17,5031.93 "
+                  style="
+                    fill: url(#intro-monitors-korsac-metal-mid-dark);
+                    stroke: #6f4328;
+                    stroke-width: 10;
+                    stroke-linejoin: round;
+                    stroke-miterlimit: 6;
+                  "
+                  data-korsac-part="facet"
+                />
+                <g
+                  id="intro-monitors-korsac-eye-right-group"
+                  class="korsac-eye-group"
+                  data-korsac-part="eyes"
+                  opacity="0"
+                >
+                  <polygon
+                    id="intro-monitors-korsac-eye-right"
+                    class="korsac-eye"
+                    points="5317.28,4158.11 5011.44,4627.79 6169.25,3655.68 "
+                    style="
+                      fill: url(#intro-monitors-korsac-eye-gradient);
+                      stroke: #397bff;
+                      stroke-width: 12;
+                      stroke-linejoin: round;
+                      stroke-miterlimit: 6;
+                    "
+                    data-korsac-part="eye"
+                  />
+                  <polygon
+                    id="intro-monitors-korsac-eye-right-core"
+                    class="korsac-eye-core"
+                    points="5350.04,4179.96 5197.13,4420.25 5808.8,3906.89 "
+                    style="
+                      fill: url(#intro-monitors-korsac-eye-core-gradient);
+                      stroke: #74d7ff;
+                      stroke-width: 7.5;
+                      stroke-linejoin: round;
+                      stroke-miterlimit: 6;
+                    "
+                    data-korsac-part="eye-core"
+                  />
+                </g>
+              </g>
+            </g>
+          </svg>
+        </div>
+        <img
+          class="k-brand-intro-wordmark"
+          src="assets/images/brand/korsac-wordmark.svg"
+          width="450"
+          height="100"
+          alt=""
+        />
+      </div>
+    </div>
+    <a class="k-skip" href="#main">Перейти к содержимому</a>
+    <header class="k-site-header" data-site-shell>
+      <div class="k-container k-site-header-inner">
+        <a class="k-site-brand" href="index.html" aria-label="KORSAC — главная"
+          ><span class="k-brand-wordmark" data-brand-wordmark
+            ><img
+              src="assets/images/brand/korsac-lockup-horizontal.svg"
+              width="450"
+              height="100"
+              alt="" /></span
+        ></a>
+        <nav class="k-site-nav" aria-label="Основная навигация">
+          <a href="computers.html">Компьютеры</a
+          ><a href="product.html#configurator">Конфигуратор</a
+          ><a href="work.html">Для бизнеса</a
+          ><a href="product.html#warranty">Поддержка</a
+          ><a href="index.html#why">О KORSAC</a>
+        </nav>
+        <div class="k-site-utilities">
+          <a
+            class="k-shell-icon k-shell-desktop-action"
+            href="#site-prototype"
+            data-dialog-open="scope-dialog"
+            aria-label="Поиск"
+            title="Поиск"
+            ><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <circle cx="10.5" cy="10.5" r="6.5" />
+              <path d="m16 16 4.5 4.5" /></svg></a
+          ><a
+            class="k-shell-icon k-shell-desktop-action"
+            href="#site-prototype"
+            data-dialog-open="scope-dialog"
+            aria-label="Личный кабинет"
+            title="Личный кабинет"
+            ><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <circle cx="12" cy="8" r="3.5" />
+              <path d="M4.5 21v-2a7.5 7.5 0 0 1 15 0v2" /></svg></a
+          ><a
+            class="k-shell-icon"
+            href="cart.html"
+            aria-label="Корзина"
+            title="Корзина"
+            ><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M3 4h2l2 11h11l2-8H6" />
+              <circle cx="9" cy="20" r="1" />
+              <circle cx="17" cy="20" r="1" /></svg></a
+          ><button
+            class="k-shell-icon k-shell-menu"
+            type="button"
+            data-dialog-open="menu-drawer"
+            aria-controls="menu-drawer"
+            aria-expanded="false"
+            aria-label="Открыть меню"
+            data-shell-enhanced
+            hidden
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M4 8h16M4 16h16" />
+            </svg>
+          </button>
+          <details class="k-shell-fallback" data-shell-fallback>
+            <summary class="k-shell-icon" aria-label="Открыть навигацию">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M4 8h16M4 16h16" />
+              </svg>
+            </summary>
+            <nav class="k-site-nav" aria-label="Навигация без JavaScript">
+              <a href="computers.html">Компьютеры</a
+              ><a href="product.html#configurator">Конфигуратор</a
+              ><a href="work.html">Для бизнеса</a
+              ><a href="product.html#warranty">Поддержка</a
+              ><a href="index.html#why">О KORSAC</a>
+            </nav>
+          </details>
+        </div>
+      </div>
+    </header>
+    <main id="main" class="k-container k-equipment-main">
+      <nav class="k-breadcrumb" aria-label="Хлебные крошки">
+        <ol>
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="equipment.html">Оборудование</a></li>
+          <li><span aria-current="page">Мониторы</span></li>
+        </ol>
+      </nav>
+      <header class="k-equipment-category-intro">
+        <div>
+          <p class="k-eyebrow">Оборудование / 01</p>
+          <h1>Мониторы</h1>
+        </div>
+        <p class="k-lead">Начните с того,<br />что будет на экране.</p>
+      </header>
+      <section class="k-monitor-guide" aria-labelledby="guide-title">
+        <h2 id="guide-title" class="k-sr-only">
+          Как выбрать монитор по задаче
+        </h2>
+        <p class="k-monitor-curation k-muted">
+          10 моделей, три задачи. Один монитор может подойти нескольким
+          семействам — выбирайте по экрану и рабочему контексту.
+        </p>
+        <div class="k-equipment-routes">
+          <a href="#selected-play"
+            ><span class="k-eyebrow">PLAY / 04 варианта</span>
+            <h3>Разрешение × частота</h3>
+            <p>
+              Full HD или QHD, компактный или большой экран, плоский или
+              изогнутый.
+            </p>
+            <span>Мониторы для игры →</span></a
+          >
+          <a href="#selected-create"
+            ><span class="k-eyebrow">CREATE / 04 варианта</span>
+            <h3>Рабочее пространство</h3>
+            <p>
+              QHD, 4K и широкий формат. Требования к цвету определяет ваш
+              процесс — проверяйте их отдельно.
+            </p>
+            <span>Мониторы для проекта →</span></a
+          >
+          <a href="#selected-work"
+            ><span class="k-eyebrow">WORK / 05 вариантов</span>
+            <h3>Контекст рабочего дня</h3>
+            <p>
+              Подключение, видеосвязь, регулировки и место для нескольких окон.
+            </p>
+            <span>Мониторы для работы →</span></a
+          >
+        </div>
+      </section>
+      <section
+        id="selected-play"
+        class="k-equipment-section k-monitor-family"
+        data-monitor-family="PLAY"
+        aria-labelledby="selected-play-title"
+      >
+        <div class="k-equipment-selection-heading">
+          <div>
+            <p class="k-eyebrow">01 / PLAY</p>
+            <h2 id="selected-play-title">Разрешение × частота</h2>
+          </div>
+          <a href="catalog.html">Семейство PLAY →</a>
+        </div>
+        <p class="k-monitor-family-intro k-muted">
+          Два варианта Full HD и два QHD. Выбирайте между размером, формой
+          экрана и частотой, а затем проверяйте режимы подключения.
+        </p>
+        <div class="k-monitor-grid">
+          <article
+            class="k-monitor-card"
+            data-monitor-card
+            data-monitor-product="msi-mag-274qf-x24"
+            aria-labelledby="msi-mag-274qf-x24-play-title"
+          >
+            <div class="k-monitor-card-top">
+              <span class="k-eyebrow">01 / MSI</span
+              ><span class="k-small k-muted">Монитор</span>
+            </div>
+            <figure class="k-monitor-photo">
+              <img
+                data-monitor-image
+                src="assets/images/equipment/msi-mag-01.webp"
+                alt="MSI MAG 274QF X24 спереди: чёрный экран и подставка, на дисплее зелёная графика MAG"
+                width="905"
+                height="661"
+                fetchpriority="high"
+              />
+            </figure>
+            <div class="k-monitor-card-copy">
+              <p class="k-monitor-scenario">1440p / высокая частота</p>
+              <h3 id="msi-mag-274qf-x24-play-title">MSI MAG 274QF X24</h3>
+              <p class="k-small k-muted">
+                Плоский QHD-экран с частотой до 240 Гц через DisplayPort.
+              </p>
+              <dl class="k-monitor-specs">
+                <div>
+                  <dt>Экран</dt>
+                  <dd>27″ · 2560 × 1440</dd>
+                </div>
+                <div>
+                  <dt>Матрица</dt>
+                  <dd>Rapid IPS</dd>
+                </div>
+                <div>
+                  <dt>Частота</dt>
+                  <dd>до 240 Гц · DisplayPort</dd>
+                </div>
+              </dl>
+            </div>
+            <div class="k-monitor-commercial">
+              <p>
+                <strong>22 050 ₽</strong
+                ><span class="k-small k-muted">Цена — пример</span>
+              </p>
+              <p class="k-small k-muted">Наличие уточняется</p>
+              <a
+                data-monitor-link
+                class="k-button k-button--secondary"
+                href="monitor.html"
+                >Подробнее о мониторе</a
+              >
+            </div>
+          </article>
+          <article
+            class="k-monitor-card"
+            data-monitor-card
+            data-monitor-product="lg-24gs60f-b"
+            aria-labelledby="lg-24gs60f-b-play-title"
+          >
+            <div class="k-monitor-card-top">
+              <span class="k-eyebrow">02 / LG</span
+              ><span class="k-small k-muted">Монитор</span>
+            </div>
+            <figure class="k-monitor-photo">
+              <img
+                data-monitor-image
+                src="assets/images/equipment/lg-24gs60f-01.webp"
+                alt="LG UltraGear 24GS60F-B спереди: чёрный корпус и V-образная подставка, на экране автомобиль"
+                width="1135"
+                height="928"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+            <div class="k-monitor-card-copy">
+              <p class="k-monitor-scenario">Full HD / компактный экран</p>
+              <h3 id="lg-24gs60f-b-play-title">LG UltraGear 24GS60F-B</h3>
+              <p class="k-small k-muted">
+                Full HD и высокая частота на диагонали 23,8″ — когда важен
+                размер экрана.
+              </p>
+              <dl class="k-monitor-specs">
+                <div>
+                  <dt>Экран</dt>
+                  <dd>23,8″ · 1920 × 1080</dd>
+                </div>
+                <div>
+                  <dt>Матрица</dt>
+                  <dd>IPS</dd>
+                </div>
+                <div>
+                  <dt>Частота</dt>
+                  <dd>до 180 Гц</dd>
+                </div>
+              </dl>
+            </div>
+            <div class="k-monitor-commercial">
+              <p>
+                <strong>14 250 ₽</strong
+                ><span class="k-small k-muted">Цена — пример</span>
+              </p>
+              <p class="k-small k-muted">Наличие уточняется</p>
+              <a
+                data-monitor-link
+                class="k-button k-button--secondary"
+                href="https://www.king-komp.com/catalog/monitory/248965/"
+                >Карточка King-Komp →</a
+              >
+            </div>
+          </article>
+          <article
+            class="k-monitor-card"
+            data-monitor-card
+            data-monitor-product="msi-mag-274f"
+            aria-labelledby="msi-mag-274f-play-title"
+          >
+            <div class="k-monitor-card-top">
+              <span class="k-eyebrow">03 / MSI</span
+              ><span class="k-small k-muted">Монитор</span>
+            </div>
+            <figure class="k-monitor-photo">
+              <img
+                data-monitor-image
+                src="assets/images/equipment/msi-274f-01.webp"
+                alt="MSI MAG 274F спереди: чёрный корпус и подставка, на экране зелёная графика MAG"
+                width="1500"
+                height="1093"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+            <div class="k-monitor-card-copy">
+              <p class="k-monitor-scenario">Full HD / большой экран</p>
+              <h3 id="msi-mag-274f-play-title">MSI MAG 274F</h3>
+              <p class="k-small k-muted">
+                Та же ступень Full HD, но диагональ 27″ и частота до 200 Гц.
+              </p>
+              <dl class="k-monitor-specs">
+                <div>
+                  <dt>Экран</dt>
+                  <dd>27″ · 1920 × 1080</dd>
+                </div>
+                <div>
+                  <dt>Матрица</dt>
+                  <dd>Rapid IPS</dd>
+                </div>
+                <div>
+                  <dt>Частота</dt>
+                  <dd>до 200 Гц</dd>
+                </div>
+              </dl>
+            </div>
+            <div class="k-monitor-commercial">
+              <p>
+                <strong>14 870 ₽</strong
+                ><span class="k-small k-muted">Цена — пример</span>
+              </p>
+              <p class="k-small k-muted">Наличие уточняется</p>
+              <a
+                data-monitor-link
+                class="k-button k-button--secondary"
+                href="https://www.king-komp.com/catalog/monitory/259512/"
+                >Карточка King-Komp →</a
+              >
+            </div>
+          </article>
+          <article
+            class="k-monitor-card"
+            data-monitor-card
+            data-monitor-product="lg-32gs60qc-b"
+            aria-labelledby="lg-32gs60qc-b-play-title"
+          >
+            <div class="k-monitor-card-top">
+              <span class="k-eyebrow">04 / LG</span
+              ><span class="k-small k-muted">Монитор</span>
+            </div>
+            <figure class="k-monitor-photo">
+              <img
+                data-monitor-image
+                src="assets/images/equipment/lg-32gs60qc-01.webp"
+                alt="LG UltraGear 32GS60QC-B спереди: изогнутый экран на чёрной подставке, фиолетовая графика LG"
+                width="1500"
+                height="1109"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+            <div class="k-monitor-card-copy">
+              <p class="k-monitor-scenario">1440p / изогнутый экран</p>
+              <h3 id="lg-32gs60qc-b-play-title">LG UltraGear 32GS60QC-B</h3>
+              <p class="k-small k-muted">
+                Альтернатива плоскому 27″: больше диагональ, QHD и изгиб 1000R.
+              </p>
+              <dl class="k-monitor-specs">
+                <div>
+                  <dt>Экран</dt>
+                  <dd>31,5″ · 2560 × 1440</dd>
+                </div>
+                <div>
+                  <dt>Матрица</dt>
+                  <dd>VA · изгиб 1000R</dd>
+                </div>
+                <div>
+                  <dt>Частота</dt>
+                  <dd>до 180 Гц</dd>
+                </div>
+              </dl>
+            </div>
+            <div class="k-monitor-commercial">
+              <p>
+                <strong>23 920 ₽</strong
+                ><span class="k-small k-muted">Цена — пример</span>
+              </p>
+              <p class="k-small k-muted">Наличие уточняется</p>
+              <a
+                data-monitor-link
+                class="k-button k-button--secondary"
+                href="https://www.king-komp.com/catalog/monitory/249063/"
+                >Карточка King-Komp →</a
+              >
+            </div>
+          </article>
+        </div>
+        <a class="k-monitor-back k-small" href="#guide-title"
+          >К выбору задачи ↑</a
+        >
+      </section>
+      <section
+        id="selected-create"
+        class="k-equipment-section k-monitor-family"
+        data-monitor-family="CREATE"
+        aria-labelledby="selected-create-title"
+      >
+        <div class="k-equipment-selection-heading">
+          <div>
+            <p class="k-eyebrow">02 / CREATE</p>
+            <h2 id="selected-create-title">Пространство для проекта</h2>
+          </div>
+          <a href="create.html">Семейство CREATE →</a>
+        </div>
+        <p class="k-monitor-family-intro k-muted">
+          QHD, 4K или широкий 21:9: разные способы разместить проект и
+          инструменты. Разрешение и тип матрицы не подтверждают точность цвета.
+        </p>
+        <div class="k-monitor-grid">
+          <article
+            class="k-monitor-card"
+            data-monitor-card
+            data-monitor-product="lg-27u631a-b"
+            aria-labelledby="lg-27u631a-b-create-title"
+          >
+            <div class="k-monitor-card-top">
+              <span class="k-eyebrow">01 / LG</span
+              ><span class="k-small k-muted">Монитор</span>
+            </div>
+            <figure class="k-monitor-photo">
+              <img
+                data-monitor-image
+                src="assets/images/equipment/lg-01.webp"
+                alt="LG 27U631A-B спереди: чёрный корпус, подставка и цветная графика на экране"
+                width="1500"
+                height="1119"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+            <div class="k-monitor-card-copy">
+              <p class="k-monitor-scenario">QHD / USB-C</p>
+              <h3 id="lg-27u631a-b-create-title">LG 27U631A-B</h3>
+              <p class="k-small k-muted">
+                Проект и инструменты на QHD-экране; USB-C с PD 15 Вт. Требования
+                к цвету проверяйте отдельно.
+              </p>
+              <dl class="k-monitor-specs">
+                <div>
+                  <dt>Экран</dt>
+                  <dd>27″ · 2560 × 1440</dd>
+                </div>
+                <div>
+                  <dt>Матрица</dt>
+                  <dd>IPS · до 100 Гц</dd>
+                </div>
+                <div>
+                  <dt>Подключение</dt>
+                  <dd>USB-C · PD 15 Вт</dd>
+                </div>
+              </dl>
+            </div>
+            <div class="k-monitor-commercial">
+              <p>
+                <strong>14 460 ₽</strong
+                ><span class="k-small k-muted">Цена — пример</span>
+              </p>
+              <p class="k-small k-muted">Наличие уточняется</p>
+              <a
+                data-monitor-link
+                class="k-button k-button--secondary"
+                href="https://www.king-komp.com/catalog/monitory/259632/"
+                >Карточка King-Komp →</a
+              >
+            </div>
+          </article>
+          <article
+            class="k-monitor-card"
+            data-monitor-card
+            data-monitor-product="msi-modern-md271ul"
+            aria-labelledby="msi-modern-md271ul-create-title"
+          >
+            <div class="k-monitor-card-top">
+              <span class="k-eyebrow">02 / MSI</span
+              ><span class="k-small k-muted">Монитор</span>
+            </div>
+            <figure class="k-monitor-photo">
+              <img
+                data-monitor-image
+                src="assets/images/equipment/msi-md271ul-01.webp"
+                alt="MSI Modern MD271UL спереди: серебристая подставка, на экране бежево-голубая волна"
+                width="1500"
+                height="1500"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+            <div class="k-monitor-card-copy">
+              <p class="k-monitor-scenario">4K / детализация</p>
+              <h3 id="msi-modern-md271ul-create-title">MSI Modern MD271UL</h3>
+              <p class="k-small k-muted">
+                4K для детального просмотра проекта; USB-C с PD 65 Вт. Масштаб
+                интерфейса зависит от приложений.
+              </p>
+              <dl class="k-monitor-specs">
+                <div>
+                  <dt>Экран</dt>
+                  <dd>27″ · 3840 × 2160</dd>
+                </div>
+                <div>
+                  <dt>Матрица</dt>
+                  <dd>IPS · до 60 Гц</dd>
+                </div>
+                <div>
+                  <dt>Подключение</dt>
+                  <dd>USB-C · PD 65 Вт</dd>
+                </div>
+              </dl>
+            </div>
+            <div class="k-monitor-commercial">
+              <p>
+                <strong>23 510 ₽</strong
+                ><span class="k-small k-muted">Цена — пример</span>
+              </p>
+              <p class="k-small k-muted">Наличие уточняется</p>
+              <a
+                data-monitor-link
+                class="k-button k-button--secondary"
+                href="https://www.king-komp.com/catalog/monitory/181504/"
+                >Карточка King-Komp →</a
+              >
+            </div>
+          </article>
+          <article
+            class="k-monitor-card"
+            data-monitor-card
+            data-monitor-product="lg-34wr50qk-b"
+            aria-labelledby="lg-34wr50qk-b-create-title"
+          >
+            <div class="k-monitor-card-top">
+              <span class="k-eyebrow">03 / LG</span
+              ><span class="k-small k-muted">Монитор</span>
+            </div>
+            <figure class="k-monitor-photo">
+              <img
+                data-monitor-image
+                src="assets/images/equipment/lg-34wr50qk-01.webp"
+                alt="LG UltraWide 34WR50QK-B спереди: широкий чёрный экран на подставке, красная графика UltraWide"
+                width="1500"
+                height="907"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+            <div class="k-monitor-card-copy">
+              <p class="k-monitor-scenario">21:9 / проектные окна</p>
+              <h3 id="lg-34wr50qk-b-create-title">LG UltraWide 34WR50QK-B</h3>
+              <p class="k-small k-muted">
+                Широкий формат для таймлайна и соседних панелей; предусмотрите
+                место для 34″ на столе.
+              </p>
+              <dl class="k-monitor-specs">
+                <div>
+                  <dt>Экран</dt>
+                  <dd>34″ · 3440 × 1440</dd>
+                </div>
+                <div>
+                  <dt>Матрица</dt>
+                  <dd>VA · до 100 Гц</dd>
+                </div>
+                <div>
+                  <dt>Формат</dt>
+                  <dd>21:9 · изгиб 1800R</dd>
+                </div>
+              </dl>
+            </div>
+            <div class="k-monitor-commercial">
+              <p>
+                <strong>30 370 ₽</strong
+                ><span class="k-small k-muted">Цена — пример</span>
+              </p>
+              <p class="k-small k-muted">Наличие уточняется</p>
+              <a
+                data-monitor-link
+                class="k-button k-button--secondary"
+                href="https://www.king-komp.com/catalog/monitory/249080/"
+                >Карточка King-Komp →</a
+              >
+            </div>
+          </article>
+          <article
+            class="k-monitor-card"
+            data-monitor-card
+            data-monitor-product="msi-pro-mp275q"
+            aria-labelledby="msi-pro-mp275q-create-title"
+          >
+            <div class="k-monitor-card-top">
+              <span class="k-eyebrow">04 / MSI</span
+              ><span class="k-small k-muted">Монитор</span>
+            </div>
+            <figure class="k-monitor-photo">
+              <img
+                data-monitor-image
+                src="assets/images/equipment/msi-mp275q-01.webp"
+                alt="MSI PRO MP275Q спереди: чёрный корпус и прямоугольная подставка, на экране человек с портфелем"
+                width="1500"
+                height="1169"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+            <div class="k-monitor-card-copy">
+              <p class="k-monitor-scenario">QHD / HDMI + DP</p>
+              <h3 id="msi-pro-mp275q-create-title">MSI PRO MP275Q</h3>
+              <p class="k-small k-muted">
+                Рабочее пространство QHD с HDMI и DisplayPort — альтернатива
+                варианту с USB-C.
+              </p>
+              <dl class="k-monitor-specs">
+                <div>
+                  <dt>Экран</dt>
+                  <dd>27″ · 2560 × 1440</dd>
+                </div>
+                <div>
+                  <dt>Матрица</dt>
+                  <dd>IPS · до 100 Гц</dd>
+                </div>
+                <div>
+                  <dt>Подключение</dt>
+                  <dd>HDMI · DisplayPort</dd>
+                </div>
+              </dl>
+            </div>
+            <div class="k-monitor-commercial">
+              <p>
+                <strong>16 540 ₽</strong
+                ><span class="k-small k-muted">Цена — пример</span>
+              </p>
+              <p class="k-small k-muted">Наличие уточняется</p>
+              <a
+                data-monitor-link
+                class="k-button k-button--secondary"
+                href="https://www.king-komp.com/catalog/monitory/248998/"
+                >Карточка King-Komp →</a
+              >
+            </div>
+          </article>
+        </div>
+        <a class="k-monitor-back k-small" href="#guide-title"
+          >К выбору задачи ↑</a
+        >
+      </section>
+      <section
+        id="selected-work"
+        class="k-equipment-section k-monitor-family"
+        data-monitor-family="WORK"
+        aria-labelledby="selected-work-title"
+      >
+        <div class="k-equipment-selection-heading">
+          <div>
+            <p class="k-eyebrow">03 / WORK</p>
+            <h2 id="selected-work-title">Экран под рабочий день</h2>
+          </div>
+          <a href="work.html">Семейство WORK →</a>
+        </div>
+        <p class="k-monitor-family-intro k-muted">
+          Компактное рабочее место, видеосвязь, QHD или несколько окон рядом.
+          Выбор зависит от задач, подключения и положения экрана.
+        </p>
+        <div class="k-monitor-grid">
+          <article
+            class="k-monitor-card"
+            data-monitor-card
+            data-monitor-product="lg-27u631a-b"
+            aria-labelledby="lg-27u631a-b-work-title"
+          >
+            <div class="k-monitor-card-top">
+              <span class="k-eyebrow">01 / LG</span
+              ><span class="k-small k-muted">Монитор</span>
+            </div>
+            <figure class="k-monitor-photo">
+              <img
+                data-monitor-image
+                src="assets/images/equipment/lg-01.webp"
+                alt="LG 27U631A-B спереди: чёрный корпус, подставка и цветная графика на экране"
+                width="1500"
+                height="1119"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+            <div class="k-monitor-card-copy">
+              <p class="k-monitor-scenario">QHD / USB-C</p>
+              <h3 id="lg-27u631a-b-work-title">LG 27U631A-B</h3>
+              <p class="k-small k-muted">
+                Окна и документы на QHD-экране с USB-C. PD 15 Вт не заменяет
+                питание любого ноутбука.
+              </p>
+              <dl class="k-monitor-specs">
+                <div>
+                  <dt>Экран</dt>
+                  <dd>27″ · 2560 × 1440</dd>
+                </div>
+                <div>
+                  <dt>Матрица</dt>
+                  <dd>IPS · до 100 Гц</dd>
+                </div>
+                <div>
+                  <dt>Подключение</dt>
+                  <dd>USB-C · PD 15 Вт</dd>
+                </div>
+              </dl>
+            </div>
+            <div class="k-monitor-commercial">
+              <p>
+                <strong>14 460 ₽</strong
+                ><span class="k-small k-muted">Цена — пример</span>
+              </p>
+              <p class="k-small k-muted">Наличие уточняется</p>
+              <a
+                data-monitor-link
+                class="k-button k-button--secondary"
+                href="https://www.king-komp.com/catalog/monitory/259632/"
+                >Карточка King-Komp →</a
+              >
+            </div>
+          </article>
+          <article
+            class="k-monitor-card"
+            data-monitor-card
+            data-monitor-product="lg-34wr50qk-b"
+            aria-labelledby="lg-34wr50qk-b-work-title"
+          >
+            <div class="k-monitor-card-top">
+              <span class="k-eyebrow">02 / LG</span
+              ><span class="k-small k-muted">Монитор</span>
+            </div>
+            <figure class="k-monitor-photo">
+              <img
+                data-monitor-image
+                src="assets/images/equipment/lg-34wr50qk-01.webp"
+                alt="LG UltraWide 34WR50QK-B спереди: широкий чёрный экран на подставке, красная графика UltraWide"
+                width="1500"
+                height="907"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+            <div class="k-monitor-card-copy">
+              <p class="k-monitor-scenario">21:9 / несколько окон</p>
+              <h3 id="lg-34wr50qk-b-work-title">LG UltraWide 34WR50QK-B</h3>
+              <p class="k-small k-muted">
+                Широкий экран для документов и нескольких окон рядом; выбор для
+                рабочего места с достаточной шириной.
+              </p>
+              <dl class="k-monitor-specs">
+                <div>
+                  <dt>Экран</dt>
+                  <dd>34″ · 3440 × 1440</dd>
+                </div>
+                <div>
+                  <dt>Матрица</dt>
+                  <dd>VA · до 100 Гц</dd>
+                </div>
+                <div>
+                  <dt>Формат</dt>
+                  <dd>21:9 · изгиб 1800R</dd>
+                </div>
+              </dl>
+            </div>
+            <div class="k-monitor-commercial">
+              <p>
+                <strong>30 370 ₽</strong
+                ><span class="k-small k-muted">Цена — пример</span>
+              </p>
+              <p class="k-small k-muted">Наличие уточняется</p>
+              <a
+                data-monitor-link
+                class="k-button k-button--secondary"
+                href="https://www.king-komp.com/catalog/monitory/249080/"
+                >Карточка King-Komp →</a
+              >
+            </div>
+          </article>
+          <article
+            class="k-monitor-card"
+            data-monitor-card
+            data-monitor-product="msi-pro-mp275q"
+            aria-labelledby="msi-pro-mp275q-work-title"
+          >
+            <div class="k-monitor-card-top">
+              <span class="k-eyebrow">03 / MSI</span
+              ><span class="k-small k-muted">Монитор</span>
+            </div>
+            <figure class="k-monitor-photo">
+              <img
+                data-monitor-image
+                src="assets/images/equipment/msi-mp275q-01.webp"
+                alt="MSI PRO MP275Q спереди: чёрный корпус и прямоугольная подставка, на экране человек с портфелем"
+                width="1500"
+                height="1169"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+            <div class="k-monitor-card-copy">
+              <p class="k-monitor-scenario">QHD / рабочие окна</p>
+              <h3 id="msi-pro-mp275q-work-title">MSI PRO MP275Q</h3>
+              <p class="k-small k-muted">
+                QHD для документов и приложений; HDMI и DisplayPort для выбора
+                подключения.
+              </p>
+              <dl class="k-monitor-specs">
+                <div>
+                  <dt>Экран</dt>
+                  <dd>27″ · 2560 × 1440</dd>
+                </div>
+                <div>
+                  <dt>Матрица</dt>
+                  <dd>IPS · до 100 Гц</dd>
+                </div>
+                <div>
+                  <dt>Подключение</dt>
+                  <dd>HDMI · DisplayPort</dd>
+                </div>
+              </dl>
+            </div>
+            <div class="k-monitor-commercial">
+              <p>
+                <strong>16 540 ₽</strong
+                ><span class="k-small k-muted">Цена — пример</span>
+              </p>
+              <p class="k-small k-muted">Наличие уточняется</p>
+              <a
+                data-monitor-link
+                class="k-button k-button--secondary"
+                href="https://www.king-komp.com/catalog/monitory/248998/"
+                >Карточка King-Komp →</a
+              >
+            </div>
+          </article>
+          <article
+            class="k-monitor-card"
+            data-monitor-card
+            data-monitor-product="msi-pro-mp272pmg"
+            aria-labelledby="msi-pro-mp272pmg-work-title"
+          >
+            <div class="k-monitor-card-top">
+              <span class="k-eyebrow">04 / MSI</span
+              ><span class="k-small k-muted">Монитор</span>
+            </div>
+            <figure class="k-monitor-photo">
+              <img
+                data-monitor-image
+                src="assets/images/equipment/msi-pro-01.webp"
+                alt="MSI PRO MP272PMG спереди, с камерой над экраном и прямоугольной подставкой"
+                width="500"
+                height="466"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+            <div class="k-monitor-card-copy">
+              <p class="k-monitor-scenario">Full HD / видеосвязь</p>
+              <h3 id="msi-pro-mp272pmg-work-title">MSI PRO MP272PMG</h3>
+              <p class="k-small k-muted">
+                Встроенная камера 1080p и регулировка высоты для рабочего места
+                с видеозвонками.
+              </p>
+              <dl class="k-monitor-specs">
+                <div>
+                  <dt>Экран</dt>
+                  <dd>27″ · 1920 × 1080</dd>
+                </div>
+                <div>
+                  <dt>Матрица</dt>
+                  <dd>IPS · до 120 Гц</dd>
+                </div>
+                <div>
+                  <dt>Оснащение</dt>
+                  <dd>Камера · регулировка высоты</dd>
+                </div>
+              </dl>
+            </div>
+            <div class="k-monitor-commercial">
+              <p>
+                <strong>18 200 ₽</strong
+                ><span class="k-small k-muted">Цена — пример</span>
+              </p>
+              <p class="k-small k-muted">Наличие уточняется</p>
+              <a
+                data-monitor-link
+                class="k-button k-button--secondary"
+                href="https://www.king-komp.com/catalog/monitory/259583/"
+                >Карточка King-Komp →</a
+              >
+            </div>
+          </article>
+          <article
+            class="k-monitor-card"
+            data-monitor-card
+            data-monitor-product="msi-pro-mp251p"
+            aria-labelledby="msi-pro-mp251p-work-title"
+          >
+            <div class="k-monitor-card-top">
+              <span class="k-eyebrow">05 / MSI</span
+              ><span class="k-small k-muted">Монитор</span>
+            </div>
+            <figure class="k-monitor-photo">
+              <img
+                data-monitor-image
+                src="assets/images/equipment/msi-mp251p-01.webp"
+                alt="MSI PRO MP251P спереди: чёрный корпус и стойка с отверстием, на экране человек с портфелем"
+                width="1500"
+                height="1438"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+            <div class="k-monitor-card-copy">
+              <p class="k-monitor-scenario">Full HD / положение экрана</p>
+              <h3 id="msi-pro-mp251p-work-title">MSI PRO MP251P</h3>
+              <p class="k-small k-muted">
+                Диагональ 24,5″, регулировка высоты и портретный поворот — для
+                выбора положения документов.
+              </p>
+              <dl class="k-monitor-specs">
+                <div>
+                  <dt>Экран</dt>
+                  <dd>24,5″ · 1920 × 1080</dd>
+                </div>
+                <div>
+                  <dt>Матрица</dt>
+                  <dd>IPS · до 100 Гц · HDMI</dd>
+                </div>
+                <div>
+                  <dt>Регулировки</dt>
+                  <dd>Высота · поворот в портрет</dd>
+                </div>
+              </dl>
+            </div>
+            <div class="k-monitor-commercial">
+              <p>
+                <strong>14 150 ₽</strong
+                ><span class="k-small k-muted">Цена — пример</span>
+              </p>
+              <p class="k-small k-muted">Наличие уточняется</p>
+              <a
+                data-monitor-link
+                class="k-button k-button--secondary"
+                href="https://www.king-komp.com/catalog/monitory/248978/"
+                >Карточка King-Komp →</a
+              >
+            </div>
+          </article>
+        </div>
+        <a class="k-monitor-back k-small" href="#guide-title"
+          >К выбору задачи ↑</a
+        >
+      </section>
+      <p class="k-equipment-note k-small k-muted">
+        Цены — статические примеры для просмотра интерфейса. Наличие и условия
+        заказа уточняются отдельно. Частота — возможность монитора, а не
+        обещание FPS. У MSI MAG 274QF X24 до 240 Гц доступны через DisplayPort,
+        через HDMI — до 144 Гц. Проверяйте интерфейсы и режимы конкретной
+        системы.
+      </p>
+      <section
+        class="k-equipment-section k-equipment-handoff"
+        aria-labelledby="system-choice-title"
+      >
+        <div>
+          <p class="k-eyebrow">Компьютер + экран</p>
+          <h2 id="system-choice-title">Сначала общий сценарий.</h2>
+          <p class="k-muted">
+            Выбор монитора не обещает определённый FPS или совместимость всех
+            режимов. Разрешение, интерфейсы и задачи стоит согласовать с
+            системой.
+          </p>
+        </div>
+        <a class="k-button k-button--secondary" href="computers.html"
+          >К семействам KORSAC</a
+        >
+      </section>
+    </main>
+    <footer class="k-site-footer">
+      <div class="k-container">
+        <div class="k-site-footer-main">
+          <div class="k-site-footer-brand">
+            <a
+              class="k-site-brand"
+              href="index.html"
+              aria-label="KORSAC — главная"
+              ><picture class="k-brand-footer-lockup" data-brand-wordmark
+                ><source
+                  media="(max-width: 599px)"
+                  srcset="assets/images/brand/korsac-lockup-horizontal.svg" />
+                <img
+                  src="assets/images/brand/korsac-lockup-stacked.svg"
+                  width="10160"
+                  height="7197"
+                  alt="" /></picture
+            ></a>
+            <p>Точно под задачу.</p>
+          </div>
+          <nav aria-label="Продукты">
+            <h2>Продукты</h2>
+            <a href="computers.html">Все компьютеры</a
+            ><a href="catalog.html">PLAY</a><a href="create.html">CREATE</a
+            ><a href="work.html">WORK</a><a href="product.html">PLAY 1440</a
+            ><a href="product.html#configurator">Конфигуратор</a>
+            <a href="equipment.html">Оборудование</a
+            ><a href="monitors.html">Мониторы</a>
+          </nav>
+          <nav aria-label="Компания">
+            <h2>Компания</h2>
+            <a href="projects.html">Проекты команды</a>
+            <a href="index.html#why">О KORSAC</a
+            ><a href="work.html">Для бизнеса</a
+            ><a href="index.html#build">Подход к сборке</a>
+          </nav>
+          <nav aria-label="Поддержка">
+            <h2>Поддержка</h2>
+            <a href="contacts.html">Контакты</a>
+            <a href="product.html#warranty">Гарантия и сервис</a
+            ><a href="product.html#faq">Вопросы и ответы</a
+            ><a href="product.html#product-passport">Паспорт системы</a>
+          </nav>
+        </div>
+        <div class="k-site-footer-bottom">
+          <span>KORSAC by King-Komp</span
+          ><span>Юридические документы — после согласования</span
+          ><a href="review.html">Материалы прототипа</a>
+        </div>
+        <p class="k-site-prototype-status" id="site-prototype">
+          Визуальный прототип. Поиск и профиль пока недоступны. Корзина и
+          оформление — демонстрация.
+        </p>
+      </div>
+    </footer>
+    <dialog class="k-dialog" id="scope-dialog" aria-labelledby="scope-title">
+      <div class="k-dialog-header">
+        <h2 id="scope-title">О визуальном прототипе</h2>
+        <button
+          class="k-shell-icon"
+          type="button"
+          data-dialog-close
+          aria-label="Закрыть окно"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="m6 6 12 12M18 6 6 18" />
+          </svg>
+        </button>
+      </div>
+      <div class="k-stack">
+        <p>
+          Здесь можно изучить линейку PLAY и настроить пример системы. Поиск,
+          личный кабинет появятся при подключении магазина. Корзина и оформление
+          — демонстрация.
+        </p>
+        <p class="k-muted">
+          Цены — примеры. Выбор меняет подписи конфигурации; данные не
+          сохраняются.
+        </p>
+        <a href="review.html">Материалы и страницы прототипа</a>
+      </div>
+    </dialog>
+    <dialog
+      class="k-dialog k-drawer k-site-drawer"
+      id="menu-drawer"
+      aria-labelledby="menu-title"
+    >
+      <div class="k-dialog-header">
+        <a class="k-site-brand" href="index.html" aria-label="KORSAC — главная"
+          ><span class="k-brand-wordmark" data-brand-wordmark
+            ><img
+              src="assets/images/brand/korsac-lockup-horizontal.svg"
+              width="450"
+              height="100"
+              alt="" /></span></a
+        ><button
+          class="k-shell-icon"
+          type="button"
+          data-dialog-close
+          aria-label="Закрыть меню"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="m6 6 12 12M18 6 6 18" />
+          </svg>
+        </button>
+      </div>
+      <h2 class="k-sr-only" id="menu-title">Навигация KORSAC</h2>
+      <nav class="k-site-nav" aria-label="Мобильная навигация">
+        <a href="computers.html">Компьютеры</a
+        ><a href="product.html#configurator">Конфигуратор</a
+        ><a href="work.html">Для бизнеса</a
+        ><a href="product.html#warranty">Поддержка</a
+        ><a href="index.html#why">О KORSAC</a>
+      </nav>
+      <div class="k-site-drawer-utilities">
+        <a href="#site-prototype"
+          ><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle cx="10.5" cy="10.5" r="6.5" />
+            <path d="m16 16 4.5 4.5" /></svg
+          >Поиск</a
+        ><a href="#site-prototype"
+          ><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="8" r="3.5" />
+            <path d="M4.5 21v-2a7.5 7.5 0 0 1 15 0v2" /></svg
+          >Личный кабинет</a
+        >
+      </div>
+      <p class="k-small k-muted">Точно под задачу.</p>
+    </dialog>
+    <div
+      class="k-toast-region"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+      data-toast-region
+    ></div>
+  </body>
+</html>

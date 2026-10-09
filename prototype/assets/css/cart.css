@@ -438,3 +438,40 @@
     margin-top: 8px;
   }
 }
+
+/* Ordinary products have identity/specifications, no configuration snapshot. */
+.k-line-type-tag {
+  font: 500 var(--k-caption) / 1.4 var(--k-font-mono);
+  color: var(--k-secondary);
+  border-left: 2px solid var(--k-border-strong);
+  padding-left: 10px;
+}
+.k-cart-product-media {
+  background: #f5f5f5;
+  padding: 12px;
+  align-self: start;
+}
+.k-cart-product-media img {
+  width: 100%;
+  height: auto;
+}
+.k-cart-line--product h2 {
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  overflow-wrap: anywhere;
+}
+@media (max-width: 599px) {
+  .k-cart-product-media {
+    max-width: 240px;
+  }
+  .k-cart-line--product .k-cart-line-heading {
+    flex-wrap: wrap;
+  }
+}
+.k-cart-line--product .k-cart-specs > div {
+  grid-template-columns: 80px minmax(0, 1fr);
+}
+@media (max-width: 599px) {
+  .k-cart-line--product .k-cart-specs {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
