@@ -1224,3 +1224,43 @@ body.k-dialog-open {
     display: none;
   }
 }
+
+/* Visible hierarchy and JSON-LD use the same authored page path. */
+.k-breadcrumb {
+  padding-block: var(--k-space-5);
+  font-size: var(--k-caption);
+  color: var(--k-muted);
+}
+.k-breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 0;
+  padding: 0;
+  list-style: none;
+}
+.k-breadcrumb li {
+  display: inline-flex;
+  align-items: center;
+}
+.k-breadcrumb li + li::before {
+  content: "/";
+  padding-inline: 10px;
+  color: var(--k-border-strong);
+}
+.k-breadcrumb a {
+  color: var(--k-secondary);
+  text-decoration: none;
+  padding-block: 8px;
+}
+.k-breadcrumb a:hover {
+  color: var(--k-text);
+}
+.k-breadcrumb [aria-current="page"] {
+  color: var(--k-text);
+}
+@media (max-width: 599px) {
+  .k-breadcrumb {
+    padding-block: var(--k-space-3);
+  }
+}

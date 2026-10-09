@@ -1,5 +1,21 @@
 # Материалы визуального и motion-ревью KORSAC
 
+## IA / SEO / Contacts / Error Pages v1
+
+[Audit output, schema types, production matrix, warnings и browser QA](seo-foundation-v1.md).
+[Information Architecture и self-review A–L](../KORSAC-INFORMATION-ARCHITECTURE.md),
+[SEO foundation](../KORSAC-SEO-FOUNDATION.md),
+[Generic pages и production HTTP](../KORSAC-GENERIC-PAGES.md).
+
+- [Contacts desktop](contacts-v1-desktop.png) / [mobile](contacts-v1-mobile.png).
+- [404 desktop](error-404-v1-desktop.png) / [mobile](error-404-v1-mobile.png).
+- [500](error-500-v1.png) / [503](error-503-v1.png).
+- [Breadcrumbs](breadcrumbs-v1.png).
+
+Error files — visual prototypes; static server даёт200 и не проверяет production
+404/500/503. Все prototype pages явно noindex. Новых interactions нет; новый
+MP4 не требуется. Existing motion/commerce captures ниже — предыдущие baselines.
+
 ## Cart & Checkout Experience v1
 
 [Commerce — normal-speed MP4](commerce-v1.mp4): две конфигурации PLAY 1440,

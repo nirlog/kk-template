@@ -1,0 +1,150 @@
+/* Standalone failure shell: no imports, JS, application CSS or remote assets.
+   Deliberately mirrors approved KORSAC colors for availability during an outage. */
+:root {
+  color-scheme: dark;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  background: #0b0e13;
+  color: #f4f6f8;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  line-height: 1.6;
+}
+a {
+  color: #83abff;
+  text-underline-offset: 4px;
+}
+a:hover {
+  color: #a4c1ff;
+}
+:focus-visible {
+  outline: 2px solid #a4c1ff;
+  outline-offset: 4px;
+}
+.k-error-header,
+.k-error-content,
+.k-error-footer {
+  width: min(100% - 32px, 1264px);
+  margin-inline: auto;
+}
+.k-error-header {
+  display: flex;
+  align-items: center;
+  height: 88px;
+  border-bottom: 1px solid #2c3442;
+}
+.k-error-header a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+.k-error-header img {
+  width: 164px;
+  height: auto;
+  aspect-ratio: 4.5;
+}
+.k-error-content {
+  min-height: min(660px, 75vh);
+  padding-block: clamp(40px, 7vw, 96px);
+}
+.k-error-code {
+  margin: 0 0 24px;
+  color: #c38e5d;
+  font:
+    500 clamp(2.5rem, 6vw, 5rem) / 1 Consolas,
+    monospace;
+  letter-spacing: -0.04em;
+}
+h1 {
+  margin: 0 0 24px;
+  max-width: 22ch;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+.k-error-content > p:not(.k-error-code) {
+  margin: 0 0 24px;
+  max-width: 48ch;
+  color: #b4becc;
+  font-size: 1.125rem;
+}
+.k-error-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 24px;
+}
+.k-error-actions a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+}
+a.k-error-button {
+  padding: 12px 24px;
+  background: #245ddd;
+  color: #f4f6f8;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  text-decoration: none;
+  font-weight: 500;
+}
+a.k-error-button:hover {
+  background: #2b66e4;
+}
+.k-error-footer {
+  border-top: 1px solid #2c3442;
+  padding-block: 24px;
+  color: #929cab;
+  font-size: 0.875rem;
+}
+.k-error-skip {
+  position: absolute;
+  left: 16px;
+  top: 8px;
+  padding: 8px 16px;
+  background: #141922;
+  clip-path: inset(50%);
+}
+.k-error-skip:focus {
+  clip-path: none;
+}
+@media (max-width: 599px) {
+  .k-error-header {
+    height: 64px;
+  }
+  .k-error-header img {
+    width: 140px;
+  }
+  .k-error-content {
+    min-height: 0;
+    padding-block: 32px 48px;
+  }
+  .k-error-code,
+  h1,
+  .k-error-content > p:not(.k-error-code) {
+    margin-bottom: 20px;
+  }
+  .k-error-actions {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .k-error-button {
+    justify-content: center;
+  }
+}
+@media (forced-colors: active) {
+  a.k-error-button {
+    border-color: ButtonText;
+  }
+}

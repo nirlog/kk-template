@@ -206,3 +206,17 @@ calm sticky logo/title/back shell и компактный footer без marketin
 modal/drawer остаются выше sticky header. На этих трёх страницах Brand Intro
 полностью отсутствует, timestamp не читается/не записывается.
 [Cart & Checkout architecture](KORSAC-CART-CHECKOUT-EXPERIENCE.md).
+
+## IA / SEO / Generic Pages v1
+
+[IA и production indexability matrix](KORSAC-INFORMATION-ARCHITECTURE.md),
+[SEO server-side contract](KORSAC-SEO-FOUNDATION.md),
+[Contacts и error states](KORSAC-GENERIC-PAGES.md).
+Все static prototype pages явно `noindex, nofollow, noarchive`.
+Catalog/Product/Contacts используют общий breadcrumb primitive; safe JSON-LD
+не публикует demo price/availability/reviews. Canonical host пока не утверждён.
+Contacts доступны из public и compact transactional footer, без нового Header
+пункта. Contacts и 404/500/503 не имеют Brand Intro boot/overlay/controller
+и не меняют timestamp; policy Home/Catalog/Product сохраняется. 500/503
+работают без JS и shared application CSS. Static HTML не задаёт HTTP errors:
+production server обязан сохранить настоящий 404/500/503.

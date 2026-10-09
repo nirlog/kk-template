@@ -38,7 +38,7 @@
     </script>
     <!-- Detailed approved mark needs a dedicated small-size favicon; see brand docs. -->
     <link rel="icon" href="data:," />
-    <title>Каталог PLAY — KORSAC Prototype</title>
+    <title>Игровые компьютеры PLAY — KORSAC</title>
     <link rel="stylesheet" href="assets/css/tokens.css" />
     <link rel="stylesheet" href="assets/css/base.css" />
     <link rel="stylesheet" href="assets/css/layout.css" />
@@ -52,6 +52,54 @@
     <script src="assets/js/prototype.js" defer></script>
     <script src="assets/js/shell.js" defer></script>
     <script src="assets/js/catalog-experience.js" defer></script>
+
+    <!-- prototype = noindex environment; production policy is page-specific. -->
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <meta
+      name="description"
+      content="Линейка KORSAC PLAY: выбор игрового сценария от 1080p до 4K, компактная ветка MINI и сравнение классов систем."
+    />
+    <meta property="og:title" content="Игровые компьютеры PLAY — KORSAC" />
+    <meta
+      property="og:description"
+      content="Линейка KORSAC PLAY: выбор игрового сценария от 1080p до 4K, компактная ветка MINI и сравнение классов систем."
+    />
+    <meta property="og:site_name" content="KORSAC" />
+    <meta property="og:type" content="website" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "name": "Компьютеры KORSAC PLAY",
+            "url": "catalog.html"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Главная",
+                "item": "index.html"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Компьютеры",
+                "item": "/computers/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "PLAY"
+              }
+            ]
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <div
@@ -677,6 +725,13 @@
     </header>
     <main id="main" data-catalog-experience data-catalog-selection="play-1440">
       <div class="k-container">
+        <nav class="k-breadcrumb" aria-label="Хлебные крошки">
+          <ol>
+            <li><a href="index.html">Главная</a></li>
+            <li><span>Компьютеры</span></li>
+            <li><span aria-current="page">PLAY</span></li>
+          </ol>
+        </nav>
         <section class="k-catalog-intro" aria-labelledby="catalog-title">
           <div class="k-stack k-stack--tight">
             <span class="k-registration">KORSAC / CATALOG</span>
@@ -1831,6 +1886,7 @@
           </nav>
           <nav aria-label="Поддержка">
             <h2>Поддержка</h2>
+            <a href="contacts.html">Контакты</a>
             <a href="product.html#warranty">Гарантия и сервис</a
             ><a href="product.html#faq">Вопросы и ответы</a
             ><a href="product.html#product-passport">Паспорт системы</a>

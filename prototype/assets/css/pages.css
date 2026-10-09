@@ -233,11 +233,6 @@
   width: 28px;
   vertical-align: middle;
 }
-.k-breadcrumb {
-  padding-block: var(--k-space-5);
-  font: var(--k-caption) / 1.5 var(--k-font-mono);
-  color: var(--k-muted);
-}
 .k-hero {
   padding-block: var(--k-space-6) var(--k-space-12);
   display: grid;
@@ -654,9 +649,6 @@
   .k-identity-stage {
     padding: var(--k-space-5);
     min-height: 300px;
-  }
-  .k-breadcrumb {
-    padding-block: var(--k-space-3);
   }
   .k-hero {
     padding-top: var(--k-space-3);

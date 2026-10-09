@@ -38,10 +38,6 @@
     </script>
     <link rel="icon" href="data:," />
     <title>KORSAC — компьютеры, точно собранные под задачу</title>
-    <meta
-      name="description"
-      content="KORSAC — продуманные игровые и рабочие системы. Выберите игровой сценарий PLAY и изучите сбалансированную архитектуру PLAY 1440."
-    />
     <link rel="stylesheet" href="assets/css/tokens.css" />
     <link rel="stylesheet" href="assets/css/base.css" />
     <link rel="stylesheet" href="assets/css/layout.css" />
@@ -56,6 +52,45 @@
     <script src="assets/js/shell.js" defer></script>
     <script src="assets/js/catalog-experience.js" defer></script>
     <script src="assets/js/homepage.js" defer></script>
+
+    <!-- prototype = noindex environment; production policy is page-specific. -->
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <meta
+      name="description"
+      content="Знакомство с KORSAC: подход к сборке, игровые сценарии PLAY и выбор системы под вашу задачу."
+    />
+    <meta
+      property="og:title"
+      content="KORSAC — компьютеры, точно собранные под задачу"
+    />
+    <meta
+      property="og:description"
+      content="Знакомство с KORSAC: подход к сборке, игровые сценарии PLAY и выбор системы под вашу задачу."
+    />
+    <meta property="og:site_name" content="KORSAC" />
+    <meta property="og:type" content="website" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "#organization",
+            "name": "KORSAC",
+            "logo": "assets/images/brand/korsac-lockup-horizontal.svg"
+          },
+          {
+            "@type": "WebSite",
+            "@id": "#website",
+            "name": "KORSAC",
+            "url": "index.html",
+            "publisher": {
+              "@id": "#organization"
+            }
+          }
+        ]
+      }
+    </script>
   </head>
   <body class="k-home-page">
     <div
@@ -1431,6 +1466,7 @@
           </nav>
           <nav aria-label="Поддержка">
             <h2>Поддержка</h2>
+            <a href="contacts.html">Контакты</a>
             <a href="product.html#warranty">Гарантия и сервис</a
             ><a href="product.html#faq">Вопросы и ответы</a
             ><a href="product.html#product-passport">Паспорт системы</a>
