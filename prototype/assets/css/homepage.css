@@ -402,9 +402,13 @@
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
   gap: var(--k-space-20);
 }
-.k-home-trust-intro > p:last-child {
+.k-home-trust-intro > .k-lead {
   margin-top: var(--k-space-6);
   max-width: 32ch;
+}
+.k-home-trust-intro > a {
+  display: inline-block;
+  margin-top: var(--k-space-6);
 }
 .k-home-trust-grid {
   display: grid;

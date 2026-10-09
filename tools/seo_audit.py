@@ -9,6 +9,7 @@ from urllib.parse import unquote, urlsplit
 
 POLICY = 'noindex, nofollow, noarchive'
 FAMILY_PAGES = {'computers.html', 'catalog.html', 'create.html', 'work.html'}
+PROJECT_PAGES = {'projects.html': 'CollectionPage', 'project.html': 'Article'}
 
 
 class Page(HTMLParser):
@@ -22,6 +23,12 @@ class Page(HTMLParser):
         self.ids = []
         self.links = []
         self.images = []
+        self.project_records = []
+        self.project_covers = []
+        self.project_galleries = []
+        self._project_record = None
+        self._project_cover = False
+        self._project_gallery = None
         self.h1 = 0
         self.canonical = False
         self.jsonld = []
@@ -52,8 +59,23 @@ class Page(HTMLParser):
             self.links.append(a['src'])
         if 'srcset' in a:
             self.links.extend(item.strip().split()[0] for item in a['srcset'].split(',') if item.strip())
+        if tag == 'article' and 'k-project-entry' in a.get('class', '').split():
+            self._project_record = []
+            self.project_records.append(self._project_record)
+        if tag == 'figure' and 'data-project-cover' in a:
+            self._project_cover = True
+        if tag == 'ul' and 'data-project-gallery' in a:
+            self._project_gallery = []
+            self.project_galleries.append(self._project_gallery)
         if tag == 'img':
             self.images.append(a)
+            if 'data-project-image' in a:
+                if self._project_record is not None:
+                    self._project_record.append(a)
+                if self._project_cover:
+                    self.project_covers.append(a)
+                if self._project_gallery is not None:
+                    self._project_gallery.append(a)
         if tag == 'script' and a.get('type', '').lower() == 'application/ld+json':
             self._ld = ''
 
@@ -68,6 +90,12 @@ class Page(HTMLParser):
             self._ld += data
 
     def handle_endtag(self, tag):
+        if tag == 'article':
+            self._project_record = None
+        if tag == 'figure':
+            self._project_cover = False
+        if tag == 'ul':
+            self._project_gallery = None
         if tag == 'title' and self._title is not None:
             self.titles.append(self._title.strip())
             self._title = None
@@ -117,6 +145,48 @@ def breadcrumb_errors(node):
             if not valid_breadcrumb_url(item.get('item')):
                 errors.append(f'BreadcrumbList ListItem #{index} requires a valid item URL or item.@id; only the final item may omit item')
     return errors
+
+
+def project_media_errors(page, prototype):
+    """Check authored review media presence/attributes, not photographic authenticity."""
+    errors = []
+    photos = [img for img in page.images if 'data-project-image' in img]
+    if page.path.name == 'projects.html':
+        if not page.project_records:
+            errors.append('Projects list requires authored project records with media')
+        for index, images in enumerate(page.project_records, 1):
+            if not images:
+                errors.append(f'Projects record #{index} requires a project image')
+    if page.path.name == 'project.html':
+        if not page.project_covers:
+            errors.append('Project detail requires a project cover image')
+        if not any(page.project_galleries):
+            errors.append('Project detail requires visible gallery images in base HTML')
+    for img in photos:
+        src = img.get('src', '')
+        url = urlsplit(src)
+        target = (page.path.parent / unquote(url.path)).resolve()
+        directory = (prototype / 'assets/images/projects').resolve()
+        if url.scheme or url.netloc or not target.is_relative_to(directory) or target.suffix.lower() not in ('.jpg', '.jpeg', '.png', '.webp', '.avif'):
+            errors.append(f'Project image must be a local project photograph: {src}')
+        elif not target.is_file():
+            errors.append(f'Missing local project image: {src}')
+        if not img.get('alt', '').strip():
+            errors.append(f'Project image requires non-empty alt: {src}')
+        if not all(img.get(k, '').isdigit() and int(img[k]) > 0 for k in ('width', 'height')):
+            errors.append(f'Project image requires explicit positive width/height: {src}')
+    return errors
+
+
+def article_image_urls(value):
+    if isinstance(value, str):
+        return [value] if value else []
+    if isinstance(value, dict):
+        return article_image_urls(value.get('url', value.get('contentUrl')))
+    if isinstance(value, list):
+        groups = [article_image_urls(child) for child in value]
+        return [url for group in groups for url in group] if groups and all(groups) else []
+    return []
 
 
 def audit(root):
@@ -188,6 +258,11 @@ def audit(root):
                     errors.append('Invalid schema @type value')
                     continue
                 types.update(node_types)
+                if path.name == 'project.html' and 'Article' in node_types and 'image' in node:
+                    image_urls = article_image_urls(node['image'])
+                    visible = {img.get('src') for img in page.images if 'data-project-image' in img}
+                    if not image_urls or any(url not in visible for url in image_urls):
+                        errors.append('Article.image must refer to an actual visible local project image')
                 if 'BreadcrumbList' in node_types:
                     errors.extend(breadcrumb_errors(node))
                 for t in node_types:
@@ -215,6 +290,13 @@ def audit(root):
                     errors.append(f'Computer hub/family requires {required} schema')
             if 'Product' in types:
                 errors.append('Computer hub/family landing must not claim Product schema')
+        if path.name in PROJECT_PAGES:
+            errors.extend(project_media_errors(page, prototype))
+            for required in (PROJECT_PAGES[path.name], 'BreadcrumbList'):
+                if required not in types:
+                    errors.append(f'Projects page requires {required} schema')
+            if 'Product' in types:
+                errors.append('Project case/list must not claim Product schema')
         warnings.extend(['Prototype canonical/og:url intentionally omitted; production follows page-type policy and approved host', 'No approved og:image; production social artwork remains pending'])
         results.append({'page': path.relative_to(root.resolve()).as_posix(), 'title': page.titles[0] if page.titles else '', 'schema_types': sorted(types), 'errors': sorted(set(errors)), 'warnings': sorted(set(warnings))})
     if not files:

@@ -228,3 +228,9 @@ production server обязан сохранить настоящий 404/500/503
 WORK sticky/opaque и участвуют в общем public Brand Intro с тем же24h key.
 Footer связывает все три семейства; breadcrumb hub теперь действующий ancestor.
 Production readiness CREATE/WORK остаётся условной по IA, не по наличию прототипа.
+
+Projects v1 добавляет одну native content-ссылку из Homepage trust и одну
+ссылку «Проекты команды» в public/footer Company. Global header по-прежнему
+имеет пять entries, Home → Computers unchanged. Projects/list/detail — public
+browsing pages с прежним shared daily Brand Intro; historical King-Komp
+provenance живёт в контенте, shell brand остаётся KORSAC.

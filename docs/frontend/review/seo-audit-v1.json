@@ -151,6 +151,36 @@
       ]
     },
     {
+      "page": "prototype/project.html",
+      "title": "Белая сборка i5-14600KF / RTX 4070 SUPER — проект King-Komp — KORSAC",
+      "schema_types": [
+        "Article",
+        "BreadcrumbList",
+        "ListItem"
+      ],
+      "errors": [],
+      "warnings": [
+        "No approved og:image; production social artwork remains pending",
+        "Prototype canonical/og:url intentionally omitted; production follows page-type policy and approved host",
+        "Relative schema URLs/IDs are semantic-review only; production needs absolute canonical URLs"
+      ]
+    },
+    {
+      "page": "prototype/projects.html",
+      "title": "Проекты команды: реальные сборки — KORSAC",
+      "schema_types": [
+        "BreadcrumbList",
+        "CollectionPage",
+        "ListItem"
+      ],
+      "errors": [],
+      "warnings": [
+        "No approved og:image; production social artwork remains pending",
+        "Prototype canonical/og:url intentionally omitted; production follows page-type policy and approved host",
+        "Relative schema URLs/IDs are semantic-review only; production needs absolute canonical URLs"
+      ]
+    },
+    {
       "page": "prototype/review.html",
       "title": "Материалы прототипа — KORSAC",
       "schema_types": [],
@@ -187,5 +217,5 @@
     }
   ],
   "errors": 0,
-  "warnings": 37
+  "warnings": 43
 }

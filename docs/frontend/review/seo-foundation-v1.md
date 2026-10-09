@@ -13,13 +13,15 @@ python3 tools/seo_audit.py --json
 python3 -m unittest discover -s tools -p 'test_seo_audit.py'
 ```
 
-Результат: **15 страниц, 0 ошибок, 37 intentional warnings**.
-[Детерминированный JSON output](seo-audit-v1.json). Одиннадцать fixture tests
+Результат: **17 страниц, 0 ошибок, 43 intentional warnings**.
+[Детерминированный JSON output](seo-audit-v1.json). Семнадцать fixture tests
 прошли: staging guard, canonical, metadata/H1, IDs/links/images, invalid/unsafe
 JSON-LD и implicit offers/review properties; дополнительно non-final breadcrumb
 URLs, URL string / `item.@id`, invalid URL/list shapes и final-item omission.
 Family pages дополнительно требуют CollectionPage/BreadcrumbList без Product;
-новые filenames участвуют в staging/IDs/H1/link guards. Все текущие img имеют
+новые filenames участвуют в staging/IDs/H1/link guards. Projects list/detail
+требуют CollectionPage/Article + BreadcrumbList; Product/Offer/Review запрещены.
+Добавлены Projects schema/media negative fixture tests без ослабления старых guards. Все текущие img имеют
 размеры/alt.
 
 | HTML                 | Detected JSON-LD types (recursive)       |
@@ -36,6 +38,8 @@ Family pages дополнительно требуют CollectionPage/Breadcrumb
 | `index.html`         | Organization, WebSite                    |
 | `order-success.html` | Нет                                      |
 | `product.html`       | Brand, BreadcrumbList, ListItem, Product |
+| `project.html`       | Article, BreadcrumbList, ListItem        |
+| `projects.html`      | BreadcrumbList, CollectionPage, ListItem |
 | `review.html`        | Нет                                      |
 | `ui.html`            | Нет                                      |
 | `work.html`          | BreadcrumbList, CollectionPage, ListItem |
@@ -44,21 +48,21 @@ Production indexability: [единая полная матрица](../KORSAC-IN
 с Page type / URL / index policy / canonical / breadcrumbs / schema / sitemap /
 Bitrix owner. Content-only published entities indexable; Cart/Checkout/Success,
 Search/Account, filters/sort/configurations/review/errors не создают indexable
-сущности. В этом review **все** 15 страниц noindex/nofollow/noarchive.
+сущности. В этом review **все** 17 страниц noindex/nofollow/noarchive.
 
 Known intentional warnings:
 
-- 15 × canonical/og:url не заданы в prototype. Production следует page-type
+- 17 × canonical/og:url не заданы в prototype. Production следует page-type
   policy: approved-host self-canonical только для подходящих content pages;
   ошибки/транзакции не ждут canonical.
-- 15 × нет approved og:image; social artwork остаётся future production slot.
-- 7 × local schema URLs/fragment IDs для semantic review. Bitrix преобразует
+- 17 × нет approved og:image; social artwork остаётся future production slot.
+- 9 × local schema URLs/fragment IDs для semantic review. Bitrix преобразует
   реальные entities в absolute canonical URLs; hostname сейчас не выдуман.
 
 Computer Families v1 добавил настоящий hub: «Компьютеры» теперь UI link и
 JSON-LD `item: "computers.html"`. На Product PLAY сохраняет `catalog.html`;
-только final item может опустить `item`. [Current family review](computer-families-v1.md)
-показывает расширенный audit/QA. Исторические PR #9 captures и browser QA ниже
+только final item может опустить `item`. [Family review](computer-families-v1.md) фиксирует PR #10;
+[current Projects review](projects-v1.md) показывает актуальные audit/QA. Исторические PR #9 captures и browser QA ниже
 относятся к Generic Pages baseline до новых family routes.
 Current Product без Offer/image/availability/ratings intentional, sample price
 не является production данными. Проверка JSON syntax не обещает rich results.

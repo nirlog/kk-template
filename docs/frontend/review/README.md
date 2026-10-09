@@ -458,3 +458,12 @@ hero, подтверждение выбора, validation sweep, SYSTEM ID, мо
 их. Они не являются product photography, финальными ассетами бренда или
 обязательными файлами для запуска. Снимки добавлены, чтобы встроить визуальное
 подтверждение в PR без отдельного механизма загрузки GitHub-вложений.
+
+## Projects v1 — current stage
+
+[Review / QA / source access boundary](projects-v1.md) · [Content contract](../KORSAC-PROJECTS-EXPERIENCE.md).
+
+- [Projects list — desktop](projects-v1-desktop.png), [mobile](projects-v1-mobile.png).
+- [Project detail — desktop](project-v1-desktop.png), [mobile](project-v1-mobile.png).
+
+Обновлённые screenshots показывают реальные локальные previews и narrative gallery. [Gallery desktop](project-gallery-v1-desktop.png), [mobile](project-gallery-v1-mobile.png). [Source manifest](projects-media-sources.json). Lightbox/MP4 не добавлены. Historical King-Komp origin явен; это не KORSAC product entities. Current audit: [JSON](seo-audit-v1.json). Предыдущие stage assets — исторические baselines. Human visual review требуется до merge.

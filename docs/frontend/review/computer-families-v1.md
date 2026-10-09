@@ -1,5 +1,8 @@
 # Computer Families v1 — review
 
+Этот отчёт фиксирует PR #10. Current Projects stage / audit / navigation evidence:
+[Projects v1](projects-v1.md). Прежние PNG остаются историческим baseline.
+
 Base: merged PR #9, `main` at `148c901befb8214f49f9307fbb6cdc90971da7c5`.
 [Architecture / static mapping / publication boundary](../KORSAC-COMPUTER-FAMILIES-EXPERIENCE.md).
 [Authoritative production indexability matrix](../KORSAC-INFORMATION-ARCHITECTURE.md#единая-матрица-production-indexability)
