@@ -148,6 +148,67 @@ class AuditGuardTests(unittest.TestCase):
                     broken = dict(extras, **{name: mutation})
                     self.assertIn(message, '\n'.join(e for p in self.check_fixture(extra=broken)['pages'] for e in p['errors']))
 
+    def project_markup(self, page_type, extra_nodes=None):
+        graph = {'@context': 'https://schema.org', '@graph': [
+            {'@type': page_type, 'headline' if page_type == 'Article' else 'name': 'Fixture'},
+            {'@type': 'BreadcrumbList', 'itemListElement': [
+                {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'product.html'},
+                {'@type': 'ListItem', 'position': 2, 'name': 'Project'},
+            ]},
+        ] + (extra_nodes or [])}
+        return GOOD.replace('</head>', '<script type="application/ld+json">' + json.dumps(graph) + '</script></head>')
+
+    def test_projects_schema_requires_article_or_collection_and_breadcrumb(self):
+        for name, required in [('projects.html', 'CollectionPage'), ('project.html', 'Article')]:
+            with self.subTest(page=name):
+                valid = self.project_markup(required)
+                self.assertEqual(self.check_fixture(valid, page_name=name)['errors'], 0)
+                for wrong in ['Product', 'WebPage', 'Article' if required == 'CollectionPage' else 'CollectionPage']:
+                    errors = self.check_fixture(self.project_markup(wrong), page_name=name)['pages'][0]['errors']
+                    self.assertTrue(any(f'requires {required}' in e for e in errors))
+                    if wrong == 'Product':
+                        self.assertIn('Project case/list must not claim Product schema', errors)
+                # Required list semantics cannot disappear while entity type remains correct.
+                no_crumb = self.project_markup(required).replace('"BreadcrumbList"', '"ItemList"')
+                self.assertIn('Projects page requires BreadcrumbList schema', self.check_fixture(no_crumb, page_name=name)['pages'][0]['errors'])
+                # A valid Article/Collection must not conceal an extra Product entity.
+                product = self.project_markup(required, [{'@type': 'Product'}])
+                self.assertIn('Project case/list must not claim Product schema', self.check_fixture(product, page_name=name)['pages'][0]['errors'])
+
+    def test_projects_reject_commercial_and_review_schema(self):
+        for name, required in [('projects.html', 'CollectionPage'), ('project.html', 'Article')]:
+            for prohibited in ['Offer', 'AggregateOffer', 'Review', 'AggregateRating']:
+                with self.subTest(page=name, prohibited=prohibited):
+                    markup = self.project_markup(required, [{'@type': prohibited}])
+                    errors = self.check_fixture(markup, page_name=name)['pages'][0]['errors']
+                    self.assertTrue(any(prohibited in e for e in errors))
+            for key in ['offers', 'review', 'aggregateRating']:
+                markup = self.project_markup(required, [{key: {}}])
+                self.assertGreater(self.check_fixture(markup, page_name=name)['errors'], 0)
+
+    def test_projects_discovery_and_existing_guards(self):
+        extras = {
+            name: self.project_markup(required).replace('Fixture', name)
+            for name, required in [('projects.html', 'CollectionPage'), ('project.html', 'Article')]
+        }
+        report = self.check_fixture(extra=extras)
+        self.assertEqual(len(report['pages']), 3)
+        self.assertEqual(report['errors'], 0)
+        for name in extras:
+            for mutation, message in [
+                (extras[name].replace('noindex, nofollow, noarchive', 'index, follow'), 'robots must'),
+                (extras[name].replace('</main>', '<p id="main">duplicate</p></main>'), 'Duplicate HTML ID'),
+                (extras[name].replace('</main>', '<a href="gone.html">gone</a></main>'), 'Broken local link'),
+                (extras[name].replace('</main>', '<h1>Extra</h1></main>'), 'Expected one H1'),
+                (extras[name].replace('"item": "product.html"', '"item": ""'), 'requires a valid item'),
+                (extras[name].replace('</head>', '<link rel="canonical" href="https://example.com"></head>'), 'canonical'),
+                (extras[name].replace('</main>', '<img src="pixel.svg"></main>'), 'Missing image alt'),
+            ]:
+                with self.subTest(page=name, guard=message):
+                    broken = dict(extras, **{name: mutation, 'pixel.svg': '<svg/>'})
+                    errors = '\n'.join(e for p in self.check_fixture(extra=broken)['pages'] for e in p['errors'])
+                    self.assertIn(message, errors)
+
 
 if __name__ == '__main__':
     unittest.main()

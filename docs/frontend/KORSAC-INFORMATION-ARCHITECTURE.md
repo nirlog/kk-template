@@ -2,8 +2,9 @@
 
 Контракт переноса в Bitrix. Текущий прототип — review-среда, а не набор
 production URL. Все `prototype/*.html` имеют `noindex, nofollow, noarchive`.
-Computer hub и CREATE/WORK реализованы как static review landings. Projects,
-Equipment и модельные линейки CREATE/WORK остаются future content, без активных
+Computer hub и CREATE/WORK реализованы как static review landings. Projects
+теперь имеют archive list/detail fixtures; Equipment и модельные линейки
+CREATE/WORK остаются future content, без активных
 ссылок на несуществующие страницы; publication gate матрицы сохранён.
 
 ## Production URL tree
@@ -120,16 +121,18 @@ presentation/заказ одной модели и не создаёт инде�
 
 ## Breadcrumb hierarchy и static mapping
 
-| Static review                                        | Production                                  | Видимый путь                            |
-| ---------------------------------------------------- | ------------------------------------------- | --------------------------------------- |
-| `index.html`                                         | `/`                                         | Главная                                 |
-| `computers.html`                                     | `/computers/`                               | Главная → Компьютеры                    |
-| `create.html`                                        | `/computers/create/`                        | Главная → Компьютеры → CREATE           |
-| `work.html`                                          | `/computers/work/`                          | Главная → Компьютеры → WORK             |
-| `catalog.html`                                       | `/computers/play/`                          | Главная → Компьютеры → PLAY             |
-| `product.html`                                       | `/computers/play/1440/`                     | Главная → Компьютеры → PLAY → PLAY 1440 |
-| `contacts.html`                                      | `/contacts/`                                | Главная → Контакты                      |
-| `cart.html` / `checkout.html` / `order-success.html` | `/cart/` / `/checkout/` / `/order-success/` | Транзакционные экраны                   |
+| Static review                                        | Production                                  | Видимый путь                                |
+| ---------------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| `index.html`                                         | `/`                                         | Главная                                     |
+| `computers.html`                                     | `/computers/`                               | Главная → Компьютеры                        |
+| `create.html`                                        | `/computers/create/`                        | Главная → Компьютеры → CREATE               |
+| `work.html`                                          | `/computers/work/`                          | Главная → Компьютеры → WORK                 |
+| `catalog.html`                                       | `/computers/play/`                          | Главная → Компьютеры → PLAY                 |
+| `product.html`                                       | `/computers/play/1440/`                     | Главная → Компьютеры → PLAY → PLAY 1440     |
+| `projects.html`                                      | `/projects/`                                | Главная → Проекты                           |
+| `project.html`                                       | `/projects/{approved-slug}/`                | Главная → Проекты → Белый игровой компьютер |
+| `contacts.html`                                      | `/contacts/`                                | Главная → Контакты                          |
+| `cart.html` / `checkout.html` / `order-success.html` | `/cart/` / `/checkout/` / `/order-success/` | Транзакционные экраны                       |
 
 В прототипе «Компьютеры» теперь реальный ancestor link `computers.html`.
 Catalog/Product/CREATE/WORK имеют тот же путь в видимых crumbs и JSON-LD;
@@ -141,6 +144,13 @@ URL string или `item: {"@id": URL}`. В production server hierarchy форм�
 CREATE/WORK теперь имеют review landing pages, но **production readiness rule
 матрицы не меняется**: наличие static design не является publication approval.
 Модели/slugs/Offers не добавлены. См. [Computer Families v1](KORSAC-COMPUTER-FAMILIES-EXPERIENCE.md).
+
+Projects реализуют case archive команды King-Komp: list + один local detail,
+прочие записи ведут к реальным originals. `project.html` — review fixture,
+не final slug; legacy slug не является автоматическим KORSAC canonical.
+Исторические проекты не выдаются за модели KORSAC. Article не содержит
+выдуманных author/date/image/measurements; absent sections не заполняются.
+См. [Projects content/source contract](KORSAC-PROJECTS-EXPERIENCE.md).
 
 ## URL, navigation и sitemap
 

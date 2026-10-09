@@ -9,6 +9,7 @@ from urllib.parse import unquote, urlsplit
 
 POLICY = 'noindex, nofollow, noarchive'
 FAMILY_PAGES = {'computers.html', 'catalog.html', 'create.html', 'work.html'}
+PROJECT_PAGES = {'projects.html': 'CollectionPage', 'project.html': 'Article'}
 
 
 class Page(HTMLParser):
@@ -215,6 +216,12 @@ def audit(root):
                     errors.append(f'Computer hub/family requires {required} schema')
             if 'Product' in types:
                 errors.append('Computer hub/family landing must not claim Product schema')
+        if path.name in PROJECT_PAGES:
+            for required in (PROJECT_PAGES[path.name], 'BreadcrumbList'):
+                if required not in types:
+                    errors.append(f'Projects page requires {required} schema')
+            if 'Product' in types:
+                errors.append('Project case/list must not claim Product schema')
         warnings.extend(['Prototype canonical/og:url intentionally omitted; production follows page-type policy and approved host', 'No approved og:image; production social artwork remains pending'])
         results.append({'page': path.relative_to(root.resolve()).as_posix(), 'title': page.titles[0] if page.titles else '', 'schema_types': sorted(types), 'errors': sorted(set(errors)), 'warnings': sorted(set(warnings))})
     if not files:

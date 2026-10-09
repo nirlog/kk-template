@@ -81,4 +81,13 @@ python3 -m unittest discover -s tools -p 'test_seo_audit.py'
 
 [Computer Families Experience v1](docs/frontend/KORSAC-COMPUTER-FAMILIES-EXPERIENCE.md).
 [Family review PNG / audit / QA](docs/frontend/review/computer-families-v1.md).
-Следующий roadmap stage — Projects; Bitrix migration не начата.
+Projects реализованы в следующем stage ниже; Bitrix migration не начата.
+
+### Projects Experience v1
+
+- [Projects list](prototype/projects.html) — три реальные сборки из архива команды King-Komp.
+- [Project detail](prototype/project.html) — белый игровой компьютер i5-14600KF / RTX 4070 SUPER, историческая конфигурация и provenance.
+- [Content/source/SEO/Bitrix contract](docs/frontend/KORSAC-PROJECTS-EXPERIENCE.md).
+- [Review screenshots и QA](docs/frontend/review/projects-v1.md).
+
+Projects доступны через Homepage trust и footer; PLAY/family hierarchy сохранены. Факты взяты из approved source excerpts в ТЗ, live King-Komp retrieval blocked by environment proxy; страницы не используют вымышленные фотографии. Equipment, System Passport и Bitrix не реализованы.

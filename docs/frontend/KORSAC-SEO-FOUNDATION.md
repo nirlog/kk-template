@@ -33,7 +33,7 @@ Bitrix page-context/entity resolver формирует в HTML до JS:
 описание/статью, breadcrumbs и важные внутренние ссылки. JS отвечает за
 presentation, не генерирует SEO. Не размещать второй generator в браузере.
 
-В review у всех 15 страниц уникальные nonempty title/description, `lang="ru"`,
+В review у всех 17 страниц уникальные nonempty title/description, `lang="ru"`,
 viewport и один H1. Product H1 сохраняет имя PLAY 1440, а не логотип как heading.
 Примеры production naming: «Игровые компьютеры PLAY — KORSAC»,
 «PLAY 1440 — игровой компьютер KORSAC», «Контакты — KORSAC».
@@ -149,6 +149,15 @@ crumb имеет такую же ссылку. На Product PLAY ссылает�
 В production единый server hierarchy resolver формирует реальные абсолютные
 ancestors/current canonical на утверждённом host. Audit проверяет наличие и
 URL representation non-final items, без заявления внешней rich-results validation.
+
+Projects list (`projects.html`): CollectionPage + BreadcrumbList. Review detail
+(`project.html`): Article + BreadcrumbList; headline/description/citation только
+из approved historical case facts. Видимые crumbs — Главная → Проекты [→ title],
+ancestors `index.html`/`projects.html`. Нет Product/Offers/ratings на case,
+нет invented author/dates/image для заполнения optional Article properties.
+Legacy slug — кандидат, production slug и hostname утверждаются при migration.
+[Projects source contract](KORSAC-PROJECTS-EXPERIENCE.md) фиксирует provenance,
+source access limitation и отсутствие project photography в текущем review.
 
 Product: безопасный scaffold + BreadcrumbList, без Offer.
 
