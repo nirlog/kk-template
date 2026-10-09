@@ -1,0 +1,1042 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script>
+      /* Presentation frequency only; write before any visual activation. */
+      (() => {
+        const key = "korsac:brand-intro:lastShown";
+        const now = Date.now();
+        const recent = (raw) => {
+          const value = Number(raw);
+          return (
+            Number.isSafeInteger(value) &&
+            value > 0 &&
+            value <= now &&
+            now - value < 24 * 60 * 60 * 1000
+          );
+        };
+        try {
+          if (recent(localStorage.getItem(key))) return;
+          localStorage.setItem(key, String(now));
+        } catch {
+          try {
+            if (recent(sessionStorage.getItem(key))) return;
+            sessionStorage.setItem(key, String(now));
+          } catch {
+            return;
+          }
+        }
+        try {
+          if (!matchMedia("(prefers-reduced-motion: reduce)").matches)
+            document.documentElement.dataset.brandIntro = String(now);
+        } catch {
+          /* Unsupported preferences: direct page access. */
+        }
+      })();
+    </script>
+    <link rel="icon" href="data:," />
+    <title>WORK — системы для рабочих задач KORSAC</title>
+    <link rel="stylesheet" href="assets/css/tokens.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/shell.css" />
+    <link rel="stylesheet" href="assets/css/brand.css" />
+    <link rel="stylesheet" href="assets/css/brand-intro.css" />
+    <link rel="stylesheet" href="assets/css/families.css" />
+    <script src="assets/js/brand-intro.js" defer></script>
+    <script src="assets/js/prototype.js" defer></script>
+    <script src="assets/js/shell.js" defer></script>
+    <!-- prototype = noindex environment; production publication is a separate gate. -->
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <meta
+      name="description"
+      content="Подход KORSAC WORK: повседневные задачи, многозадачность, рабочее место и возможности расширения. Модельная линейка ещё формируется."
+    />
+    <meta
+      property="og:title"
+      content="WORK — системы для рабочих задач KORSAC"
+    />
+    <meta
+      property="og:description"
+      content="Подход KORSAC WORK: повседневные задачи, многозадачность, рабочее место и возможности расширения. Модельная линейка ещё формируется."
+    />
+    <meta property="og:site_name" content="KORSAC" />
+    <meta property="og:type" content="website" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "name": "WORK",
+            "url": "work.html"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Главная",
+                "item": "index.html"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Компьютеры",
+                "item": "computers.html"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "WORK"
+              }
+            ]
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body class="k-family-page k-family-page--work">
+    <div
+      class="k-brand-intro"
+      data-brand-intro-overlay
+      aria-hidden="true"
+      hidden
+    >
+      <div class="k-brand-intro-content">
+        <div class="k-brand-intro-mark">
+          <svg
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            style="
+              shape-rendering: geometricPrecision;
+              text-rendering: geometricPrecision;
+              image-rendering: optimizeQuality;
+              fill-rule: evenodd;
+              clip-rule: evenodd;
+            "
+            viewBox="0 0 8043.32 7196.66"
+            id="intro-work-korsac-logo-icon"
+            preserveAspectRatio="xMidYMid meet"
+            focusable="false"
+          >
+            <defs>
+              <clipPath id="intro-work-id0">
+                <path
+                  d="M1854.8 3546.45l-387.77 -300.37 -284.7 -230.55 273.77 -31.61 220.98 -23.69 84.86 263.99 92.86 322.23z"
+                />
+              </clipPath>
+              <clipPath id="intro-work-id1">
+                <path
+                  d="M6289.38 3546.45l387.77 -300.37 284.7 -230.55 -273.77 -31.61 -220.98 -23.69 -84.86 263.99 -92.86 322.23z"
+                />
+              </clipPath>
+
+              <linearGradient
+                id="intro-work-korsac-metal-highlight"
+                x1="0"
+                y1="0"
+                x2="1"
+                y2="1"
+              >
+                <stop offset="0%" stop-color="#F7DDC0" />
+                <stop offset="33%" stop-color="#E9B37B" />
+                <stop offset="66%" stop-color="#C87845" />
+                <stop offset="100%" stop-color="#884825" />
+              </linearGradient>
+              <linearGradient
+                id="intro-work-korsac-metal-light"
+                x1="0"
+                y1="0"
+                x2="1"
+                y2="1"
+              >
+                <stop offset="0%" stop-color="#EDC7A2" />
+                <stop offset="33%" stop-color="#DA9D6A" />
+                <stop offset="66%" stop-color="#B66B40" />
+                <stop offset="100%" stop-color="#784026" />
+              </linearGradient>
+              <linearGradient
+                id="intro-work-korsac-metal-gold"
+                x1="0"
+                y1="0"
+                x2="1"
+                y2="1"
+              >
+                <stop offset="0%" stop-color="#E9BC84" />
+                <stop offset="33%" stop-color="#CE8A54" />
+                <stop offset="66%" stop-color="#A95B32" />
+                <stop offset="100%" stop-color="#68361F" />
+              </linearGradient>
+              <linearGradient
+                id="intro-work-korsac-metal-mid"
+                x1="0"
+                y1="0"
+                x2="1"
+                y2="1"
+              >
+                <stop offset="0%" stop-color="#DDA572" />
+                <stop offset="33%" stop-color="#BF794B" />
+                <stop offset="66%" stop-color="#94512F" />
+                <stop offset="100%" stop-color="#5B301D" />
+              </linearGradient>
+              <linearGradient
+                id="intro-work-korsac-metal-mid-dark"
+                x1="0"
+                y1="0"
+                x2="1"
+                y2="1"
+              >
+                <stop offset="0%" stop-color="#C78B5C" />
+                <stop offset="33%" stop-color="#A55E39" />
+                <stop offset="66%" stop-color="#7A4227" />
+                <stop offset="100%" stop-color="#442619" />
+              </linearGradient>
+              <linearGradient
+                id="intro-work-korsac-metal-dark"
+                x1="0"
+                y1="0"
+                x2="1"
+                y2="1"
+              >
+                <stop offset="0%" stop-color="#B97748" />
+                <stop offset="33%" stop-color="#8E4B2C" />
+                <stop offset="66%" stop-color="#62341F" />
+                <stop offset="100%" stop-color="#382118" />
+              </linearGradient>
+              <linearGradient
+                id="intro-work-korsac-metal-deep"
+                x1="0"
+                y1="0"
+                x2="1"
+                y2="1"
+              >
+                <stop offset="0%" stop-color="#A6663E" />
+                <stop offset="33%" stop-color="#7B4228" />
+                <stop offset="66%" stop-color="#552E1D" />
+                <stop offset="100%" stop-color="#291812" />
+              </linearGradient>
+              <linearGradient
+                id="intro-work-korsac-eye-gradient"
+                x1="0"
+                y1="0.5"
+                x2="1"
+                y2="0.5"
+              >
+                <stop offset="0%" stop-color="#1738F4" />
+                <stop offset="33%" stop-color="#297FFF" />
+                <stop offset="62%" stop-color="#32C9FF" />
+                <stop offset="100%" stop-color="#155CFF" />
+              </linearGradient>
+              <linearGradient
+                id="intro-work-korsac-eye-core-gradient"
+                x1="0"
+                y1="0.5"
+                x2="1"
+                y2="0.5"
+              >
+                <stop offset="0%" stop-color="#79DFFF" />
+                <stop offset="50%" stop-color="#E4FDFF" />
+                <stop offset="100%" stop-color="#63B8FF" />
+              </linearGradient>
+              <linearGradient
+                id="intro-work-korsac-silver"
+                x1="0"
+                y1="0"
+                x2="0"
+                y2="1"
+              >
+                <stop offset="0%" stop-color="#FFFFFF" />
+                <stop offset="28%" stop-color="#F3F5F7" />
+                <stop offset="55%" stop-color="#C4CAD1" />
+                <stop offset="76%" stop-color="#F9FAFB" />
+                <stop offset="100%" stop-color="#A9B1BA" />
+              </linearGradient>
+              <filter
+                id="intro-work-korsac-eye-glow"
+                x="-70%"
+                y="-70%"
+                width="240%"
+                height="240%"
+              >
+                <feGaussianBlur stdDeviation="18" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+              <linearGradient
+                id="intro-work-korsac-shading-left"
+                x1="1467.03"
+                y1="3246.08"
+                x2="1854.8"
+                y2="3546.45"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop offset="0%" stop-color="#5E3522" />
+                <stop offset="35%" stop-color="#9F5D3A" />
+                <stop offset="67%" stop-color="#D49B6C" />
+                <stop offset="100%" stop-color="#F0C8A0" />
+              </linearGradient>
+              <linearGradient
+                id="intro-work-korsac-shading-right"
+                x1="6677.15"
+                y1="3246.08"
+                x2="6289.38"
+                y2="3546.45"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop offset="0%" stop-color="#5E3522" />
+                <stop offset="35%" stop-color="#9F5D3A" />
+                <stop offset="67%" stop-color="#D49B6C" />
+                <stop offset="100%" stop-color="#F0C8A0" />
+              </linearGradient>
+            </defs>
+            <g id="intro-work-korsac-totem" data-korsac-part="totem">
+              <g id="intro-work-korsac-icon-left">
+                <g class="korsac-shading">
+                  <g
+                    style="clip-path: url(#intro-work-id0)"
+                    class="korsac-shading-fill"
+                  >
+                    <rect
+                      x="1447.03"
+                      y="3226.08"
+                      width="427.77"
+                      height="340.3699999999999"
+                      fill="url(#intro-work-korsac-shading-left)"
+                    />
+                  </g>
+                  <polygon
+                    class="korsac-facet-outline"
+                    points="1854.8,3546.45 1467.03,3246.08 1182.33,3015.53 1456.1,2983.92 1677.08,2960.23 1761.94,3224.22 "
+                    style="
+                      fill: url(#intro-work-korsac-shading-left);
+                      stroke: #6f4328;
+                      stroke-width: 10;
+                      stroke-linejoin: round;
+                      stroke-miterlimit: 6;
+                    "
+                  />
+                </g>
+                <polygon
+                  class="korsac-facet"
+                  points="423.91,324.25 2504.11,3052.85 1264.97,1624.06 1677.08,2960.23 1182.34,3015.54 "
+                  style="
+                    fill: url(#intro-work-korsac-metal-dark);
+                    stroke: #6f4328;
+                    stroke-width: 10;
+                    stroke-linejoin: round;
+                    stroke-miterlimit: 6;
+                  "
+                  data-korsac-part="facet"
+                />
+                <polygon
+                  class="korsac-facet"
+                  points="423.91,324.25 3406.15,2859 2400.92,2923.85 "
+                  style="
+                    fill: url(#intro-work-korsac-metal-mid);
+                    stroke: #6f4328;
+                    stroke-width: 10;
+                    stroke-linejoin: round;
+                    stroke-miterlimit: 6;
+                  "
+                  data-korsac-part="facet"
+                />
+                <polygon
+                  class="korsac-facet"
+                  points="3406.15,2859 2400.92,2923.85 2968.9,3633.82 "
+                  style="
+                    fill: url(#intro-work-korsac-metal-light);
+                    stroke: #6f4328;
+                    stroke-width: 10;
+                    stroke-linejoin: round;
+                    stroke-miterlimit: 6;
+                  "
+                  data-korsac-part="facet"
+                />
+                <polygon
+                  class="korsac-facet"
+                  points="3406.15,2859 3733.48,5119.31 2968.9,3633.82 "
+                  style="
+                    fill: url(#intro-work-korsac-metal-gold);
+                    stroke: #6f4328;
+                    stroke-width: 10;
+                    stroke-linejoin: round;
+                    stroke-miterlimit: 6;
+                  "
+                  data-korsac-part="facet"
+                />
+                <polygon
+                  class="korsac-facet"
+                  points="1516.18,3666.59 2444.62,4518.56 2248.01,5031.93 "
+                  style="
+                    fill: url(#intro-work-korsac-metal-mid-dark);
+                    stroke: #6f4328;
+                    stroke-width: 10;
+                    stroke-linejoin: round;
+                    stroke-miterlimit: 6;
+                  "
+                  data-korsac-part="facet"
+                />
+                <polygon
+                  class="korsac-facet"
+                  points="2444.62,4518.56 3012.59,5031.93 2248.01,5031.93 "
+                  style="
+                    fill: url(#intro-work-korsac-metal-highlight);
+                    stroke: #6f4328;
+                    stroke-width: 10;
+                    stroke-linejoin: round;
+                    stroke-miterlimit: 6;
+                  "
+                  data-korsac-part="facet"
+                />
+                <polygon
+                  class="korsac-facet"
+                  points="1567.55,3713.73 3285.66,5064.7 3012.59,5031.93 "
+                  style="
+                    fill: url(#intro-work-korsac-metal-mid);
+                    stroke: #6f4328;
+                    stroke-width: 10;
+                    stroke-linejoin: round;
+                    stroke-miterlimit: 6;
+                  "
+                  data-korsac-part="facet"
+                />
+                <polygon
+                  class="korsac-facet"
+                  points="3285.66,5064.7 3919.18,6932.48 3012.59,5031.93 "
+                  style="
+                    fill: url(#intro-work-korsac-metal-deep);
+                    stroke: #6f4328;
+                    stroke-width: 10;
+                    stroke-linejoin: round;
+                    stroke-miterlimit: 6;
+                  "
+                  data-korsac-part="facet"
+                />
+                <polygon
+                  class="korsac-facet"
+                  points="3012.59,5031.93 3919.18,6932.48 2248.01,5031.93 "
+                  style="
+                    fill: url(#intro-work-korsac-metal-mid-dark);
+                    stroke: #6f4328;
+                    stroke-width: 10;
+                    stroke-linejoin: round;
+                    stroke-miterlimit: 6;
+                  "
+                  data-korsac-part="facet"
+                />
+                <g
+                  id="intro-work-korsac-eye-left-group"
+                  class="korsac-eye-group"
+                  data-korsac-part="eyes"
+                  opacity="0"
+                >
+                  <polygon
+                    id="intro-work-korsac-eye-left"
+                    class="korsac-eye"
+                    points="2826.91,4158.11 3132.74,4627.79 1974.94,3655.68 "
+                    style="
+                      fill: url(#intro-work-korsac-eye-gradient);
+                      stroke: #397bff;
+                      stroke-width: 12;
+                      stroke-linejoin: round;
+                      stroke-miterlimit: 6;
+                    "
+                    data-korsac-part="eye"
+                  />
+                  <polygon
+                    id="intro-work-korsac-eye-left-core"
+                    class="korsac-eye-core"
+                    points="2794.16,4179.96 2947.08,4420.25 2335.41,3906.89 "
+                    style="
+                      fill: url(#intro-work-korsac-eye-core-gradient);
+                      stroke: #74d7ff;
+                      stroke-width: 7.5;
+                      stroke-linejoin: round;
+                      stroke-miterlimit: 6;
+                    "
+                    data-korsac-part="eye-core"
+                  />
+                </g>
+              </g>
+              <g id="intro-work-korsac-icon-right">
+                <g class="korsac-shading">
+                  <g
+                    style="clip-path: url(#intro-work-id1)"
+                    class="korsac-shading-fill"
+                  >
+                    <rect
+                      x="6269.38"
+                      y="3226.08"
+                      width="427.7699999999995"
+                      height="340.3699999999999"
+                      fill="url(#intro-work-korsac-shading-right)"
+                    />
+                  </g>
+                  <polygon
+                    class="korsac-facet-outline"
+                    points="6289.38,3546.45 6677.15,3246.08 6961.85,3015.53 6688.08,2983.92 6467.1,2960.23 6382.24,3224.22 "
+                    style="
+                      fill: url(#intro-work-korsac-shading-right);
+                      stroke: #6f4328;
+                      stroke-width: 10;
+                      stroke-linejoin: round;
+                      stroke-miterlimit: 6;
+                    "
+                  />
+                </g>
+                <polygon
+                  class="korsac-facet"
+                  points="7720.27,324.25 5644.88,3046.84 6879.22,1624.06 6467.1,2960.23 6961.84,3015.54 "
+                  style="
+                    fill: url(#intro-work-korsac-metal-dark);
+                    stroke: #6f4328;
+                    stroke-width: 10;
+                    stroke-linejoin: round;
+                    stroke-miterlimit: 6;
+                  "
+                  data-korsac-part="facet"
+                />
+                <polygon
+                  class="korsac-facet"
+                  points="7720.27,324.25 4738.03,2859 5743.26,2923.85 "
+                  style="
+                    fill: url(#intro-work-korsac-metal-mid);
+                    stroke: #6f4328;
+                    stroke-width: 10;
+                    stroke-linejoin: round;
+                    stroke-miterlimit: 6;
+                  "
+                  data-korsac-part="facet"
+                />
+                <polygon
+                  class="korsac-facet"
+                  points="4738.03,2859 5743.26,2923.85 5175.28,3633.82 "
+                  style="
+                    fill: url(#intro-work-korsac-metal-light);
+                    stroke: #6f4328;
+                    stroke-width: 10;
+                    stroke-linejoin: round;
+                    stroke-miterlimit: 6;
+                  "
+                  data-korsac-part="facet"
+                />
+                <polygon
+                  class="korsac-facet"
+                  points="4738.03,2859 4410.7,5119.31 5175.28,3633.82 "
+                  style="
+                    fill: url(#intro-work-korsac-metal-gold);
+                    stroke: #6f4328;
+                    stroke-width: 10;
+                    stroke-linejoin: round;
+                    stroke-miterlimit: 6;
+                  "
+                  data-korsac-part="facet"
+                />
+                <polygon
+                  class="korsac-facet"
+                  points="6628,3666.59 5699.57,4518.56 5896.17,5031.93 "
+                  style="
+                    fill: url(#intro-work-korsac-metal-mid-dark);
+                    stroke: #6f4328;
+                    stroke-width: 10;
+                    stroke-linejoin: round;
+                    stroke-miterlimit: 6;
+                  "
+                  data-korsac-part="facet"
+                />
+                <polygon
+                  class="korsac-facet"
+                  points="5699.57,4518.56 5131.59,5031.93 5896.17,5031.93 "
+                  style="
+                    fill: url(#intro-work-korsac-metal-highlight);
+                    stroke: #6f4328;
+                    stroke-width: 10;
+                    stroke-linejoin: round;
+                    stroke-miterlimit: 6;
+                  "
+                  data-korsac-part="facet"
+                />
+                <polygon
+                  class="korsac-facet"
+                  points="6576.63,3713.73 4858.52,5064.7 5131.59,5031.93 "
+                  style="
+                    fill: url(#intro-work-korsac-metal-mid);
+                    stroke: #6f4328;
+                    stroke-width: 10;
+                    stroke-linejoin: round;
+                    stroke-miterlimit: 6;
+                  "
+                  data-korsac-part="facet"
+                />
+                <polygon
+                  class="korsac-facet"
+                  points="4858.52,5064.7 4225,6932.48 5131.59,5031.93 "
+                  style="
+                    fill: url(#intro-work-korsac-metal-deep);
+                    stroke: #6f4328;
+                    stroke-width: 10;
+                    stroke-linejoin: round;
+                    stroke-miterlimit: 6;
+                  "
+                  data-korsac-part="facet"
+                />
+                <polygon
+                  class="korsac-facet"
+                  points="5131.59,5031.93 4225,6932.48 5896.17,5031.93 "
+                  style="
+                    fill: url(#intro-work-korsac-metal-mid-dark);
+                    stroke: #6f4328;
+                    stroke-width: 10;
+                    stroke-linejoin: round;
+                    stroke-miterlimit: 6;
+                  "
+                  data-korsac-part="facet"
+                />
+                <g
+                  id="intro-work-korsac-eye-right-group"
+                  class="korsac-eye-group"
+                  data-korsac-part="eyes"
+                  opacity="0"
+                >
+                  <polygon
+                    id="intro-work-korsac-eye-right"
+                    class="korsac-eye"
+                    points="5317.28,4158.11 5011.44,4627.79 6169.25,3655.68 "
+                    style="
+                      fill: url(#intro-work-korsac-eye-gradient);
+                      stroke: #397bff;
+                      stroke-width: 12;
+                      stroke-linejoin: round;
+                      stroke-miterlimit: 6;
+                    "
+                    data-korsac-part="eye"
+                  />
+                  <polygon
+                    id="intro-work-korsac-eye-right-core"
+                    class="korsac-eye-core"
+                    points="5350.04,4179.96 5197.13,4420.25 5808.8,3906.89 "
+                    style="
+                      fill: url(#intro-work-korsac-eye-core-gradient);
+                      stroke: #74d7ff;
+                      stroke-width: 7.5;
+                      stroke-linejoin: round;
+                      stroke-miterlimit: 6;
+                    "
+                    data-korsac-part="eye-core"
+                  />
+                </g>
+              </g>
+            </g>
+          </svg>
+        </div>
+        <img
+          class="k-brand-intro-wordmark"
+          src="assets/images/brand/korsac-wordmark.svg"
+          width="450"
+          height="100"
+          alt=""
+        />
+      </div>
+    </div>
+    <a class="k-skip" href="#main">Перейти к содержимому</a>
+    <header class="k-site-header" data-site-shell>
+      <div class="k-container k-site-header-inner">
+        <a class="k-site-brand" href="index.html" aria-label="KORSAC — главная"
+          ><span class="k-brand-wordmark" data-brand-wordmark
+            ><img
+              src="assets/images/brand/korsac-lockup-horizontal.svg"
+              width="450"
+              height="100"
+              alt="" /></span
+        ></a>
+        <nav class="k-site-nav" aria-label="Основная навигация">
+          <a href="computers.html" aria-current="location">Компьютеры</a
+          ><a href="product.html#configurator">Конфигуратор</a
+          ><a href="work.html">Для бизнеса</a
+          ><a href="product.html#warranty">Поддержка</a
+          ><a href="index.html#why">О KORSAC</a>
+        </nav>
+        <div class="k-site-utilities">
+          <a
+            class="k-shell-icon k-shell-desktop-action"
+            href="#site-prototype"
+            data-dialog-open="scope-dialog"
+            aria-label="Поиск"
+            title="Поиск"
+            ><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <circle cx="10.5" cy="10.5" r="6.5" />
+              <path d="m16 16 4.5 4.5" /></svg></a
+          ><a
+            class="k-shell-icon k-shell-desktop-action"
+            href="#site-prototype"
+            data-dialog-open="scope-dialog"
+            aria-label="Личный кабинет"
+            title="Личный кабинет"
+            ><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <circle cx="12" cy="8" r="3.5" />
+              <path d="M4.5 21v-2a7.5 7.5 0 0 1 15 0v2" /></svg></a
+          ><a
+            class="k-shell-icon"
+            href="cart.html"
+            aria-label="Корзина"
+            title="Корзина"
+            ><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M3 4h2l2 11h11l2-8H6" />
+              <circle cx="9" cy="20" r="1" />
+              <circle cx="17" cy="20" r="1" /></svg></a
+          ><button
+            class="k-shell-icon k-shell-menu"
+            type="button"
+            data-dialog-open="menu-drawer"
+            aria-controls="menu-drawer"
+            aria-expanded="false"
+            aria-label="Открыть меню"
+            data-shell-enhanced
+            hidden
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M4 8h16M4 16h16" />
+            </svg>
+          </button>
+          <details class="k-shell-fallback" data-shell-fallback>
+            <summary class="k-shell-icon" aria-label="Открыть навигацию">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M4 8h16M4 16h16" />
+              </svg>
+            </summary>
+            <nav class="k-site-nav" aria-label="Навигация без JavaScript">
+              <a href="computers.html" aria-current="location">Компьютеры</a
+              ><a href="product.html#configurator">Конфигуратор</a
+              ><a href="work.html">Для бизнеса</a
+              ><a href="product.html#warranty">Поддержка</a
+              ><a href="index.html#why">О KORSAC</a>
+            </nav>
+          </details>
+        </div>
+      </div>
+    </header>
+    <main id="main">
+      <div class="k-container">
+        <nav class="k-breadcrumb" aria-label="Хлебные крошки">
+          <ol>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="computers.html">Компьютеры</a></li>
+            <li><span aria-current="page">WORK</span></li>
+          </ol>
+        </nav>
+        <section class="k-family-hero k-work-hero" aria-labelledby="work-title">
+          <div class="k-family-copy">
+            <p class="k-eyebrow">03 / KORSAC WORK</p>
+            <h1 id="work-title">Рабочий день.<br />Целая система.</h1>
+            <p class="k-lead">
+              Офисные и профессиональные задачи. Выбор начинается с рабочего
+              дня: приложений, параллельных процессов и ограничений места.
+            </p>
+            <div class="k-cluster">
+              <a class="k-button k-button--primary" href="#work-contexts"
+                >Описать рабочие задачи ↓</a
+              ><a class="k-button k-button--text" href="computers.html"
+                >Все семейства</a
+              >
+            </div>
+          </div>
+          <aside class="k-work-brief" aria-labelledby="brief-title">
+            <p class="k-registration">WORK / Контекст работы</p>
+            <h2 id="brief-title">Смотреть шире<br />одной программы.</h2>
+            <dl>
+              <div>
+                <dt>Задачи</dt>
+                <dd>Что выполняется каждый день</dd>
+              </div>
+              <div>
+                <dt>Нагрузка</dt>
+                <dd>Что работает одновременно</dd>
+              </div>
+              <div>
+                <dt>Место</dt>
+                <dd>Где будет стоять система</dd>
+              </div>
+            </dl>
+          </aside>
+        </section>
+        <section
+          class="k-family-section k-work-contexts"
+          id="work-contexts"
+          aria-labelledby="contexts-title"
+        >
+          <div class="k-family-section-heading">
+            <p class="k-eyebrow">Рабочий контекст</p>
+            <h2 id="contexts-title">Как проходит<br />ваш рабочий день?</h2>
+            <p class="k-muted">
+              Подбор начинается с реального набора задач. Список программ —
+              часть картины, а не готовая конфигурация.
+            </p>
+          </div>
+          <ol class="k-work-context-list">
+            <li>
+              <span class="k-family-index" aria-hidden="true">01</span>
+              <div>
+                <h3>Повседневная работа</h3>
+                <p>
+                  Документы, браузер, коммуникации и рабочие приложения.
+                  Уточняем привычный объём работы и требования программ.
+                </p>
+              </div>
+            </li>
+            <li>
+              <span class="k-family-index" aria-hidden="true">02</span>
+              <div>
+                <h3>Несколько задач одновременно</h3>
+                <p>
+                  Открытые приложения, данные и фоновые процессы. Рассматриваем
+                  совместную нагрузку, а не одну задачу в отрыве от остальных.
+                </p>
+              </div>
+            </li>
+            <li>
+              <span class="k-family-index" aria-hidden="true">03</span>
+              <div>
+                <h3>Профессиональное рабочее место</h3>
+                <p>
+                  Особенности приложений, формат корпуса и возможность
+                  расширения. Требования места обсуждаются вместе с задачами.
+                </p>
+              </div>
+            </li>
+          </ol>
+        </section>
+        <section
+          class="k-family-section"
+          aria-labelledby="work-priorities-title"
+        >
+          <div class="k-family-section-heading">
+            <p class="k-eyebrow">Операционные приоритеты</p>
+            <h2 id="work-priorities-title">
+              Не только мощность.<br />Условия работы тоже.
+            </h2>
+          </div>
+          <div class="k-work-priorities">
+            <article>
+              <h3>Достаточность под задачу</h3>
+              <p>
+                Требования приложений и обычная нагрузка помогают выбрать основу
+                системы без переноса игровой лестницы в рабочий контекст.
+              </p>
+            </article>
+            <article>
+              <h3>Расширение</h3>
+              <p>
+                Обсуждаем, что может измениться: рабочие данные, память,
+                накопители и подключаемое оборудование.
+              </p>
+            </article>
+            <article>
+              <h3>Место и формат</h3>
+              <p>
+                Размер корпуса, размещение, подключения и условия рабочего
+                пространства входят в постановку задачи.
+              </p>
+            </article>
+            <article>
+              <h3>Длительная эксплуатация</h3>
+              <p>
+                Учитываем питание, охлаждение и доступность обслуживания при
+                выборе архитектуры.
+              </p>
+            </article>
+          </div>
+        </section>
+        <aside class="k-work-create-handoff">
+          <h2>В центре работы — создание контента?</h2>
+          <p class="k-muted">
+            Если выбор определяется 3D, CAD, рендерингом, монтажом или графикой,
+            начните с рабочего процесса CREATE.
+          </p>
+          <a href="create.html">Перейти к CREATE →</a>
+        </aside>
+        <section
+          class="k-family-engineering k-work-engineering"
+          aria-labelledby="work-engineering-title"
+        >
+          <div>
+            <p class="k-eyebrow">Подход KORSAC</p>
+            <h2 id="work-engineering-title">
+              Сначала требования.<br />Затем состав системы.
+            </h2>
+          </div>
+          <ol>
+            <li>
+              <strong>Описать рабочий день</strong>
+              <p>Задачи, приложения и совместная нагрузка.</p>
+            </li>
+            <li>
+              <strong>Согласовать ограничения</strong>
+              <p>Рабочее место, формат и возможности расширения.</p>
+            </li>
+            <li>
+              <strong>Собрать архитектуру</strong>
+              <p>Производительность, питание и тепло как одна система.</p>
+            </li>
+          </ol>
+        </section>
+        <!-- Future approved WORK models belong after operational priorities; no fictional catalogue grid. -->
+        <section class="k-family-readiness" aria-labelledby="work-lineup-title">
+          <div>
+            <p class="k-eyebrow">Следующий шаг</p>
+            <h2 id="work-lineup-title">Линейка WORK формируется.</h2>
+            <p class="k-muted">
+              Модели и конфигурации будут представлены после утверждения
+              архитектуры. Сейчас можно определить контекст работы и требования
+              к будущей системе.
+            </p>
+          </div>
+          <div class="k-cluster">
+            <a class="k-button k-button--secondary" href="contacts.html"
+              >Контакты KORSAC</a
+            ><a href="computers.html">Вернуться к семействам →</a>
+          </div>
+        </section>
+      </div>
+    </main>
+    <footer class="k-site-footer">
+      <div class="k-container">
+        <div class="k-site-footer-main">
+          <div class="k-site-footer-brand">
+            <a
+              class="k-site-brand"
+              href="index.html"
+              aria-label="KORSAC — главная"
+              ><picture class="k-brand-footer-lockup" data-brand-wordmark
+                ><source
+                  media="(max-width: 599px)"
+                  srcset="assets/images/brand/korsac-lockup-horizontal.svg" />
+                <img
+                  src="assets/images/brand/korsac-lockup-stacked.svg"
+                  width="10160"
+                  height="7197"
+                  alt="" /></picture
+            ></a>
+            <p>Точно под задачу.</p>
+          </div>
+          <nav aria-label="Продукты">
+            <h2>Продукты</h2>
+            <a href="computers.html">Все компьютеры</a
+            ><a href="catalog.html">PLAY</a><a href="create.html">CREATE</a
+            ><a href="work.html">WORK</a><a href="product.html">PLAY 1440</a
+            ><a href="product.html#configurator">Конфигуратор</a>
+          </nav>
+          <nav aria-label="Компания">
+            <h2>Компания</h2>
+            <a href="index.html#why">О KORSAC</a
+            ><a href="work.html">Для бизнеса</a
+            ><a href="index.html#build">Подход к сборке</a>
+          </nav>
+          <nav aria-label="Поддержка">
+            <h2>Поддержка</h2>
+            <a href="contacts.html">Контакты</a>
+            <a href="product.html#warranty">Гарантия и сервис</a
+            ><a href="product.html#faq">Вопросы и ответы</a
+            ><a href="product.html#product-passport">Паспорт системы</a>
+          </nav>
+        </div>
+        <div class="k-site-footer-bottom">
+          <span>KORSAC by King-Komp</span
+          ><span>Юридические документы — после согласования</span
+          ><a href="review.html">Материалы прототипа</a>
+        </div>
+        <p class="k-site-prototype-status" id="site-prototype">
+          Визуальный прототип. Поиск и профиль пока недоступны. Корзина и
+          оформление — демонстрация.
+        </p>
+      </div>
+    </footer>
+    <dialog class="k-dialog" id="scope-dialog" aria-labelledby="scope-title">
+      <div class="k-dialog-header">
+        <h2 id="scope-title">О визуальном прототипе</h2>
+        <button
+          class="k-shell-icon"
+          type="button"
+          data-dialog-close
+          aria-label="Закрыть окно"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="m6 6 12 12M18 6 6 18" />
+          </svg>
+        </button>
+      </div>
+      <div class="k-stack">
+        <p>
+          Здесь можно изучить линейку PLAY и настроить пример системы. Поиск,
+          личный кабинет появятся при подключении магазина. Корзина и оформление
+          — демонстрация.
+        </p>
+        <p class="k-muted">
+          Цены — примеры. Выбор меняет подписи конфигурации; данные не
+          сохраняются.
+        </p>
+        <a href="review.html">Материалы и страницы прототипа</a>
+      </div>
+    </dialog>
+    <dialog
+      class="k-dialog k-drawer k-site-drawer"
+      id="menu-drawer"
+      aria-labelledby="menu-title"
+    >
+      <div class="k-dialog-header">
+        <a class="k-site-brand" href="index.html" aria-label="KORSAC — главная"
+          ><span class="k-brand-wordmark" data-brand-wordmark
+            ><img
+              src="assets/images/brand/korsac-lockup-horizontal.svg"
+              width="450"
+              height="100"
+              alt="" /></span></a
+        ><button
+          class="k-shell-icon"
+          type="button"
+          data-dialog-close
+          aria-label="Закрыть меню"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="m6 6 12 12M18 6 6 18" />
+          </svg>
+        </button>
+      </div>
+      <h2 class="k-sr-only" id="menu-title">Навигация KORSAC</h2>
+      <nav class="k-site-nav" aria-label="Мобильная навигация">
+        <a href="computers.html" aria-current="location">Компьютеры</a
+        ><a href="product.html#configurator">Конфигуратор</a
+        ><a href="work.html">Для бизнеса</a
+        ><a href="product.html#warranty">Поддержка</a
+        ><a href="index.html#why">О KORSAC</a>
+      </nav>
+      <div class="k-site-drawer-utilities">
+        <a href="#site-prototype"
+          ><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle cx="10.5" cy="10.5" r="6.5" />
+            <path d="m16 16 4.5 4.5" /></svg
+          >Поиск</a
+        ><a href="#site-prototype"
+          ><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="8" r="3.5" />
+            <path d="M4.5 21v-2a7.5 7.5 0 0 1 15 0v2" /></svg
+          >Личный кабинет</a
+        >
+      </div>
+      <p class="k-small k-muted">Точно под задачу.</p>
+    </dialog>
+    <div
+      class="k-toast-region"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+      data-toast-region
+    ></div>
+  </body>
+</html>

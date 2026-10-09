@@ -1,5 +1,19 @@
 # Материалы визуального и motion-ревью KORSAC
 
+## Computer Families Experience v1
+
+[Текущий review: family PNG, audit и QA](computer-families-v1.md).
+[Families architecture и publication readiness](../KORSAC-COMPUTER-FAMILIES-EXPERIENCE.md).
+
+- [Computers desktop](computers-hub-v1-desktop.png) / [mobile](computers-hub-v1-mobile.png).
+- [CREATE desktop](create-family-v1-desktop.png) / [mobile](create-family-v1-mobile.png).
+- [WORK desktop](work-family-v1-desktop.png) / [mobile](work-family-v1-mobile.png).
+- [Homepage family links](homepage-family-links-v1.png).
+
+Новых motion sequences нет, MP4 не требуется. Existing Brand Intro переиспользован
+на новых browsing pages; CREATE/WORK production publication остаётся условной.
+Снимки остальных stage ниже — прежние visual baselines; footer/routes могли измениться.
+
 ## IA / SEO / Contacts / Error Pages v1
 
 [Audit output, schema types, production matrix, warnings и browser QA](seo-foundation-v1.md).

@@ -1,0 +1,501 @@
+/* Family navigation is HTML-first. No animation, carousel or selector controller. */
+.k-family-page main {
+  padding-bottom: var(--k-space-16);
+}
+.k-families-intro,
+.k-family-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  gap: clamp(32px, 6vw, 96px);
+  align-items: center;
+  padding-block: var(--k-space-10) var(--k-space-16);
+}
+.k-family-copy {
+  display: grid;
+  gap: var(--k-space-6);
+}
+.k-family-copy h1 {
+  font-size: clamp(2.25rem, 4.5vw, 4.5rem);
+  line-height: 1.08;
+}
+.k-family-copy .k-lead {
+  color: var(--k-secondary);
+  max-width: 47ch;
+}
+.k-family-copy .k-cluster {
+  margin-top: var(--k-space-2);
+}
+.k-family-index {
+  color: var(--k-identity);
+  font: 400 var(--k-caption) / 1.5 var(--k-font-mono);
+}
+.k-family-quick-routes {
+  display: grid;
+}
+.k-family-quick-routes a {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) 20px;
+  gap: var(--k-space-4);
+  align-items: center;
+  min-height: 104px;
+  padding-block: var(--k-space-5);
+  border-bottom: 1px solid var(--k-border);
+  color: var(--k-text);
+  text-decoration: none;
+  transition:
+    color var(--k-motion-fast) var(--k-ease-standard),
+    border-color var(--k-motion-fast) var(--k-ease-standard);
+}
+.k-family-quick-routes a:first-child {
+  border-top: 1px solid var(--k-border);
+}
+.k-family-quick-routes a:hover {
+  color: var(--k-link);
+  border-bottom-color: var(--k-accent);
+}
+.k-family-quick-routes strong {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+}
+.k-family-quick-routes small {
+  display: block;
+  margin-top: 4px;
+  color: var(--k-secondary);
+  font-size: var(--k-body-sm);
+}
+.k-family-route {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(32px, 6vw, 96px);
+  padding-block: var(--k-space-16);
+  border-top: 1px solid var(--k-border);
+}
+.k-family-route-id {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: var(--k-space-5);
+  padding-top: 4px;
+}
+.k-family-route-id h2 {
+  font-size: clamp(2.75rem, 6.5vw, 6rem);
+  font-weight: 500;
+  letter-spacing: -0.05em;
+}
+.k-family-route-content {
+  display: grid;
+  justify-items: start;
+  gap: var(--k-space-6);
+}
+.k-family-route-content h3 {
+  font-size: var(--k-h2);
+}
+.k-family-route-content .k-lead {
+  max-width: 44ch;
+}
+.k-family-route--play {
+  position: relative;
+}
+.k-family-route--play::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -1px;
+  width: 48px;
+  height: 2px;
+  background: var(--k-accent);
+}
+.k-hub-play-scale {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--k-space-6);
+  padding-block: var(--k-space-3);
+  font: 500 clamp(1.35rem, 2.5vw, 2rem) / 1.2 var(--k-font-mono);
+}
+.k-hub-play-scale span + span::before {
+  content: "→";
+  margin-right: var(--k-space-6);
+  color: var(--k-border-strong);
+  font-size: 1rem;
+}
+.k-hub-workflows {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--k-space-6);
+  border-left: 2px solid var(--k-identity);
+  padding-left: var(--k-space-5);
+}
+.k-hub-workflows dt {
+  margin-bottom: var(--k-space-3);
+  font-weight: 500;
+}
+.k-hub-workflows dd {
+  margin: 0;
+  color: var(--k-secondary);
+  font-size: var(--k-body-sm);
+}
+.k-hub-work-priorities {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  color: var(--k-secondary);
+  font-size: var(--k-body-sm);
+}
+.k-hub-work-priorities li {
+  border-bottom: 1px solid var(--k-border);
+  padding-bottom: 8px;
+}
+.k-family-section {
+  padding-block: var(--k-space-16);
+  border-top: 1px solid var(--k-border);
+}
+.k-family-section-heading {
+  display: grid;
+  align-content: start;
+  gap: var(--k-space-5);
+  margin-bottom: var(--k-space-10);
+}
+.k-family-section-heading h2 {
+  font-size: clamp(1.8rem, 3.2vw, 3rem);
+}
+.k-family-section-heading p {
+  max-width: 50ch;
+}
+.k-create-hero {
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+}
+.k-create-flow {
+  --k-frame-surface: var(--k-surface);
+  padding: var(--k-space-8);
+  background: var(--k-surface);
+  display: grid;
+  gap: var(--k-space-6);
+}
+.k-create-flow h2 {
+  font-size: clamp(1.7rem, 2.5vw, 2.5rem);
+}
+.k-create-flow ol {
+  list-style: none;
+  padding: 0;
+  display: grid;
+}
+.k-create-flow li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  column-gap: var(--k-space-4);
+  padding-block: var(--k-space-4);
+  border-top: 1px solid var(--k-border);
+}
+.k-create-flow li .k-family-index {
+  grid-row: 1 / 3;
+  padding-top: 3px;
+}
+.k-create-flow li strong {
+  font-size: var(--k-body-lg);
+  font-weight: 500;
+}
+.k-create-flow li p {
+  color: var(--k-secondary);
+  font-size: var(--k-body-sm);
+  margin-top: 4px;
+}
+.k-create-workflows {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(32px, 6vw, 96px);
+}
+.k-create-workflows article {
+  position: relative;
+  padding-block: var(--k-space-8);
+  border-top: 1px solid var(--k-border);
+  display: grid;
+  gap: var(--k-space-4);
+  align-content: start;
+}
+.k-create-workflows h3 {
+  font-size: clamp(1.4rem, 2vw, 1.75rem);
+}
+.k-create-workflows p {
+  color: var(--k-secondary);
+}
+p.k-family-question {
+  color: var(--k-muted);
+  font-size: var(--k-body-sm);
+  padding-left: var(--k-space-4);
+  border-left: 1px solid var(--k-identity);
+  margin-top: var(--k-space-2);
+}
+.k-create-priorities {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(32px, 6vw, 96px);
+}
+.k-family-priority-list {
+  display: grid;
+}
+.k-family-priority-list > div {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: var(--k-space-5);
+  padding-block: var(--k-space-6);
+  border-bottom: 1px solid var(--k-border);
+}
+.k-family-priority-list > div:first-child {
+  border-top: 1px solid var(--k-border);
+}
+.k-family-priority-list dt {
+  color: var(--k-text);
+  font-weight: 500;
+}
+.k-family-priority-list dd {
+  margin: 0;
+  color: var(--k-secondary);
+}
+.k-family-engineering {
+  padding: var(--k-space-12);
+  background: var(--k-surface);
+  display: grid;
+  gap: var(--k-space-6);
+  border-top: 2px solid var(--k-identity);
+}
+.k-family-engineering h2 {
+  font-size: clamp(1.8rem, 3vw, 2.75rem);
+}
+.k-family-engineering .k-lead {
+  max-width: 57ch;
+}
+.k-family-engineering a {
+  justify-self: start;
+  padding-block: 8px;
+}
+.k-family-readiness {
+  display: grid;
+  gap: var(--k-space-6);
+  padding-block: var(--k-space-12);
+  margin-top: var(--k-space-8);
+  border-top: 1px solid var(--k-border);
+}
+.k-family-readiness h2 {
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  margin-bottom: var(--k-space-4);
+}
+.k-family-readiness > a {
+  justify-self: start;
+  padding-block: 8px;
+}
+.k-work-hero {
+  align-items: start;
+}
+.k-work-brief {
+  border-left: 2px solid var(--k-identity);
+  padding-left: var(--k-space-8);
+  display: grid;
+  gap: var(--k-space-6);
+  margin-top: var(--k-space-2);
+}
+.k-work-brief h2 {
+  font-size: clamp(1.6rem, 2.4vw, 2rem);
+}
+.k-work-brief dl > div {
+  display: grid;
+  grid-template-columns: 90px minmax(0, 1fr);
+  gap: var(--k-space-4);
+  padding-block: var(--k-space-5);
+  border-top: 1px solid var(--k-border);
+}
+.k-work-brief dt {
+  color: var(--k-muted);
+  font-size: var(--k-body-sm);
+}
+.k-work-brief dd {
+  margin: 0;
+  color: var(--k-secondary);
+}
+.k-work-contexts {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(32px, 6vw, 96px);
+}
+.k-work-context-list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+}
+.k-work-context-list li {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: var(--k-space-4);
+  padding-block: var(--k-space-8);
+  border-top: 1px solid var(--k-border);
+}
+.k-work-context-list h3 {
+  font-size: 1.5rem;
+  margin-bottom: var(--k-space-4);
+}
+.k-work-context-list p {
+  color: var(--k-secondary);
+}
+.k-work-priorities {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--k-space-8);
+}
+.k-work-priorities article {
+  padding-top: var(--k-space-5);
+  border-top: 1px solid var(--k-border);
+}
+.k-work-priorities h3 {
+  margin-bottom: var(--k-space-4);
+  font-size: 1.25rem;
+}
+.k-work-priorities p {
+  color: var(--k-secondary);
+  font-size: var(--k-body-sm);
+}
+.k-work-create-handoff {
+  padding-block: var(--k-space-8);
+  border-top: 1px solid var(--k-border);
+  display: grid;
+  gap: var(--k-space-4);
+}
+.k-work-create-handoff h2 {
+  font-size: 1.4rem;
+}
+.k-work-create-handoff a {
+  justify-self: start;
+  padding-block: 8px;
+}
+.k-work-engineering {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(32px, 6vw, 96px);
+  margin-top: var(--k-space-10);
+}
+.k-work-engineering > div {
+  display: grid;
+  align-content: start;
+  gap: var(--k-space-6);
+}
+.k-work-engineering ol {
+  display: grid;
+  gap: var(--k-space-6);
+  padding-left: var(--k-space-5);
+}
+.k-work-engineering li {
+  padding-left: var(--k-space-3);
+}
+.k-work-engineering strong {
+  font-weight: 500;
+}
+.k-work-engineering p {
+  color: var(--k-secondary);
+  font-size: var(--k-body-sm);
+  margin-top: 4px;
+}
+@media (max-width: 1099px) {
+  .k-work-priorities {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 899px) {
+  .k-families-intro,
+  .k-family-hero,
+  .k-family-route,
+  .k-create-priorities,
+  .k-work-contexts,
+  .k-work-engineering {
+    grid-template-columns: 1fr;
+    gap: var(--k-space-8);
+  }
+  .k-family-hero,
+  .k-families-intro {
+    padding-block: var(--k-space-6) var(--k-space-12);
+  }
+  .k-family-route,
+  .k-family-section {
+    padding-block: var(--k-space-12);
+  }
+  .k-family-route-id {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: end;
+  }
+  .k-family-route-id h2 {
+    font-size: clamp(2.5rem, 7vw, 4rem);
+  }
+  .k-family-section-heading {
+    margin-bottom: var(--k-space-6);
+  }
+}
+@media (max-width: 599px) {
+  .k-family-copy {
+    gap: var(--k-space-5);
+  }
+  .k-family-copy h1 {
+    font-size: clamp(2.15rem, 9vw, 2.8rem);
+  }
+  .k-family-quick-routes a {
+    min-height: 88px;
+    padding-block: var(--k-space-4);
+    gap: var(--k-space-3);
+  }
+  .k-family-quick-routes strong {
+    font-size: 1.25rem;
+  }
+  .k-family-route-id {
+    flex-direction: column;
+    align-items: start;
+    gap: var(--k-space-3);
+  }
+  .k-hub-play-scale {
+    gap: var(--k-space-4);
+  }
+  .k-hub-play-scale span + span::before {
+    margin-right: var(--k-space-4);
+  }
+  .k-hub-workflows,
+  .k-create-workflows,
+  .k-work-priorities {
+    grid-template-columns: 1fr;
+  }
+  .k-create-flow {
+    padding: var(--k-space-6);
+  }
+  .k-family-priority-list > div {
+    grid-template-columns: 1fr;
+    gap: var(--k-space-3);
+  }
+  .k-family-engineering {
+    padding: var(--k-space-6);
+  }
+  .k-work-brief {
+    padding-left: var(--k-space-5);
+  }
+  .k-work-context-list li {
+    padding-block: var(--k-space-6);
+  }
+  .k-work-context-list h3 {
+    font-size: 1.25rem;
+  }
+  .k-work-brief dl > div {
+    grid-template-columns: 68px minmax(0, 1fr);
+  }
+}
+
+.k-family-route-arrow {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}

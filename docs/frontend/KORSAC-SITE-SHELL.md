@@ -28,9 +28,9 @@ dialog, сохраняя URL. Cart ведёт в `cart.html` с авторски
 
 | Название     | Маршрут и смысл                                            |
 | ------------ | ---------------------------------------------------------- |
-| Компьютеры   | `catalog.html`, текущая линейка PLAY                       |
+| Компьютеры   | `computers.html`, hub PLAY/CREATE/WORK                     |
 | Конфигуратор | `product.html#configurator`, существующий пример PLAY 1440 |
-| Для бизнеса  | `index.html#business`, WORK явно в разработке              |
+| Для бизнеса  | `work.html`, task-first family landing                     |
 | Поддержка    | `product.html#warranty`, существующий раздел               |
 | О KORSAC     | `index.html#why`, подход бренда                            |
 
@@ -220,3 +220,11 @@ Contacts доступны из public и compact transactional footer, без н
 и не меняют timestamp; policy Home/Catalog/Product сохраняется. 500/503
 работают без JS и shared application CSS. Static HTML не задаёт HTTP errors:
 production server обязан сохранить настоящий 404/500/503.
+
+## Computer Families v1
+
+[Families architecture](KORSAC-COMPUTER-FAMILIES-EXPERIENCE.md): header density
+сохранена, новые имена семейств не добавлены в global nav. Internal hub/CREATE/
+WORK sticky/opaque и участвуют в общем public Brand Intro с тем же24h key.
+Footer связывает все три семейства; breadcrumb hub теперь действующий ancestor.
+Production readiness CREATE/WORK остаётся условной по IA, не по наличию прототипа.

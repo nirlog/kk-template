@@ -29,6 +29,11 @@
   background: transparent;
   color: var(--k-secondary);
   text-align: left;
+  text-decoration: none;
+}
+a.k-catalog-family:hover {
+  color: var(--k-text);
+  border-color: var(--k-accent);
 }
 .k-catalog-family strong {
   font: 500 var(--k-body-sm) / 1.4 var(--k-font-mono);

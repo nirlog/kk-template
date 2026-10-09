@@ -822,3 +822,30 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+/* Family landing routes are now real links; PLAY discovery remains scoped below. */
+.k-home-families > a {
+  display: block;
+  color: var(--k-text);
+  text-decoration: none;
+  padding-block: 8px;
+}
+.k-home-families > a:hover h3 {
+  color: var(--k-link);
+}
+.k-home-family-hub {
+  display: inline-flex;
+  padding-block: 12px;
+  margin-top: var(--k-space-3);
+}
+
+.k-home-families .k-family-route-arrow {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-left: 4px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
