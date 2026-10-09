@@ -3,9 +3,10 @@
 Контракт переноса в Bitrix. Текущий прототип — review-среда, а не набор
 production URL. Все `prototype/*.html` имеют `noindex, nofollow, noarchive`.
 Computer hub и CREATE/WORK реализованы как static review landings. Projects
-теперь имеют archive list/detail fixtures; Equipment и модельные линейки
-CREATE/WORK остаются future content, без активных
-ссылок на несуществующие страницы; publication gate матрицы сохранён.
+теперь имеют archive list/detail fixtures. Equipment реализован как curated hub,
+Monitors category и один ordinary product detail. Модельные линейки CREATE/WORK
+и прочие equipment-категории остаются future content, без активных ссылок на
+несуществующие страницы; publication gate матрицы сохранён.
 
 ## Production URL tree
 
@@ -121,18 +122,21 @@ presentation/заказ одной модели и не создаёт инде�
 
 ## Breadcrumb hierarchy и static mapping
 
-| Static review                                        | Production                                  | Видимый путь                                |
-| ---------------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
-| `index.html`                                         | `/`                                         | Главная                                     |
-| `computers.html`                                     | `/computers/`                               | Главная → Компьютеры                        |
-| `create.html`                                        | `/computers/create/`                        | Главная → Компьютеры → CREATE               |
-| `work.html`                                          | `/computers/work/`                          | Главная → Компьютеры → WORK                 |
-| `catalog.html`                                       | `/computers/play/`                          | Главная → Компьютеры → PLAY                 |
-| `product.html`                                       | `/computers/play/1440/`                     | Главная → Компьютеры → PLAY → PLAY 1440     |
-| `projects.html`                                      | `/projects/`                                | Главная → Проекты                           |
-| `project.html`                                       | `/projects/{approved-slug}/`                | Главная → Проекты → Белый игровой компьютер |
-| `contacts.html`                                      | `/contacts/`                                | Главная → Контакты                          |
-| `cart.html` / `checkout.html` / `order-success.html` | `/cart/` / `/checkout/` / `/order-success/` | Транзакционные экраны                       |
+| Static review                                        | Production                                  | Видимый путь                                          |
+| ---------------------------------------------------- | ------------------------------------------- | ----------------------------------------------------- |
+| `index.html`                                         | `/`                                         | Главная                                               |
+| `computers.html`                                     | `/computers/`                               | Главная → Компьютеры                                  |
+| `create.html`                                        | `/computers/create/`                        | Главная → Компьютеры → CREATE                         |
+| `work.html`                                          | `/computers/work/`                          | Главная → Компьютеры → WORK                           |
+| `catalog.html`                                       | `/computers/play/`                          | Главная → Компьютеры → PLAY                           |
+| `product.html`                                       | `/computers/play/1440/`                     | Главная → Компьютеры → PLAY → PLAY 1440               |
+| `projects.html`                                      | `/projects/`                                | Главная → Проекты                                     |
+| `project.html`                                       | `/projects/{approved-slug}/`                | Главная → Проекты → Белый игровой компьютер           |
+| `equipment.html`                                     | `/equipment/`                               | Главная → Оборудование                                |
+| `monitors.html`                                      | `/equipment/monitors/`                      | Главная → Оборудование → Мониторы                     |
+| `monitor.html`                                       | `/equipment/monitors/{approved-slug}/`      | Главная → Оборудование → Мониторы → MSI MAG 274QF X24 |
+| `contacts.html`                                      | `/contacts/`                                | Главная → Контакты                                    |
+| `cart.html` / `checkout.html` / `order-success.html` | `/cart/` / `/checkout/` / `/order-success/` | Транзакционные экраны                                 |
 
 В прототипе «Компьютеры» теперь реальный ancestor link `computers.html`.
 Catalog/Product/CREATE/WORK имеют тот же путь в видимых crumbs и JSON-LD;
@@ -151,6 +155,14 @@ Projects реализуют case archive команды King-Komp: list + оди
 Исторические проекты не выдаются за модели KORSAC. Article не содержит
 выдуманных author/date/image/measurements; absent sections не заполняются.
 См. [Projects content/source contract](KORSAC-PROJECTS-EXPERIENCE.md).
+
+Equipment review теперь реализован: три source-verified monitors, один local
+ordinary Product detail, остальные records ведут к своим King-Komp originals.
+`monitor.html` не утверждает production slug/ассортимент. Prototype completion
+не меняет publication/indexability gates. Price/availability/Offer/basket
+остаются backend-owned; demo monitor line — PRODUCT, не PC CONFIG.
+Shared Media Viewer, System Passport и Bitrix migration не реализованы.
+См. [Equipment contract](KORSAC-EQUIPMENT-EXPERIENCE.md).
 
 ## URL, navigation и sitemap
 

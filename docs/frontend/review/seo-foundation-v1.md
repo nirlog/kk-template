@@ -13,16 +13,17 @@ python3 tools/seo_audit.py --json
 python3 -m unittest discover -s tools -p 'test_seo_audit.py'
 ```
 
-Результат: **17 страниц, 0 ошибок, 43 intentional warnings**.
-[Детерминированный JSON output](seo-audit-v1.json). Семнадцать fixture tests
+Результат: **20 страниц, 0 ошибок, 52 intentional warnings**.
+[Детерминированный JSON output](seo-audit-v1.json). Двадцать fixture tests
 прошли: staging guard, canonical, metadata/H1, IDs/links/images, invalid/unsafe
 JSON-LD и implicit offers/review properties; дополнительно non-final breadcrumb
 URLs, URL string / `item.@id`, invalid URL/list shapes и final-item omission.
 Family pages дополнительно требуют CollectionPage/BreadcrumbList без Product;
 новые filenames участвуют в staging/IDs/H1/link guards. Projects list/detail
 требуют CollectionPage/Article + BreadcrumbList; Product/Offer/Review запрещены.
-Добавлены Projects schema/media negative fixture tests без ослабления старых guards. Все текущие img имеют
-размеры/alt.
+Добавлены Projects и Equipment schema/media negative fixture tests без ослабления старых guards. Все текущие img имеют
+размеры/alt. Equipment hub/category запрещают Product; monitor detail требует
+Product.image из реально видимого local media. Commercial guards прежние.
 
 | HTML                 | Detected JSON-LD types (recursive)       |
 | -------------------- | ---------------------------------------- |
@@ -35,6 +36,9 @@ Family pages дополнительно требуют CollectionPage/Breadcrumb
 | `computers.html`     | BreadcrumbList, CollectionPage, ListItem |
 | `contacts.html`      | BreadcrumbList, ContactPage, ListItem    |
 | `create.html`        | BreadcrumbList, CollectionPage, ListItem |
+| `equipment.html`     | BreadcrumbList, CollectionPage, ListItem |
+| `monitors.html`      | BreadcrumbList, CollectionPage, ListItem |
+| `monitor.html`       | Brand, BreadcrumbList, ListItem, Product |
 | `index.html`         | Organization, WebSite                    |
 | `order-success.html` | Нет                                      |
 | `product.html`       | Brand, BreadcrumbList, ListItem, Product |

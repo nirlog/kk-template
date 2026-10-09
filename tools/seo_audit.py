@@ -10,6 +10,7 @@ from urllib.parse import unquote, urlsplit
 POLICY = 'noindex, nofollow, noarchive'
 FAMILY_PAGES = {'computers.html', 'catalog.html', 'create.html', 'work.html'}
 PROJECT_PAGES = {'projects.html': 'CollectionPage', 'project.html': 'Article'}
+EQUIPMENT_PAGES = {'equipment.html': 'CollectionPage', 'monitors.html': 'CollectionPage', 'monitor.html': 'Product'}
 
 
 class Page(HTMLParser):
@@ -23,6 +24,8 @@ class Page(HTMLParser):
         self.ids = []
         self.links = []
         self.images = []
+        self.monitor_records = []
+        self._monitor_record = None
         self.project_records = []
         self.project_covers = []
         self.project_galleries = []
@@ -59,6 +62,9 @@ class Page(HTMLParser):
             self.links.append(a['src'])
         if 'srcset' in a:
             self.links.extend(item.strip().split()[0] for item in a['srcset'].split(',') if item.strip())
+        if tag == 'article' and 'data-monitor-card' in a:
+            self._monitor_record = []
+            self.monitor_records.append(self._monitor_record)
         if tag == 'article' and 'k-project-entry' in a.get('class', '').split():
             self._project_record = []
             self.project_records.append(self._project_record)
@@ -69,6 +75,8 @@ class Page(HTMLParser):
             self.project_galleries.append(self._project_gallery)
         if tag == 'img':
             self.images.append(a)
+            if 'data-monitor-image' in a and self._monitor_record is not None:
+                self._monitor_record.append(a)
             if 'data-project-image' in a:
                 if self._project_record is not None:
                     self._project_record.append(a)
@@ -91,6 +99,7 @@ class Page(HTMLParser):
 
     def handle_endtag(self, tag):
         if tag == 'article':
+            self._monitor_record = None
             self._project_record = None
         if tag == 'figure':
             self._project_cover = False
@@ -175,6 +184,34 @@ def project_media_errors(page, prototype):
             errors.append(f'Project image requires non-empty alt: {src}')
         if not all(img.get(k, '').isdigit() and int(img[k]) > 0 for k in ('width', 'height')):
             errors.append(f'Project image requires explicit positive width/height: {src}')
+    return errors
+
+
+def monitor_media_errors(page, prototype):
+    """Require local authored monitor media; source authenticity has a separate ledger."""
+    errors = []
+    photos = [img for img in page.images if 'data-monitor-image' in img]
+    if not photos:
+        errors.append('Equipment page requires visible monitor media in base HTML')
+    if page.path.name == 'monitors.html':
+        if not page.monitor_records:
+            errors.append('Monitor category requires authored product records')
+        for index, images in enumerate(page.monitor_records, 1):
+            if not images:
+                errors.append(f'Monitor record #{index} requires its own product image')
+    for img in photos:
+        src = img.get('src', '')
+        url = urlsplit(src)
+        target = (page.path.parent / unquote(url.path)).resolve()
+        directory = (prototype / 'assets/images/equipment').resolve()
+        if url.scheme or url.netloc or not target.is_relative_to(directory) or target.suffix.lower() not in ('.jpg', '.jpeg', '.png', '.webp', '.avif'):
+            errors.append(f'Monitor image must be a local equipment asset: {src}')
+        elif not target.is_file():
+            errors.append(f'Missing local monitor image: {src}')
+        if not img.get('alt', '').strip():
+            errors.append(f'Monitor image requires non-empty alt: {src}')
+        if not all(img.get(k, '').isdigit() and int(img[k]) > 0 for k in ('width', 'height')):
+            errors.append(f'Monitor image requires explicit positive width/height: {src}')
     return errors
 
 
@@ -263,6 +300,11 @@ def audit(root):
                     visible = {img.get('src') for img in page.images if 'data-project-image' in img}
                     if not image_urls or any(url not in visible for url in image_urls):
                         errors.append('Article.image must refer to an actual visible local project image')
+                if path.name == 'monitor.html' and 'Product' in node_types:
+                    image_urls = article_image_urls(node.get('image'))
+                    visible = {img.get('src') for img in page.images if 'data-monitor-image' in img}
+                    if not image_urls or any(url not in visible for url in image_urls):
+                        errors.append('Monitor Product.image must refer to actual visible local monitor media')
                 if 'BreadcrumbList' in node_types:
                     errors.extend(breadcrumb_errors(node))
                 for t in node_types:
@@ -297,6 +339,13 @@ def audit(root):
                     errors.append(f'Projects page requires {required} schema')
             if 'Product' in types:
                 errors.append('Project case/list must not claim Product schema')
+        if path.name in EQUIPMENT_PAGES:
+            errors.extend(monitor_media_errors(page, prototype))
+            for required in (EQUIPMENT_PAGES[path.name], 'BreadcrumbList'):
+                if required not in types:
+                    errors.append(f'Equipment page requires {required} schema')
+            if path.name != 'monitor.html' and 'Product' in types:
+                errors.append('Equipment hub/category must not claim Product schema')
         warnings.extend(['Prototype canonical/og:url intentionally omitted; production follows page-type policy and approved host', 'No approved og:image; production social artwork remains pending'])
         results.append({'page': path.relative_to(root.resolve()).as_posix(), 'title': page.titles[0] if page.titles else '', 'schema_types': sorted(types), 'errors': sorted(set(errors)), 'warnings': sorted(set(warnings))})
     if not files:

@@ -1,0 +1,75 @@
+[
+  {
+    "name": "MSI MAG 274QF X24",
+    "brand": "MSI",
+    "model": "MAG 274QF X24",
+    "catalog_source": "https://www.king-komp.com/catalog/monitory/259505/",
+    "specification_source": "https://www.msi.com/Monitor/MAG-274QF-X24/Specification",
+    "retrieved_date": "2026-10-09",
+    "http_status": 200,
+    "catalog_html_sha256": "6a1f70c3aca41e1b052755269c98594c4dc4d1e2774d84dc20c90a8415465d2d",
+    "specification_html_sha256": "a73e800ad8da732da87e617a83f17247df9cdfdacc2ea06d66c18c4aa2ae9637",
+    "displayed_facts": {
+      "diagonal": "27 inches",
+      "resolution": "2560 x 1440 (WQHD)",
+      "panel": "Rapid IPS",
+      "refresh": "240Hz; DP up to 240Hz, HDMI up to 144Hz at WQHD",
+      "ports": "2x HDMI 2.0b; 1x DisplayPort 1.4a; headphone-out",
+      "tilt": "-5 to 20 degrees",
+      "vesa": "100 x 100mm",
+      "dimensions_with_stand": "613.5 x 249.7 x 438.5mm"
+    },
+    "scenario_assignment": "Authored editorial relationship, not a manufacturer certification or compatibility guarantee",
+    "price_presentation": "Clearly marked static review example; numeric value from retail snapshot, not a production contract",
+    "review_price_rub": 22050,
+    "availability_presentation": "Наличие уточняется; source stock/order promises intentionally not copied",
+    "omitted": "SKU/MPN/GTIN, offers, ratings, certifications, color-accuracy claims, warranty/delivery/payment terms"
+  },
+  {
+    "name": "LG 27U631A-B",
+    "brand": "LG",
+    "model": "27U631A-B",
+    "catalog_source": "https://www.king-komp.com/catalog/monitory/259632/",
+    "specification_source": "https://www.lg.com/uk/monitors/fhd-qhd/27u631a-b/",
+    "retrieved_date": "2026-10-09",
+    "http_status": 200,
+    "catalog_html_sha256": "0d0f177b12a2770c1986ed74a54864e98ab999193180ebf8275661951c1698bb",
+    "specification_html_sha256": "c1f6be95769be41498da823dea5baad15414a3cf6568c5f0b439ca2bdf1059b1",
+    "displayed_facts": {
+      "diagonal": "27 inches",
+      "resolution": "2560 x 1440",
+      "panel": "IPS",
+      "refresh": "100Hz max",
+      "connectivity": "USB-C; Power Delivery 15W"
+    },
+    "scenario_assignment": "Authored editorial relationship, not a manufacturer certification or compatibility guarantee",
+    "price_presentation": "Clearly marked static review example; numeric value from retail snapshot, not a production contract",
+    "review_price_rub": 14460,
+    "availability_presentation": "Наличие уточняется; source stock/order promises intentionally not copied",
+    "omitted": "SKU/MPN/GTIN, offers, ratings, certifications, color-accuracy claims, warranty/delivery/payment terms"
+  },
+  {
+    "name": "MSI PRO MP272PMG",
+    "brand": "MSI",
+    "model": "PRO MP272PMG",
+    "catalog_source": "https://www.king-komp.com/catalog/monitory/259583/",
+    "specification_source": "https://www.msi.com/Business-Productivity-Monitor/PRO-MP272PMG/Specification",
+    "retrieved_date": "2026-10-09",
+    "http_status": 200,
+    "catalog_html_sha256": "e40412ce498158165491c3c56f5c206f165f63e61eda07b8c9e6c7ae6609b746",
+    "specification_html_sha256": "a4bd728e63f4ecd2810d9d41fef46c4e8161b13caa6432f9b4346723f60b7108",
+    "displayed_facts": {
+      "diagonal": "27 inches",
+      "resolution": "1920 x 1080 (FHD)",
+      "panel": "IPS",
+      "refresh": "120Hz",
+      "webcam": "1080p; mic/webcam cover",
+      "height_adjustment": "0 to 130mm"
+    },
+    "scenario_assignment": "Authored editorial relationship, not a manufacturer certification or compatibility guarantee",
+    "price_presentation": "Clearly marked static review example; numeric value from retail snapshot, not a production contract",
+    "review_price_rub": 18200,
+    "availability_presentation": "Наличие уточняется; source stock/order promises intentionally not copied",
+    "omitted": "SKU/MPN/GTIN, offers, ratings, certifications, color-accuracy claims, warranty/delivery/payment terms"
+  }
+]

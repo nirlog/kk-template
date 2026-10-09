@@ -1,5 +1,6 @@
 /* Authored cart demo only. Prototype display arithmetic: integer unit amount ×
    quantity, then aggregation. No configuration pricing, network or persistence.
+   Line types and labels are authored; counts and feedback are product-neutral.
    Production basket/amounts belong to Bitrix Sale / kk.korsac. */
 (() => {
   "use strict";
@@ -37,10 +38,10 @@
       activeEffects.forEach((animation) => animation.cancel());
       activeEffects.clear();
     });
-    const systemsLabel = (count) => {
+    const itemLabel = (count) => {
       const tail = count % 100;
       const digit = count % 10;
-      return `${count} ${tail >= 11 && tail <= 14 ? "систем" : digit === 1 ? "система" : digit >= 2 && digit <= 4 ? "системы" : "систем"}`;
+      return `${count} ${tail >= 11 && tail <= 14 ? "товаров" : digit === 1 ? "товар" : digit >= 2 && digit <= 4 ? "товара" : "товаров"}`;
     };
     // Only authored data-demo unit amounts are inputs. Hardware labels are never read.
     const updateDemoCartSummary = (message = "") => {
@@ -66,19 +67,21 @@
         .forEach((output) => {
           output.textContent = money.format(totalMinor / 100);
         });
-      root.querySelectorAll("[data-demo-system-count]").forEach((output) => {
-        output.textContent = systemsLabel(count);
+      root.querySelectorAll("[data-demo-item-count]").forEach((output) => {
+        output.textContent = itemLabel(count);
       });
-      root.querySelectorAll("[data-demo-config-count]").forEach((output) => {
-        const configurations = lines.filter((line) => !line.hidden).length;
-        output.textContent = `${configurations} ${configurations === 1 ? "конфигурация" : configurations === 2 ? "конфигурации" : "конфигураций"} PLAY 1440`;
+      root.querySelectorAll("[data-demo-line-count]").forEach((output) => {
+        const positions = lines.filter((line) => !line.hidden).length;
+        const tail = positions % 100;
+        const digit = positions % 10;
+        output.textContent = `${positions} ${tail >= 11 && tail <= 14 ? "позиций" : digit === 1 ? "позиция" : digit >= 2 && digit <= 4 ? "позиции" : "позиций"}`;
       });
       const filled = root.querySelector("[data-cart-filled]");
       const empty = root.querySelector("[data-cart-empty]");
       if (filled) filled.hidden = count === 0;
       if (empty) empty.hidden = count !== 0;
       if (message && status)
-        status.textContent = `${message} ${systemsLabel(count)}. Итого по товарам ${money.format(totalMinor / 100)}. Цены — примеры.`;
+        status.textContent = `${message} ${itemLabel(count)}. Итого по товарам ${money.format(totalMinor / 100)}. Цены — примеры.`;
     };
     // Fail open to readable authored content if monetary fixtures are malformed.
     if (
@@ -115,7 +118,7 @@
           if (next < 1 || !Number.isSafeInteger(aggregateMinor)) return;
           output.value = String(next);
           updateDemoCartSummary(
-            `Количество CONFIG / ${line.dataset.cartConfig} изменено.`,
+            `Количество «${line.dataset.cartLabel}» изменено.`,
           );
           if (button.disabled)
             line.querySelector('[data-demo-step="1"]').focus();
@@ -128,8 +131,8 @@
         if (undo) undo.hidden = false;
         const label = root.querySelector("[data-cart-undo-label]");
         if (label)
-          label.textContent = `CONFIG / ${line.dataset.cartConfig} удалена из примера.`;
-        updateDemoCartSummary(`CONFIG / ${line.dataset.cartConfig} удалена.`);
+          label.textContent = `Позиция «${line.dataset.cartLabel}» удалена из примера.`;
+        updateDemoCartSummary(`Позиция «${line.dataset.cartLabel}» удалена.`);
         // The removed trigger disappears; keep keyboard position on the undo action.
         restore?.focus();
       });
@@ -139,7 +142,7 @@
       removed.hidden = false;
       const target = removed.querySelector("[data-demo-remove]");
       updateDemoCartSummary(
-        `CONFIG / ${removed.dataset.cartConfig} восстановлена.`,
+        `Позиция «${removed.dataset.cartLabel}» восстановлена.`,
       );
       acknowledge(removed);
       if (undo) undo.hidden = true;

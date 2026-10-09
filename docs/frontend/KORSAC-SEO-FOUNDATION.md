@@ -159,7 +159,17 @@ Legacy slug — кандидат, production slug и hostname утверждаю
 [Projects source contract](KORSAC-PROJECTS-EXPERIENCE.md) фиксирует provenance
 и реальные локальные cover/gallery. Article.image использует только видимый review cover, без выдуманного production URL.
 
-Product: безопасный scaffold + BreadcrumbList, без Offer.
+Equipment hub (`equipment.html`) и Monitors category (`monitors.html`):
+CollectionPage + BreadcrumbList, без Product. Ordinary monitor detail
+(`monitor.html`): Product + BreadcrumbList; только source-supported
+name/brand/model/description/category и реально видимый local image.
+Review цены не входят в Offer, нет SKU/GTIN/MPN/ratings или production URLs.
+[Equipment contract](KORSAC-EQUIPMENT-EXPERIENCE.md) фиксирует источники,
+media, cart line types и backend price/availability ownership. Audit требует
+page types, per-record local media/alt/dimensions и matching Product.image,
+сохраняя все прежние Family/Projects/PC guards.
+
+PLAY Product: безопасный scaffold + BreadcrumbList, без Offer.
 
 ```json
 {

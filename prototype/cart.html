@@ -20,12 +20,12 @@
     <meta name="robots" content="noindex, nofollow, noarchive" />
     <meta
       name="description"
-      content="Демонстрационная корзина KORSAC: состав двух конфигураций PLAY 1440, количество и пример итоговой суммы."
+      content="Демонстрационная корзина KORSAC: две системы PLAY 1440 и монитор MSI, количество товаров и пример итоговой суммы."
     />
     <meta property="og:title" content="Корзина — KORSAC" />
     <meta
       property="og:description"
-      content="Демонстрационная корзина KORSAC: состав двух конфигураций PLAY 1440, количество и пример итоговой суммы."
+      content="Демонстрационная корзина KORSAC: две системы PLAY 1440 и монитор MSI, количество товаров и пример итоговой суммы."
     />
     <meta property="og:site_name" content="KORSAC" />
     <meta property="og:type" content="website" />
@@ -116,8 +116,8 @@
           <h1 tabindex="-1" data-cart-title>Корзина</h1>
         </div>
         <p class="k-muted">
-          <span data-demo-system-count>2 системы</span> ·
-          <span data-demo-config-count>2 конфигурации PLAY 1440</span>
+          <span data-demo-item-count>3 товара</span> ·
+          <span data-demo-line-count>3 позиции</span>
         </p>
       </div>
       <div class="k-cart-grid" data-cart-filled>
@@ -126,12 +126,14 @@
             class="k-cart-line"
             data-demo-cart-line
             data-cart-config="01"
+            data-cart-line-type="system"
+            data-cart-label="PLAY 1440, CONFIG / 01"
             data-demo-unit-price-minor="17990000"
             aria-labelledby="cart-01-title"
           >
             <div class="k-cart-line-heading">
               <div>
-                <p class="k-eyebrow">KORSAC PLAY</p>
+                <p class="k-eyebrow">Система / KORSAC PLAY</p>
                 <h2 id="cart-01-title">
                   1440 <span class="k-cart-scenario">Игры в 1440p</span>
                 </h2>
@@ -253,12 +255,14 @@
             class="k-cart-line"
             data-demo-cart-line
             data-cart-config="02"
+            data-cart-line-type="system"
+            data-cart-label="PLAY 1440, CONFIG / 02"
             data-demo-unit-price-minor="17990000"
             aria-labelledby="cart-02-title"
           >
             <div class="k-cart-line-heading">
               <div>
-                <p class="k-eyebrow">KORSAC PLAY</p>
+                <p class="k-eyebrow">Система / KORSAC PLAY</p>
                 <h2 id="cart-02-title">
                   1440 <span class="k-cart-scenario">Игры в 1440p</span>
                 </h2>
@@ -376,9 +380,106 @@
               </button>
             </div>
           </article>
+          <article
+            class="k-cart-line k-cart-line--product"
+            id="cart-monitor"
+            data-demo-cart-line
+            data-cart-line-type="product"
+            data-cart-label="MSI MAG 274QF X24"
+            data-demo-unit-price-minor="2205000"
+            aria-labelledby="cart-monitor-title"
+          >
+            <div class="k-cart-line-heading">
+              <div>
+                <p class="k-eyebrow">Товар / Монитор MSI</p>
+                <h2 id="cart-monitor-title">
+                  MAG 274QF X24
+                  <span class="k-cart-scenario">PLAY / экран 1440p</span>
+                </h2>
+              </div>
+              <span class="k-line-type-tag">PRODUCT</span>
+            </div>
+            <div class="k-cart-line-body">
+              <figure class="k-cart-product-media">
+                <img
+                  data-monitor-image
+                  src="assets/images/equipment/msi-mag-01.webp"
+                  alt="MSI MAG 274QF X24 спереди, на подставке"
+                  width="905"
+                  height="661"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+              <div class="k-cart-hardware">
+                <dl class="k-cart-specs">
+                  <div>
+                    <dt>Экран</dt>
+                    <dd>27″ · 2560 × 1440</dd>
+                  </div>
+                  <div>
+                    <dt>Матрица</dt>
+                    <dd>Rapid IPS</dd>
+                  </div>
+                  <div>
+                    <dt>Частота</dt>
+                    <dd>до 240 Гц · DisplayPort</dd>
+                  </div>
+                </dl>
+                <p class="k-small k-muted k-cart-extras">
+                  Обычный товар. Наличие уточняется.
+                </p>
+              </div>
+            </div>
+            <div class="k-cart-line-bottom">
+              <div class="k-cart-price">
+                <span class="k-small k-muted">22 050 ₽ / товар · пример</span
+                ><strong data-demo-line-total>22 050 ₽</strong>
+              </div>
+              <div
+                class="k-quantity"
+                role="group"
+                aria-label="Количество MSI MAG 274QF X24"
+              >
+                <button
+                  type="button"
+                  data-demo-step="-1"
+                  data-cart-enhanced
+                  hidden
+                  disabled
+                  aria-label="Уменьшить количество MSI MAG 274QF X24"
+                >
+                  −</button
+                ><output class="k-quantity-value" data-demo-quantity>1</output
+                ><button
+                  type="button"
+                  data-demo-step="1"
+                  data-cart-enhanced
+                  hidden
+                  aria-label="Увеличить количество MSI MAG 274QF X24"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+            <div class="k-cart-line-actions">
+              <a href="monitor.html">Вернуться к монитору</a
+              ><button
+                class="k-button k-button--text"
+                type="button"
+                data-demo-remove
+                data-cart-enhanced
+                hidden
+                aria-label="Удалить MSI MAG 274QF X24"
+              >
+                Удалить
+              </button>
+            </div>
+          </article>
           <p class="k-small k-muted">
-            Каждая конфигурация — отдельная система. Изменить параметры можно в
-            конфигураторе.
+            Система сохраняет свою конфигурацию; монитор — отдельный товар.
+            Параметры компьютера меняются в конфигураторе, товар открывается в
+            своей карточке.
           </p>
         </div>
         <aside class="k-order-summary" aria-labelledby="cart-summary-title">
@@ -387,7 +488,7 @@
           <dl class="k-order-totals">
             <div>
               <dt>Товары</dt>
-              <dd data-demo-subtotal>359 800 ₽</dd>
+              <dd data-demo-subtotal>381 850 ₽</dd>
             </div>
             <div class="k-order-delivery">
               <dt>Доставка</dt>
@@ -395,7 +496,7 @@
             </div>
             <div class="k-order-total">
               <dt>Итого по товарам</dt>
-              <dd data-demo-total>359 800 ₽</dd>
+              <dd data-demo-total>381 850 ₽</dd>
             </div>
           </dl>
           <a class="k-button k-button--full" href="checkout.html"
@@ -405,8 +506,8 @@
             Цены — примеры. Стоимость доставки не включена.
           </p>
           <p class="k-small k-muted">
-            Оформление откроет исходный демонстрационный заказ. Изменения этой
-            корзины между страницами не сохраняются.
+            Оформление откроет исходный демонстрационный заказ из двух систем
+            PLAY 1440. Изменения этой корзины между страницами не сохраняются.
           </p>
         </aside>
       </div>
@@ -417,11 +518,12 @@
         aria-labelledby="cart-empty-title"
       >
         <span class="k-empty-sign" aria-hidden="true">/</span>
-        <h2 id="cart-empty-title" tabindex="-1">В корзине пока нет системы.</h2>
-        <p class="k-muted">
-          Начните с задачи — подберём подходящий класс PLAY.
-        </p>
-        <a class="k-button" href="catalog.html">Выбрать KORSAC</a>
+        <h2 id="cart-empty-title" tabindex="-1">В корзине пока нет товаров.</h2>
+        <p class="k-muted">Выберите компьютер или монитор под свою задачу.</p>
+        <a class="k-button" href="computers.html">Выбрать компьютер</a
+        ><a class="k-button k-button--secondary" href="monitors.html"
+          >Выбрать монитор</a
+        >
       </section>
       <div class="k-cart-undo" data-cart-undo hidden>
         <span data-cart-undo-label></span
@@ -473,6 +575,8 @@
             ><a href="catalog.html">PLAY</a><a href="create.html">CREATE</a
             ><a href="work.html">WORK</a><a href="product.html">PLAY 1440</a
             ><a href="product.html#configurator">Конфигуратор</a>
+            <a href="equipment.html">Оборудование</a
+            ><a href="monitors.html">Мониторы</a>
           </nav>
           <nav aria-label="Компания">
             <h2>Компания</h2>

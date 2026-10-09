@@ -260,6 +260,63 @@ class AuditGuardTests(unittest.TestCase):
             changed = valid.replace('"headline": "Fixture"', '"headline": "Fixture", "image": ' + json.dumps(image))
             self.assertIn('Article.image must refer to an actual visible local project image', self.check_fixture(changed, page_name='project.html')['pages'][0]['errors'])
 
+    def equipment_markup(self, required):
+        node = {'@type': required, 'name': 'Fixture monitor'}
+        if required == 'Product':
+            node['image'] = 'assets/images/equipment/fixture.webp'
+        graph = {'@context': 'https://schema.org', '@graph': [node, {
+            '@type': 'BreadcrumbList', 'itemListElement': [
+                {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'index.html'},
+                {'@type': 'ListItem', 'position': 2, 'name': 'Current'},
+            ]}]}
+        photo = '<article data-monitor-card><img data-monitor-image src="assets/images/equipment/fixture.webp" alt="Fixture monitor front view" width="905" height="661"></article>'
+        return GOOD.replace('</head>', '<script type="application/ld+json">' + json.dumps(graph) + '</script></head>').replace('</main>', photo + '</main>')
+
+    def test_equipment_schema_contract_and_commercial_guards(self):
+        extra = {'assets/images/equipment/fixture.webp': 'presence-only fixture'}
+        for name, required in [('equipment.html', 'CollectionPage'), ('monitors.html', 'CollectionPage'), ('monitor.html', 'Product')]:
+            valid = self.equipment_markup(required)
+            with self.subTest(page=name):
+                self.assertEqual(self.check_fixture(valid, extra=extra, page_name=name)['errors'], 0)
+                for missing in [required, 'BreadcrumbList']:
+                    changed = valid.replace('"@type": "' + missing + '"', '"@type": "Thing"', 1)
+                    self.assertIn('Equipment page requires ' + missing + ' schema', self.check_fixture(changed, extra=extra, page_name=name)['pages'][0]['errors'])
+                for prohibited in ['Offer', 'AggregateOffer', 'Review', 'AggregateRating'] + ([] if required == 'Product' else ['Product']):
+                    changed = valid.replace('</head>', '<script type="application/ld+json">' + json.dumps({'@type': prohibited}) + '</script></head>')
+                    self.assertGreater(self.check_fixture(changed, extra=extra, page_name=name)['errors'], 0)
+                for prop in ['offers', 'review', 'aggregateRating']:
+                    changed = valid.replace('"name": "Fixture monitor"', '"' + prop + '": {}, "name": "Fixture monitor"')
+                    self.assertGreater(self.check_fixture(changed, extra=extra, page_name=name)['errors'], 0)
+
+    def test_monitor_media_requires_local_assets_alt_dimensions_per_record(self):
+        extra = {'assets/images/equipment/fixture.webp': 'presence-only fixture'}
+        valid = self.equipment_markup('CollectionPage')
+        mutations = [
+            (valid.replace('data-monitor-image', 'data-other-image'), 'requires visible monitor media'),
+            (valid.replace('alt="Fixture monitor front view"', 'alt=" "'), 'requires non-empty alt'),
+            (valid.replace('width="905"', ''), 'requires explicit positive width/height'),
+            (valid.replace('height="661"', 'height="0"'), 'requires explicit positive width/height'),
+            (valid.replace('assets/images/equipment/fixture.webp', 'https://example.com/photo.webp'), 'must be a local equipment asset'),
+            (valid.replace('assets/images/equipment/fixture.webp', 'assets/images/projects/fixture.jpg'), 'must be a local equipment asset'),
+            (valid.replace('assets/images/equipment/fixture.webp', 'assets/images/equipment/missing.webp'), 'Missing local monitor image'),
+            (valid.replace('</main>', '<article data-monitor-card><h2>No photo</h2></article></main>'), 'Monitor record #2 requires its own product image'),
+        ]
+        for changed, message in mutations:
+            with self.subTest(guard=message):
+                errors = self.check_fixture(changed, extra=extra, page_name='monitors.html')['pages'][0]['errors']
+                self.assertTrue(any(message in error for error in errors), errors)
+
+    def test_monitor_product_image_requires_visible_media(self):
+        extra = {'assets/images/equipment/fixture.webp': 'presence-only fixture'}
+        valid = self.equipment_markup('Product')
+        for image in ['assets/images/equipment/fixture.webp', {'@type': 'ImageObject', 'contentUrl': 'assets/images/equipment/fixture.webp'}]:
+            changed = valid.replace('"image": "assets/images/equipment/fixture.webp"', '"image": ' + json.dumps(image))
+            self.assertEqual(self.check_fixture(changed, extra=extra, page_name='monitor.html')['errors'], 0)
+        for image in ['', ['assets/images/equipment/fixture.webp', ''], 'https://example.com/photo.webp', 'assets/images/equipment/unseen.webp']:
+            changed = valid.replace('"image": "assets/images/equipment/fixture.webp"', '"image": ' + json.dumps(image))
+            errors = self.check_fixture(changed, extra=extra, page_name='monitor.html')['pages'][0]['errors']
+            self.assertIn('Monitor Product.image must refer to actual visible local monitor media', errors)
+
 
 if __name__ == '__main__':
     unittest.main()
