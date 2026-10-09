@@ -238,7 +238,9 @@ compatibility/availability rules и конфигурационного API.
 
 Пять button-hotspots открывают синхронизированные HTML-пояснения. Корпус меняет
 условный силуэт; RAM — метаданные; SSD/SSD2 — подписи и второй слот.
-SYSTEM ID показывает preview выбранных labels. Контексты измерений сохраняют
+После System Passport v1 Product не показывает вымышленный номер: его блок
+объясняет будущую per-machine identity и не синхронизирует паспорт с выбором.
+Контексты измерений сохраняют
 пустые метрики, а четыре всегда видимых этапа сборки имеют focus/click-пояснения.
 Без JS overview и весь рассказ доступны. Reduced motion сохраняет переключение
 состояния без expressive resolve. Цены не меняются.
@@ -310,7 +312,7 @@ MINI остаётся отдельным товаром.
 
 Публичная shell/hero identity — утверждённые SVG; прежний review hub
 сохраняет исторический text wordmark. Wireframe — placeholder
-для будущей фотографии. SYSTEM ID показывает паспорт с вымышленным номером
+для будущей фотографии. Исторический SYSTEM ID preview заменён информацией о паспорте физического компьютера
 без fake QR/barcode. Производительность содержит структуру будущих измерений:
 игра, разрешение, preset, AVG FPS, 1% low, температура, шум и методика;
 измеренные значения не подставлены. Гарантия и доставка требуют согласования.
@@ -393,3 +395,7 @@ Contacts доступны из public и compact transactional footer, без н
 и не меняют timestamp; policy Home/Catalog/Product сохраняется. 500/503
 работают без JS и shared application CSS. Static HTML не задаёт HTTP errors:
 production server обязан сохранить настоящий 404/500/503.
+
+System Passport v1 supersedes historical Product fake-identity/preview behavior.
+[Current domain/privacy contract](KORSAC-SYSTEM-PASSPORT.md) defines separate
+physical Systems, snapshots and active/pending public projections.

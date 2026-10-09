@@ -181,6 +181,26 @@
       ]
     },
     {
+      "page": "prototype/passport-pending.html",
+      "title": "Паспорт ещё не активирован — KORSAC",
+      "schema_types": [],
+      "errors": [],
+      "warnings": [
+        "No approved og:image; production social artwork remains pending",
+        "Prototype canonical/og:url intentionally omitted; production follows page-type policy and approved host"
+      ]
+    },
+    {
+      "page": "prototype/passport.html",
+      "title": "Паспорт системы — KORSAC",
+      "schema_types": [],
+      "errors": [],
+      "warnings": [
+        "No approved og:image; production social artwork remains pending",
+        "Prototype canonical/og:url intentionally omitted; production follows page-type policy and approved host"
+      ]
+    },
+    {
       "page": "prototype/product.html",
       "title": "PLAY 1440 — игровой компьютер KORSAC",
       "schema_types": [
@@ -237,6 +257,16 @@
       ]
     },
     {
+      "page": "prototype/system-workflow.html",
+      "title": "Внутренний workflow System — KORSAC review",
+      "schema_types": [],
+      "errors": [],
+      "warnings": [
+        "No approved og:image; production social artwork remains pending",
+        "Prototype canonical/og:url intentionally omitted; production follows page-type policy and approved host"
+      ]
+    },
+    {
       "page": "prototype/ui.html",
       "title": "UI Kit — KORSAC Prototype",
       "schema_types": [],
@@ -263,5 +293,5 @@
     }
   ],
   "errors": 0,
-  "warnings": 52
+  "warnings": 58
 }

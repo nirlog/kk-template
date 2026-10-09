@@ -50,14 +50,14 @@ Primitives**: кнопки, hotspots, панель, синхронизирова
 
 ## Состояния и ручной выбор
 
-| `data-stage-state` | Смысл и видимый сигнал |
-| --- | --- |
-| `overview` | Условный корпус, базовая архитектура и выбранные подписи |
-| `airflow` | Направление притока и отвода; без температурного расчёта |
-| `graphics` | Выделенная GPU-зона, фиксированный RTX 5070 |
-| `platform` | CPU/RAM-зоны, метаданные выбранного объёма памяти |
-| `storage` | Основной SSD и отдельный слот второго накопителя |
-| `validation` | Этап подготовки и пояснение проверки; без статуса результата |
+| `data-stage-state` | Смысл и видимый сигнал                                       |
+| ------------------ | ------------------------------------------------------------ |
+| `overview`         | Условный корпус, базовая архитектура и выбранные подписи     |
+| `airflow`          | Направление притока и отвода; без температурного расчёта     |
+| `graphics`         | Выделенная GPU-зона, фиксированный RTX 5070                  |
+| `platform`         | CPU/RAM-зоны, метаданные выбранного объёма памяти            |
+| `storage`          | Основной SSD и отдельный слот второго накопителя             |
+| `validation`       | Этап подготовки и пояснение проверки; без статуса результата |
 
 `data-stage-annotation` выбирает одну панель. CPU и memory annotations
 используют общий `platform`, но показывают разные пояснения.
@@ -145,15 +145,15 @@ option внутри `[data-prototype-config]`. Контроллер перечи
 каждом событии; отдельно сохранённого case/RAM/SSD state нет.
 `data-summary-key`/`data-summary-value` продолжают питать manifest через
 `prototype.js`. Новый контроллер переносит только текст и presentation flags
-в сцену и `[data-passport-output]` через `textContent`.
+в сцену через `textContent`; физический Passport не является selection output.
 
-| Native control | Реакция сцены конфигуратора |
-| --- | --- |
-| Корпус | `overview`, вариант корпуса, его подпись во всех сценах и SYSTEM ID |
-| RAM 32/64 ГБ | `platform`, memory annotation и метаданные; силуэт тот же |
-| Основной SSD 1/2 ТБ | `storage`, подпись и основной слот |
-| Второй SSD | `storage`, подпись и отдельный видимый слот или его отсутствие |
-| ОС, software, service | Только прежние строки manifest |
+| Native control        | Реакция сцены конфигуратора                                    |
+| --------------------- | -------------------------------------------------------------- |
+| Корпус                | `overview`, вариант корпуса, его подпись во всех сценах        |
+| RAM 32/64 ГБ          | `platform`, memory annotation и метаданные; силуэт тот же      |
+| Основной SSD 1/2 ТБ   | `storage`, подпись и основной слот                             |
+| Второй SSD            | `storage`, подпись и отдельный видимый слот или его отсутствие |
+| ОС, software, service | Только прежние строки manifest                                 |
 
 `focusin` hardware-control выбирает контекст конфигуратора; `change`
 синхронизирует подписи всех экземпляров. В Explorer текущий смысловой state и CPU/memory subannotation
@@ -165,8 +165,9 @@ option внутри `[data-prototype-config]`. Контроллер перечи
 На tablet/mobile и низком desktop сцена также в потоке; на узком экране она
 идёт перед аппаратными controls в DOM и визуальном порядке.
 
-SYSTEM ID отображает выбранные case/RAM/SSD/SSD2 как preview. Серийный номер
-остаётся явным макетом; QR, barcode и verification endpoint отсутствуют.
+System Passport v1 заменил прежний fake identity блок информацией о будущем
+паспорте. Выбранные case/RAM/SSD/SSD2 обновляют только сцены/manifest; Product
+не создаёт System. Реальный паспорт — отдельная KORSAC-confirmed projection.
 Все цены и дельты — статический HTML. Ни один из контроллеров не вычисляет
 `base + delta`, не меняет цену и не принимает выбор за подтверждение расчёта.
 
@@ -236,15 +237,15 @@ state не должен зависеть от загрузки изображе�
 
 ## Перенос в kk.korsac / Bitrix
 
-| Prototype presentation | Будущий источник / адаптер |
-| --- | --- |
-| Native checked/selected + `data-summary-value` | ConfiguratorCore selection и реальные labels опций |
-| `data-stage-case` и media | Renderer сопоставляет разрешённый case/SKU с утверждённым media |
-| RAM/SSD labels и слоты | Представление подтверждённого selection, без локальных compatibility rules |
-| `change` → manifest/stage | Подписка темы `kk.korsac.configurator-renderer` на selection events |
-| Выбор и короткий resolve | Мгновенный UI feedback, отдельно от calculate lifecycle |
-| Pending/calculated/error | Только реальные события и authoritative calculate response |
-| Цена / Cart / SYSTEM ID | Проверенный server snapshot, basket integration и производственный паспорт |
+| Prototype presentation                         | Будущий источник / адаптер                                                 |
+| ---------------------------------------------- | -------------------------------------------------------------------------- |
+| Native checked/selected + `data-summary-value` | ConfiguratorCore selection и реальные labels опций                         |
+| `data-stage-case` и media                      | Renderer сопоставляет разрешённый case/SKU с утверждённым media            |
+| RAM/SSD labels и слоты                         | Представление подтверждённого selection, без локальных compatibility rules |
+| `change` → manifest/stage                      | Подписка темы `kk.korsac.configurator-renderer` на selection events        |
+| Выбор и короткий resolve                       | Мгновенный UI feedback, отдельно от calculate lifecycle                    |
+| Pending/calculated/error                       | Только реальные события и authoritative calculate response                 |
+| Цена / Cart / SYSTEM ID                        | Проверенный server snapshot, basket integration и производственный паспорт |
 
 Stage controller остаётся локальным presentation-слоем. При интеграции native
 чтение заменяется адаптером к ConfiguratorCore; нельзя переносить prototype
@@ -261,7 +262,7 @@ context/Prev/Next controls и ограниченный pin конфигурат�
 Автоматически проверяются: layout всех трёх страниц при
 320/375/430/768/900/1024/1280/1440 px; все четыре пути ввода и disabled boundaries;
 единый counter; стабильность высоты states/subannotations; отсутствие scroll/URL
-изменений от выбора; native case/RAM/SSD/SSD2/manifest/passport и независимость
+изменений от выбора; native case/RAM/SSD/SSD2/manifest и независимость
 Explorer; статичность цен; rapid Next/Prev и motion cleanup; Tab/Enter/Space,
 touch375/430×800; no-JS320; live reduced-motion; WCAG axe и отсутствие console
 errors/external runtime requests. Результаты и ограничения фиксируются в PR.
@@ -291,3 +292,8 @@ DOM controller проще связать с ConfiguratorCore/renderer?
 финальных фото, выдуманных benchmarks, WebGL/3D/canvas, parallax,
 custom cursor, scroll interception и внешних animation libraries.
 Каталог, checkout, account, поиск и финальная главная страница вне задачи.
+
+System Passport v1 supersedes earlier Product SYSTEM ID preview assumptions.
+See [domain and public-projection contract](KORSAC-SYSTEM-PASSPORT.md). UI Kit
+motion specimens remain review-only; physical Passport does not inherit their
+entry sequence or live configuration synchronization.

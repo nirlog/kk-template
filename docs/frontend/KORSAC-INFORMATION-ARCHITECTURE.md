@@ -72,6 +72,13 @@ backend-цена/статус, ключевые характеристики, о
 CTA и связанные системы. Не нужны Explorer, SYSTEM ID, конфигуратор PC
 и история сборки. Пустые категории и слабые placeholder-сущности не публикуются.
 
+**System Passport** — публичная сервисная проекция отдельного физического
+компьютера по `/passport/{PUBLIC_ID}/`. Нет `/passport/` каталога или поиска
+по последовательному SYSTEM ID. Активный паспорт: production `noindex, follow`;
+pending: `noindex, nofollow`; оба исключены из sitemap. Invalid token — HTTP 404.
+Видимая конфигурация и гарантия принадлежат System snapshot, не текущему Product.
+S/N, заказ/клиент, компоненты истории и service events внутренние.
+
 **Контакты** — общая точка связи, в footer всех публичных страниц.
 **Cart / Checkout / Success** — транзакционный путь, вне поиска и sitemap.
 Платежи, доставка, доступность и order-property sets определяет Bitrix Sale.
@@ -100,6 +107,8 @@ Frontend не закрепляет ограничения по типу поку
 | Equipment hub                | `/equipment/`                                                      | Index при curated content           | Self                                                  | Главная → Оборудование                     | CollectionPage + BreadcrumbList                                  | Да                                           | Редакционно утверждённые категории                       |
 | Equipment category           | `/equipment/{category}/`, `/equipment/monitors/`                   | Index при полезном содержании       | Self                                                  | Главная → Оборудование → Категория         | CollectionPage + BreadcrumbList                                  | Да                                           | Category content + каталог                               |
 | Ordinary product             | `/equipment/{category}/{slug}/`                                    | Index                               | Self                                                  | Главная → Оборудование → Категория → Товар | Product + backend Offer + BreadcrumbList                         | Да                                           | Product entity, real media, catalog/Sale                 |
+| Active System Passport       | `/passport/{PUBLIC_ID}/`                                           | noindex, follow                     | Не SEO landing; host не утверждён                     | Без каталожных crumbs                      | Нет structured data v1                                           | Нет                                          | System domain projection / D7                            |
+| Pending System Passport      | Та же `/passport/{PUBLIC_ID}/`                                     | noindex, nofollow                   | Не SEO landing                                        | Нет                                        | Нет                                                              | Нет                                          | System public state / D7                                 |
 | Contacts                     | `/contacts/`                                                       | Index                               | Self                                                  | Главная → Контакты                         | ContactPage + BreadcrumbList                                     | Да                                           | Централизованные настройки контактов                     |
 | Cart                         | `/cart/`                                                           | noindex                             | Нет                                                   | Не обязательны                             | Нет Product/Offer                                                | Нет                                          | Sale basket / текущий пользовательский контекст          |
 | Checkout                     | `/checkout/`                                                       | noindex                             | Нет                                                   | Не обязательны                             | Нет                                                              | Нет                                          | Sale order, методы/ограничения/properties                |
@@ -135,6 +144,7 @@ presentation/заказ одной модели и не создаёт инде�
 | `equipment.html`                                     | `/equipment/`                               | Главная → Оборудование                                |
 | `monitors.html`                                      | `/equipment/monitors/`                      | Главная → Оборудование → Мониторы                     |
 | `monitor.html`                                       | `/equipment/monitors/{approved-slug}/`      | Главная → Оборудование → Мониторы → MSI MAG 274QF X24 |
+| `passport.html` / `passport-pending.html`            | Active / pending `/passport/{PUBLIC_ID}/`   | Сервисный экран без публичного каталога               |
 | `contacts.html`                                      | `/contacts/`                                | Главная → Контакты                                    |
 | `cart.html` / `checkout.html` / `order-success.html` | `/cart/` / `/checkout/` / `/order-success/` | Транзакционные экраны                                 |
 
@@ -162,8 +172,15 @@ detail; остальные records ведут к своим King-Komp originals.
 `monitor.html` не утверждает production slug/ассортимент. Prototype completion
 не меняет publication/indexability gates. Price/availability/Offer/basket
 остаются backend-owned; demo monitor line — PRODUCT, не PC CONFIG.
-Shared Media Viewer, System Passport и Bitrix migration не реализованы.
+Shared Media Viewer и Bitrix migration не реализованы. System Passport — следующий реализованный review stage ниже.
 См. [Equipment contract](KORSAC-EQUIPMENT-EXPERIENCE.md).
+
+System Passport реализован как синтетический active/pending review и отдельный
+internal workflow specimen, доступный только из `review.html`. Последний не
+имеет публичной production route и не входит в production URL-дерево. Account,
+публичный поиск, генераторы и D7 не добавлены. Старые footer-ссылки на концепт
+Product заменены поддержкой; новый номер/fixture token не попал в global nav.
+См. [System domain / privacy / lifecycle contract](KORSAC-SYSTEM-PASSPORT.md).
 
 ## URL, navigation и sitemap
 

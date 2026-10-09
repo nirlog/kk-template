@@ -14,8 +14,8 @@ python3 -m unittest discover -s tools -p 'test_*.py'
 python3 tools/monitor_curation_audit.py
 ```
 
-Результат: **20 страниц, 0 ошибок, 52 intentional warnings**.
-[Детерминированный JSON output](seo-audit-v1.json). 27 tests (20 SEO + 7 monitor curation)
+Результат: **23 страницы, 0 ошибок, 58 intentional warnings**.
+[Детерминированный JSON output](seo-audit-v1.json). 37 tests (20 SEO + 7 monitor curation + 10 System Passport)
 прошли: staging guard, canonical, metadata/H1, IDs/links/images, invalid/unsafe
 JSON-LD и implicit offers/review properties; дополнительно non-final breadcrumb
 URLs, URL string / `item.@id`, invalid URL/list shapes и final-item omission.
@@ -26,41 +26,44 @@ Family pages дополнительно требуют CollectionPage/Breadcrumb
 размеры/alt. Equipment hub/category запрещают Product; monitor detail требует
 Product.image из реально видимого local media. Commercial guards прежние.
 
-| HTML                 | Detected JSON-LD types (recursive)       |
-| -------------------- | ---------------------------------------- |
-| `404.html`           | Нет                                      |
-| `500.html`           | Нет                                      |
-| `503.html`           | Нет                                      |
-| `cart.html`          | Нет                                      |
-| `catalog.html`       | BreadcrumbList, CollectionPage, ListItem |
-| `checkout.html`      | Нет                                      |
-| `computers.html`     | BreadcrumbList, CollectionPage, ListItem |
-| `contacts.html`      | BreadcrumbList, ContactPage, ListItem    |
-| `create.html`        | BreadcrumbList, CollectionPage, ListItem |
-| `equipment.html`     | BreadcrumbList, CollectionPage, ListItem |
-| `monitors.html`      | BreadcrumbList, CollectionPage, ListItem |
-| `monitor.html`       | Brand, BreadcrumbList, ListItem, Product |
-| `index.html`         | Organization, WebSite                    |
-| `order-success.html` | Нет                                      |
-| `product.html`       | Brand, BreadcrumbList, ListItem, Product |
-| `project.html`       | Article, BreadcrumbList, ListItem        |
-| `projects.html`      | BreadcrumbList, CollectionPage, ListItem |
-| `review.html`        | Нет                                      |
-| `ui.html`            | Нет                                      |
-| `work.html`          | BreadcrumbList, CollectionPage, ListItem |
+| HTML                    | Detected JSON-LD types (recursive)       |
+| ----------------------- | ---------------------------------------- |
+| `404.html`              | Нет                                      |
+| `500.html`              | Нет                                      |
+| `503.html`              | Нет                                      |
+| `cart.html`             | Нет                                      |
+| `catalog.html`          | BreadcrumbList, CollectionPage, ListItem |
+| `checkout.html`         | Нет                                      |
+| `computers.html`        | BreadcrumbList, CollectionPage, ListItem |
+| `contacts.html`         | BreadcrumbList, ContactPage, ListItem    |
+| `create.html`           | BreadcrumbList, CollectionPage, ListItem |
+| `equipment.html`        | BreadcrumbList, CollectionPage, ListItem |
+| `monitors.html`         | BreadcrumbList, CollectionPage, ListItem |
+| `monitor.html`          | Brand, BreadcrumbList, ListItem, Product |
+| `index.html`            | Organization, WebSite                    |
+| `order-success.html`    | Нет                                      |
+| `product.html`          | Brand, BreadcrumbList, ListItem, Product |
+| `project.html`          | Article, BreadcrumbList, ListItem        |
+| `projects.html`         | BreadcrumbList, CollectionPage, ListItem |
+| `review.html`           | Нет                                      |
+| `ui.html`               | Нет                                      |
+| `passport.html`         | Нет                                      |
+| `passport-pending.html` | Нет                                      |
+| `system-workflow.html`  | Нет; internal review                     |
+| `work.html`             | BreadcrumbList, CollectionPage, ListItem |
 
 Production indexability: [единая полная матрица](../KORSAC-INFORMATION-ARCHITECTURE.md#единая-матрица-production-indexability)
 с Page type / URL / index policy / canonical / breadcrumbs / schema / sitemap /
 Bitrix owner. Content-only published entities indexable; Cart/Checkout/Success,
 Search/Account, filters/sort/configurations/review/errors не создают indexable
-сущности. В этом review **все** 20 страниц noindex/nofollow/noarchive.
+сущности. В этом review **все** 23 страницы noindex/nofollow/noarchive.
 
 Known intentional warnings:
 
-- 20 × canonical/og:url не заданы в prototype. Production следует page-type
+- 23 × canonical/og:url не заданы в prototype. Production следует page-type
   policy: approved-host self-canonical только для подходящих content pages;
   ошибки/транзакции не ждут canonical.
-- 20 × нет approved og:image; social artwork остаётся future production slot.
+- 23 × нет approved og:image; social artwork остаётся future production slot.
 - 12 × local schema URLs/fragment IDs для semantic review. Bitrix преобразует
   реальные entities в absolute canonical URLs; hostname сейчас не выдуман.
 
@@ -138,3 +141,13 @@ HTTP, names/order и non-clickable Computers, отсутствие overflow320/3
 Contacts `/contacts/` и503 retry исходного requested URL. Prototype paths
 сохранены. Actual production HTTP/asset routing требует отдельной integration
 проверки после реализации server adapter.
+
+System Passport v1 adds active/pending service projections without structured
+data and a review-only internal specimen. Privacy guards reject serial/internal
+markers in raw HTML, forbidden schema and hidden active data in pending state.
+SYSTEM ID shape, active snapshot/inquiry content, generic metadata and absence
+of Brand Intro are checked. Domain fixture tests also reject old Product identity
+and stale footer links, and keep workflow/fixture URLs out of public navigation.
+[Current System Passport review](system-passport-v1.md). Backend privacy/access
+control, random identifiers, transactions and production status routing are not
+validated by a static HTML audit.
