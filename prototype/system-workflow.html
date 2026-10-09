@@ -1,0 +1,1678 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" href="data:," />
+    <title>Внутренний workflow System — KORSAC review</title>
+    <link rel="stylesheet" href="assets/css/tokens.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/brand.css" />
+    <link rel="stylesheet" href="assets/css/passport.css" />
+    <script src="assets/js/system-workflow.js" defer></script>
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <meta
+      name="description"
+      content="Внутренний макет System, компонентов, сервисных форм и восстановления пропущенной автоматизации. Только для ревью."
+    />
+    <meta
+      property="og:title"
+      content="Внутренний workflow System — KORSAC review"
+    />
+    <meta
+      property="og:description"
+      content="Внутренний макет System, компонентов, сервисных форм и восстановления пропущенной автоматизации. Только для ревью."
+    />
+    <meta property="og:site_name" content="KORSAC" />
+    <meta property="og:type" content="website" />
+  </head>
+  <body>
+    <a class="k-skip" href="#main">Перейти к содержимому</a>
+    <header class="k-passport-shell">
+      <div class="k-passport-container">
+        <a href="index.html" aria-label="KORSAC — главная"
+          ><img
+            class="k-passport-brand"
+            src="assets/images/brand/korsac-lockup-horizontal.svg"
+            width="15240"
+            height="3387"
+            alt="" /></a
+        ><a href="review.html">Материалы ревью</a>
+      </div>
+    </header>
+    <main
+      id="main"
+      class="k-workflow-main k-passport-container"
+      data-internal-workflow
+    >
+      <p class="k-workflow-review-label">
+        Internal workflow review / not public UI
+      </p>
+      <div class="k-workflow-title">
+        <div>
+          <p class="k-eyebrow">System / Workspace specimen</p>
+          <h1>Система и её жизненный цикл</h1>
+        </div>
+        <a href="review.html">Вернуться к ревью →</a>
+      </div>
+      <p class="k-muted">
+        Все заказы, даты, записи, номера компонентов и действия — синтетические
+        макеты. Нет авторизации, хранения или выполнения backend-операций.
+      </p>
+      <nav class="k-workflow-nav" aria-label="Разделы внутреннего макета">
+        <a href="#system-context">System</a
+        ><a href="#manual-actions">Восстановление</a
+        ><a href="#installed-components">Компоненты</a
+        ><a href="#service-forms">Сервис</a
+        ><a href="#internal-history">История</a>
+      </nav>
+      <section id="system-context" class="k-passport-section">
+        <p class="k-eyebrow">01 / Идентичность</p>
+        <div class="k-workflow-context">
+          <article class="k-workflow-panel k-frame">
+            <h2>KS-2610-0012</h2>
+            <p>KORSAC PLAY 1440 · MODEL</p>
+            <dl class="k-workflow-data">
+              <div>
+                <dt>Название системы</dt>
+                <dd>Снимок: KORSAC PLAY 1440</dd>
+              </div>
+              <div>
+                <dt>ProductionStatus</dt>
+                <dd>Готов к выдаче · READY</dd>
+              </div>
+              <div>
+                <dt>LifecycleState</dt>
+                <dd>ACTIVE</dd>
+              </div>
+              <div>
+                <dt>PublicPassportState</dt>
+                <dd>ACTIVE · подготовлен и активирован</dd>
+              </div>
+              <div>
+                <dt>PUBLIC_ID · только макет</dt>
+                <dd><code>8f9ab671c60345244f08ed310f912b8d</code></dd>
+              </div>
+            </dl>
+            <a href="passport.html">Открыть публичный паспорт →</a>
+          </article>
+          <article class="k-workflow-panel">
+            <h2>Снимок при передаче</h2>
+            <dl class="k-workflow-data">
+              <div>
+                <dt>TRANSFER_DATE</dt>
+                <dd>07.10.2026 · зафиксирована один раз</dd>
+              </div>
+              <div>
+                <dt>WARRANTY_END</dt>
+                <dd>07.10.2029 · сохранённый снимок</dd>
+              </div>
+              <div>
+                <dt>Срок в снимке</dt>
+                <dd>24 + 12 = 36 месяцев</dd>
+              </div>
+            </dl>
+            <label class="k-check"
+              ><input
+                type="checkbox"
+                checked
+                disabled
+                aria-describedby="warranty-locked"
+              /><span>Расширенная гарантия +1 год</span></label
+            >
+            <p id="warranty-locked" class="k-small k-muted">
+              После активации обычное редактирование закрыто. Изменение настроек
+              не пересчитывает этот снимок; исправление — отдельный аудит.
+            </p>
+            <button
+              type="button"
+              class="k-button k-button--secondary"
+              data-workflow-action="regenerateQr"
+            >
+              Сформировать QR заново · макет
+            </button>
+            <p class="k-small k-muted">
+              PUBLIC_ID сохраняется. QR не рисуется без утверждённого production
+              host.
+            </p>
+            <p
+              data-action-feedback
+              role="status"
+              aria-live="polite"
+              class="k-small"
+            ></p>
+          </article>
+        </div>
+      </section>
+      <section class="k-passport-section" aria-labelledby="order-systems-title">
+        <p class="k-eyebrow">02 / Связь с заказом</p>
+        <h2 id="order-systems-title">Один заказ — отдельные компьютеры</h2>
+        <p class="k-muted">
+          Заказ DEMO-ORDER-A · строка PLAY 1440 × 2 и обычный монитор × 1. Это
+          не реальный заказ.
+        </p>
+        <ol class="k-workflow-order-units">
+          <li>
+            <strong>KS-2610-0012</strong
+            ><span>PLAY 1440 · единица 1 · готов к выдаче · паспорт ACTIVE</span
+            ><a href="#system-context">Открыть System</a>
+          </li>
+          <li>
+            <strong>KS-2610-0013</strong
+            ><span
+              >PLAY 1440 · единица 2 · готов к выдаче · паспорт NOT
+              PREPARED</span
+            ><a href="#manual-actions">Открыть System / подготовку</a>
+          </li>
+          <li>
+            <strong>MSI MAG 274QF X24</strong
+            ><span>Обычный product · System не создаётся</span>
+          </li>
+        </ol>
+        <p class="k-small k-muted">
+          Связь: ORDER_ID + ORDER_BASKET_ID + ORDER_UNIT_INDEX. CUSTOM
+          использует ту же единицу учёта без обязательного MODEL_REFERENCE.
+        </p>
+      </section>
+      <section id="manual-actions" class="k-passport-section">
+        <div class="k-passport-section-heading">
+          <p class="k-eyebrow">03 / Automation recovery</p>
+          <h2>Условия соблюдены — операцию можно повторить</h2>
+          <p class="k-muted">
+            Названия статусов справочные. Backend сопоставляет стабильные CODE с
+            настроенными условиями и отдаёт доступность действий. Кнопки макета
+            ничего не выполняют.
+          </p>
+        </div>
+        <div class="k-workflow-actions">
+          <article class="k-workflow-action">
+            <p class="k-eyebrow">01</p>
+            <h3>Создать System</h3>
+            <p class="k-workflow-status">Выполнено автоматически · 2 из 2</p>
+            <p class="k-small k-muted" id="action-01">
+              Заказ-макет: PLAY 1440 × 2, монитор × 1. Оба компьютера имеют
+              System; монитор не создаёт System. Повторное создание недоступно.
+            </p>
+            <button
+              type="button"
+              class="k-button k-button--secondary"
+              aria-describedby="action-01"
+              disabled
+            >
+              Создать System
+            </button>
+            <p
+              data-action-feedback
+              role="status"
+              aria-live="polite"
+              class="k-small"
+            ></p>
+          </article>
+          <article class="k-workflow-action">
+            <p class="k-eyebrow">02</p>
+            <h3>Подготовить паспорт</h3>
+            <p class="k-workflow-status">Ожидалось, но не выполнено</p>
+            <p class="k-small k-muted" id="action-02">
+              KS-2610-0013: статус соответствует READY_FOR_DELIVERY,
+              обязательные слоты подтверждены, PUBLIC_ID отсутствует. Повторный
+              вызов использует существующий PUBLIC_ID.
+            </p>
+            <button
+              type="button"
+              class="k-button k-button--secondary"
+              aria-describedby="action-02"
+              data-workflow-action="preparePassport"
+            >
+              Подготовить паспорт
+            </button>
+            <p
+              data-action-feedback
+              role="status"
+              aria-live="polite"
+              class="k-small"
+            ></p>
+          </article>
+          <article class="k-workflow-action">
+            <p class="k-eyebrow">03</p>
+            <h3>Активировать паспорт</h3>
+            <p class="k-workflow-status">Ожидает передачи</p>
+            <p class="k-small k-muted" id="action-03">
+              KS-2610-0013: физическая передача не подтверждена. Подготовка сама
+              по себе не активирует паспорт.
+            </p>
+            <button
+              type="button"
+              class="k-button k-button--secondary"
+              aria-describedby="action-03"
+              disabled
+            >
+              Активировать паспорт
+            </button>
+            <p
+              data-action-feedback
+              role="status"
+              aria-live="polite"
+              class="k-small"
+            ></p>
+          </article>
+        </div>
+        <details class="k-workflow-form-panel">
+          <summary>Другие состояния: создание / передача / подготовка</summary>
+          <div class="k-workflow-actions">
+            <article class="k-workflow-action">
+              <p class="k-eyebrow">04</p>
+              <h3>До согласования</h3>
+              <p class="k-workflow-status">Создание недоступно</p>
+              <p class="k-small k-muted" id="action-04">
+                Заказ ещё не достиг разрешённого условия; backend учитывает
+                историю, а не только текущую строку статуса.
+              </p>
+              <button
+                type="button"
+                class="k-button k-button--secondary"
+                aria-describedby="action-04"
+                disabled
+              >
+                Создать System
+              </button>
+              <p
+                data-action-feedback
+                role="status"
+                aria-live="polite"
+                class="k-small"
+              ></p>
+            </article>
+            <article class="k-workflow-action">
+              <p class="k-eyebrow">05</p>
+              <h3>Пропущено создание единицы</h3>
+              <p class="k-workflow-status">2 из 3 компьютеров имеют System</p>
+              <p class="k-small k-muted" id="action-05">
+                Отдельный макет заказа с количеством 3: условие создания ранее
+                достигнуто. Можно создать только недостающую единицу, не
+                дубликаты существующих.
+              </p>
+              <button
+                type="button"
+                class="k-button k-button--secondary"
+                aria-describedby="action-05"
+                data-workflow-action="createSystem"
+              >
+                Создать недостающий System
+              </button>
+              <p
+                data-action-feedback
+                role="status"
+                aria-live="polite"
+                class="k-small"
+              ></p>
+            </article>
+            <article class="k-workflow-action">
+              <p class="k-eyebrow">06</p>
+              <h3>Пропущена активация</h3>
+              <p class="k-workflow-status">PREPARED · передача подтверждена</p>
+              <p class="k-small k-muted" id="action-06">
+                Отдельный сценарий восстановления: публичный идентификатор
+                существует, первая положительная передача уже зафиксирована.
+                Дату и гарантию повторно не сдвигать.
+              </p>
+              <button
+                type="button"
+                class="k-button k-button--secondary"
+                aria-describedby="action-06"
+                data-workflow-action="activatePassport"
+              >
+                Активировать паспорт
+              </button>
+              <p
+                data-action-feedback
+                role="status"
+                aria-live="polite"
+                class="k-small"
+              ></p>
+            </article>
+            <article class="k-workflow-action">
+              <p class="k-eyebrow">07</p>
+              <h3>Уже подготовлен</h3>
+              <p class="k-workflow-status">
+                PREPARED · публичный доступ ожидает передачи
+              </p>
+              <p class="k-small k-muted" id="action-07">
+                KS-2610-0014 · отдельный prepared-макет. PUBLIC_ID уже
+                существует. Повторно генерировать идентификатор нельзя; можно
+                пересоздать только представление QR.
+              </p>
+              <button
+                type="button"
+                class="k-button k-button--secondary"
+                aria-describedby="action-07"
+                disabled
+              >
+                Подготовить паспорт
+              </button>
+              <p
+                data-action-feedback
+                role="status"
+                aria-live="polite"
+                class="k-small"
+              ></p>
+            </article>
+          </div>
+          <p class="k-small k-muted">
+            Сценарии независимы от двух основных System выше. Переключение или
+            просмотр не меняет их состояния.
+          </p>
+        </details>
+        <details class="k-workflow-form-panel">
+          <summary>Расширенная гарантия до активации</summary>
+          <label class="k-check"
+            ><input type="checkbox" checked data-warranty-preview /><span
+              >Расширенная гарантия +1 год · макет PREPARED</span
+            ></label
+          >
+          <p class="k-small k-muted">
+            Это выбор до активации; дата окончания здесь не вычисляется. Backend
+            зафиксирует применённые месяцы и итоговый срок при первой передаче.
+          </p>
+        </details>
+      </section>
+      <section
+        class="k-passport-section"
+        aria-labelledby="workflow-settings-title"
+      >
+        <p class="k-eyebrow">Workflow configuration / review</p>
+        <h2 id="workflow-settings-title">Условия задаёт backend</h2>
+        <details class="k-workflow-form-panel">
+          <summary>SystemStatus и настройки · макет</summary>
+          <dl class="k-workflow-data">
+            <div>
+              <dt>WAREHOUSE</dt>
+              <dd>Передан кладовщику</dd>
+            </div>
+            <div>
+              <dt>SUPPLY</dt>
+              <dd>Передан в отдел снабжения</dd>
+            </div>
+            <div>
+              <dt>COMPONENT_SHORTAGE</dt>
+              <dd>Не хватает комплектующих</dd>
+            </div>
+            <div>
+              <dt>ASSEMBLY</dt>
+              <dd>Отправлен на сборку</dd>
+            </div>
+            <div>
+              <dt>READY</dt>
+              <dd>Готов к выдаче</dd>
+            </div>
+          </dl>
+          <p class="k-small k-muted">
+            NAME можно переименовать; CODE остаётся стабильным. Настройки:
+            начальный статус System; условие READY_FOR_DELIVERY; статусы
+            создания заказа (по умолчанию «Согласован»); один или несколько
+            финальных положительных статусов передачи; обязательные слоты;
+            гарантия 24 + 12 месяцев. В браузере условия не вычисляются.
+          </p>
+        </details>
+      </section>
+      <section id="installed-components" class="k-passport-section">
+        <p class="k-eyebrow">04 / Actual installed components</p>
+        <h2>Подтверждённые компоненты · KS-2610-0012</h2>
+        <dl class="k-workflow-components">
+          <div data-system-component-id="demo-component-1">
+            <dt>Процессор</dt>
+            <dd>
+              AMD Ryzen 7 9700X<span class="k-workflow-serial"
+                >S/N: DEMO-SN-01 · синтетический</span
+              ><span class="k-small k-muted"
+                >CPU_1 / ACTIVE · установлен 02.10.2026</span
+              >
+            </dd>
+          </div>
+          <div data-system-component-id="demo-component-2">
+            <dt>Видеокарта</dt>
+            <dd>
+              GeForce RTX 5070 · 12 ГБ GDDR7<span class="k-workflow-serial"
+                >S/N: DEMO-SN-02 · синтетический</span
+              ><span class="k-small k-muted"
+                >GPU_1 / ACTIVE · установлен 02.10.2026</span
+              >
+            </dd>
+          </div>
+          <div data-system-component-id="demo-component-3">
+            <dt>Материнская плата</dt>
+            <dd>
+              B850 ATX · Wi-Fi · 2.5 GbE<span class="k-workflow-serial"
+                >S/N: DEMO-SN-03 · синтетический</span
+              ><span class="k-small k-muted"
+                >BOARD_1 / ACTIVE · установлен 02.10.2026</span
+              >
+            </dd>
+          </div>
+          <div data-system-component-id="demo-component-4">
+            <dt>Оперативная память</dt>
+            <dd>
+              32 ГБ DDR5-6000 CL30 · 2 × 16 ГБ<span class="k-workflow-serial"
+                >S/N: DEMO-SN-04 · синтетический</span
+              ><span class="k-small k-muted"
+                >RAM_1 / ACTIVE · установлен 02.10.2026</span
+              >
+            </dd>
+          </div>
+          <div data-system-component-id="demo-component-5">
+            <dt>SSD 1</dt>
+            <dd>
+              1 ТБ NVMe · PCIe 4.0 · TLC<span class="k-workflow-serial"
+                >S/N: DEMO-SN-05 · синтетический</span
+              ><span class="k-small k-muted"
+                >SSD_1 / ACTIVE · установлен 02.10.2026</span
+              >
+            </dd>
+          </div>
+          <div data-system-component-id="demo-component-6">
+            <dt>SSD 2</dt>
+            <dd>
+              2 ТБ NVMe · PCIe 4.0 · TLC<span class="k-workflow-serial"
+                >S/N: DEMO-SN-06 · синтетический</span
+              ><span class="k-small k-muted"
+                >SSD_2 / ACTIVE · установлен 02.10.2026</span
+              >
+            </dd>
+          </div>
+          <div data-system-component-id="demo-component-7">
+            <dt>Блок питания</dt>
+            <dd>
+              750 Вт · Gold · ATX 3.1<span class="k-workflow-serial"
+                >S/N: DEMO-SN-07 · синтетический</span
+              ><span class="k-small k-muted"
+                >PSU_1 / ACTIVE · установлен 02.10.2026</span
+              >
+            </dd>
+          </div>
+          <div data-system-component-id="demo-component-8">
+            <dt>Охлаждение</dt>
+            <dd>
+              Башенное воздушное · 120/140 мм<span class="k-workflow-serial"
+                >S/N: DEMO-SN-08 · синтетический</span
+              ><span class="k-small k-muted"
+                >COOLING_1 / ACTIVE · установлен 02.10.2026</span
+              >
+            </dd>
+          </div>
+          <div data-system-component-id="demo-component-9">
+            <dt>Корпус</dt>
+            <dd>
+              Lian Li LANCOOL 217<span class="k-workflow-serial"
+                >S/N: DEMO-SN-09 · синтетический</span
+              ><span class="k-small k-muted"
+                >CASE_1 / ACTIVE · установлен 02.10.2026</span
+              >
+            </dd>
+          </div>
+        </dl>
+        <p class="k-small k-muted">
+          Публичный паспорт получает только текущие ACTIVE-названия. S/N,
+          внутренние записи и снятые компоненты остаются здесь. Комплектующие
+          подтверждает сотрудник, не текущий Product.
+        </p>
+        <details class="k-workflow-form-panel">
+          <summary>
+            Подтверждение перед READY_FOR_DELIVERY · пример CUSTOM
+          </summary>
+          <p>
+            Индивидуальная сборка · отдельный макет без каталожной модели.
+            Предзаполнение заказа не подтверждает физическую установку.
+          </p>
+          <ul>
+            <li>CPU — обязательный слот, подтверждён</li>
+            <li>Дискретный GPU — не применимо: интегрированная графика</li>
+            <li>SSD 1 — обязательный, подтверждён</li>
+            <li>SSD 2 — необязательный, не установлен</li>
+            <li>OTHER — дополнительные записи допускаются по контексту</li>
+          </ul>
+          <p class="k-small k-muted">
+            Нет глобального требования восьми компонентов. Обязательные,
+            необязательные и «не установлено / не применимо» слоты задаёт
+            модель, снимок заказа или определение CUSTOM.
+          </p>
+        </details>
+      </section>
+      <section id="service-forms" class="k-passport-section">
+        <p class="k-eyebrow">05 / Service workspace</p>
+        <h2>Обслуживание · KS-2610-0012</h2>
+        <p class="k-muted">
+          Формы привязаны к фактическим активным записям выше. Проверка
+          демонстрирует только ввод; публичная конфигурация и гарантия не
+          меняются.
+        </p>
+        <noscript
+          ><p class="k-passport-note">
+            Без JavaScript видны все пути и поля. Кнопки проверки не выполняют
+            операций и не отправляют данные.
+          </p></noscript
+        >
+        <details class="k-workflow-form-panel" open>
+          <summary>Чистка / обслуживание системы</summary>
+          <form method="dialog" data-workflow-form="maintenance">
+            <div class="k-field">
+              <label for="maintenance-date"
+                >Дата обслуживания
+                <span class="k-muted">· обязательно</span></label
+              ><input
+                id="maintenance-date"
+                type="date"
+                class="k-control"
+                value=""
+                required
+              />
+            </div>
+            <div class="k-field">
+              <label for="maintenance-comment"
+                >Комментарий <span class="k-muted">· необязательно</span></label
+              ><textarea id="maintenance-comment" class="k-control"></textarea>
+            </div>
+            <p
+              data-workflow-feedback
+              role="status"
+              aria-live="polite"
+              class="k-inquiry-feedback"
+            ></p>
+            <button
+              type="button"
+              class="k-button k-button--secondary"
+              data-workflow-check
+            >
+              Проверить форму · без сохранения
+            </button>
+          </form>
+        </details>
+        <details class="k-workflow-form-panel" open>
+          <summary>Апгрейд · REPLACE / ADD / REMOVE</summary>
+          <p class="k-small k-muted">
+            Отдельные формы операций. Изменения сохранятся одним сервисным
+            событием и транзакцией в будущем backend; макет ничего не меняет.
+          </p>
+          <details open>
+            <summary>Заменить · REPLACE</summary>
+            <form method="dialog" data-workflow-form="upgrade-replace">
+              <div class="k-field">
+                <label for="upgrade-date"
+                  >Дата апгрейда
+                  <span class="k-muted">· обязательно</span></label
+                ><input
+                  id="upgrade-date"
+                  type="date"
+                  class="k-control"
+                  value=""
+                  required
+                />
+              </div>
+              <fieldset class="k-workflow-pick">
+                <legend>Выберите установленные компоненты</legend>
+                <p class="k-small k-muted">
+                  Можно выбрать несколько записей. SSD 1 и SSD 2 — разные
+                  физические слоты; каждая запись выбирается один раз.
+                </p>
+                <div data-replacement-list>
+                  <label class="k-check"
+                    ><input
+                      type="checkbox"
+                      value="demo-component-1"
+                      data-replacement-choice="upgrade-cpu_1"
+                    /><span>Процессор — AMD Ryzen 7 9700X</span></label
+                  ><label class="k-check"
+                    ><input
+                      type="checkbox"
+                      value="demo-component-2"
+                      data-replacement-choice="upgrade-gpu_1"
+                      checked
+                    /><span
+                      >Видеокарта — GeForce RTX 5070 · 12 ГБ GDDR7</span
+                    ></label
+                  ><label class="k-check"
+                    ><input
+                      type="checkbox"
+                      value="demo-component-3"
+                      data-replacement-choice="upgrade-board_1"
+                    /><span
+                      >Материнская плата — B850 ATX · Wi-Fi · 2.5 GbE</span
+                    ></label
+                  ><label class="k-check"
+                    ><input
+                      type="checkbox"
+                      value="demo-component-4"
+                      data-replacement-choice="upgrade-ram_1"
+                    /><span
+                      >Оперативная память — 32 ГБ DDR5-6000 CL30 · 2 × 16
+                      ГБ</span
+                    ></label
+                  ><label class="k-check"
+                    ><input
+                      type="checkbox"
+                      value="demo-component-5"
+                      data-replacement-choice="upgrade-ssd_1"
+                    /><span>SSD 1 — 1 ТБ NVMe · PCIe 4.0 · TLC</span></label
+                  ><label class="k-check"
+                    ><input
+                      type="checkbox"
+                      value="demo-component-6"
+                      data-replacement-choice="upgrade-ssd_2"
+                    /><span>SSD 2 — 2 ТБ NVMe · PCIe 4.0 · TLC</span></label
+                  ><label class="k-check"
+                    ><input
+                      type="checkbox"
+                      value="demo-component-7"
+                      data-replacement-choice="upgrade-psu_1"
+                    /><span>Блок питания — 750 Вт · Gold · ATX 3.1</span></label
+                  ><label class="k-check"
+                    ><input
+                      type="checkbox"
+                      value="demo-component-8"
+                      data-replacement-choice="upgrade-cooling_1"
+                    /><span
+                      >Охлаждение — Башенное воздушное · 120/140 мм</span
+                    ></label
+                  ><label class="k-check"
+                    ><input
+                      type="checkbox"
+                      value="demo-component-9"
+                      data-replacement-choice="upgrade-case_1"
+                    /><span>Корпус — Lian Li LANCOOL 217</span></label
+                  >
+                </div>
+              </fieldset>
+              <div class="k-workflow-replacements">
+                <fieldset id="upgrade-cpu_1" data-replacement-fields>
+                  <legend>Процессор · AMD Ryzen 7 9700X</legend>
+                  <div class="k-field">
+                    <label for="upgrade-cpu_1-name"
+                      >Новое название
+                      <span class="k-muted">· обязательно</span></label
+                    ><input
+                      id="upgrade-cpu_1-name"
+                      type="text"
+                      class="k-control"
+                      value=""
+                      required
+                    />
+                  </div>
+                  <div class="k-field">
+                    <label for="upgrade-cpu_1-serial"
+                      >Новый S/N
+                      <span class="k-muted">· обязательно</span></label
+                    ><input
+                      id="upgrade-cpu_1-serial"
+                      type="text"
+                      class="k-control"
+                      value=""
+                      required
+                    />
+                  </div>
+                </fieldset>
+                <fieldset id="upgrade-gpu_1" data-replacement-fields>
+                  <legend>Видеокарта · GeForce RTX 5070 · 12 ГБ GDDR7</legend>
+                  <div class="k-field">
+                    <label for="upgrade-gpu_1-name"
+                      >Новое название
+                      <span class="k-muted">· обязательно</span></label
+                    ><input
+                      id="upgrade-gpu_1-name"
+                      type="text"
+                      class="k-control"
+                      value=""
+                      required
+                    />
+                  </div>
+                  <div class="k-field">
+                    <label for="upgrade-gpu_1-serial"
+                      >Новый S/N
+                      <span class="k-muted">· обязательно</span></label
+                    ><input
+                      id="upgrade-gpu_1-serial"
+                      type="text"
+                      class="k-control"
+                      value=""
+                      required
+                    />
+                  </div>
+                </fieldset>
+                <fieldset id="upgrade-board_1" data-replacement-fields>
+                  <legend>
+                    Материнская плата · B850 ATX · Wi-Fi · 2.5 GbE
+                  </legend>
+                  <div class="k-field">
+                    <label for="upgrade-board_1-name"
+                      >Новое название
+                      <span class="k-muted">· обязательно</span></label
+                    ><input
+                      id="upgrade-board_1-name"
+                      type="text"
+                      class="k-control"
+                      value=""
+                      required
+                    />
+                  </div>
+                  <div class="k-field">
+                    <label for="upgrade-board_1-serial"
+                      >Новый S/N
+                      <span class="k-muted">· обязательно</span></label
+                    ><input
+                      id="upgrade-board_1-serial"
+                      type="text"
+                      class="k-control"
+                      value=""
+                      required
+                    />
+                  </div>
+                </fieldset>
+                <fieldset id="upgrade-ram_1" data-replacement-fields>
+                  <legend>
+                    Оперативная память · 32 ГБ DDR5-6000 CL30 · 2 × 16 ГБ
+                  </legend>
+                  <div class="k-field">
+                    <label for="upgrade-ram_1-name"
+                      >Новое название
+                      <span class="k-muted">· обязательно</span></label
+                    ><input
+                      id="upgrade-ram_1-name"
+                      type="text"
+                      class="k-control"
+                      value=""
+                      required
+                    />
+                  </div>
+                  <div class="k-field">
+                    <label for="upgrade-ram_1-serial"
+                      >Новый S/N
+                      <span class="k-muted">· обязательно</span></label
+                    ><input
+                      id="upgrade-ram_1-serial"
+                      type="text"
+                      class="k-control"
+                      value=""
+                      required
+                    />
+                  </div>
+                </fieldset>
+                <fieldset id="upgrade-ssd_1" data-replacement-fields>
+                  <legend>SSD 1 · 1 ТБ NVMe · PCIe 4.0 · TLC</legend>
+                  <div class="k-field">
+                    <label for="upgrade-ssd_1-name"
+                      >Новое название
+                      <span class="k-muted">· обязательно</span></label
+                    ><input
+                      id="upgrade-ssd_1-name"
+                      type="text"
+                      class="k-control"
+                      value=""
+                      required
+                    />
+                  </div>
+                  <div class="k-field">
+                    <label for="upgrade-ssd_1-serial"
+                      >Новый S/N
+                      <span class="k-muted">· обязательно</span></label
+                    ><input
+                      id="upgrade-ssd_1-serial"
+                      type="text"
+                      class="k-control"
+                      value=""
+                      required
+                    />
+                  </div>
+                </fieldset>
+                <fieldset id="upgrade-ssd_2" data-replacement-fields>
+                  <legend>SSD 2 · 2 ТБ NVMe · PCIe 4.0 · TLC</legend>
+                  <div class="k-field">
+                    <label for="upgrade-ssd_2-name"
+                      >Новое название
+                      <span class="k-muted">· обязательно</span></label
+                    ><input
+                      id="upgrade-ssd_2-name"
+                      type="text"
+                      class="k-control"
+                      value=""
+                      required
+                    />
+                  </div>
+                  <div class="k-field">
+                    <label for="upgrade-ssd_2-serial"
+                      >Новый S/N
+                      <span class="k-muted">· обязательно</span></label
+                    ><input
+                      id="upgrade-ssd_2-serial"
+                      type="text"
+                      class="k-control"
+                      value=""
+                      required
+                    />
+                  </div>
+                </fieldset>
+                <fieldset id="upgrade-psu_1" data-replacement-fields>
+                  <legend>Блок питания · 750 Вт · Gold · ATX 3.1</legend>
+                  <div class="k-field">
+                    <label for="upgrade-psu_1-name"
+                      >Новое название
+                      <span class="k-muted">· обязательно</span></label
+                    ><input
+                      id="upgrade-psu_1-name"
+                      type="text"
+                      class="k-control"
+                      value=""
+                      required
+                    />
+                  </div>
+                  <div class="k-field">
+                    <label for="upgrade-psu_1-serial"
+                      >Новый S/N
+                      <span class="k-muted">· обязательно</span></label
+                    ><input
+                      id="upgrade-psu_1-serial"
+                      type="text"
+                      class="k-control"
+                      value=""
+                      required
+                    />
+                  </div>
+                </fieldset>
+                <fieldset id="upgrade-cooling_1" data-replacement-fields>
+                  <legend>Охлаждение · Башенное воздушное · 120/140 мм</legend>
+                  <div class="k-field">
+                    <label for="upgrade-cooling_1-name"
+                      >Новое название
+                      <span class="k-muted">· обязательно</span></label
+                    ><input
+                      id="upgrade-cooling_1-name"
+                      type="text"
+                      class="k-control"
+                      value=""
+                      required
+                    />
+                  </div>
+                  <div class="k-field">
+                    <label for="upgrade-cooling_1-serial"
+                      >Новый S/N
+                      <span class="k-muted">· обязательно</span></label
+                    ><input
+                      id="upgrade-cooling_1-serial"
+                      type="text"
+                      class="k-control"
+                      value=""
+                      required
+                    />
+                  </div>
+                </fieldset>
+                <fieldset id="upgrade-case_1" data-replacement-fields>
+                  <legend>Корпус · Lian Li LANCOOL 217</legend>
+                  <div class="k-field">
+                    <label for="upgrade-case_1-name"
+                      >Новое название
+                      <span class="k-muted">· обязательно</span></label
+                    ><input
+                      id="upgrade-case_1-name"
+                      type="text"
+                      class="k-control"
+                      value=""
+                      required
+                    />
+                  </div>
+                  <div class="k-field">
+                    <label for="upgrade-case_1-serial"
+                      >Новый S/N
+                      <span class="k-muted">· обязательно</span></label
+                    ><input
+                      id="upgrade-case_1-serial"
+                      type="text"
+                      class="k-control"
+                      value=""
+                      required
+                    />
+                  </div>
+                </fieldset>
+              </div>
+              <div class="k-field">
+                <label for="upgrade-comment"
+                  >Комментарий
+                  <span class="k-muted">· необязательно</span></label
+                ><textarea id="upgrade-comment" class="k-control"></textarea>
+              </div>
+              <p
+                data-workflow-feedback
+                role="status"
+                aria-live="polite"
+                class="k-inquiry-feedback"
+              ></p>
+              <button
+                type="button"
+                class="k-button k-button--secondary"
+                data-workflow-check
+              >
+                Проверить форму · без сохранения
+              </button>
+            </form>
+          </details>
+          <details>
+            <summary>Добавить компонент · ADD</summary>
+            <form method="dialog" data-workflow-form="upgrade-add">
+              <div class="k-field">
+                <label for="add-date"
+                  >Дата апгрейда
+                  <span class="k-muted">· обязательно</span></label
+                ><input
+                  id="add-date"
+                  type="date"
+                  class="k-control"
+                  value=""
+                  required
+                />
+              </div>
+              <div class="k-field">
+                <label for="add-type">Тип компонента · обязательно</label
+                ><select id="add-type" class="k-control" required>
+                  <option value="">Выберите тип</option>
+                  <option value="SSD">SSD</option>
+                  <option value="RAM">RAM</option>
+                  <option value="OTHER">Другое</option>
+                </select>
+              </div>
+              <div class="k-field">
+                <label for="add-slot"
+                  >Новый слот / подпись
+                  <span class="k-muted">· обязательно</span></label
+                ><input
+                  id="add-slot"
+                  type="text"
+                  class="k-control"
+                  value=""
+                  required
+                />
+              </div>
+              <div class="k-field">
+                <label for="add-name"
+                  >Новое название
+                  <span class="k-muted">· обязательно</span></label
+                ><input
+                  id="add-name"
+                  type="text"
+                  class="k-control"
+                  value=""
+                  required
+                />
+              </div>
+              <div class="k-field">
+                <label for="add-serial"
+                  >Новый S/N <span class="k-muted">· обязательно</span></label
+                ><input
+                  id="add-serial"
+                  type="text"
+                  class="k-control"
+                  value=""
+                  required
+                />
+              </div>
+              <p class="k-small k-muted">
+                Например, добавить SSD 3, сохранив SSD 1 и SSD 2. Свободный
+                слот, совместимость и обязательность S/N проверит backend по
+                контексту системы.
+              </p>
+              <div class="k-field">
+                <label for="add-comment"
+                  >Комментарий
+                  <span class="k-muted">· необязательно</span></label
+                ><textarea id="add-comment" class="k-control"></textarea>
+              </div>
+              <p
+                data-workflow-feedback
+                role="status"
+                aria-live="polite"
+                class="k-inquiry-feedback"
+              ></p>
+              <button
+                type="button"
+                class="k-button k-button--secondary"
+                data-workflow-check
+              >
+                Проверить форму · без сохранения
+              </button>
+            </form>
+          </details>
+          <details>
+            <summary>Удалить компонент · REMOVE</summary>
+            <form method="dialog" data-workflow-form="upgrade-remove">
+              <div class="k-field">
+                <label for="remove-date"
+                  >Дата апгрейда
+                  <span class="k-muted">· обязательно</span></label
+                ><input
+                  id="remove-date"
+                  type="date"
+                  class="k-control"
+                  value=""
+                  required
+                />
+              </div>
+              <div class="k-field">
+                <label for="remove-component"
+                  >Текущая установленная запись · обязательно</label
+                ><select id="remove-component" class="k-control" required>
+                  <option value="">Выберите компонент</option>
+                  <option value="demo-component-1">
+                    Процессор — AMD Ryzen 7 9700X
+                  </option>
+                  <option value="demo-component-2">
+                    Видеокарта — GeForce RTX 5070 · 12 ГБ GDDR7
+                  </option>
+                  <option value="demo-component-3">
+                    Материнская плата — B850 ATX · Wi-Fi · 2.5 GbE
+                  </option>
+                  <option value="demo-component-4">
+                    Оперативная память — 32 ГБ DDR5-6000 CL30 · 2 × 16 ГБ
+                  </option>
+                  <option value="demo-component-5">
+                    SSD 1 — 1 ТБ NVMe · PCIe 4.0 · TLC
+                  </option>
+                  <option value="demo-component-6">
+                    SSD 2 — 2 ТБ NVMe · PCIe 4.0 · TLC
+                  </option>
+                  <option value="demo-component-7">
+                    Блок питания — 750 Вт · Gold · ATX 3.1
+                  </option>
+                  <option value="demo-component-8">
+                    Охлаждение — Башенное воздушное · 120/140 мм
+                  </option>
+                  <option value="demo-component-9">
+                    Корпус — Lian Li LANCOOL 217
+                  </option>
+                </select>
+              </div>
+              <p class="k-small k-muted">
+                Удаление закрывает запись с датой снятия. История сохраняется;
+                возможность удаления обязательного слота подтверждает backend.
+              </p>
+              <div class="k-field">
+                <label for="remove-comment"
+                  >Комментарий
+                  <span class="k-muted">· необязательно</span></label
+                ><textarea id="remove-comment" class="k-control"></textarea>
+              </div>
+              <p
+                data-workflow-feedback
+                role="status"
+                aria-live="polite"
+                class="k-inquiry-feedback"
+              ></p>
+              <button
+                type="button"
+                class="k-button k-button--secondary"
+                data-workflow-check
+              >
+                Проверить форму · без сохранения
+              </button>
+            </form>
+          </details>
+        </details>
+        <details class="k-workflow-form-panel">
+          <summary>Ремонт · два режима</summary>
+          <details>
+            <summary>С заменой комплектующих</summary>
+            <form method="dialog" data-workflow-form="repair-replace">
+              <div class="k-field">
+                <label for="repair-date"
+                  >Дата ремонта
+                  <span class="k-muted">· обязательно</span></label
+                ><input
+                  id="repair-date"
+                  type="date"
+                  class="k-control"
+                  value=""
+                  required
+                />
+              </div>
+              <fieldset class="k-workflow-pick">
+                <legend>Выберите установленные компоненты</legend>
+                <p class="k-small k-muted">
+                  Можно выбрать несколько записей. SSD 1 и SSD 2 — разные
+                  физические слоты; каждая запись выбирается один раз.
+                </p>
+                <div data-replacement-list>
+                  <label class="k-check"
+                    ><input
+                      type="checkbox"
+                      value="demo-component-1"
+                      data-replacement-choice="repair-cpu_1"
+                    /><span>Процессор — AMD Ryzen 7 9700X</span></label
+                  ><label class="k-check"
+                    ><input
+                      type="checkbox"
+                      value="demo-component-2"
+                      data-replacement-choice="repair-gpu_1"
+                      checked
+                    /><span
+                      >Видеокарта — GeForce RTX 5070 · 12 ГБ GDDR7</span
+                    ></label
+                  ><label class="k-check"
+                    ><input
+                      type="checkbox"
+                      value="demo-component-3"
+                      data-replacement-choice="repair-board_1"
+                    /><span
+                      >Материнская плата — B850 ATX · Wi-Fi · 2.5 GbE</span
+                    ></label
+                  ><label class="k-check"
+                    ><input
+                      type="checkbox"
+                      value="demo-component-4"
+                      data-replacement-choice="repair-ram_1"
+                    /><span
+                      >Оперативная память — 32 ГБ DDR5-6000 CL30 · 2 × 16
+                      ГБ</span
+                    ></label
+                  ><label class="k-check"
+                    ><input
+                      type="checkbox"
+                      value="demo-component-5"
+                      data-replacement-choice="repair-ssd_1"
+                    /><span>SSD 1 — 1 ТБ NVMe · PCIe 4.0 · TLC</span></label
+                  ><label class="k-check"
+                    ><input
+                      type="checkbox"
+                      value="demo-component-6"
+                      data-replacement-choice="repair-ssd_2"
+                    /><span>SSD 2 — 2 ТБ NVMe · PCIe 4.0 · TLC</span></label
+                  ><label class="k-check"
+                    ><input
+                      type="checkbox"
+                      value="demo-component-7"
+                      data-replacement-choice="repair-psu_1"
+                    /><span>Блок питания — 750 Вт · Gold · ATX 3.1</span></label
+                  ><label class="k-check"
+                    ><input
+                      type="checkbox"
+                      value="demo-component-8"
+                      data-replacement-choice="repair-cooling_1"
+                    /><span
+                      >Охлаждение — Башенное воздушное · 120/140 мм</span
+                    ></label
+                  ><label class="k-check"
+                    ><input
+                      type="checkbox"
+                      value="demo-component-9"
+                      data-replacement-choice="repair-case_1"
+                    /><span>Корпус — Lian Li LANCOOL 217</span></label
+                  >
+                </div>
+              </fieldset>
+              <div class="k-workflow-replacements">
+                <fieldset id="repair-cpu_1" data-replacement-fields>
+                  <legend>Процессор · AMD Ryzen 7 9700X</legend>
+                  <div class="k-field">
+                    <label for="repair-cpu_1-name"
+                      >Новое название
+                      <span class="k-muted">· обязательно</span></label
+                    ><input
+                      id="repair-cpu_1-name"
+                      type="text"
+                      class="k-control"
+                      value=""
+                      required
+                    />
+                  </div>
+                  <div class="k-field">
+                    <label for="repair-cpu_1-serial"
+                      >Новый S/N
+                      <span class="k-muted">· обязательно</span></label
+                    ><input
+                      id="repair-cpu_1-serial"
+                      type="text"
+                      class="k-control"
+                      value=""
+                      required
+                    />
+                  </div>
+                </fieldset>
+                <fieldset id="repair-gpu_1" data-replacement-fields>
+                  <legend>Видеокарта · GeForce RTX 5070 · 12 ГБ GDDR7</legend>
+                  <div class="k-field">
+                    <label for="repair-gpu_1-name"
+                      >Новое название
+                      <span class="k-muted">· обязательно</span></label
+                    ><input
+                      id="repair-gpu_1-name"
+                      type="text"
+                      class="k-control"
+                      value=""
+                      required
+                    />
+                  </div>
+                  <div class="k-field">
+                    <label for="repair-gpu_1-serial"
+                      >Новый S/N
+                      <span class="k-muted">· обязательно</span></label
+                    ><input
+                      id="repair-gpu_1-serial"
+                      type="text"
+                      class="k-control"
+                      value=""
+                      required
+                    />
+                  </div>
+                </fieldset>
+                <fieldset id="repair-board_1" data-replacement-fields>
+                  <legend>
+                    Материнская плата · B850 ATX · Wi-Fi · 2.5 GbE
+                  </legend>
+                  <div class="k-field">
+                    <label for="repair-board_1-name"
+                      >Новое название
+                      <span class="k-muted">· обязательно</span></label
+                    ><input
+                      id="repair-board_1-name"
+                      type="text"
+                      class="k-control"
+                      value=""
+                      required
+                    />
+                  </div>
+                  <div class="k-field">
+                    <label for="repair-board_1-serial"
+                      >Новый S/N
+                      <span class="k-muted">· обязательно</span></label
+                    ><input
+                      id="repair-board_1-serial"
+                      type="text"
+                      class="k-control"
+                      value=""
+                      required
+                    />
+                  </div>
+                </fieldset>
+                <fieldset id="repair-ram_1" data-replacement-fields>
+                  <legend>
+                    Оперативная память · 32 ГБ DDR5-6000 CL30 · 2 × 16 ГБ
+                  </legend>
+                  <div class="k-field">
+                    <label for="repair-ram_1-name"
+                      >Новое название
+                      <span class="k-muted">· обязательно</span></label
+                    ><input
+                      id="repair-ram_1-name"
+                      type="text"
+                      class="k-control"
+                      value=""
+                      required
+                    />
+                  </div>
+                  <div class="k-field">
+                    <label for="repair-ram_1-serial"
+                      >Новый S/N
+                      <span class="k-muted">· обязательно</span></label
+                    ><input
+                      id="repair-ram_1-serial"
+                      type="text"
+                      class="k-control"
+                      value=""
+                      required
+                    />
+                  </div>
+                </fieldset>
+                <fieldset id="repair-ssd_1" data-replacement-fields>
+                  <legend>SSD 1 · 1 ТБ NVMe · PCIe 4.0 · TLC</legend>
+                  <div class="k-field">
+                    <label for="repair-ssd_1-name"
+                      >Новое название
+                      <span class="k-muted">· обязательно</span></label
+                    ><input
+                      id="repair-ssd_1-name"
+                      type="text"
+                      class="k-control"
+                      value=""
+                      required
+                    />
+                  </div>
+                  <div class="k-field">
+                    <label for="repair-ssd_1-serial"
+                      >Новый S/N
+                      <span class="k-muted">· обязательно</span></label
+                    ><input
+                      id="repair-ssd_1-serial"
+                      type="text"
+                      class="k-control"
+                      value=""
+                      required
+                    />
+                  </div>
+                </fieldset>
+                <fieldset id="repair-ssd_2" data-replacement-fields>
+                  <legend>SSD 2 · 2 ТБ NVMe · PCIe 4.0 · TLC</legend>
+                  <div class="k-field">
+                    <label for="repair-ssd_2-name"
+                      >Новое название
+                      <span class="k-muted">· обязательно</span></label
+                    ><input
+                      id="repair-ssd_2-name"
+                      type="text"
+                      class="k-control"
+                      value=""
+                      required
+                    />
+                  </div>
+                  <div class="k-field">
+                    <label for="repair-ssd_2-serial"
+                      >Новый S/N
+                      <span class="k-muted">· обязательно</span></label
+                    ><input
+                      id="repair-ssd_2-serial"
+                      type="text"
+                      class="k-control"
+                      value=""
+                      required
+                    />
+                  </div>
+                </fieldset>
+                <fieldset id="repair-psu_1" data-replacement-fields>
+                  <legend>Блок питания · 750 Вт · Gold · ATX 3.1</legend>
+                  <div class="k-field">
+                    <label for="repair-psu_1-name"
+                      >Новое название
+                      <span class="k-muted">· обязательно</span></label
+                    ><input
+                      id="repair-psu_1-name"
+                      type="text"
+                      class="k-control"
+                      value=""
+                      required
+                    />
+                  </div>
+                  <div class="k-field">
+                    <label for="repair-psu_1-serial"
+                      >Новый S/N
+                      <span class="k-muted">· обязательно</span></label
+                    ><input
+                      id="repair-psu_1-serial"
+                      type="text"
+                      class="k-control"
+                      value=""
+                      required
+                    />
+                  </div>
+                </fieldset>
+                <fieldset id="repair-cooling_1" data-replacement-fields>
+                  <legend>Охлаждение · Башенное воздушное · 120/140 мм</legend>
+                  <div class="k-field">
+                    <label for="repair-cooling_1-name"
+                      >Новое название
+                      <span class="k-muted">· обязательно</span></label
+                    ><input
+                      id="repair-cooling_1-name"
+                      type="text"
+                      class="k-control"
+                      value=""
+                      required
+                    />
+                  </div>
+                  <div class="k-field">
+                    <label for="repair-cooling_1-serial"
+                      >Новый S/N
+                      <span class="k-muted">· обязательно</span></label
+                    ><input
+                      id="repair-cooling_1-serial"
+                      type="text"
+                      class="k-control"
+                      value=""
+                      required
+                    />
+                  </div>
+                </fieldset>
+                <fieldset id="repair-case_1" data-replacement-fields>
+                  <legend>Корпус · Lian Li LANCOOL 217</legend>
+                  <div class="k-field">
+                    <label for="repair-case_1-name"
+                      >Новое название
+                      <span class="k-muted">· обязательно</span></label
+                    ><input
+                      id="repair-case_1-name"
+                      type="text"
+                      class="k-control"
+                      value=""
+                      required
+                    />
+                  </div>
+                  <div class="k-field">
+                    <label for="repair-case_1-serial"
+                      >Новый S/N
+                      <span class="k-muted">· обязательно</span></label
+                    ><input
+                      id="repair-case_1-serial"
+                      type="text"
+                      class="k-control"
+                      value=""
+                      required
+                    />
+                  </div>
+                </fieldset>
+              </div>
+              <div class="k-field">
+                <label for="repair-comment"
+                  >Комментарий
+                  <span class="k-muted">· необязательно</span></label
+                ><textarea id="repair-comment" class="k-control"></textarea>
+              </div>
+              <p class="k-small k-muted">
+                Используется тот же ComponentChange, что при апгрейде. Окончание
+                гарантии сохраняется.
+              </p>
+              <p
+                data-workflow-feedback
+                role="status"
+                aria-live="polite"
+                class="k-inquiry-feedback"
+              ></p>
+              <button
+                type="button"
+                class="k-button k-button--secondary"
+                data-workflow-check
+              >
+                Проверить форму · без сохранения
+              </button>
+            </form>
+          </details>
+          <details>
+            <summary>Без замены комплектующих</summary>
+            <form method="dialog" data-workflow-form="repair-only">
+              <div class="k-field">
+                <label for="repair-only-date"
+                  >Дата ремонта
+                  <span class="k-muted">· обязательно</span></label
+                ><input
+                  id="repair-only-date"
+                  type="date"
+                  class="k-control"
+                  value=""
+                  required
+                />
+              </div>
+              <div class="k-field">
+                <label for="repair-reason"
+                  >Причина обращения
+                  <span class="k-muted">· обязательно</span></label
+                ><textarea
+                  id="repair-reason"
+                  class="k-control"
+                  required
+                ></textarea>
+              </div>
+              <div class="k-field">
+                <label for="repair-work"
+                  >Какой ремонт проводился
+                  <span class="k-muted">· обязательно</span></label
+                ><textarea
+                  id="repair-work"
+                  class="k-control"
+                  required
+                ></textarea>
+              </div>
+              <div class="k-field">
+                <label for="repair-only-comment"
+                  >Комментарий
+                  <span class="k-muted">· необязательно</span></label
+                ><textarea
+                  id="repair-only-comment"
+                  class="k-control"
+                ></textarea>
+              </div>
+              <p class="k-small k-muted">
+                Сервисное событие без изменения компонентов или даты окончания
+                гарантии.
+              </p>
+              <p
+                data-workflow-feedback
+                role="status"
+                aria-live="polite"
+                class="k-inquiry-feedback"
+              ></p>
+              <button
+                type="button"
+                class="k-button k-button--secondary"
+                data-workflow-check
+              >
+                Проверить форму · без сохранения
+              </button>
+            </form>
+          </details>
+        </details>
+        <details class="k-workflow-form-panel">
+          <summary>Исправление данных · DATA_CORRECTION</summary>
+          <p class="k-small k-muted">
+            Исправление опечатки не является ремонтом, апгрейдом или
+            обслуживанием. Нужна отдельная запись аудита: поле, до / после,
+            время, сотрудник и причина при наличии.
+          </p>
+          <form method="dialog" data-workflow-form="correction">
+            <div class="k-field">
+              <label for="correction-record"
+                >Запись компонента · обязательно</label
+              ><select id="correction-record" class="k-control" required>
+                <option value="demo-component-2">
+                  GPU — GeForce RTX 5070 · установленная запись
+                </option>
+                <option value="demo-component-5">SSD 1 — 1 ТБ NVMe</option>
+              </select>
+            </div>
+            <div class="k-field">
+              <label for="correction-field">Поле · обязательно</label
+              ><select id="correction-field" class="k-control" required>
+                <option value="SERIAL_NUMBER">S/N</option>
+                <option value="NAME">Название</option>
+              </select>
+            </div>
+            <div class="k-field">
+              <label for="correction-old"
+                >Предыдущее значение
+                <span class="k-muted">· необязательно</span></label
+              ><input
+                readonly
+                id="correction-old"
+                type="text"
+                class="k-control"
+                value="DEMO-SN-02-TYPO"
+              />
+            </div>
+            <div class="k-field">
+              <label for="correction-new"
+                >Исправленное значение
+                <span class="k-muted">· обязательно</span></label
+              ><input
+                id="correction-new"
+                type="text"
+                class="k-control"
+                value=""
+                required
+              />
+            </div>
+            <div class="k-field">
+              <label for="correction-reason"
+                >Причина <span class="k-muted">· необязательно</span></label
+              ><textarea id="correction-reason" class="k-control"></textarea>
+            </div>
+            <p
+              data-workflow-feedback
+              role="status"
+              aria-live="polite"
+              class="k-inquiry-feedback"
+            ></p>
+            <button
+              type="button"
+              class="k-button k-button--secondary"
+              data-workflow-check
+            >
+              Проверить форму · без сохранения
+            </button>
+          </form>
+        </details>
+      </section>
+      <section id="internal-history" class="k-passport-section">
+        <p class="k-eyebrow">06 / Internal history & audit</p>
+        <h2>История остаётся внутренней</h2>
+        <div class="k-workflow-context">
+          <article class="k-workflow-panel">
+            <h3>ProductionStatusHistory</h3>
+            <ol class="k-workflow-history">
+              <li>
+                <strong>02.10.2026 · AUTOMATION</strong
+                ><span>Создан → передан кладовщику</span>
+              </li>
+              <li>
+                <strong>03.10.2026 · MANUAL</strong
+                ><span>Передан кладовщику → отправлен на сборку</span>
+              </li>
+              <li>
+                <strong>06.10.2026 · MANUAL</strong
+                ><span>Отправлен на сборку → готов к выдаче</span>
+              </li>
+            </ol>
+            <p class="k-small k-muted">
+              Actor: DEMO-STAFF · условная запись сотрудника. OLD_STATUS /
+              NEW_STATUS / CHANGED_AT / CHANGED_BY / SOURCE.
+            </p>
+          </article>
+          <article class="k-workflow-panel">
+            <h3>SystemServiceEvent</h3>
+            <p>
+              01.10.2027 · MAINTENANCE · демонстрационная будущая запись: чистка
+              без изменения компонентов.
+            </p>
+            <p>
+              Дата и комментарий не выходят в публичный паспорт. Ремонт и
+              апгрейд не продлевают гарантию.
+            </p>
+            <details>
+              <summary>Как сохраняется замена · отдельный пример</summary>
+              <p>
+                18.04.2028: старая GPU-запись получает REMOVED_AT и REMOVED,
+                новая — INSTALLED_AT и ACTIVE. ComponentChange REPLACE связывает
+                обе записи с ServiceEvent. История не перезаписывается; этот
+                пример не изменяет комплектацию KS-2610-0012.
+              </p>
+            </details>
+          </article>
+        </div>
+        <article class="k-workflow-panel">
+          <h3>Action audit / Data Correction</h3>
+          <p>createSystem · AUTOMATION · 02.10.2026 · SUCCESS</p>
+          <p>preparePassport · MANUAL · 06.10.2026 · SUCCESS</p>
+          <p>activatePassport · AUTOMATION · 07.10.2026 · SUCCESS</p>
+          <p class="k-small k-muted">
+            Обычное восстановление не требует комментария. Исправления отдельно
+            сохраняют поле, старое и новое значения, время, actor и причину при
+            наличии. Действия кнопок в этом макете не дописывают аудит.
+          </p>
+        </article>
+      </section>
+    </main>
+    <footer class="k-passport-footer k-passport-container">
+      <span>Только внутренний review specimen</span
+      ><a href="review.html">Материалы ревью</a>
+    </footer>
+  </body>
+</html>

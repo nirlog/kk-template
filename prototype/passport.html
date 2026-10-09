@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" href="data:," />
+    <title>Паспорт системы — KORSAC</title>
+    <link rel="stylesheet" href="assets/css/tokens.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/brand.css" />
+    <link rel="stylesheet" href="assets/css/passport.css" />
+    <script src="assets/js/prototype.js" defer></script>
+    <script src="assets/js/passport-inquiry.js" defer></script>
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <meta
+      name="description"
+      content="Паспорт компьютера KORSAC: идентификатор системы, подтверждённая комплектация и обращение в поддержку."
+    />
+    <meta property="og:title" content="Паспорт системы — KORSAC" />
+    <meta
+      property="og:description"
+      content="Паспорт компьютера KORSAC: идентификатор системы, подтверждённая комплектация и обращение в поддержку."
+    />
+    <meta property="og:site_name" content="KORSAC" />
+    <meta property="og:type" content="website" />
+  </head>
+  <body>
+    <a class="k-skip" href="#main">Перейти к содержимому</a>
+    <header class="k-passport-shell">
+      <div class="k-passport-container">
+        <a href="index.html" aria-label="KORSAC — главная"
+          ><img
+            class="k-passport-brand"
+            src="assets/images/brand/korsac-lockup-horizontal.svg"
+            width="15240"
+            height="3387"
+            alt="" /></a
+        ><a href="contacts.html">Поддержка</a>
+      </div>
+    </header>
+    <main
+      id="main"
+      class="k-passport-container k-passport-main"
+      data-public-passport="active"
+    >
+      <p class="k-passport-fixture">
+        Демонстрационный паспорт · синтетические данные. Это не запись о
+        проданном компьютере.
+      </p>
+      <section class="k-passport-overview" aria-labelledby="passport-title">
+        <div class="k-passport-identity">
+          <p class="k-eyebrow">KORSAC / System Passport</p>
+          <h1 id="passport-title">KORSAC PLAY 1440</h1>
+          <div>
+            <p class="k-small k-muted">SYSTEM ID</p>
+            <p class="k-passport-number" data-system-id>KS-2610-0012</p>
+          </div>
+          <p class="k-small k-muted">
+            Идентификатор конкретного компьютера. Сохраняется при обслуживании и
+            апгрейде.
+          </p>
+        </div>
+        <div class="k-passport-warranty k-frame" data-passport-warranty>
+          <dl>
+            <div>
+              <dt>Дата передачи</dt>
+              <dd>
+                <time data-transfer-date datetime="2026-10-07"
+                  >7 октября 2026</time
+                >
+              </dd>
+            </div>
+            <div>
+              <dt>Гарантия до</dt>
+              <dd>
+                <time data-warranty-end datetime="2029-10-07"
+                  >7 октября 2029</time
+                >
+              </dd>
+            </div>
+          </dl>
+          <p class="k-passport-extension">Расширенная гарантия</p>
+          <a
+            class="k-button k-button--primary"
+            href="#inquiry-fallback"
+            data-dialog-open="inquiry-dialog"
+            data-inquiry-cta
+            >Задать вопрос</a
+          >
+        </div>
+      </section>
+      <section
+        class="k-passport-section"
+        aria-labelledby="components-title"
+        data-passport-components
+      >
+        <div class="k-passport-section-heading">
+          <p class="k-eyebrow">01 / Комплектация</p>
+          <h2 id="components-title">Конфигурация подтверждена KORSAC</h2>
+        </div>
+        <dl class="k-passport-components">
+          <div
+            data-passport-component
+            data-component-type="CPU"
+            data-component-slot="CPU_1"
+          >
+            <dt>Процессор</dt>
+            <dd>AMD Ryzen 7 9700X</dd>
+          </div>
+          <div
+            data-passport-component
+            data-component-type="GPU"
+            data-component-slot="GPU_1"
+          >
+            <dt>Видеокарта</dt>
+            <dd>GeForce RTX 5070 · 12 ГБ GDDR7</dd>
+          </div>
+          <div
+            data-passport-component
+            data-component-type="MOTHERBOARD"
+            data-component-slot="BOARD_1"
+          >
+            <dt>Материнская плата</dt>
+            <dd>B850 ATX · Wi-Fi · 2.5 GbE</dd>
+          </div>
+          <div
+            data-passport-component
+            data-component-type="RAM"
+            data-component-slot="RAM_1"
+          >
+            <dt>Оперативная память</dt>
+            <dd>32 ГБ DDR5-6000 CL30 · 2 × 16 ГБ</dd>
+          </div>
+          <div
+            data-passport-component
+            data-component-type="SSD"
+            data-component-slot="SSD_1"
+          >
+            <dt>SSD 1</dt>
+            <dd>1 ТБ NVMe · PCIe 4.0 · TLC</dd>
+          </div>
+          <div
+            data-passport-component
+            data-component-type="SSD"
+            data-component-slot="SSD_2"
+          >
+            <dt>SSD 2</dt>
+            <dd>2 ТБ NVMe · PCIe 4.0 · TLC</dd>
+          </div>
+          <div
+            data-passport-component
+            data-component-type="PSU"
+            data-component-slot="PSU_1"
+          >
+            <dt>Блок питания</dt>
+            <dd>750 Вт · Gold · ATX 3.1</dd>
+          </div>
+          <div
+            data-passport-component
+            data-component-type="COOLING"
+            data-component-slot="COOLING_1"
+          >
+            <dt>Охлаждение</dt>
+            <dd>Башенное воздушное · 120/140 мм</dd>
+          </div>
+          <div
+            data-passport-component
+            data-component-type="CASE"
+            data-component-slot="CASE_1"
+          >
+            <dt>Корпус</dt>
+            <dd>Lian Li LANCOOL 217</dd>
+          </div>
+        </dl>
+        <p class="k-passport-note k-small k-muted">
+          Паспорт показывает последнюю конфигурацию, подтверждённую KORSAC.
+          Самостоятельные изменения владельца появятся здесь после проверки и
+          подтверждения.
+        </p>
+      </section>
+      <section
+        class="k-passport-section k-passport-inquiry-help"
+        aria-labelledby="support-title"
+      >
+        <div>
+          <p class="k-eyebrow">02 / Поддержка</p>
+          <h2 id="support-title">Вопрос о вашей системе</h2>
+          <p class="k-muted">
+            Гарантия, техническая поддержка, обслуживание или следующий апгрейд
+            — контекст компьютера уже указан.
+          </p>
+        </div>
+        <a
+          class="k-button k-button--secondary"
+          href="#inquiry-fallback"
+          data-dialog-open="inquiry-dialog"
+          >Открыть обращение</a
+        >
+      </section>
+      <details id="inquiry-fallback" class="k-passport-fallback">
+        <summary>Обращение без JavaScript</summary>
+        <div class="k-inquiry-context" data-inquiry-context>
+          <span class="k-eyebrow">Система обращения</span
+          ><strong>KS-2610-0012</strong><span>KORSAC PLAY 1440</span>
+        </div>
+        <p>
+          Темы: гарантия, техническая поддержка, апгрейд, обслуживание,
+          комплектующие, другое.
+        </p>
+        <p>
+          Отправка в прототипе не подключена. Форма демонстрирует структуру
+          обращения; контактные каналы доступны на странице поддержки.
+        </p>
+        <a href="contacts.html">Перейти к контактам</a>
+      </details>
+    </main>
+    <footer class="k-passport-footer k-passport-container">
+      <span>KORSAC by King-Komp</span><a href="contacts.html">Контакты</a
+      ><a href="index.html">Главная</a>
+    </footer>
+    <dialog
+      id="inquiry-dialog"
+      class="k-dialog k-inquiry-dialog"
+      aria-labelledby="inquiry-title"
+    >
+      <div class="k-dialog-header">
+        <h2 id="inquiry-title">Задать вопрос</h2>
+        <button
+          class="k-button k-button--icon"
+          type="button"
+          data-dialog-close
+          aria-label="Закрыть обращение"
+        >
+          ×
+        </button>
+      </div>
+      <div class="k-inquiry-context" data-inquiry-context>
+        <span class="k-eyebrow">Система обращения</span
+        ><strong>KS-2610-0012</strong><span>KORSAC PLAY 1440</span>
+      </div>
+      <p class="k-small k-muted">
+        Макет обращения. Данные не отправляются и не сохраняются.
+      </p>
+      <form method="dialog" data-passport-inquiry novalidate>
+        <div class="k-field">
+          <label for="inquiry-topic"
+            >Тема <span class="k-muted">· обязательно</span></label
+          ><select id="inquiry-topic" class="k-control" name="topic" required>
+            <option value="">Выберите тему</option>
+            <option value="WARRANTY">Гарантия</option>
+            <option value="SUPPORT">Техническая поддержка</option>
+            <option value="UPGRADE">Апгрейд</option>
+            <option value="MAINTENANCE">Обслуживание</option>
+            <option value="COMPONENTS">Комплектующие</option>
+            <option value="OTHER">Другое</option>
+          </select>
+        </div>
+        <div class="k-field">
+          <label for="inquiry-name"
+            >Имя <span class="k-muted">· необязательно в макете</span></label
+          ><input
+            id="inquiry-name"
+            class="k-control"
+            name="name"
+            autocomplete="name"
+          />
+        </div>
+        <div class="k-field">
+          <label for="inquiry-contact"
+            >Контакт для ответа
+            <span class="k-muted">· необязательно в макете</span></label
+          ><input
+            id="inquiry-contact"
+            class="k-control"
+            name="contact"
+            aria-describedby="inquiry-contact-help"
+            autocomplete="off"
+          />
+          <p id="inquiry-contact-help" class="k-small k-muted">
+            Состав и обязательность контактных полей будут определены при
+            интеграции.
+          </p>
+        </div>
+        <div class="k-field">
+          <label for="inquiry-message"
+            >Сообщение <span class="k-muted">· обязательно</span></label
+          ><textarea
+            id="inquiry-message"
+            class="k-control"
+            name="message"
+            required
+          ></textarea>
+        </div>
+        <p
+          class="k-inquiry-feedback"
+          data-inquiry-feedback
+          role="status"
+          aria-live="polite"
+        ></p>
+        <button
+          type="button"
+          class="k-button k-button--primary"
+          data-inquiry-check
+        >
+          Проверить обращение · макет
+        </button>
+      </form>
+    </dialog>
+  </body>
+</html>
