@@ -8,13 +8,13 @@ Base: merged PR #11, `main` at `d68b98c`.
 ## Review result
 
 Equipment → Monitors → MSI MAG 274QF X24 → ordinary cart line is a native,
-no-JS-compatible path. The hub curates a context, the category compares three
-real fixtures, and the detail uses ordinary product identity/media/specifications
+no-JS-compatible path. The hub curates a context, the category provides 10
+unique real products across PLAY (4), CREATE (4) and WORK (5), and the detail uses ordinary product identity/media/specifications
 instead of a PC stage. PLAY configurations remain separate system lines.
 
-Three King-Komp product publications and all three manufacturer specification
+Ten King-Komp product publications and all ten manufacturer specification
 pages were retrieved over HTTPS 200. Displayed facts were checked against those
-pages; source URLs/HTML hashes are in the ledger. Six corresponding original
+pages; source URLs/HTML hashes are in the ledger. Thirteen corresponding original
 WebP assets were retrieved locally, decoded and visually inspected; byte
 counts/SHA-256/native dimensions match. There are no substitute/AI images or
 runtime hotlinks. Source retail prices are snapshots, visibly marked examples;
@@ -32,12 +32,15 @@ Actual Chromium screenshots, reduced mode after visible images decoded:
 | View               | Desktop                                      | Mobile                                     |
 | ------------------ | -------------------------------------------- | ------------------------------------------ |
 | Equipment hub      | [1440 × 2365](equipment-v1-desktop.png)      | [375 × 3311](equipment-v1-mobile.png)      |
-| Monitors category  | [1440 × 2695](monitors-v1-desktop.png)       | [375 × 5119](monitors-v1-mobile.png)       |
+| Monitors category  | [1440 × 8829](monitors-v1-desktop.png)       | [375 × 14717](monitors-v1-mobile.png)      |
 | MSI monitor detail | [1440 × 4199](monitor-v1-desktop.png)        | [375 × 6608](monitor-v1-mobile.png)        |
 | Mixed cart         | [1440 × 2210](equipment-cart-v1-desktop.png) | [375 × 3936](equipment-cart-v1-mobile.png) |
 
 [Monitor gallery component — 1344 × 402](monitor-gallery-v1-desktop.png).
-Eight full-page captures and one component capture were visually inspected.
+Hub/category desktop/mobile captures were refreshed for this follow-up.
+Detail/cart/gallery captures are retained from the initial pass: their visible
+content and styling are unchanged. Category family components and mobile task
+anchors were also inspected at readable scale in Chromium.
 Only component screenshot capture hides the floating header/skip link through
 Playwright screenshot style; application shell/CSS behavior is unchanged.
 List media areas align on desktop and use natural height on mobile. Images fit
@@ -46,22 +49,27 @@ inside their areas without cropping, stretching, overlap or upscaling.
 ## SEO and source checks
 
 ```sh
-PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools -p 'test_seo_audit.py'
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools -p 'test_*.py'
 PYTHONDONTWRITEBYTECODE=1 python3 tools/seo_audit.py
 PYTHONDONTWRITEBYTECODE=1 python3 tools/seo_audit.py --json
+PYTHONDONTWRITEBYTECODE=1 python3 tools/monitor_curation_audit.py
 ```
 
-**20 tests PASS; 20 pages, 0 errors, 52 intentional warnings.**
+**27 tests PASS (20 SEO + 7 curation); 20 pages, 0 errors, 52 intentional warnings.**
 [Deterministic report](seo-audit-v1.json) matches repeated JSON output.
 Warnings: 20 omitted prototype canonical/og:url, 20 pending approved social
 artwork, 12 relative schema URL/ID review warnings. No production host is added.
 
 Equipment/category require CollectionPage + BreadcrumbList and reject Product.
 Monitor detail requires Product + BreadcrumbList, with the actual visible local
-primary image. Commercial guards reject Offer/AggregateOffer/Review/
+primary image. [Curation report](monitor-curation-v1.json) verifies ordered
+family sections with 4/4/5 recommendations, 10 unique entities, shared-model
+identity/link/fact/price/media consistency and original source bytes. Seven new
+negative tests reject curation/source drift; these do not infer suitability,
+stock or production business rules. Commercial guards reject Offer/AggregateOffer/Review/
 AggregateRating, including implicit offers/review/rating properties. Media
 guards require a local asset, informative alt and explicit positive dimensions;
-each category record needs media. The three new negative fixture tests cover
+each category record needs media. The initial three Equipment negative fixture tests cover
 wrong/missing types, commercial properties, absent/per-record/remote/wrong-path
 media, missing alt/dimensions and invalid/unseen Product.image. Previous 17
 Family/Projects/PC tests and assertions remain intact.
@@ -90,10 +98,12 @@ Keyboard checks pass: first-tab skip link, focus-visible, anchor clearance,
 mobile drawer Tab containment, Escape and opener focus return; ordinary cart
 quantity Enter activation, minimum-one disabled state/focus recovery,
 remove → undo focus and restore → line focus. Native source/product links
-retain meaningful names. No JS-only navigation is introduced.
+retain meaningful names. All 24 family anchors/return links (three families
+× eight widths) clear the sticky header; repeated product placements preserve
+the same identity, URL and cover. No JS-only navigation is introduced.
 
 No-JS at 320px passes Equipment → Monitors → detail → cart#cart-monitor →
-checkout. All three records and four MSI views remain visible; lazy images
+checkout. All 13 recommendations (10 unique products) and four MSI views remain visible; lazy images
 load through ordinary scrolling. Mixed cart has three authored readable lines;
 unavailable JS quantity/removal controls stay hidden. Shared native navigation
 fallback and existing checkout fallback remain usable.
@@ -139,6 +149,24 @@ new static routes/gallery remain immediately available. Existing header is
 sticky/opaque on internal pages with five global entries. Home/content paths,
 PLAY product ↔ monitor ↔ PLAY 1440, 13 shared public footer routes and scoped
 UI controls pass. No new temporal interaction requires video acceptance.
+
+## Assortment expansion
+
+Ten unique products generate 13 authored recommendations, with three shared
+CREATE/WORK models: LG 27U631A-B, LG UltraWide 34WR50QK-B and MSI PRO MP275Q.
+Each retains one source-ledger entity, one cover and a consistent URL. Family
+reasons differ; specifications and price examples remain identical. Additional
+products link to actual King-Komp publications; only MSI MAG 274QF X24 has a
+local ordinary-product detail. There are no invented detail pages or facets.
+
+The source ledger adds seven catalog/manufacturer pairs and the media manifest
+adds seven original covers. All new covers were decoded and visually checked
+against their model pages. Full category and hub desktop/mobile evidence was
+refreshed. The existing 160-layout, 12-state Axe, keyboard, mixed-cart and no-JS
+checks were rerun on this expanded page and passed. All business controllers,
+Brand Intro policy and existing PLAY/Product/Checkout fixtures are unchanged;
+controller-specific regression results above are retained from the initial
+Equipment pass, not claimed as a new independent full-suite run.
 
 ## Human acceptance boundary
 

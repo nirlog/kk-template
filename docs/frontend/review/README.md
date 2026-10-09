@@ -480,8 +480,10 @@ hero, подтверждение выбора, validation sweep, SYSTEM ID, мо
 - [Mixed cart — desktop](equipment-cart-v1-desktop.png), [mobile](equipment-cart-v1-mobile.png).
 - [Monitor alternate views — desktop component](monitor-gallery-v1-desktop.png).
 
-Три verified monitor fixtures, реальные локальные изображения, ordinary Product
+10 unique verified monitors: PLAY — 4, CREATE — 4, WORK — 5; shared models используют одну entity/URL, реальные локальные изображения, ordinary Product
 и отдельная cart line без CONFIG. Цены — явно отмеченные примеры; schema не
 содержит Offer/Review/rating. Нет нового motion/lightbox/MP4; shared Media Viewer
 отложен. Previous stage PNG/MP4 — исторические baselines. Current deterministic
-audit: [JSON](seo-audit-v1.json). Human visual review required; do not auto-merge.
+audit: [SEO JSON](seo-audit-v1.json), [curation JSON](monitor-curation-v1.json).
+Hub/category desktop/mobile PNG refreshed after assortment expansion; unchanged detail/cart captures retained.
+Human visual review required; do not auto-merge.

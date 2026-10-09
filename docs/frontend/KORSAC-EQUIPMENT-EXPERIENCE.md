@@ -12,19 +12,34 @@ not a mirror of King-Komp inventory. The hub introduces the screen as part of
 the usage context and leads to a small, understandable selection. No keyboard,
 mouse/accessory catalogs or disabled future-category cards are added.
 
-The monitor category begins with native scenario links, not brands or facets:
+The monitor category begins with native scenario links, not brands or facets.
+It contains **10 unique real products**, presented as **4 PLAY, 4 CREATE and
+5 WORK recommendations**. Each family offers alternatives rather than one
+prescribed monitor:
 
-- PLAY: resolution and refresh; Full HD/high refresh, 1440p/high refresh,
-  4K/detail are decision directions. The current gaming fixture is 1440p.
-- CREATE: resolution, workspace and application windows. Color requirements
-  depend on the workflow and must be checked independently; the LG fixture is
-  an option for workspace, not a certified/color-critical workstation claim.
-- WORK: daily tasks, connectivity, video calls, ergonomics and desk constraints.
+- PLAY: compact or larger Full HD, flat high-refresh QHD or larger curved QHD.
+  Resolution, diagonal, shape and refresh are independent decision factors;
+  no FPS or computer compatibility is promised.
+- CREATE: QHD with USB-C, 4K with USB-C, wider 21:9 workspace or QHD with
+  HDMI/DisplayPort. These are workspace choices, not color-critical suitability,
+  certification or application compatibility claims.
+- WORK: QHD/USB-C, wide multitasking, QHD/HDMI/DP, video calls or a smaller
+  height/pivot-adjustable Full HD screen. USB-C power limits remain explicit.
 
-All three cards are visible without JavaScript. Scenario anchors scroll to a
-record without hiding products, changing the URL architecture or creating
-query-based SEO landings. Unapproved filters/sort remain noindex in production,
-per the authoritative IA; there is no filtering backend or advanced UI here.
+PLAY → CREATE → WORK sections are exposed in base HTML. Native links scroll
+to the existing `#selected-play`, `#selected-create`, `#selected-work` section
+anchors without hiding products. Each section links to its computer family;
+return links lead to the task guide. No family/filter page, query facet,
+controller or indexable URL is introduced. Unapproved filters/sort remain
+noindex in production per the authoritative IA.
+
+LG 27U631A-B, LG UltraWide 34WR50QK-B and MSI PRO MP275Q appear in CREATE
+and WORK for separately stated editorial reasons. This is a many-to-many
+relationship, **not separate product entities**: each has one `product_id`,
+one ledger record, one cover file and one consistent destination URL across
+all appearances. `data-monitor-product` is an authored review identity, not
+an invented manufacturer SKU or approved production slug. Heading IDs are
+unique per placement for accessibility; they do not define product URLs.
 
 ## Static → production mapping
 
@@ -35,9 +50,9 @@ per the authoritative IA; there is no filtering backend or advanced UI here.
 | `prototype/monitor.html`   | `/equipment/monitors/{approved-slug}/` | Product + BreadcrumbList        |
 
 `monitor.html` demonstrates MSI MAG 274QF X24. It does not set a production
-slug. The other two cards link to their own actual King-Komp publications;
+slug. The other nine products link to their own actual King-Komp publications;
 there are no invented local detail pages. Related cards on the detail lead
-back to their category records.
+back to family sections containing those recommendations.
 
 Visible crumbs and JSON-LD share Home → Equipment → Monitors → product name.
 Each non-final item has a real local ancestor URL. Production uses the approved
@@ -47,15 +62,26 @@ host and server hierarchy, independently of static filenames.
 
 [Product source ledger](review/equipment-product-sources.json) records catalog
 and manufacturer URLs, retrieved date, HTML hashes and every displayed fact.
-All six source pages were retrieved with HTTPS 200 and reviewed on 9 October 2026. Initial manufacturer access was blocked by the environment allowlist;
-MSI/LG host additions restored access. The nonexistent LG US route was replaced
-by the actual UK model page. Regional offers/accessories are not inferred.
+The ledger has one record per unique product, including stable identity,
+per-family editorial reasons, consistent review URL and displayed card values.
+All 20 catalog/manufacturer source pages were retrieved with HTTPS 200 and
+reviewed on 9 October 2026 (six retained from the initial pass, fourteen newly
+retrieved for the expansion). MSI/LG manufacturer specifications confirm the
+model-specific facts; model names or supplier descriptions do not substitute
+for verification. Regional offers/accessories are not inferred.
 
-| Product           | Authored scenario  | Displayed, source-supported decision facts                     | Review price |
-| ----------------- | ------------------ | -------------------------------------------------------------- | ------------ |
-| MSI MAG 274QF X24 | PLAY / 1440p       | 27″, 2560 × 1440, Rapid IPS, up to 240 Hz via DP               | 22 050 ₽     |
-| LG 27U631A-B      | CREATE / workspace | 27″, 2560 × 1440, IPS, up to 100 Hz, USB-C PD 15 W             | 14 460 ₽     |
-| MSI PRO MP272PMG  | WORK / daily tasks | 27″, 1920 × 1080, IPS, up to 120 Hz, camera, height adjustment | 18 200 ₽     |
+| Product                 | Families     | Source-supported selection facts                                        | Price example |
+| ----------------------- | ------------ | ----------------------------------------------------------------------- | ------------- |
+| MSI MAG 274QF X24       | PLAY         | 27″ · 2560 × 1440; Rapid IPS; до 240 Гц · DisplayPort                   | 22 050 ₽      |
+| LG UltraGear 24GS60F-B  | PLAY         | 23,8″ · 1920 × 1080; IPS; до 180 Гц                                     | 14 250 ₽      |
+| MSI MAG 274F            | PLAY         | 27″ · 1920 × 1080; Rapid IPS; до 200 Гц                                 | 14 870 ₽      |
+| LG UltraGear 32GS60QC-B | PLAY         | 31,5″ · 2560 × 1440; VA · изгиб 1000R; до 180 Гц                        | 23 920 ₽      |
+| LG 27U631A-B            | CREATE, WORK | 27″ · 2560 × 1440; IPS · до 100 Гц; USB-C · PD 15 Вт                    | 14 460 ₽      |
+| MSI Modern MD271UL      | CREATE       | 27″ · 3840 × 2160; IPS · до 60 Гц; USB-C · PD 65 Вт                     | 23 510 ₽      |
+| LG UltraWide 34WR50QK-B | CREATE, WORK | 34″ · 3440 × 1440; VA · до 100 Гц; 21:9 · изгиб 1800R                   | 30 370 ₽      |
+| MSI PRO MP275Q          | CREATE, WORK | 27″ · 2560 × 1440; IPS · до 100 Гц; HDMI · DisplayPort                  | 16 540 ₽      |
+| MSI PRO MP272PMG        | WORK         | 27″ · 1920 × 1080; IPS · до 120 Гц; Камера · регулировка высоты         | 18 200 ₽      |
+| MSI PRO MP251P          | WORK         | 24,5″ · 1920 × 1080; IPS · до 100 Гц · HDMI; Высота · поворот в портрет | 14 150 ₽      |
 
 These are review fixtures, not an approved final KORSAC assortment. Scenario
 assignment is editorial, not a manufacturer certification. Price numbers are
@@ -154,12 +180,14 @@ exposes the three pages and mixed-cart fixture.
 
 ## Media and shared Media Viewer decision
 
-[Media manifest](review/equipment-media-sources.json) maps six original WebP
+[Media manifest](review/equipment-media-sources.json) maps 13 original WebP
 files to the corresponding King-Komp product, source asset URL, native
 dimensions, byte count/SHA-256, source order, authored alt and nullable caption.
 Files are byte-for-byte originals in `prototype/assets/images/equipment/`;
-three products use distinct media, not stock/AI/substitute monitor renders.
-All were decoded and visually inspected. No image edits or hotlinks are used.
+all 10 products use distinct cover media, not stock/AI/substitute monitor renders.
+All were decoded and visually inspected. Seven new covers retain their source bytes, including original white margins.
+Shared-family placements reuse the same file; there are no duplicated downloads.
+No image edits or hotlinks are used.
 
 MSI detail shows its primary view and three alternate views. Every photograph
 is visible `figure/img` or `ul/li/figure/img` HTML; there are no hidden slides.
@@ -195,10 +223,20 @@ SEO audit extends existing guards with required page schemas, Product rejection
 on hub/category, visible local monitor media, per-card media, informative alt,
 explicit positive dimensions and matching Product.image. It checks markup/file
 presence, not photographic authenticity; source/hash/visual evidence is separate.
+A separate `tools/monitor_curation_audit.py` verifies the review assortment
+counts/order, ledger membership, editorial relationship presence, stable
+identity/name/link/specification/price/cover consistency and original media
+bytes. Its numerical bounds are review acceptance checks, not production
+assortment or business rules. Seven negative tests reject collapsed family
+choice, duplicate entities, unknown models, family/query URL drift, changed
+facts/prices, missing relationships/source evidence and swapped/edited media.
+It cannot certify editorial suitability or photographic authenticity.
 Existing Family/Projects/PC tests remain intact. The deterministic audit report
 is refreshed; no test is weakened to admit these pages.
 
-Layouts use fluid columns, wrapped native breadcrumbs/names and semantic dl
+Family selections use two columns on desktop/tablet and one on mobile,
+retaining a shared ordinary-product card architecture and family-specific
+selection explanations. Layouts use fluid columns, wrapped native breadcrumbs/names and semantic dl
 specifications. At 320px cards, gallery and spec rows become a single column.
 No fixed-height text clipping or horizontal spec tables are used. Shared skip
 link, landmarks, one H1, heading hierarchy, native navigation, visible focus

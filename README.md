@@ -100,7 +100,7 @@ Projects доступны через Homepage trust и footer; PLAY/family hiera
 - [Content/media/cart/Bitrix contract](docs/frontend/KORSAC-EQUIPMENT-EXPERIENCE.md).
 - [Review screenshots и QA](docs/frontend/review/equipment-v1.md).
 
-Три реальные review модели MSI/LG сверены с карточками King-Komp и спецификациями
+10 уникальных реальных моделей MSI/LG (PLAY — 4, CREATE — 4, WORK — 5) сверены с карточками King-Komp и спецификациями
 производителей. Фото локальные; цены явно обозначены как примеры. Production
 price/availability/basket принадлежат Bitrix. Shared Media Viewer отложен;
 System Passport и Bitrix migration не начаты. Human review требуется до merge.

@@ -156,8 +156,9 @@ Projects реализуют case archive команды King-Komp: list + оди
 выдуманных author/date/image/measurements; absent sections не заполняются.
 См. [Projects content/source contract](KORSAC-PROJECTS-EXPERIENCE.md).
 
-Equipment review теперь реализован: три source-verified monitors, один local
-ordinary Product detail, остальные records ведут к своим King-Komp originals.
+Equipment review реализован: 10 source-verified monitors (PLAY — 4, CREATE — 4,
+WORK — 5). Общие модели имеют одну entity/URL. Один local ordinary Product
+detail; остальные records ведут к своим King-Komp originals.
 `monitor.html` не утверждает production slug/ассортимент. Prototype completion
 не меняет publication/indexability gates. Price/availability/Offer/basket
 остаются backend-owned; demo monitor line — PRODUCT, не PC CONFIG.

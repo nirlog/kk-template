@@ -1,0 +1,9 @@
+{
+  "unique_products": 10,
+  "family_counts": {
+    "PLAY": 4,
+    "CREATE": 4,
+    "WORK": 5
+  },
+  "errors": []
+}
