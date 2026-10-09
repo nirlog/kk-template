@@ -8,6 +8,7 @@ from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 POLICY = 'noindex, nofollow, noarchive'
+FAMILY_PAGES = {'computers.html', 'catalog.html', 'create.html', 'work.html'}
 
 
 class Page(HTMLParser):
@@ -208,6 +209,12 @@ def audit(root):
                             errors.append(f'Invalid schema URL in {key}')
         if path.name in ('404.html', '500.html', '503.html') and types:
             errors.append('Error templates must not carry content structured data')
+        if path.name in FAMILY_PAGES:
+            for required in ('CollectionPage', 'BreadcrumbList'):
+                if required not in types:
+                    errors.append(f'Computer hub/family requires {required} schema')
+            if 'Product' in types:
+                errors.append('Computer hub/family landing must not claim Product schema')
         warnings.extend(['Prototype canonical/og:url intentionally omitted; production follows page-type policy and approved host', 'No approved og:image; production social artwork remains pending'])
         results.append({'page': path.relative_to(root.resolve()).as_posix(), 'title': page.titles[0] if page.titles else '', 'schema_types': sorted(types), 'errors': sorted(set(errors)), 'warnings': sorted(set(warnings))})
     if not files:

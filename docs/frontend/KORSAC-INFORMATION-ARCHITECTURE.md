@@ -2,7 +2,9 @@
 
 Контракт переноса в Bitrix. Текущий прототип — review-среда, а не набор
 production URL. Все `prototype/*.html` имеют `noindex, nofollow, noarchive`.
-Будущие разделы здесь определены, но не созданы и не добавлены в меню.
+Computer hub и CREATE/WORK реализованы как static review landings. Projects,
+Equipment и модельные линейки CREATE/WORK остаются future content, без активных
+ссылок на несуществующие страницы; publication gate матрицы сохранён.
 
 ## Production URL tree
 
@@ -37,7 +39,7 @@ production URL. Все `prototype/*.html` имеют `noindex, nofollow, noarchi
 ## Роли страниц и рост семейств
 
 **Главная** направляет к семействам и объясняет подход KORSAC.
-**Компьютеры** — будущий короткий выбор PLAY / CREATE / WORK, без повторения
+**Компьютеры** — короткий выбор PLAY / CREATE / WORK (`computers.html`), без повторения
 подробного сравнения моделей. Не подменять этот hub каталогом PLAY в production.
 
 **PLAY** — сценарий игры сначала: 1080 → 1440 → 1440 PRO → 4K.
@@ -121,20 +123,24 @@ presentation/заказ одной модели и не создаёт инде�
 | Static review                                        | Production                                  | Видимый путь                            |
 | ---------------------------------------------------- | ------------------------------------------- | --------------------------------------- |
 | `index.html`                                         | `/`                                         | Главная                                 |
+| `computers.html`                                     | `/computers/`                               | Главная → Компьютеры                    |
+| `create.html`                                        | `/computers/create/`                        | Главная → Компьютеры → CREATE           |
+| `work.html`                                          | `/computers/work/`                          | Главная → Компьютеры → WORK             |
 | `catalog.html`                                       | `/computers/play/`                          | Главная → Компьютеры → PLAY             |
 | `product.html`                                       | `/computers/play/1440/`                     | Главная → Компьютеры → PLAY → PLAY 1440 |
 | `contacts.html`                                      | `/contacts/`                                | Главная → Контакты                      |
 | `cart.html` / `checkout.html` / `order-success.html` | `/cart/` / `/checkout/` / `/order-success/` | Транзакционные экраны                   |
 
-В прототипе «Компьютеры» — текстовый intermediate crumb: hub ещё не создан.
-Текущая страница — `aria-current="page"`, без ссылки. JSON-LD содержит те же
-names/positions. Каждый non-final ListItem имеет `item`: для «Компьютеры» это
-утверждённый semantic path `/computers/`, для PLAY на Product — `catalog.html`.
-Semantic path не превращает crumb в UI-ссылку на отсутствующий hub.
-Только final ListItem может опустить `item`; допустим URL string или объект
-`item: {"@id": URL}`. Audit проверяет это правило, но не заменяет внешние validators.
-В production и visible `<ol>`, и BreadcrumbList формируются из одной серверной
-иерархии; реальные ancestors получают абсолютные production URL.
+В прототипе «Компьютеры» теперь реальный ancestor link `computers.html`.
+Catalog/Product/CREATE/WORK имеют тот же путь в видимых crumbs и JSON-LD;
+PLAY на Product использует `catalog.html`. Hub сам — current final item.
+Каждый non-final ListItem имеет `item`; final может его опустить. Допустим
+URL string или `item: {"@id": URL}`. В production server hierarchy формирует
+абсолютные canonical paths. Static prototype URLs не определяют hostname.
+
+CREATE/WORK теперь имеют review landing pages, но **production readiness rule
+матрицы не меняется**: наличие static design не является publication approval.
+Модели/slugs/Offers не добавлены. См. [Computer Families v1](KORSAC-COMPUTER-FAMILIES-EXPERIENCE.md).
 
 ## URL, navigation и sitemap
 

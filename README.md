@@ -12,6 +12,9 @@ Interactive Product Experience v3.1, Cart & Checkout Experience v1, Contacts / E
 - [prototype/index.html](prototype/index.html) — главная KORSAC, редакционный путь к выбору системы.
 - [prototype/review.html](prototype/review.html) — сохранённая навигация для дизайнеров и разработчиков.
 - [prototype/ui.html](prototype/ui.html) — Premium Shell / Homepage / Identity / Interactive / Catalog / Commerce Primitives и motion-примеры.
+- [prototype/computers.html](prototype/computers.html) — выбор семейства PLAY / CREATE / WORK.
+- [prototype/create.html](prototype/create.html) — рабочий процесс: 3D, CAD, видео и графика.
+- [prototype/work.html](prototype/work.html) — рабочие задачи и operational priorities.
 - [prototype/catalog.html](prototype/catalog.html) — выбор сценария PLAY, MINI-ветка, вся линейка и сравнение классов.
 - [prototype/product.html](prototype/product.html) — PLAY 1440, System Explorer, сцена конфигуратора и SYSTEM ID.
 - [prototype/cart.html](prototype/cart.html) — две конфигурации PLAY 1440, количество, demo totals и empty state.
@@ -33,6 +36,7 @@ python3 -m http.server 8000 --bind 127.0.0.1 --directory prototype
 сохранены только в review hub. Утверждённые SVG используются в header/drawer,
 responsive footer и статическом hero. Общий site-entry Brand Intro играет
 не чаще раза за rolling 24h в browser profile; reduced motion пропускает его.
+Computers/CREATE/WORK участвуют в этой же политике, без новых motion sequences.
 Cart/Checkout/Success, Contacts и error pages исключены из Brand Intro и не меняют его timestamp.
 Фотография продукта пока заменена нейтральной схемой.
 Выбранные hardware-опции обновляют сцену, сводку и SYSTEM ID preview;
@@ -40,7 +44,8 @@ Cart/Checkout/Success, Contacts и error pages исключены из Brand Int
 через context buttons, hotspots и Prev/Next, сохраняя обычную прокрутку.
 Каталог читает данные из HTML-карточек: Navigator и сравнение 2–3 моделей
 меняют только представление. MINI — компактное исполнение 1440p; PRO — более
-высокий игровой класс. CREATE/WORK пока в разработке.
+высокий игровой класс. CREATE/WORK имеют разные family landing pages; их
+модельные линейки ещё формируются, production publication не утверждена.
 Цены, статусы, паспорт и сервисные опции — примеры. Cart читает авторские HTML
 строки; quantity/remove/restore используют только prototype display arithmetic
 в integer minor units. Checkout/Success имеют исходный demo order, без переноса
@@ -73,3 +78,7 @@ Motion учитывает `prefers-reduced-motion`.
 python3 tools/seo_audit.py
 python3 -m unittest discover -s tools -p 'test_seo_audit.py'
 ```
+
+[Computer Families Experience v1](docs/frontend/KORSAC-COMPUTER-FAMILIES-EXPERIENCE.md).
+[Family review PNG / audit / QA](docs/frontend/review/computer-families-v1.md).
+Следующий roadmap stage — Projects; Bitrix migration не начата.

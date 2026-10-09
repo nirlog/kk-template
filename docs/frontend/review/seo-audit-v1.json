@@ -66,11 +66,41 @@
       ]
     },
     {
+      "page": "prototype/computers.html",
+      "title": "Компьютеры PLAY, CREATE и WORK — KORSAC",
+      "schema_types": [
+        "BreadcrumbList",
+        "CollectionPage",
+        "ListItem"
+      ],
+      "errors": [],
+      "warnings": [
+        "No approved og:image; production social artwork remains pending",
+        "Prototype canonical/og:url intentionally omitted; production follows page-type policy and approved host",
+        "Relative schema URLs/IDs are semantic-review only; production needs absolute canonical URLs"
+      ]
+    },
+    {
       "page": "prototype/contacts.html",
       "title": "Контакты — KORSAC",
       "schema_types": [
         "BreadcrumbList",
         "ContactPage",
+        "ListItem"
+      ],
+      "errors": [],
+      "warnings": [
+        "No approved og:image; production social artwork remains pending",
+        "Prototype canonical/og:url intentionally omitted; production follows page-type policy and approved host",
+        "Relative schema URLs/IDs are semantic-review only; production needs absolute canonical URLs"
+      ]
+    },
+    {
+      "page": "prototype/create.html",
+      "title": "CREATE — системы для творческих процессов KORSAC",
+      "schema_types": [
+        "BreadcrumbList",
+        "CollectionPage",
         "ListItem"
       ],
       "errors": [],
@@ -139,8 +169,23 @@
         "No approved og:image; production social artwork remains pending",
         "Prototype canonical/og:url intentionally omitted; production follows page-type policy and approved host"
       ]
+    },
+    {
+      "page": "prototype/work.html",
+      "title": "WORK — системы для рабочих задач KORSAC",
+      "schema_types": [
+        "BreadcrumbList",
+        "CollectionPage",
+        "ListItem"
+      ],
+      "errors": [],
+      "warnings": [
+        "No approved og:image; production social artwork remains pending",
+        "Prototype canonical/og:url intentionally omitted; production follows page-type policy and approved host",
+        "Relative schema URLs/IDs are semantic-review only; production needs absolute canonical URLs"
+      ]
     }
   ],
   "errors": 0,
-  "warnings": 28
+  "warnings": 37
 }

@@ -33,7 +33,7 @@ Bitrix page-context/entity resolver формирует в HTML до JS:
 описание/статью, breadcrumbs и важные внутренние ссылки. JS отвечает за
 presentation, не генерирует SEO. Не размещать второй generator в браузере.
 
-В review у всех 12 страниц уникальные nonempty title/description, `lang="ru"`,
+В review у всех 15 страниц уникальные nonempty title/description, `lang="ru"`,
 viewport и один H1. Product H1 сохраняет имя PLAY 1440, а не логотип как heading.
 Примеры production naming: «Игровые компьютеры PLAY — KORSAC»,
 «PLAY 1440 — игровой компьютер KORSAC», «Контакты — KORSAC».
@@ -130,7 +130,7 @@ offers на авторские карточки.
           "@type": "ListItem",
           "position": 2,
           "name": "Компьютеры",
-          "item": "/computers/"
+          "item": "computers.html"
         },
         { "@type": "ListItem", "position": 3, "name": "PLAY" }
       ]
@@ -141,11 +141,11 @@ offers на авторские карточки.
 
 У каждого non-final ListItem обязателен `item`: URL string или объект с URL
 в `@id`. Опустить его можно только у последнего элемента. Для промежуточного
-«Компьютеры» используется уже утверждённый semantic path `/computers/`, хотя
-видимый crumb остаётся non-clickable: static hub ещё не создан. Это исключение
-для semantic review, а не активная prototype navigation ссылка. На Product
-PLAY ссылается на текущую semantic entity `catalog.html`; только final PLAY 1440
-может не иметь `item`. Видимый `<nav><ol>` сохраняет те же names/order.
+«Компьютеры» используется `computers.html`: hub теперь существует и видимый
+crumb имеет такую же ссылку. На Product PLAY ссылается на `catalog.html`;
+только final PLAY 1440 может не иметь `item`. Видимый `<nav><ol>` сохраняет
+те же names/order. Hub/CREATE/WORK используют CollectionPage + BreadcrumbList
+без Product/Offer; их наличие в review не меняет production publication policy.
 В production единый server hierarchy resolver формирует реальные абсолютные
 ancestors/current canonical на утверждённом host. Audit проверяет наличие и
 URL representation non-final items, без заявления внешней rich-results validation.
@@ -261,7 +261,8 @@ python3 -m unittest discover -s tools -p 'test_seo_audit.py'
 Stdlib tool проверяет все `prototype/*.html`: lang, unique title/description,
 viewport/robots/OG, один H1, JSON syntax/schema safety, обязательный URL string
 или `item.@id` у каждого non-final BreadcrumbList ListItem, duplicate IDs,
-относительные static links/fragments, alt/dimensions, отсутствие canonical.
+относительные static links/fragments, alt/dimensions, отсутствие canonical. Hub/family pages дополнительно требуют CollectionPage +
+BreadcrumbList и не могут публиковать Product schema.
 Exit 1 при ошибке; warnings не скрывают ошибки. `--root` поддерживает отдельные
 fixtures/checkout; output сортируется и не содержит времени/локального hostname.
 CSS aspect ratio вместо img width/height требует human review warning.

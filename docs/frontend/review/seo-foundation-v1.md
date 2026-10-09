@@ -13,12 +13,14 @@ python3 tools/seo_audit.py --json
 python3 -m unittest discover -s tools -p 'test_seo_audit.py'
 ```
 
-Результат: **12 страниц, 0 ошибок, 28 intentional warnings**.
-[Детерминированный JSON output](seo-audit-v1.json). Девять fixture tests
+Результат: **15 страниц, 0 ошибок, 37 intentional warnings**.
+[Детерминированный JSON output](seo-audit-v1.json). Одиннадцать fixture tests
 прошли: staging guard, canonical, metadata/H1, IDs/links/images, invalid/unsafe
 JSON-LD и implicit offers/review properties; дополнительно non-final breadcrumb
 URLs, URL string / `item.@id`, invalid URL/list shapes и final-item omission.
-Все текущие img имеют размеры/alt.
+Family pages дополнительно требуют CollectionPage/BreadcrumbList без Product;
+новые filenames участвуют в staging/IDs/H1/link guards. Все текущие img имеют
+размеры/alt.
 
 | HTML                 | Detected JSON-LD types (recursive)       |
 | -------------------- | ---------------------------------------- |
@@ -28,39 +30,42 @@ URLs, URL string / `item.@id`, invalid URL/list shapes и final-item omission.
 | `cart.html`          | Нет                                      |
 | `catalog.html`       | BreadcrumbList, CollectionPage, ListItem |
 | `checkout.html`      | Нет                                      |
+| `computers.html`     | BreadcrumbList, CollectionPage, ListItem |
 | `contacts.html`      | BreadcrumbList, ContactPage, ListItem    |
+| `create.html`        | BreadcrumbList, CollectionPage, ListItem |
 | `index.html`         | Organization, WebSite                    |
 | `order-success.html` | Нет                                      |
 | `product.html`       | Brand, BreadcrumbList, ListItem, Product |
 | `review.html`        | Нет                                      |
 | `ui.html`            | Нет                                      |
+| `work.html`          | BreadcrumbList, CollectionPage, ListItem |
 
 Production indexability: [единая полная матрица](../KORSAC-INFORMATION-ARCHITECTURE.md#единая-матрица-production-indexability)
 с Page type / URL / index policy / canonical / breadcrumbs / schema / sitemap /
 Bitrix owner. Content-only published entities indexable; Cart/Checkout/Success,
 Search/Account, filters/sort/configurations/review/errors не создают indexable
-сущности. В этом review **все** 12 страниц noindex/nofollow/noarchive.
+сущности. В этом review **все** 15 страниц noindex/nofollow/noarchive.
 
 Known intentional warnings:
 
-- 12 × canonical/og:url не заданы в prototype. Production следует page-type
+- 15 × canonical/og:url не заданы в prototype. Production следует page-type
   policy: approved-host self-canonical только для подходящих content pages;
   ошибки/транзакции не ждут canonical.
-- 12 × нет approved og:image; social artwork остаётся future production slot.
-- 4 × local schema URLs/fragment IDs для semantic review. Bitrix преобразует
+- 15 × нет approved og:image; social artwork остаётся future production slot.
+- 7 × local schema URLs/fragment IDs для semantic review. Bitrix преобразует
   реальные entities в absolute canonical URLs; hostname сейчас не выдуман.
 
-Intermediate breadcrumb «Компьютеры» остаётся без UI href, но JSON-LD имеет
-утверждённый semantic `item: "/computers/"`. На Product PLAY сохраняет
-`item: "catalog.html"`; только последний crumb может опустить `item`.
-Усиленный audit на прежнем head обнаружил обе ошибки (Catalog/Product);
-после исправления все три BreadcrumbList проходят новую проверку.
+Computer Families v1 добавил настоящий hub: «Компьютеры» теперь UI link и
+JSON-LD `item: "computers.html"`. На Product PLAY сохраняет `catalog.html`;
+только final item может опустить `item`. [Current family review](computer-families-v1.md)
+показывает расширенный audit/QA. Исторические PR #9 captures и browser QA ниже
+относятся к Generic Pages baseline до новых family routes.
 Current Product без Offer/image/availability/ratings intentional, sample price
 не является production данными. Проверка JSON syntax не обещает rich results.
 Audit не заменяет Google/Schema.org/Yandex validators/Lighthouse/Search Console;
 ни один внешний validator или production HTTP/crawl acceptance здесь не заявлен.
 
-## Browser QA
+## Browser QA — PR #9 baseline
 
 Chromium по HTTP: 12 страниц × 8 ширин = **96 layouts**
 (320/375/430/768/1024/1280/1440/1920), zero horizontal overflow и console/request
@@ -111,7 +116,7 @@ http.server/file opening не задают actual404/500/503, это server inte
 [Generic pages / HTTP](../KORSAC-GENERIC-PAGES.md).
 Human visual review остаётся перед merge; автоматического merge нет.
 
-## Follow-up после review d4d5c10
+## Follow-up после review d4d5c10 — историческая проверка PR #9
 
 Breadcrumb URLs проверены новым audit rule и regression fixtures. Runtime body,
 CSS/JS/brand assets и семь PNG не менялись, визуальные QA выше относятся к тому

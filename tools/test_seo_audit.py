@@ -15,11 +15,11 @@ GOOD = '''<!doctype html><html lang="ru"><head><title>Fixture</title>
 
 
 class AuditGuardTests(unittest.TestCase):
-    def check_fixture(self, html=GOOD, extra=None):
+    def check_fixture(self, html=GOOD, extra=None, page_name='product.html'):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             (root / 'prototype').mkdir()
-            (root / 'prototype/product.html').write_text(html, encoding='utf-8')
+            (root / 'prototype' / page_name).write_text(html, encoding='utf-8')
             for name, contents in (extra or {}).items():
                 (root / 'prototype' / name).write_text(contents, encoding='utf-8')
             result = audit(root)
@@ -107,6 +107,46 @@ class AuditGuardTests(unittest.TestCase):
             with self.subTest(type=node['@type']):
                 graph = {'@context': 'https://schema.org', '@graph': [{'@type': 'Product', 'offers': [node]}]}
                 self.assertIn(message, self.errors(GOOD.replace('</head>', '<script type="application/ld+json">' + json.dumps(graph) + '</script></head>')))
+
+    def test_family_pages_require_collection_not_product(self):
+        breadcrumb = {'@type': 'BreadcrumbList', 'itemListElement': [
+            {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'index.html'},
+            {'@type': 'ListItem', 'position': 2, 'name': 'Family'},
+        ]}
+        for name in ('computers.html', 'catalog.html', 'create.html', 'work.html'):
+            for page_type, expected in [('CollectionPage', 0), ('Product', 2)]:
+                with self.subTest(page=name, type=page_type):
+                    graph = {'@context': 'https://schema.org', '@graph': [{'@type': page_type}, breadcrumb]}
+                    markup = GOOD.replace('</head>', '<script type="application/ld+json">' + json.dumps(graph) + '</script></head>')
+                    self.assertEqual(self.check_fixture(markup, page_name=name)['errors'], expected)
+            missing = self.check_fixture(GOOD, page_name=name)
+            self.assertTrue(any('requires BreadcrumbList' in e for e in missing['pages'][0]['errors']))
+
+    def test_new_families_are_discovered_and_keep_all_staging_guards(self):
+        extras = {}
+        for name in ('computers', 'create', 'work'):
+            graph = {'@context': 'https://schema.org', '@graph': [
+                {'@type': 'CollectionPage'},
+                {'@type': 'BreadcrumbList', 'itemListElement': [
+                    {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'product.html'},
+                    {'@type': 'ListItem', 'position': 2, 'name': name},
+                ]},
+            ]}
+            markup = GOOD.replace('Fixture', name).replace('</head>', '<script type="application/ld+json">' + json.dumps(graph) + '</script></head>')
+            extras[name + '.html'] = markup
+        good = self.check_fixture(extra=extras)
+        self.assertEqual(len(good['pages']), 4)
+        self.assertEqual(good['errors'], 0)
+        for name in extras:
+            for mutation, message in [
+                (extras[name].replace('noindex, nofollow, noarchive', 'index, follow'), 'robots must'),
+                (extras[name].replace('</main>', '<p id="main">duplicate</p></main>'), 'Duplicate HTML ID'),
+                (extras[name].replace('</main>', '<a href="missing.html">missing</a></main>'), 'Broken local link'),
+                (extras[name].replace('</main>', '<h1>Duplicate</h1></main>'), 'Expected one H1'),
+            ]:
+                with self.subTest(page=name, guard=message):
+                    broken = dict(extras, **{name: mutation})
+                    self.assertIn(message, '\n'.join(e for p in self.check_fixture(extra=broken)['pages'] for e in p['errors']))
 
 
 if __name__ == '__main__':
