@@ -90,4 +90,4 @@ Projects реализованы в следующем stage ниже; Bitrix mig
 - [Content/source/SEO/Bitrix contract](docs/frontend/KORSAC-PROJECTS-EXPERIENCE.md).
 - [Review screenshots и QA](docs/frontend/review/projects-v1.md).
 
-Projects доступны через Homepage trust и footer; PLAY/family hierarchy сохранены. Факты взяты из approved source excerpts в ТЗ, live King-Komp retrieval blocked by environment proxy; страницы не используют вымышленные фотографии. Equipment, System Passport и Bitrix не реализованы.
+Projects доступны через Homepage trust и footer; PLAY/family hierarchy сохранены. Факты сверены с оригиналами King-Komp; source фотографии сохранены локально: previews всех трёх проектов и gallery белой сборки. Equipment, System Passport и Bitrix не реализованы.

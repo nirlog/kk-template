@@ -156,8 +156,8 @@ Projects list (`projects.html`): CollectionPage + BreadcrumbList. Review detail
 ancestors `index.html`/`projects.html`. Нет Product/Offers/ratings на case,
 нет invented author/dates/image для заполнения optional Article properties.
 Legacy slug — кандидат, production slug и hostname утверждаются при migration.
-[Projects source contract](KORSAC-PROJECTS-EXPERIENCE.md) фиксирует provenance,
-source access limitation и отсутствие project photography в текущем review.
+[Projects source contract](KORSAC-PROJECTS-EXPERIENCE.md) фиксирует provenance
+и реальные локальные cover/gallery. Article.image использует только видимый review cover, без выдуманного production URL.
 
 Product: безопасный scaffold + BreadcrumbList, без Offer.
 

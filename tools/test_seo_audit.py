@@ -19,9 +19,14 @@ class AuditGuardTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             (root / 'prototype').mkdir()
+            media = root / 'prototype/assets/images/projects/fixture.jpg'
+            media.parent.mkdir(parents=True)
+            media.write_bytes(b'fixture: audit checks presence, source authenticity is reviewed separately')
             (root / 'prototype' / page_name).write_text(html, encoding='utf-8')
             for name, contents in (extra or {}).items():
-                (root / 'prototype' / name).write_text(contents, encoding='utf-8')
+                target = root / 'prototype' / name
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.write_text(contents, encoding='utf-8')
             result = audit(root)
             self.assertEqual(result, audit(root), 'Audit output must be deterministic')
             return result
@@ -156,7 +161,11 @@ class AuditGuardTests(unittest.TestCase):
                 {'@type': 'ListItem', 'position': 2, 'name': 'Project'},
             ]},
         ] + (extra_nodes or [])}
-        return GOOD.replace('</head>', '<script type="application/ld+json">' + json.dumps(graph) + '</script></head>')
+        markup = GOOD.replace('</head>', '<script type="application/ld+json">' + json.dumps(graph) + '</script></head>')
+        photo = '<img data-project-image src="assets/images/projects/fixture.jpg" alt="Fixture computer" width="600" height="480">'
+        # Both media containers are valid; a schema mutation must still expose media.
+        media = '<article class="k-project-entry"><figure data-project-cover>' + photo + '</figure></article><ul data-project-gallery><li>' + photo + '</li></ul>'
+        return markup.replace('</main>', media + '</main>')
 
     def test_projects_schema_requires_article_or_collection_and_breadcrumb(self):
         for name, required in [('projects.html', 'CollectionPage'), ('project.html', 'Article')]:
@@ -208,6 +217,48 @@ class AuditGuardTests(unittest.TestCase):
                     broken = dict(extras, **{name: mutation, 'pixel.svg': '<svg/>'})
                     errors = '\n'.join(e for p in self.check_fixture(extra=broken)['pages'] for e in p['errors'])
                     self.assertIn(message, errors)
+
+    def test_project_media_presence_and_local_resources(self):
+        for name, required in [('projects.html', 'CollectionPage'), ('project.html', 'Article')]:
+            valid = self.project_markup(required)
+            with self.subTest(page=name):
+                self.assertEqual(self.check_fixture(valid, page_name=name)['errors'], 0)
+                no_media = valid.replace('data-project-image', 'data-other-image')
+                errors = self.check_fixture(no_media, page_name=name)['pages'][0]['errors']
+                self.assertTrue(any('requires a project' in e for e in errors))
+                for src, message in [
+                    ('assets/images/projects/missing.jpg', 'Missing local project image'),
+                    ('https://www.king-komp.com/upload/photo.jpg', 'must be a local project photograph'),
+                    ('assets/images/brand/logo.svg', 'must be a local project photograph'),
+                ]:
+                    changed = valid.replace('assets/images/projects/fixture.jpg', src)
+                    self.assertTrue(any(message in e for e in self.check_fixture(changed, page_name=name)['pages'][0]['errors']))
+        # It is not enough for some other record to have an image.
+        extra_record = self.project_markup('CollectionPage').replace('</main>', '<article class="k-project-entry"><h2>Missing cover</h2></article></main>')
+        self.assertIn('Projects record #2 requires a project image', self.check_fixture(extra_record, page_name='projects.html')['pages'][0]['errors'])
+        no_gallery = self.project_markup('Article').replace('data-project-gallery', 'data-other-gallery')
+        self.assertIn('Project detail requires visible gallery images in base HTML', self.check_fixture(no_gallery, page_name='project.html')['pages'][0]['errors'])
+
+    def test_project_photos_need_alt_and_dimensions(self):
+        for name, required in [('projects.html', 'CollectionPage'), ('project.html', 'Article')]:
+            valid = self.project_markup(required)
+            for mutation, message in [
+                (valid.replace('alt="Fixture computer"', ''), 'requires non-empty alt'),
+                (valid.replace('alt="Fixture computer"', 'alt=" "'), 'requires non-empty alt'),
+                (valid.replace('width="600"', ''), 'requires explicit positive width/height'),
+                (valid.replace('height="480"', 'height="0"'), 'requires explicit positive width/height'),
+            ]:
+                with self.subTest(page=name, guard=message):
+                    self.assertTrue(any(message in e for e in self.check_fixture(mutation, page_name=name)['pages'][0]['errors']))
+
+    def test_article_image_must_be_visible_project_media(self):
+        valid = self.project_markup('Article')
+        for image in ['assets/images/projects/fixture.jpg', ['assets/images/projects/fixture.jpg'], {'@type': 'ImageObject', 'url': 'assets/images/projects/fixture.jpg'}]:
+            changed = valid.replace('"headline": "Fixture"', '"headline": "Fixture", "image": ' + json.dumps(image))
+            self.assertEqual(self.check_fixture(changed, page_name='project.html')['errors'], 0)
+        for image in [['assets/images/projects/fixture.jpg', ''], '', 'assets/images/projects/hidden.jpg', 'https://example.com/photo.jpg', {'url': ''}]:
+            changed = valid.replace('"headline": "Fixture"', '"headline": "Fixture", "image": ' + json.dumps(image))
+            self.assertIn('Article.image must refer to an actual visible local project image', self.check_fixture(changed, page_name='project.html')['pages'][0]['errors'])
 
 
 if __name__ == '__main__':
