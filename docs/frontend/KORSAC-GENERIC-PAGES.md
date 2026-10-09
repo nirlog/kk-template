@@ -68,6 +68,25 @@ Production fallback HTML/CSS/logo должны быть доступны web ser
 приложения. Если даже static assets недоступны, HTML сообщение остаётся
 readable; это проверено с blocked CSS/logo в браузере.
 
+### Пути production fallback не зависят от глубины запроса
+
+Error template рендерится для **исходного requested URL**, а не по адресу
+`/404.html`, `/500.html` или `/503.html`. Например, при запросе
+`/computers/play/1440/missing/` относительное `assets/css/error-resilient.css`
+разрешилось бы внутри этого пути и сломало fallback. Production CSS/logo URLs
+обязаны быть **origin-root-absolute** (начинаться с `/`) или формироваться
+сервером как абсолютные asset URLs независимо от request depth. Их реальные
+пути определяет deployment/template asset resolver, не браузерный JS и не
+неисправный Bitrix component. Они доступны web server до запуска приложения.
+
+Home action использует `/`, Contacts — `/contacts/`, без file-relative
+`index.html`/`contacts.html`. 503 retry сохраняет исходный requested URL
+(включая необходимый request context), а не ведёт на fixed `503.html` или Home;
+никакого auto-reload. Production integration проверяет ответы на глубоко
+вложенных URL: actual status, загрузку CSS/logo, Home/Contacts и ручной retry.
+Static prototype сохраняет относительные пути для HTTP/file review; это
+не deployment-ready пути production error templates.
+
 Все ошибки noindex, вне sitemap и публичного меню. В prototype policy полнее:
 `noindex, nofollow, noarchive`. Нет Product/Article schema; errors без JSON-LD,
 canonical и social-image fiction. Review hub перечисляет их как visual states.

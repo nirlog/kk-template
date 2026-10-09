@@ -126,7 +126,12 @@ offers на авторские карточки.
           "name": "Главная",
           "item": "index.html"
         },
-        { "@type": "ListItem", "position": 2, "name": "Компьютеры" },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Компьютеры",
+          "item": "/computers/"
+        },
         { "@type": "ListItem", "position": 3, "name": "PLAY" }
       ]
     }
@@ -134,10 +139,16 @@ offers на авторские карточки.
 }
 ```
 
-Пропущенный item промежуточного «Компьютеры» intentional: prototype hub не
-создан. Видимый `<nav><ol>` имеет тот же порядок. В production единый server
-hierarchy resolver добавляет реальные абсолютные ancestors/current canonical.
-Не создавать фиктивный prototype URL ради validator completeness.
+У каждого non-final ListItem обязателен `item`: URL string или объект с URL
+в `@id`. Опустить его можно только у последнего элемента. Для промежуточного
+«Компьютеры» используется уже утверждённый semantic path `/computers/`, хотя
+видимый crumb остаётся non-clickable: static hub ещё не создан. Это исключение
+для semantic review, а не активная prototype navigation ссылка. На Product
+PLAY ссылается на текущую semantic entity `catalog.html`; только final PLAY 1440
+может не иметь `item`. Видимый `<nav><ol>` сохраняет те же names/order.
+В production единый server hierarchy resolver формирует реальные абсолютные
+ancestors/current canonical на утверждённом host. Audit проверяет наличие и
+URL representation non-final items, без заявления внешней rich-results validation.
 
 Product: безопасный scaffold + BreadcrumbList, без Offer.
 
@@ -233,6 +244,10 @@ indexability проверяются отдельно от sitemap membership.
 Unavailable с Retry-After только при известной полезной оценке. Для намеренно
 удалённого без замены контента возможен 410. Не branded soft-404 с HTTP 200,
 не JS redirect/auto-reload. Статические HTML не задают response status.
+Production error CSS/logo и Home/Contacts links должны разрешаться независимо
+от глубины исходного requested URL: origin-root-absolute или server-resolved
+assets, `/` и `/contacts/` для действий. File-relative prototype paths нельзя
+копировать в production error templates. 503 retry обращается к исходному URL.
 См. [Generic pages](KORSAC-GENERIC-PAGES.md).
 
 ## Локальная проверка
@@ -244,7 +259,8 @@ python3 -m unittest discover -s tools -p 'test_seo_audit.py'
 ```
 
 Stdlib tool проверяет все `prototype/*.html`: lang, unique title/description,
-viewport/robots/OG, один H1, JSON syntax/schema safety, duplicate IDs,
+viewport/robots/OG, один H1, JSON syntax/schema safety, обязательный URL string
+или `item.@id` у каждого non-final BreadcrumbList ListItem, duplicate IDs,
 относительные static links/fragments, alt/dimensions, отсутствие canonical.
 Exit 1 при ошибке; warnings не скрывают ошибки. `--root` поддерживает отдельные
 fixtures/checkout; output сортируется и не содержит времени/локального hostname.
@@ -252,7 +268,8 @@ CSS aspect ratio вместо img width/height требует human review warni
 Audit проверяет file links, не будущие production redirects или remote href.
 
 Negative regression tests вводят нарушенный noindex, broken anchors/ресурсы,
-повтор ID, invalid JSON, sample Offer, Review/rating, missing semantics и metadata.
+повтор ID, invalid JSON, sample Offer, Review/rating, missing semantics и metadata,
+а также missing/invalid breadcrumb URL и допустимый final-item omission.
 [Report](review/seo-foundation-v1.md) перечисляет types, known warnings и результат.
 Это не Google Rich Results Test, Schema.org/Yandex validator, Lighthouse или
 Search Console. Полноценность rich results и production crawl/status/host

@@ -57,6 +57,50 @@ class AuditGuardTests(unittest.TestCase):
             graph = {'@type': 'Product', key: value}
             self.assertGreater(self.check_fixture(GOOD.replace('</head>', '<script type="application/ld+json">' + json.dumps(graph) + '</script></head>'))['errors'], 0)
 
+    def breadcrumb_fixture(self, items):
+        graph = {'@context': 'https://schema.org', '@type': 'BreadcrumbList', 'itemListElement': items}
+        return GOOD.replace('</head>', '<script type="application/ld+json">' + json.dumps(graph) + '</script></head>')
+
+    def test_breadcrumb_non_final_items_required(self):
+        items = [
+            {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'index.html'},
+            {'@type': 'ListItem', 'position': 2, 'name': 'Computers', 'item': '/computers/'},
+            {'@type': 'ListItem', 'position': 3, 'name': 'PLAY'},
+        ]
+        for index in (0, 1):
+            with self.subTest(index=index):
+                broken = [dict(item) for item in items]
+                broken[index].pop('item')
+                # The ListItem's own identity cannot replace the target page.
+                broken[index]['@id'] = '/computers/'
+                self.assertIn(f'ListItem #{index + 1} requires a valid item', self.errors(self.breadcrumb_fixture(broken)))
+
+    def test_breadcrumb_valid_representations_and_final_omission(self):
+        for value in ('index.html', '/computers/', 'https://example.com/computers/', {'@id': '/computers/'}, {'@id': 'https://example.com/computers/'}):
+            with self.subTest(value=value):
+                items = [
+                    {'@type': 'ListItem', 'position': 1, 'name': 'Ancestor', 'item': value},
+                    {'@type': 'ListItem', 'position': 2, 'name': 'Current'},
+                ]
+                self.assertEqual(self.check_fixture(self.breadcrumb_fixture(items))['errors'], 0)
+                items[-1]['item'] = {'@id': 'product.html'}
+                self.assertEqual(self.check_fixture(self.breadcrumb_fixture(items))['errors'], 0)
+
+    def test_breadcrumb_invalid_items_and_list_shape(self):
+        for value in (None, '', 'not a URL', '#', 'javascript:alert(1)', 'data:text/html,test', 'https://', 'https://[broken', 42, {}, {'@id': ''}, {'@id': 42}, {'url': '/computers/'}):
+            with self.subTest(value=value):
+                items = [
+                    {'@type': 'ListItem', 'position': 1, 'name': 'Ancestor', 'item': value},
+                    {'@type': 'ListItem', 'position': 2, 'name': 'Current'},
+                ]
+                self.assertIn('requires a valid item', self.errors(self.breadcrumb_fixture(items)))
+        for items in (None, [], {}, ['invalid']):
+            with self.subTest(items=items):
+                self.assertIn('BreadcrumbList', self.errors(self.breadcrumb_fixture(items)))
+        self.assertIn('requires a valid item', self.errors(self.breadcrumb_fixture([
+            {'@type': 'ListItem', 'position': 1, 'name': 'Current', 'item': ''},
+        ])))
+
     def test_invalid_and_unsafe_schema(self):
         self.assertIn('Invalid JSON-LD', self.errors(GOOD.replace('</head>', '<script type="application/ld+json">{bad}</script></head>')))
         for node, message in [({'@type': 'Offer', 'price': '179900'}, 'Offer'), ({'@type': 'AggregateOffer', 'lowPrice': '179900'}, 'AggregateOffer'), ({'@type': 'AggregateRating', 'ratingValue': 5}, 'AggregateRating'), ({'@type': 'Review', 'reviewBody': 'Dummy'}, 'Review')]:

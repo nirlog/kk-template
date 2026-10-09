@@ -128,8 +128,11 @@ presentation/заказ одной модели и не создаёт инде�
 
 В прототипе «Компьютеры» — текстовый intermediate crumb: hub ещё не создан.
 Текущая страница — `aria-current="page"`, без ссылки. JSON-LD содержит те же
-names/positions; `item` задан только для существующих linked ancestors.
-Это semantic scaffold для review, не заявление готовности breadcrumb rich result.
+names/positions. Каждый non-final ListItem имеет `item`: для «Компьютеры» это
+утверждённый semantic path `/computers/`, для PLAY на Product — `catalog.html`.
+Semantic path не превращает crumb в UI-ссылку на отсутствующий hub.
+Только final ListItem может опустить `item`; допустим URL string или объект
+`item: {"@id": URL}`. Audit проверяет это правило, но не заменяет внешние validators.
 В production и visible `<ol>`, и BreadcrumbList формируются из одной серверной
 иерархии; реальные ancestors получают абсолютные production URL.
 

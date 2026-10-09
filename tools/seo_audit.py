@@ -85,6 +85,39 @@ def schema_nodes(value):
             yield from schema_nodes(child)
 
 
+def valid_breadcrumb_url(value):
+    """Accept review paths or HTTP(S) page URLs, also via item: {"@id": URL}."""
+    if isinstance(value, dict):
+        value = value.get('@id')
+    if not isinstance(value, str) or not value or any(c.isspace() for c in value):
+        return False
+    if any(ord(c) < 32 or c in '<>"{}\\' for c in value):
+        return False
+    try:
+        url = urlsplit(value)
+        if url.scheme:
+            # Accessing port also rejects malformed/out-of-range authorities.
+            url.port
+            return url.scheme.lower() in ('http', 'https') and bool(url.hostname)
+        return not url.netloc and bool(url.path) and not value.startswith('//')
+    except ValueError:
+        return False
+
+
+def breadcrumb_errors(node):
+    items = node.get('itemListElement')
+    if not isinstance(items, list) or not items:
+        return ['BreadcrumbList requires a non-empty itemListElement list']
+    errors = []
+    for index, item in enumerate(items, 1):
+        if not isinstance(item, dict):
+            errors.append(f'BreadcrumbList ListItem #{index} must be an object')
+        elif index < len(items) or 'item' in item:
+            if not valid_breadcrumb_url(item.get('item')):
+                errors.append(f'BreadcrumbList ListItem #{index} requires a valid item URL or item.@id; only the final item may omit item')
+    return errors
+
+
 def audit(root):
     prototype = root / 'prototype'
     files = sorted(prototype.glob('*.html'))
@@ -154,6 +187,8 @@ def audit(root):
                     errors.append('Invalid schema @type value')
                     continue
                 types.update(node_types)
+                if 'BreadcrumbList' in node_types:
+                    errors.extend(breadcrumb_errors(node))
                 for t in node_types:
                     if t in ('Offer', 'AggregateOffer'):
                         errors.append(f'Prototype schema must not claim authoritative {t} (including sample Offer.price)')
@@ -165,8 +200,12 @@ def audit(root):
                     errors.append('Prototype has no authoritative review/rating data')
                 for key in ('@id', 'url', 'logo', 'item'):
                     value = node.get(key)
-                    if isinstance(value, str) and not urlsplit(value).scheme:
-                        warnings.append('Relative schema URLs/IDs are semantic-review only; production needs absolute canonical URLs')
+                    if isinstance(value, str):
+                        try:
+                            if not urlsplit(value).scheme:
+                                warnings.append('Relative schema URLs/IDs are semantic-review only; production needs absolute canonical URLs')
+                        except ValueError:
+                            errors.append(f'Invalid schema URL in {key}')
         if path.name in ('404.html', '500.html', '503.html') and types:
             errors.append('Error templates must not carry content structured data')
         warnings.extend(['Prototype canonical/og:url intentionally omitted; production follows page-type policy and approved host', 'No approved og:image; production social artwork remains pending'])

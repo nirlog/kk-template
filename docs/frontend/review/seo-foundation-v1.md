@@ -14,9 +14,11 @@ python3 -m unittest discover -s tools -p 'test_seo_audit.py'
 ```
 
 Результат: **12 страниц, 0 ошибок, 28 intentional warnings**.
-[Детерминированный JSON output](seo-audit-v1.json). Шесть negative-fixture tests
+[Детерминированный JSON output](seo-audit-v1.json). Девять fixture tests
 прошли: staging guard, canonical, metadata/H1, IDs/links/images, invalid/unsafe
-JSON-LD и implicit offers/review properties. Все текущие img имеют размеры/alt.
+JSON-LD и implicit offers/review properties; дополнительно non-final breadcrumb
+URLs, URL string / `item.@id`, invalid URL/list shapes и final-item omission.
+Все текущие img имеют размеры/alt.
 
 | HTML                 | Detected JSON-LD types (recursive)       |
 | -------------------- | ---------------------------------------- |
@@ -48,7 +50,11 @@ Known intentional warnings:
 - 4 × local schema URLs/fragment IDs для semantic review. Bitrix преобразует
   реальные entities в absolute canonical URLs; hostname сейчас не выдуман.
 
-Intermediate breadcrumb «Компьютеры» без item/href intentional: hub не построен.
+Intermediate breadcrumb «Компьютеры» остаётся без UI href, но JSON-LD имеет
+утверждённый semantic `item: "/computers/"`. На Product PLAY сохраняет
+`item: "catalog.html"`; только последний crumb может опустить `item`.
+Усиленный audit на прежнем head обнаружил обе ошибки (Catalog/Product);
+после исправления все три BreadcrumbList проходят новую проверку.
 Current Product без Offer/image/availability/ratings intentional, sample price
 не является production данными. Проверка JSON syntax не обещает rich results.
 Audit не заменяет Google/Schema.org/Yandex validators/Lighthouse/Search Console;
@@ -104,3 +110,17 @@ http.server/file opening не задают actual404/500/503, это server inte
 [SEO source contract и examples](../KORSAC-SEO-FOUNDATION.md),
 [Generic pages / HTTP](../KORSAC-GENERIC-PAGES.md).
 Human visual review остаётся перед merge; автоматического merge нет.
+
+## Follow-up после review d4d5c10
+
+Breadcrumb URLs проверены новым audit rule и regression fixtures. Runtime body,
+CSS/JS/brand assets и семь PNG не менялись, визуальные QA выше относятся к тому
+же интерфейсу. Дополнительно проверены Catalog/Product/Contacts breadcrumbs по
+HTTP, names/order и non-clickable Computers, отсутствие overflow320/375/430/1440,
+а также server-ready разметка без JS. Полный motion suite повторно не запускался.
+
+[Production error deployment contract](../KORSAC-GENERIC-PAGES.md#пути-production-fallback-не-зависят-от-глубины-запроса)
+теперь явно требует независимых от request depth CSS/logo URLs, Home `/`,
+Contacts `/contacts/` и503 retry исходного requested URL. Prototype paths
+сохранены. Actual production HTTP/asset routing требует отдельной integration
+проверки после реализации server adapter.
