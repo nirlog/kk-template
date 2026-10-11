@@ -197,9 +197,7 @@
         const selection = readSelection();
         for (const [field, label] of Object.entries(selection)) {
           experience
-            .querySelectorAll(
-              `[data-stage-output="${field}"], [data-passport-output="${field}"]`,
-            )
+            .querySelectorAll(`[data-stage-output="${field}"]`)
             .forEach((output) => {
               output.textContent = label;
             });

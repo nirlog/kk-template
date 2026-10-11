@@ -295,3 +295,22 @@ Negative regression tests вводят нарушенный noindex, broken anch
 Search Console. Полноценность rich results и production crawl/status/host
 проверяется отдельно после реальных данных/deployment. Правдоподобный scaffold
 не дополняется ложными полями для прохождения внешнего validator.
+
+## System Passport v1: service projection
+
+`passport.html` / `passport-pending.html` остаются staging
+`noindex, nofollow, noarchive`. В production active — `noindex, follow`,
+pending — `noindex, nofollow`; оба вне sitemap. Invalid PUBLIC_ID возвращает
+HTTP 404. Нет `/passport/` index/search. `system-workflow.html` — internal review
+без публичной production route. Не добавлены canonical host/og:url.
+
+Passport не Product и не Article: Product/Offer/AggregateOffer/Review/
+AggregateRating/Article запрещены. Structured data не требуется; component data
+не сериализуются в JSON-LD. Meta/sharing generic, без S/N, history, заказа,
+контакта, внутренних warranty fields или fixture SYSTEM ID. PUBLIC_ID — bearer
+locator, не авторизация; public DTO должен оставаться privacy-safe.
+
+Audit дополнен public-state/System ID/snapshot/inquiry/privacy guards. Pending
+не может содержать компоненты, дату передачи или гарантию даже скрыто. Проверки
+HTML не заменяют server access/projection policy, authorization, D7 transactions
+или privacy review. [Полный контракт](KORSAC-SYSTEM-PASSPORT.md).

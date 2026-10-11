@@ -202,3 +202,9 @@ Self-review A–G:
 в живом браузере. Не сливать автоматически. PNG/MP4 не завершают acceptance.
 Физические устройства, screen reader, Firefox/Safari не проверены; direct
 `file://` заблокирован политикой среды.
+
+System Passport v1 refinement: ownership copy now describes SYSTEM_ID assignment
+at System creation and public activation at handoff. Public v1 shows confirmed
+components/transfer/warranty/inquiry, not test results or internal service history.
+No synthetic identifier or Passport directory link is exposed on Homepage.
+See [System Passport contract](KORSAC-SYSTEM-PASSPORT.md).

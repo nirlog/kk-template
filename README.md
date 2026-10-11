@@ -16,7 +16,7 @@ Interactive Product Experience v3.1, Cart & Checkout Experience v1, Contacts / E
 - [prototype/create.html](prototype/create.html) — рабочий процесс: 3D, CAD, видео и графика.
 - [prototype/work.html](prototype/work.html) — рабочие задачи и operational priorities.
 - [prototype/catalog.html](prototype/catalog.html) — выбор сценария PLAY, MINI-ветка, вся линейка и сравнение классов.
-- [prototype/product.html](prototype/product.html) — PLAY 1440, System Explorer, сцена конфигуратора и SYSTEM ID.
+- [prototype/product.html](prototype/product.html) — PLAY 1440, System Explorer, сцена конфигуратора и статичный пример будущего паспорта.
 - [prototype/cart.html](prototype/cart.html) — две конфигурации PLAY 1440, количество, demo totals и empty state.
 - [prototype/checkout.html](prototype/checkout.html) — guest/company checkout, СДЭК placeholder, payment и validation.
 - [prototype/order-success.html](prototype/order-success.html) — явно демонстрационный результат оформления.
@@ -39,7 +39,7 @@ responsive footer и статическом hero. Общий site-entry Brand In
 Computers/CREATE/WORK участвуют в этой же политике, без новых motion sequences.
 Cart/Checkout/Success, Contacts и error pages исключены из Brand Intro и не меняют его timestamp.
 Фотография продукта пока заменена нейтральной схемой.
-Выбранные hardware-опции обновляют сцену, сводку и SYSTEM ID preview;
+Выбранные hardware-опции обновляют сцену и сводку; пример паспорта независим;
 цены остаются статическими. Explorer синхронизирует сцену и пояснение
 через context buttons, hotspots и Prev/Next, сохраняя обычную прокрутку.
 Каталог читает данные из HTML-карточек: Navigator и сравнение 2–3 моделей
@@ -90,7 +90,7 @@ Projects реализованы в следующем stage ниже; Bitrix mig
 - [Content/source/SEO/Bitrix contract](docs/frontend/KORSAC-PROJECTS-EXPERIENCE.md).
 - [Review screenshots и QA](docs/frontend/review/projects-v1.md).
 
-Projects доступны через Homepage trust и footer; PLAY/family hierarchy сохранены. Факты сверены с оригиналами King-Komp; source фотографии сохранены локально: previews всех трёх проектов и gallery белой сборки. Equipment реализован в следующем stage ниже; System Passport и Bitrix не реализованы.
+Projects доступны через Homepage trust и footer; PLAY/family hierarchy сохранены. Факты сверены с оригиналами King-Komp; source фотографии сохранены локально: previews всех трёх проектов и gallery белой сборки. Equipment реализован в следующем stage ниже; System Passport реализован в следующем stage ниже; Bitrix не реализован.
 
 ### Equipment / Simple Product Experience v1
 
@@ -103,4 +103,27 @@ Projects доступны через Homepage trust и footer; PLAY/family hiera
 10 уникальных реальных моделей MSI/LG (PLAY — 4, CREATE — 4, WORK — 5) сверены с карточками King-Komp и спецификациями
 производителей. Фото локальные; цены явно обозначены как примеры. Production
 price/availability/basket принадлежат Bitrix. Shared Media Viewer отложен;
-System Passport и Bitrix migration не начаты. Human review требуется до merge.
+Bitrix migration не начата; System Passport описан ниже. Human review требуется до merge.
+
+### System Passport Experience v1
+
+- [Активный паспорт](prototype/passport.html) и [ещё не активирован](prototype/passport-pending.html) — синтетические review states одной production route `/passport/{PUBLIC_ID}/`.
+- [Bitrix Admin workflow concept / review only](prototype/system-workflow.html) — одноразовый макет будущего KORSAC D7 модуля в административной области 1C-Bitrix; не публичная production route.
+- [System / components / inquiry / D7 contract](docs/frontend/KORSAC-SYSTEM-PASSPORT.md).
+- [Review evidence / QA](docs/frontend/review/system-passport-v1.md).
+
+System — отдельный физический компьютер, не Product или Order. Одному заказу
+соответствуют отдельные System на каждую единицу компьютера; обычному монитору
+System не создаётся. Passport показывает подтверждённые компоненты и сохранённую
+гарантию без S/N, заказа, клиента и внутренней сервисной истории. Product показывает
+явно подписанный статичный пример паспорта с иллюстративным SYSTEM ID, независимо
+от конфигуратора; CTA открывает синтетический review fixture. Управление Systems,
+обращениями и настройками принадлежит будущему Bitrix Admin, не публичному сайту.
+Карточка заказа показывает связанные Systems без копирования их данных в свойства.
+Глобального списка/поиска
+паспортов нет. Формы не отправляют и не сохраняют данные; генераторы, автоматизация,
+QR, расчёт гарантии и D7 — будущий backend. Human visual/architecture review required;
+do not auto-merge.
+
+Проверки: `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools -p 'test_*.py'`,
+`python3 tools/seo_audit.py`, `python3 tools/monitor_curation_audit.py`.

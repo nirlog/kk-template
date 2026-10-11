@@ -487,3 +487,28 @@ hero, подтверждение выбора, validation sweep, SYSTEM ID, мо
 audit: [SEO JSON](seo-audit-v1.json), [curation JSON](monitor-curation-v1.json).
 Hub/category desktop/mobile PNG refreshed after assortment expansion; unchanged detail/cart captures retained.
 Human visual review required; do not auto-merge.
+
+## System Passport Experience v1
+
+[Domain / workflow / privacy / D7](../KORSAC-SYSTEM-PASSPORT.md) ·
+[Review / validation](system-passport-v1.md) ·
+[Synthetic fixture ledger](system-passport-fixture.json).
+
+- [Active passport — desktop](passport-v1-desktop.png), [mobile](passport-v1-mobile.png).
+- [Pending passport — desktop](passport-pending-v1-desktop.png), [mobile](passport-pending-v1-mobile.png).
+- [Inquiry open — mobile](passport-inquiry-v1-mobile.png).
+- [Bitrix Admin concept — desktop](system-workflow-v1-desktop.png), [ownership / review bar](system-workflow-admin-v1-desktop.png).
+- [Internal components — desktop](system-workflow-components-v1-desktop.png), [service forms — desktop](system-workflow-service-v1-desktop.png).
+- [Manual fallback — desktop](system-workflow-actions-v1-desktop.png).
+- [Product static Passport example — desktop](product-passport-info-v1-desktop.png), [mobile](product-passport-info-v1-mobile.png).
+
+No Brand Intro on public passports. No real QR, generator, service persistence,
+support submission or public history/S/N. No new temporal motion requires MP4.
+Product shows a labelled static example with illustrative identity and a
+review-fixture CTA; configuration choices never change it or instantiate a
+System. Workflow is a disposable concept for the future 1C-Bitrix admin D7
+module, outside the public shell/navigation. Order admin exposes related
+Systems without flattening full data into order properties. Stale footer links
+lead to support. Historical stage images remain baselines; current tests include
+Family/Projects/Equipment and new privacy guards. Human visual and architecture
+review required; do not auto-merge.

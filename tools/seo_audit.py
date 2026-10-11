@@ -5,12 +5,14 @@ from collections import Counter
 from html.parser import HTMLParser
 import json
 from pathlib import Path
+import re
 from urllib.parse import unquote, urlsplit
 
 POLICY = 'noindex, nofollow, noarchive'
 FAMILY_PAGES = {'computers.html', 'catalog.html', 'create.html', 'work.html'}
 PROJECT_PAGES = {'projects.html': 'CollectionPage', 'project.html': 'Article'}
 EQUIPMENT_PAGES = {'equipment.html': 'CollectionPage', 'monitors.html': 'CollectionPage', 'monitor.html': 'Product'}
+PASSPORT_PAGES = {'passport.html': 'active', 'passport-pending.html': 'pending'}
 
 
 class Page(HTMLParser):
@@ -24,6 +26,10 @@ class Page(HTMLParser):
         self.ids = []
         self.links = []
         self.images = []
+        self.elements = []
+        self.system_ids = []
+        self._system_id = None
+        self._system_id_tag = None
         self.monitor_records = []
         self._monitor_record = None
         self.project_records = []
@@ -37,11 +43,16 @@ class Page(HTMLParser):
         self.jsonld = []
         self._title = None
         self._ld = None
-        self.feed(path.read_text(encoding='utf-8'))
+        self.raw = path.read_text(encoding='utf-8')
+        self.feed(self.raw)
         self.close()
 
     def handle_starttag(self, tag, attrs):
         a = {key: value or '' for key, value in attrs}
+        self.elements.append((tag, a))
+        if 'data-system-id' in a:
+            self._system_id = ''
+            self._system_id_tag = tag
         if 'id' in a:
             self.ids.append(a['id'])
         if tag == 'html':
@@ -92,12 +103,17 @@ class Page(HTMLParser):
         self.handle_endtag(tag)
 
     def handle_data(self, data):
+        if self._system_id is not None:
+            self._system_id += data
         if self._title is not None:
             self._title += data
         if self._ld is not None:
             self._ld += data
 
     def handle_endtag(self, tag):
+        if tag == self._system_id_tag:
+            self.system_ids.append(self._system_id.strip())
+            self._system_id = self._system_id_tag = None
         if tag == 'article':
             self._monitor_record = None
             self._project_record = None
@@ -226,6 +242,50 @@ def article_image_urls(value):
     return []
 
 
+def passport_errors(page):
+    """Static public-projection guard, not an authorization or backend-state test."""
+    errors = []
+    expected = PASSPORT_PAGES[page.path.name]
+    markers = Counter(key for _, attrs in page.elements for key in attrs)
+    states = [a['data-public-passport'] for _, a in page.elements if 'data-public-passport' in a]
+    if states != [expected]:
+        errors.append(f'Passport requires one public {expected} projection')
+    if len(page.system_ids) != 1 or not re.fullmatch(r'KS-\d{2}(?:0[1-9]|1[0-2])-\d{4}', page.system_ids[0]) or page.system_ids[0].endswith('-0000'):
+        errors.append('Passport requires one readable SYSTEM ID: KS-YYMM-NNNN')
+    # Scan the entire source, including comments, hidden controls and scripts.
+    if re.search(r'(?i)\bS\s*/\s*N\b|serial[_ -]?number|DEMO-SN|data-serial', page.raw):
+        errors.append('Public Passport must never expose a serial-number marker or value')
+    private = r'(?i)\b(?:ORDER[_ -]?(?:ID|BASKET|NUMBER|UNIT)|CUSTOMER[_ -]?ID|USER[_ -]?ID|SYSTEM[_ -]?INTERNAL[_ -]?ID|INTERNAL[_ -]?ID|COMPONENT[_ -]?ID|SYSTEM[_ -]?(?:DB|DATABASE|RECORD)[_ -]?ID|SERVICE[_ -]?(?:HISTORY|EVENT)|STATUS[_ -]?HISTORY|STAFF[_ -]?(?:ID|NOTE|NAME)|SUPPLIER|PURCHASE[_ -]?COST|RMA|CREATED[_ -]?BY|CHANGED[_ -]?BY)\b'
+    if re.search(private, page.raw):
+        errors.append('Public Passport exposes customer/order/internal/service data markers')
+    for tag, a in page.elements:
+        if tag == 'input' and a.get('type', '').lower() == 'hidden':
+            errors.append('Review inquiry must not carry hidden identity/customer fields')
+        if tag == 'input' and a.get('name') in ('name', 'contact') and a.get('value'):
+            errors.append('Public inquiry contact fields must not prefill customer data')
+        if any(a.get(k, '').startswith(('mailto:', 'tel:')) for k in ('href', 'action')):
+            errors.append('Public Passport must not embed customer contact URLs')
+    head = page.raw.split('</head>', 1)[0]
+    if re.search(r'KS-\d|Ryzen|GeForce|DDR\d|NVMe|WARRANTY_|TRANSFER_DATE', head, re.I):
+        errors.append('Passport metadata must remain generic, without System/component/warranty internals')
+    if 'brand-intro.js' in page.raw or 'data-brand-intro' in page.raw:
+        errors.append('Passport must not participate in Brand Intro eligibility or overlays')
+    if expected == 'active':
+        for marker in ('data-passport-components', 'data-passport-component', 'data-passport-warranty', 'data-transfer-date', 'data-warranty-end', 'data-inquiry-cta', 'data-inquiry-context', 'data-passport-inquiry'):
+            if not markers[marker]:
+                errors.append(f'Active Passport requires {marker} content')
+        for marker in ('data-transfer-date', 'data-warranty-end'):
+            times = [a for tag, a in page.elements if marker in a and tag == 'time']
+            if len(times) != 1 or not re.fullmatch(r'\d{4}-\d{2}-\d{2}', times[0].get('datetime', '')):
+                errors.append(f'Active Passport requires an authored {marker} time snapshot')
+    else:
+        if not markers['data-passport-pending'] or 'Паспорт ещё не активирован' not in page.raw:
+            errors.append('Pending Passport requires a textual not-activated state')
+        if any(markers[m] for m in ('data-passport-components', 'data-passport-component', 'data-passport-warranty', 'data-transfer-date', 'data-warranty-end')) or re.search(r'гаранти|\b(?:CPU|GPU|SSD|RAM|DDR\d|Ryzen|GeForce|NVMe)\b|\d{4}-\d{2}-\d{2}', page.raw, re.I):
+            errors.append('Pending Passport must not contain components, transfer date or warranty, even hidden')
+    return errors
+
+
 def audit(root):
     prototype = root / 'prototype'
     files = sorted(prototype.glob('*.html'))
@@ -346,6 +406,11 @@ def audit(root):
                     errors.append(f'Equipment page requires {required} schema')
             if path.name != 'monitor.html' and 'Product' in types:
                 errors.append('Equipment hub/category must not claim Product schema')
+        if path.name in PASSPORT_PAGES:
+            errors.extend(passport_errors(page))
+            for forbidden in ('Product', 'Offer', 'AggregateOffer', 'Review', 'AggregateRating', 'Article'):
+                if forbidden in types:
+                    errors.append(f'System Passport must not claim {forbidden} schema')
         warnings.extend(['Prototype canonical/og:url intentionally omitted; production follows page-type policy and approved host', 'No approved og:image; production social artwork remains pending'])
         results.append({'page': path.relative_to(root.resolve()).as_posix(), 'title': page.titles[0] if page.titles else '', 'schema_types': sorted(types), 'errors': sorted(set(errors)), 'warnings': sorted(set(warnings))})
     if not files:
