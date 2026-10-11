@@ -2,6 +2,10 @@
 
 Base: merged Equipment PR #12, `main` at
 `01219297b9af159102feaa95d9e9569659642310`.
+Ownership addendum is reviewed separately after merged PR #13, `main` at
+`5750d45dfddf9ecd9c1bd3b3a815a2021e9b76d9`. Account Experience remains a
+subsequent feature stage.
+
 [Domain / workflow / D7 contract](../KORSAC-SYSTEM-PASSPORT.md) ·
 [Synthetic fixture ledger](system-passport-fixture.json).
 
@@ -46,7 +50,7 @@ unlink changes machine/public identity, warranty or System/service history.
 Mandatory registration/checkout email, normalized email as Bitrix LOGIN,
 existing-account guest verification and future unlink/«Мои системы» are
 documentation only. No Account UI or Bitrix authentication is implemented;
-Account experience belongs to PR #14.
+Account Experience remains a subsequent, separate feature stage.
 
 Ownership wireframe shows synthetic current user 52002, requested user 52003,
 verified evidence only, PENDING request and internal INITIAL_ORDER /

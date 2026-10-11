@@ -1,6 +1,10 @@
 # KORSAC — System Passport Experience v1
 
 Base: PR #12 merged into `main`, `01219297b9af159102feaa95d9e9569659642310`.
+Ownership addendum base: merged PR #13, `main` at
+`5750d45dfddf9ecd9c1bd3b3a815a2021e9b76d9`. Account Experience remains the
+next separate feature stage; this post-merge correction implements no Account UI.
+
 This stage defines the physical-system domain and its public projection. The
 HTML, forms and dates are review fixtures. No Bitrix/D7 module, database,
 order automation, identity/QR generator, warranty service, support submission,
@@ -103,7 +107,7 @@ System is «Индивидуальная сборка» without needing a catalo
 `MODEL_DISPLAY_NAME` is a System snapshot. The same domain supports PLAY,
 CREATE, WORK and CUSTOM. Nullable `System.USER_ID` is only the current account
 association, not the physical identity or proof of ownership. A System exists
-without an account. Account UI belongs to PR #14 and is not implemented here.
+without an account. Account UI belongs to the subsequent Account Experience stage and is not implemented here.
 
 ## Current owner and future commerce/account contract
 
@@ -236,7 +240,7 @@ ADMIN_TRANSFER; user unlink uses USER_UNLINK. NULL associations are legitimate
 history endpoints. Preserve old/new values and the authorized actor/event
 context. Ownership history is private and never appears in public Passport.
 
-## Future user unlink contract — Account PR #14
+## Future user unlink contract — Account Experience
 
 Future authenticated **«Отвязать систему»** confirmation:
 

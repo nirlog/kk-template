@@ -519,4 +519,4 @@ manager-reviewed requests and private history. Recent-change warning is not a
 technical block. Review actions never change account association or records;
 no secret value reaches the manager specimen or public Passport. Mandatory
 email/Bitrix LOGIN and future Account add/unlink are documented, not implemented;
-PR #14 owns Account UI. Public privacy guards cover both active/pending states.
+The subsequent Account Experience stage owns Account UI. Public privacy guards cover both active/pending states.
