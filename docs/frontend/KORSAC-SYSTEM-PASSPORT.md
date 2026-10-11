@@ -6,6 +6,60 @@ HTML, forms and dates are review fixtures. No Bitrix/D7 module, database,
 order automation, identity/QR generator, warranty service, support submission,
 authentication or persistence is implemented.
 
+## Ownership: public frontend and Bitrix administration
+
+Within the System domain, the **public frontend owns only**:
+
+- `/passport/{PUBLIC_ID}/`: the approved active public projection;
+- the pending state of that same route;
+- public System inquiry UX, with the relation resolved by the server.
+
+All **System lifecycle management belongs to the 1C-Bitrix administrative
+area, through the future KORSAC D7 module**. It is not public-site functionality
+or a custom customer-facing application. Bitrix admin owns:
+
+- System list and System card;
+- production status and status history;
+- actual confirmed components, private serial numbers and component history;
+- warranty extension selection before activation;
+- prepare Passport, activate Passport and regenerate QR representation;
+- maintenance, upgrade and repair;
+- service history, audit and data correction;
+- System inquiries administration;
+- module settings.
+
+Admin screens consume application-service eligibility/results. They do not
+bypass the same domain rules used by automation. Permissions, authorization,
+CSRF protection and backend persistence are future module responsibilities;
+the static wireframe implements none of them.
+
+Likely admin information architecture, subject to future Bitrix implementation:
+
+```text
+KORSAC Systems
+  Systems
+  Inquiries
+  Statuses
+  Settings
+```
+
+Conceptual System detail tabs:
+
+| Tab        | Responsibility                                                                                        |
+| ---------- | ----------------------------------------------------------------------------------------------------- |
+| Main       | Identity, model/custom snapshot, order-unit relation, production/lifecycle state and recovery reasons |
+| Components | Actual installed records and private S/N, physical confirmation and applicable slots                  |
+| Passport   | Preparation/public state, handoff and warranty snapshots, pre-activation extension, QR representation |
+| Service    | Maintenance, upgrade ADD/REPLACE/REMOVE and both repair modes                                         |
+| History    | Production status, historical components/service events, action audit and explicit data correction    |
+
+`system-workflow.html` is a **disposable UX/domain review wireframe** of these
+future admin concerns. It is not a deployable admin UI, future public route or
+customer application. Its neutral review bar has no public KORSAC site logo,
+Home navigation, commercial shell or Brand Intro. Only review materials link
+to it; the section links demonstrate information relationships rather than
+real Bitrix menu/tab routing. Do not migrate this HTML into the public site.
+
 ## Entity chain and ownership
 
 ```mermaid
@@ -298,10 +352,11 @@ are copied into URL, success message or hidden System fields.
 
 ## Internal recovery UX and audit
 
-`system-workflow.html` is explicitly **Internal workflow review / not public
-UI**, reachable only from `review.html`. It is not a production route or a
-secured admin implementation. Synthetic internal S/N/record/order/actor values
-must never be copied to public templates.
+`system-workflow.html` is explicitly **Bitrix Admin workflow concept / review
+only**, reachable only from review materials, including `review.html`. It is
+a disposable wireframe for the future D7 module inside Bitrix administration,
+not a public route or a secured admin implementation. Synthetic internal
+S/N/record/order/actor values must never be copied to public templates.
 
 Main order specimen has two System units and one ordinary monitor. System A
 is active with fixed transfer/warranty; System B is ready and confirmed with
@@ -317,9 +372,33 @@ state, manufactures records or claims backend success.
 Store action audit: `ACTION`, `SOURCE`, optional `ACTOR`, `TIMESTAMP`,
 `RESULT / ERROR`; record automation and manual retries, including failures.
 Ordinary recovery needs no mandatory comment. Data correction is a separate
-operation. Admin order workspace shows associated Systems and opens each
-System; it does not flatten Passport into arbitrary order properties unless
-a specifically approved external integration needs a duplicate field.
+operation.
+
+## Bitrix order administration integration
+
+The future **Bitrix order detail** exposes a compact related-Systems section,
+not the complete System card. Example relationship projection:
+
+```text
+Системы KORSAC
+KS-2610-0012 | Готов к выдаче       | Открыть
+KS-2610-0013 | Отправлен на сборку  | Открыть
+```
+
+This is an independent integration example, not a change to the ready/active
+and ready/unprepared review fixtures. Each «Открыть» navigates to that System's
+card in the future KORSAC D7 admin module with normal Bitrix permission checks.
+The section enumerates related physical units using the stable order/item/unit
+relationship, including multiple Systems from a quantity greater than one;
+ordinary monitors/equipment have no System entry.
+
+Do **not flatten full System data into order properties**. Identity,
+production state, components/S/N, public state, warranty snapshots and history
+remain owned by their System domain entities. The order view reads only the
+related identifier/status and admin navigation context. Existing application
+services provide eligible recovery operations and reasons; order admin actions
+must not invent a separate lifecycle or bypass creation/preparation/activation.
+No Bitrix order UI hook, admin routing, properties or backend is built here.
 
 ## Future D7 / ORM implementation boundary
 
@@ -351,11 +430,11 @@ fixtures and deterministic tests do not establish these backend guarantees.
 
 ## Routes, SEO and integration
 
-| Review file           | Production role                 | Prototype robots             | Production policy                        |
-| --------------------- | ------------------------------- | ---------------------------- | ---------------------------------------- |
-| passport.html         | Active `/passport/{PUBLIC_ID}/` | noindex, nofollow, noarchive | noindex, follow; excluded from sitemap   |
-| passport-pending.html | Pending state of the same route | noindex, nofollow, noarchive | noindex, nofollow; excluded from sitemap |
-| system-workflow.html  | Review-only admin specimen      | noindex, nofollow, noarchive | No public production route               |
+| Review file           | Production role                   | Prototype robots             | Production policy                        |
+| --------------------- | --------------------------------- | ---------------------------- | ---------------------------------------- |
+| passport.html         | Active `/passport/{PUBLIC_ID}/`   | noindex, nofollow, noarchive | noindex, follow; excluded from sitemap   |
+| passport-pending.html | Pending state of the same route   | noindex, nofollow, noarchive | noindex, nofollow; excluded from sitemap |
+| system-workflow.html  | Disposable Bitrix admin wireframe | noindex, nofollow, noarchive | No public production route               |
 
 There is no generic Passport index or lookup. No approved host, canonical,
 `og:url`, Product/Offer/AggregateOffer/Review/AggregateRating/Article schema or
@@ -363,8 +442,19 @@ unnecessary component JSON-LD is added. Sharing metadata is generic, without
 System-specific components, internal warranty data or personal information.
 Static HTTP 200 is not proof of production token routing/404 behavior.
 
-Product replaces its fake live identity with information at
-`#system-passport-info`; configurator labels no longer update Passport output.
+Product presents a **static visual example** at `#system-passport-info`, labelled
+«Пример паспорта», with illustrative `KS-2610-0012` and an explicit statement
+that no existing/sold System is represented. It describes a future physical
+computer after assembly/handoff, not the current Product. Confirmed installed
+components follow assembly; transfer and saved warranty follow handoff.
+«Посмотреть пример паспорта» links to the synthetic `passport.html` fixture
+only in this static review prototype. This is not a real production token link,
+System lookup, listing or production public discovery policy.
+
+The example is authored HTML, not generated or synchronized with configurator
+choices. `data-passport-output` remains permanently removed from markup and
+controller; changes to case/RAM/SSD/SSD2 affect scene/manifest only. No new
+Passport entrance animation or state observer is introduced.
 Homepage story describes the public v1 projection and creation/handoff timing,
 without exposing an ID. Stale footer `product.html#product-passport` links now
 lead to Contacts/support. No global Passport link or directory is introduced.

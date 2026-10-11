@@ -592,6 +592,14 @@
     height: 92px;
   }
 }
+.k-product-passport-example {
+  margin-top: var(--k-space-10);
+  align-items: start;
+}
+.k-product-passport-example .k-button {
+  align-self: start;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .k-stage-resolve [data-stage-overlay],
   .k-explorer-resolve .k-explorer-rail {

@@ -70,13 +70,26 @@ class PublicPassportTests(unittest.TestCase):
             self.assertNotIn('data-brand-intro', raw)
             self.assertNotIn('system-workflow.js', raw)
 
-    def test_legacy_product_identity_and_footer_links_are_removed(self):
+    def test_product_example_is_explicit_and_has_no_configurator_coupling(self):
         product = (ROOT / 'prototype/product.html').read_text()
-        self.assertNotRegex(product, r'KS-\d{2}')
+        example = re.search(r'<article\b[^>]*id="system-passport-info"[^>]*>(.*?)</article>', product, re.S).group(1)
+        self.assertEqual(re.findall(r'KS-\d{4}-\d{4}', product), ['KS-2610-0012'])
+        self.assertNotIn('KS-26-001284', product)
+        self.assertIn('data-passport-example', example)
+        self.assertIn('Пример паспорта', example)
+        self.assertIn('не означает, что такая', example)
+        self.assertIn('система уже существует', example)
+        self.assertIn('после сборки', example)
+        self.assertIn('передачи владельцу', example)
+        self.assertIn('href="passport.html"', example)
+        self.assertIn('Посмотреть пример паспорта', example)
+        self.assertEqual(Page(ROOT / 'prototype/product.html').links.count('passport.html'), 1)
+        self.assertNotRegex(example, r'data-(?:summary|stage|passports?)-output|data-motion|data-public-passport')
         self.assertNotIn('data-passport-output', product)
-        self.assertIn('id="system-passport-info"', product)
         controller = (ROOT / 'prototype/assets/js/product-experience.js').read_text()
         self.assertNotIn('data-passport-output', controller)
+        self.assertNotIn('data-passport-example', controller)
+        self.assertNotIn('system-passport-info', controller)
         for path in (ROOT / 'prototype').glob('*.html'):
             self.assertNotIn('product.html#product-passport', path.read_text(), path.name)
 
@@ -87,11 +100,17 @@ class PublicPassportTests(unittest.TestCase):
             page = Page(path)
             self.assertNotIn('system-workflow.html', page.links, path.name)
             if path.name not in ('passport.html', 'passport-pending.html'):
-                self.assertNotIn('passport.html', page.links, path.name)
+                if path.name != 'product.html':
+                    self.assertNotIn('passport.html', page.links, path.name)
+                for shell in re.findall(r'<(?:header|footer)\b[^>]*>.*?</(?:header|footer)>', page.raw, re.S):
+                    self.assertNotIn('passport.html', shell, path.name)
+                drawer = re.search(r'<dialog\b[^>]*id="menu-drawer"[^>]*>(.*?)</dialog>', page.raw, re.S)
+                if drawer:
+                    self.assertNotIn('passport.html', drawer.group(1), path.name)
                 self.assertNotIn('passport-pending.html', page.links, path.name)
         self.assertIn('system-workflow.html', Page(ROOT / 'prototype/review.html').links)
         workflow = (ROOT / 'prototype/system-workflow.html').read_text()
-        self.assertIn('Internal workflow review / not public UI', workflow)
+        self.assertIn('Bitrix Admin workflow concept / review only', workflow)
         self.assertIn('S/N: DEMO-SN-', workflow)
         self.assertNotIn('Принудительно активировать', workflow)
         internal = Page(ROOT / 'prototype/system-workflow.html')
@@ -100,6 +119,23 @@ class PublicPassportTests(unittest.TestCase):
         self.assertEqual(len(records), 9)
         self.assertEqual(set(choices), records)
         self.assertEqual(len(choices), 2 * len(records), 'Upgrade and repair each select the same current records once')
+
+    def test_workflow_is_disposable_admin_concept_with_related_order_systems(self):
+        workflow = (ROOT / 'prototype/system-workflow.html').read_text()
+        text = ' '.join(re.sub(r'<[^>]+>', ' ', workflow).split())
+        page = Page(ROOT / 'prototype/system-workflow.html')
+        for public_asset in ('k-site-header', 'k-passport-shell', 'k-passport-brand', 'brand-intro', 'shell.js', 'brand.css'):
+            self.assertNotIn(public_asset, workflow)
+        self.assertNotIn('index.html', page.links)
+        self.assertIn('k-admin-review-bar', workflow)
+        self.assertIn('одноразовый', workflow.lower())
+        self.assertIn('не приложение для клиента', text)
+        self.assertIn('Systems · Inquiries · Statuses · Settings', text)
+        self.assertIn('Main · Components · Passport · Service · History', text)
+        self.assertIn('Системы KORSAC · карточка заказа Bitrix', text)
+        self.assertIn('Полные данные System не переносятся в свойства заказа', text)
+        self.assertIn('ORDER_ID + ORDER_BASKET_ID + ORDER_UNIT_INDEX', text)
+        self.assertIn('Обычный product · System не создаётся', text)
 
     def test_fixture_projection_uses_variable_slots_and_authored_snapshots(self):
         fixture = json.loads((ROOT / 'docs/frontend/review/system-passport-fixture.json').read_text())

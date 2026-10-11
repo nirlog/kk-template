@@ -215,6 +215,30 @@
   font-size: 1.25rem;
 }
 /* Review only: native disclosures retain all scenarios and form routes. */
+.k-admin-review-bar {
+  border-bottom: 1px solid var(--k-border);
+  background: var(--k-surface);
+  font-size: var(--k-body-sm);
+}
+.k-admin-review-bar > div {
+  width: min(1440px, calc(100% - 32px));
+  margin-inline: auto;
+  padding-block: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px 24px;
+}
+.k-admin-review-map {
+  margin-block: 24px;
+  padding: 24px;
+  border: 1px solid var(--k-border);
+  display: grid;
+  gap: 16px;
+}
+.k-admin-review-map h2 {
+  font-size: 1.25rem;
+}
 .k-workflow-main {
   width: min(1440px, calc(100% - 64px));
   padding-block: 32px 64px;

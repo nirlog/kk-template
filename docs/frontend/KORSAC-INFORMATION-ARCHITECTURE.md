@@ -176,10 +176,16 @@ Shared Media Viewer и Bitrix migration не реализованы. System Pass
 См. [Equipment contract](KORSAC-EQUIPMENT-EXPERIENCE.md).
 
 System Passport реализован как синтетический active/pending review и отдельный
-internal workflow specimen, доступный только из `review.html`. Последний не
-имеет публичной production route и не входит в production URL-дерево. Account,
+Bitrix Admin workflow concept, доступный только из review materials. Это
+одноразовый макет будущего KORSAC D7 модуля внутри административной области
+1C-Bitrix, не custom customer app. Он не имеет публичной production route
+и не входит в production URL-дерево. Account,
 публичный поиск, генераторы и D7 не добавлены. Старые footer-ссылки на концепт
 Product заменены поддержкой; новый номер/fixture token не попал в global nav.
+Product содержит только статичный подписанный пример будущего паспорта с
+иллюстративным номером и ссылкой на review fixture; это не production Passport
+discovery. Bitrix order detail показывает связанные Systems, не переносит полные
+System данные в свойства заказа.
 См. [System domain / privacy / lifecycle contract](KORSAC-SYSTEM-PASSPORT.md).
 
 ## URL, navigation и sitemap

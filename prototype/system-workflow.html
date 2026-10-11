@@ -4,42 +4,35 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="icon" href="data:," />
-    <title>Внутренний workflow System — KORSAC review</title>
+    <title>Bitrix Admin workflow concept — KORSAC review only</title>
     <link rel="stylesheet" href="assets/css/tokens.css" />
     <link rel="stylesheet" href="assets/css/base.css" />
     <link rel="stylesheet" href="assets/css/layout.css" />
     <link rel="stylesheet" href="assets/css/components.css" />
-    <link rel="stylesheet" href="assets/css/brand.css" />
     <link rel="stylesheet" href="assets/css/passport.css" />
     <script src="assets/js/system-workflow.js" defer></script>
     <meta name="robots" content="noindex, nofollow, noarchive" />
     <meta
       name="description"
-      content="Внутренний макет System, компонентов, сервисных форм и восстановления пропущенной автоматизации. Только для ревью."
+      content="Одноразовый review-макет будущего KORSAC D7 модуля в административной области 1C-Bitrix. Не часть публичного сайта."
     />
     <meta
       property="og:title"
-      content="Внутренний workflow System — KORSAC review"
+      content="Bitrix Admin workflow concept — KORSAC review only"
     />
     <meta
       property="og:description"
-      content="Внутренний макет System, компонентов, сервисных форм и восстановления пропущенной автоматизации. Только для ревью."
+      content="Одноразовый review-макет будущего KORSAC D7 модуля в административной области 1C-Bitrix. Не часть публичного сайта."
     />
     <meta property="og:site_name" content="KORSAC" />
     <meta property="og:type" content="website" />
   </head>
   <body>
     <a class="k-skip" href="#main">Перейти к содержимому</a>
-    <header class="k-passport-shell">
-      <div class="k-passport-container">
-        <a href="index.html" aria-label="KORSAC — главная"
-          ><img
-            class="k-passport-brand"
-            src="assets/images/brand/korsac-lockup-horizontal.svg"
-            width="15240"
-            height="3387"
-            alt="" /></a
-        ><a href="review.html">Материалы ревью</a>
+    <header class="k-admin-review-bar">
+      <div>
+        <span>1C-Bitrix / KORSAC D7 · концепт административной области</span>
+        <a href="review.html">Материалы ревью →</a>
       </div>
     </header>
     <main
@@ -48,19 +41,45 @@
       data-internal-workflow
     >
       <p class="k-workflow-review-label">
-        Internal workflow review / not public UI
+        Bitrix Admin workflow concept / review only
       </p>
       <div class="k-workflow-title">
         <div>
-          <p class="k-eyebrow">System / Workspace specimen</p>
-          <h1>Система и её жизненный цикл</h1>
+          <p class="k-eyebrow">KORSAC Systems / Admin wireframe</p>
+          <h1>Управление Systems в Bitrix Admin</h1>
         </div>
         <a href="review.html">Вернуться к ревью →</a>
       </div>
       <p class="k-muted">
-        Все заказы, даты, записи, номера компонентов и действия — синтетические
-        макеты. Нет авторизации, хранения или выполнения backend-операций.
+        Одноразовый UX/domain-макет будущего KORSAC D7 модуля в административной
+        области 1C-Bitrix. Это не публичная страница и не приложение для
+        клиента. Все заказы, даты, записи, номера компонентов и действия —
+        синтетические. Нет авторизации, хранения или выполнения
+        backend-операций.
       </p>
+      <section
+        class="k-admin-review-map"
+        aria-labelledby="admin-ownership-title"
+      >
+        <h2 id="admin-ownership-title">Будущая административная структура</h2>
+        <dl class="k-workflow-data">
+          <div>
+            <dt>Меню KORSAC Systems</dt>
+            <dd>Systems · Inquiries · Statuses · Settings</dd>
+          </div>
+          <div>
+            <dt>Вкладки карточки System</dt>
+            <dd>Main · Components · Passport · Service · History</dd>
+          </div>
+        </dl>
+        <p class="k-small k-muted">
+          Статусы, компоненты и S/N, выбор расширения гарантии, подготовка и
+          активация паспорта, QR, сервис, история, аудит, обращения и настройки
+          принадлежат Bitrix Admin. Публичный frontend показывает только
+          активный или ожидающий паспорт и форму обращения. Здесь показаны
+          разделы wireframe, а не работающие меню или вкладки модуля.
+        </p>
+      </section>
       <nav class="k-workflow-nav" aria-label="Разделы внутреннего макета">
         <a href="#system-context">System</a
         ><a href="#manual-actions">Восстановление</a
@@ -148,7 +167,15 @@
       </section>
       <section class="k-passport-section" aria-labelledby="order-systems-title">
         <p class="k-eyebrow">02 / Связь с заказом</p>
-        <h2 id="order-systems-title">Один заказ — отдельные компьютеры</h2>
+        <h2 id="order-systems-title">
+          Системы KORSAC · карточка заказа Bitrix
+        </h2>
+        <p class="k-muted">
+          Будущая карточка заказа показывает связанные Systems: идентификатор,
+          производственный статус и переход в административную карточку каждой
+          системы. Полные данные System не переносятся в свойства заказа. Ссылки
+          ниже ведут только к разделам этого review-макета.
+        </p>
         <p class="k-muted">
           Заказ DEMO-ORDER-A · строка PLAY 1440 × 2 и обычный монитор × 1. Это
           не реальный заказ.

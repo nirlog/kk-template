@@ -22,6 +22,14 @@ that unprepared 0013 already has a public URL. Independent recovery examples
 cover creation eligibility, partial missing units, preparation, transfer,
 activation, already-prepared state and QR representation reuse.
 
+Lifecycle management belongs to the future KORSAC D7 module in the **1C-Bitrix
+administrative area**, not the public frontend. The disposable wireframe is
+labelled **Bitrix Admin workflow concept / review only**; its review bar has no
+public logo/Home link or commercial site shell. It shows the likely admin menu
+(Systems, Inquiries, Statuses, Settings) and System card tabs (Main, Components,
+Passport, Service, History). Order detail exposes related Systems and opens
+their admin cards; full System data are not flattened into order properties.
+
 Internal forms cover maintenance, multi-record replacement, ADD, REMOVE,
 repair with/without replacement and separate Data Correction. S/N values are
 DEMO-\* placeholders, used only in this internal review specimen. Every enabled
@@ -30,11 +38,16 @@ identity, dates, warranty, history or audit. No client business lifecycle,
 backend persistence, event automation, generator, QR, account or override is
 implemented. Future guarantees are documented, not claimed as tested backend.
 
-Product now explains a future per-machine Passport without fake SYSTEM ID or
-configuration-driven passport output. Its scene and manifest synchronization
-remain. Homepage ownership copy matches the v1 public projection. Legacy
-footer links lead to Support/Contacts; Passport fixtures and internal workflow
-are reachable from review.html, outside public site navigation.
+Product has a visual **«Пример паспорта»** with illustrative KS-2610-0012 and
+explicit wording that no existing/sold System is represented. It describes
+confirmed components after assembly and transfer/warranty after handoff. The
+example is authored HTML and remains unchanged by configuration selections;
+`data-passport-output` stays removed. Its native CTA opens `passport.html` only
+as a static review example. Scene/manifest synchronization remains. Homepage
+ownership copy matches the v1 public projection. Legacy footer links lead to
+Support/Contacts. Global navigation exposes no Passport directory or fixtures;
+only the contextual Product example CTA and review materials link to the
+active fixture. Internal workflow remains reachable only from review materials.
 
 ## Actual browser evidence
 
@@ -47,13 +60,15 @@ Chromium screenshots over HTTP, reduced mode, decoded local brand asset:
 | Pending desktop                                  | [1440 × 1000](passport-pending-v1-desktop.png)          |
 | Pending mobile                                   | [375 × 1000](passport-pending-v1-mobile.png)            |
 | Inquiry open, mobile                             | [375 × 1000](passport-inquiry-v1-mobile.png)            |
-| Internal workflow                                | [1440 × 6698](system-workflow-v1-desktop.png)           |
-| Internal confirmed components                    | [1376 × 859](system-workflow-components-v1-desktop.png) |
+| Internal workflow                                | [1440 × 7151](system-workflow-v1-desktop.png)           |
+| Internal confirmed components                    | [1376 × 860](system-workflow-components-v1-desktop.png) |
 | Service forms / two actual replacements selected | [1376 × 2204](system-workflow-service-v1-desktop.png)   |
 | Manual fallback / eligibility scenarios expanded | [1376 × 1491](system-workflow-actions-v1-desktop.png)   |
-| Product informational correction                 | [1344 × 417](product-passport-info-v1-desktop.png)      |
+| Bitrix Admin ownership / review bar              | [1440 × 1000](system-workflow-admin-v1-desktop.png)     |
+| Product static Passport example, desktop         | [1344 × 468](product-passport-info-v1-desktop.png)      |
+| Product static Passport example, mobile          | [343 × 1181](product-passport-info-v1-mobile.png)       |
 
-Ten actual PNGs; component captures hide the floating header/skip link only
+Twelve actual PNGs; component captures hide the floating header/skip link only
 through Playwright screenshot style. Application behavior is unchanged. No
 new temporal interaction needs MP4. No generated imagery, QR or lightbox.
 Previous stage screenshots are historical baselines; the Product correction
@@ -68,7 +83,7 @@ PYTHONDONTWRITEBYTECODE=1 python3 tools/seo_audit.py --json
 PYTHONDONTWRITEBYTECODE=1 python3 tools/monitor_curation_audit.py
 ```
 
-**37 tests pass**: 20 existing SEO, 7 Equipment curation, 10 new Passport
+**38 tests pass**: 20 existing SEO, 7 Equipment curation, 11 Passport
 projection/domain fixture guards. Audit: **23 pages, 0 errors, 58 warnings**.
 [Deterministic report](seo-audit-v1.json) matches repeated JSON output.
 Warnings: 23 omitted staging canonical/og:url, 23 pending social artwork,
@@ -81,8 +96,11 @@ hidden inquiry identity fields, prefilled customer fields, forbidden Passport
 schema, System-specific social metadata and Brand Intro inclusion. Pending
 cannot contain active components, transfer dates or warranty even hidden.
 Real fixtures have unique component slots including SSD 1 and SSD 2. Product
-fake identity/live passport selectors and stale footer URLs are absent;
-workflow/fixture paths are not exposed in public navigation. Existing
+legacy fake identity/live passport selectors and stale footer URLs are absent;
+the illustrative Product ID is contained in the explicitly labelled static
+example, with one contextual fixture link and no configurator output hooks.
+Workflow is a disposable admin concept without public brand/Home shell;
+workflow/fixture paths are not exposed in global navigation. Existing
 Family/Projects/Equipment/Product/cart guards are retained.
 
 Static checks cannot establish authorization, completeness of a future public
@@ -123,6 +141,13 @@ and Contacts route work. Internal service paths remain visible and native
 input/button interactions make no request. HTML nesting, IDs, labels, local
 resources/fragments/document links and PNG decoding are separately checked.
 
+Revision: the Product example is also checked at all eight widths in normal,
+reduced and no-JS modes (**24 layouts**). Changing case/RAM/SSD/SSD2 leaves its
+HTML byte-for-byte unchanged. The native example CTA works by keyboard in
+every mode and lands on the active fixture without Brand Intro. Product
+header/footer/drawer contain no fixture link. Axe checks the example at 320
+and 1440 in normal/reduced modes, with 0 violations in four additional states.
+
 ## Existing experiences
 
 Homepage native discovery/dialogs/keyboard/touch/no-JS and normal/reduced hero
@@ -148,6 +173,8 @@ remain unchanged.
 
 ## Human acceptance
 
+Review the restored Product example and its clear illustrative boundary;
+confirm lifecycle ownership and order-card links belong to Bitrix admin.
 Review the utility hierarchy, mobile dates/CTA, pending privacy, read-only
 System inquiry context, internal form clarity and lifecycle recovery reasons.
 Confirm the documentation distinguishes stored physical Systems from changing

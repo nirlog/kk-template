@@ -165,9 +165,12 @@ option внутри `[data-prototype-config]`. Контроллер перечи
 На tablet/mobile и низком desktop сцена также в потоке; на узком экране она
 идёт перед аппаратными controls в DOM и визуальном порядке.
 
-System Passport v1 заменил прежний fake identity блок информацией о будущем
-паспорте. Выбранные case/RAM/SSD/SSD2 обновляют только сцены/manifest; Product
-не создаёт System. Реальный паспорт — отдельная KORSAC-confirmed projection.
+System Passport v1 показывает статичный визуальный «Пример паспорта» будущего
+физического компьютера после сборки/передачи, с явно иллюстративным SYSTEM ID.
+CTA ведёт к синтетическому `passport.html` только в static review. Выбранные
+case/RAM/SSD/SSD2 обновляют только сцены/manifest; пример не меняется, Product
+не создаёт System. `data-passport-output` удалён навсегда. Реальный паспорт —
+отдельная KORSAC-confirmed projection, не текущая конфигурация Product.
 Все цены и дельты — статический HTML. Ни один из контроллеров не вычисляет
 `base + delta`, не меняет цену и не принимает выбор за подтверждение расчёта.
 

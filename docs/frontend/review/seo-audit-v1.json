@@ -258,7 +258,7 @@
     },
     {
       "page": "prototype/system-workflow.html",
-      "title": "Внутренний workflow System — KORSAC review",
+      "title": "Bitrix Admin workflow concept — KORSAC review only",
       "schema_types": [],
       "errors": [],
       "warnings": [
