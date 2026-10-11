@@ -288,6 +288,17 @@
   overflow-wrap: anywhere;
   font-size: var(--k-body-sm);
 }
+.k-ownership-warning {
+  border-left: 3px solid var(--k-warning);
+  padding: 16px;
+  display: grid;
+  gap: 12px;
+  background: var(--k-bg);
+  color: var(--k-warning);
+}
+.k-ownership-history {
+  margin-top: 24px;
+}
 .k-workflow-data {
   display: grid;
   gap: 12px;

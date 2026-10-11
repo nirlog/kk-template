@@ -258,6 +258,12 @@ def passport_errors(page):
     private = r'(?i)\b(?:ORDER[_ -]?(?:ID|BASKET|NUMBER|UNIT)|CUSTOMER[_ -]?ID|USER[_ -]?ID|SYSTEM[_ -]?INTERNAL[_ -]?ID|INTERNAL[_ -]?ID|COMPONENT[_ -]?ID|SYSTEM[_ -]?(?:DB|DATABASE|RECORD)[_ -]?ID|SERVICE[_ -]?(?:HISTORY|EVENT)|STATUS[_ -]?HISTORY|STAFF[_ -]?(?:ID|NOTE|NAME)|SUPPLIER|PURCHASE[_ -]?COST|RMA|CREATED[_ -]?BY|CHANGED[_ -]?BY)\b'
     if re.search(private, page.raw):
         errors.append('Public Passport exposes customer/order/internal/service data markers')
+    credential = r'(?i)SECRET[_ -]?CODE|код\s+системы|(?<![\w-])\d{4}-\d{4}(?![\w-])'
+    if re.search(credential, page.raw):
+        errors.append('Public Passport must never expose a System secret-code marker or value')
+    ownership = r'(?i)(?:System[_ -]?)?Ownership[_ -]?(?:History|Request)|(?:(?:OLD|NEW|REQUEST|CURRENT)[_ -]?)?USER[_ -]?ID|SECRET[_ -]?VERIFIED|PROCESSED[_ -]?(?:AT|BY)|INITIAL_ORDER|ADMIN_TRANSFER|USER_UNLINK|истори[яю]\s+(?:смены\s+)?влад|заявк\w*\s+(?:на\s+)?(?:смен\w*\s+)?влад'
+    if re.search(ownership, page.raw):
+        errors.append('Public Passport must never expose account/ownership request/history data')
     for tag, a in page.elements:
         if tag == 'input' and a.get('type', '').lower() == 'hidden':
             errors.append('Review inquiry must not carry hidden identity/customer fields')

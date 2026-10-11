@@ -56,6 +56,31 @@ class PublicPassportTests(unittest.TestCase):
                 self.assertIn('requires '+marker, self.errors(ACTIVE.replace(marker, 'data-removed-marker')))
         self.assertIn('time snapshot', self.errors(ACTIVE.replace('datetime="2029-10-07"', 'datetime="calculated-later"')))
 
+    def test_secret_credential_is_private_in_active_and_pending_source(self):
+        fragments = ('<p>SECRET_CODE</p>', '<!-- secretCode: 1234-5678 -->',
+                     '<meta name="secret-code" content="1234-5678">',
+                     '<script type="application/json">{"SECRET_CODE":"1234-5678"}</script>',
+                     '<div hidden>1234-5678</div>', '<p>Код системы</p>')
+        for markup, name in ((ACTIVE, 'passport.html'), (PENDING, 'passport-pending.html')):
+            for fragment in fragments:
+                with self.subTest(page=name, fragment=fragment):
+                    self.assertIn('secret-code', self.errors(markup.replace('</head>', fragment + '</head>'), name))
+
+    def test_account_and_ownership_data_cannot_hide_in_public_projection(self):
+        fragments = ('<p>USER_ID 52002</p>', '<meta name="current-user-id" content="52002">',
+                     '<!-- System.USER_ID = 52002 -->',
+                     '<script type="application/json">{"SystemOwnershipHistory":[]}</script>',
+                     '<div hidden data-ownership-history>old account</div>',
+                     '<p>История смены владельца</p>',
+                     '<script type="application/json">{"SystemOwnershipRequest":{"REQUEST_USER_ID":52003}}</script>',
+                     '<div hidden data-ownership-request>PENDING</div>', '<p>Заявка на смену владельца</p>',
+                     '<input name="SECRET_VERIFIED" value="true">', '<p>OLD_USER_ID / NEW_USER_ID</p>',
+                     '<p>PROCESSED_BY / PROCESSED_AT</p>', '<p>USER_UNLINK</p>')
+        for markup, name in ((ACTIVE, 'passport.html'), (PENDING, 'passport-pending.html')):
+            for fragment in fragments:
+                with self.subTest(page=name, fragment=fragment):
+                    self.assertIn('ownership', self.errors(markup.replace('</main>', fragment + '</main>'), name))
+
     def test_pending_cannot_carry_active_data_even_hidden(self):
         for fragment in ('<section data-passport-components hidden>hidden</section>', '<p data-passport-warranty hidden>hidden</p>', '<p>GPU — GeForce RTX 5070</p>', '<time datetime="2026-10-07">date</time>', '<p>Гарантия до 2029</p>'):
             with self.subTest(fragment=fragment):
@@ -130,12 +155,42 @@ class PublicPassportTests(unittest.TestCase):
         self.assertIn('k-admin-review-bar', workflow)
         self.assertIn('одноразовый', workflow.lower())
         self.assertIn('не приложение для клиента', text)
-        self.assertIn('Systems · Inquiries · Statuses · Settings', text)
-        self.assertIn('Main · Components · Passport · Service · History', text)
+        self.assertIn('Systems · Ownership Requests · Inquiries · Statuses · Settings', text)
+        self.assertIn('Main · Components · Passport · Service · Ownership · History', text)
         self.assertIn('Системы KORSAC · карточка заказа Bitrix', text)
         self.assertIn('Полные данные System не переносятся в свойства заказа', text)
         self.assertIn('ORDER_ID + ORDER_BASKET_ID + ORDER_UNIT_INDEX', text)
         self.assertIn('Обычный product · System не создаётся', text)
+
+    def test_admin_ownership_review_shows_evidence_without_secret_or_takeover(self):
+        page = Page(ROOT / 'prototype/system-workflow.html')
+        raw = page.raw
+        self.assertIn('data-ownership-review', raw)
+        self.assertIn('data-current-owner', raw)
+        self.assertIn('data-secret-verified', raw)
+        self.assertIn('С прошлой смены владельца прошло менее 7 дней', ' '.join(raw.split()))
+        for operation in ('approveOwnership', 'rejectOwnership'):
+            buttons = [a for tag, a in page.elements if tag == 'button' and a.get('data-workflow-action') == operation]
+            self.assertEqual(len(buttons), 1)
+            self.assertNotIn('disabled', buttons[0], 'Recent change is a warning, not a block')
+            self.assertEqual(buttons[0]['type'], 'button')
+        self.assertIn('data-workflow-form="ownership-transfer"', raw)
+        self.assertIn('INITIAL_ORDER', raw)
+        self.assertIn('ADMIN_TRANSFER', raw)
+        self.assertIn('USER_UNLINK', raw)
+        self.assertNotIn('SECRET_CODE', raw)
+        self.assertNotRegex(raw, r'(?<![\w-])\d{4}-\d{4}(?![\w-])')
+        self.assertFalse(any(tag == 'input' and re.search(r'secret|code', a.get('name', '') + a.get('id', ''), re.I) for tag, a in page.elements))
+        fixture = json.loads((ROOT / 'docs/frontend/review/system-passport-fixture.json').read_text())['internal_ownership_review']
+        self.assertIn(str(fixture['system_user_id']) + ' · DEMO-ACCOUNT-B', raw)
+        self.assertIn(str(fixture['request']['request_user_id']) + ' · DEMO-ACCOUNT-C', raw)
+        self.assertEqual(fixture['history'][-1]['new_user_id'], fixture['system_user_id'])
+        self.assertEqual(fixture['history'][0]['new_user_id'], fixture['initial_order_user_id'])
+        self.assertTrue(fixture['request']['secret_verified'])
+        self.assertTrue(fixture['recent_change_warning'])
+        self.assertNotIn('secret_code', json.dumps(fixture).lower())
+        script = (ROOT / 'prototype/assets/js/system-workflow.js').read_text()
+        self.assertNotRegex(script, r'\b(?:fetch|XMLHttpRequest|localStorage|sessionStorage|randomUUID|randomBytes)\b')
 
     def test_fixture_projection_uses_variable_slots_and_authored_snapshots(self):
         fixture = json.loads((ROOT / 'docs/frontend/review/system-passport-fixture.json').read_text())

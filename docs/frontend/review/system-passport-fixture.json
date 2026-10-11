@@ -77,5 +77,37 @@
   "internal_serial_policy": "Only review-only system-workflow.html uses DEMO-* placeholders; none are public.",
   "secondary_system_id": "KS-2610-0013",
   "pending_system_id": "KS-2610-0014",
-  "fixture_state_context": "Primary order: 0012 ACTIVE, 0013 NOT PREPARED. Separate pending fixture: 0014 PREPARED/inactive; it is not a public route for unprepared 0013."
+  "fixture_state_context": "Primary order: 0012 ACTIVE, 0013 NOT PREPARED. Separate pending fixture: 0014 PREPARED/inactive; it is not a public route for unprepared 0013.",
+  "internal_ownership_review": {
+    "fixture_notice": "Internal synthetic account associations only. No real users, no secret-code value, no browser verification or transfer.",
+    "system_user_id": 52002,
+    "initial_order_user_id": 52001,
+    "review_at": "2026-10-11T12:00:00Z",
+    "last_changed_at": "2026-10-09T12:00:00Z",
+    "recent_change_warning": true,
+    "elapsed_display": "2 дня",
+    "request": {
+      "id": "DEMO-OWNERSHIP-01",
+      "request_user_id": 52003,
+      "status": "PENDING",
+      "secret_verified": true
+    },
+    "history": [
+      {
+        "old_user_id": null,
+        "new_user_id": 52001,
+        "source": "INITIAL_ORDER",
+        "changed_at": "2026-10-07T12:00:00Z",
+        "changed_by": "AUTOMATION"
+      },
+      {
+        "old_user_id": 52001,
+        "new_user_id": 52002,
+        "source": "ADMIN_TRANSFER",
+        "request_id": "DEMO-OWNERSHIP-00",
+        "changed_at": "2026-10-09T12:00:00Z",
+        "changed_by": "DEMO-STAFF-A"
+      }
+    ]
+  }
 }
