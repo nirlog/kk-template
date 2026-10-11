@@ -46,7 +46,9 @@
       }
       delete output.dataset.invalid;
       output.textContent =
-        "Форма проверена только в макете. Сервисное событие, компоненты, аудит и гарантия не изменены.";
+        form.dataset.workflowForm === "ownership-transfer"
+          ? "Форма проверена только в макете. USER_ID, заявка, история владения, идентификаторы, сервис и гарантия не изменены."
+          : "Форма проверена только в макете. Сервисное событие, компоненты, аудит и гарантия не изменены.";
     };
     form.addEventListener("submit", (event) => {
       event.preventDefault();

@@ -314,3 +314,9 @@ Audit дополнен public-state/System ID/snapshot/inquiry/privacy guards. P
 не может содержать компоненты, дату передачи или гарантию даже скрыто. Проверки
 HTML не заменяют server access/projection policy, authorization, D7 transactions
 или privacy review. [Полный контракт](KORSAC-SYSTEM-PASSPORT.md).
+
+Ownership расширяет только внутренний domain/admin contract. Публичный active
+и pending Passport не содержит SECRET_CODE, USER_ID, заявки/результаты проверки
+владения или историю владельцев — ни в HTML, hidden fields, комментариях,
+metadata, JSON/JSON-LD, ни в клиентских payloads. Audit проверяет эти маркеры и
+формат приватного кода, сохраняя прежние S/N/internal-ID/schema guards.
