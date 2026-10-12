@@ -124,7 +124,7 @@ Nullable `System.USER_ID` — текущая связь с аккаунтом, �
 при первой передаче. Смена/отвязка аккаунта сохраняет идентичность, паспорт,
 гарантию и историю компьютера. Закрытый физический код — доказательство для
 заявки, не автоматический перенос владения. Заявки, проверка и история относятся
-к Bitrix Admin; Account UI и «Мои системы» остаются следующим отдельным этапом Account Experience.
+к Bitrix Admin; Account UI и «Мои системы» реализованы как статический review ниже; backend не добавлен.
 Глобального списка/поиска
 паспортов нет. Формы не отправляют и не сохраняют данные; генераторы, автоматизация,
 QR, расчёт гарантии и D7 — будущий backend. Human visual/architecture review required;
@@ -132,3 +132,11 @@ do not auto-merge.
 
 Проверки: `PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools -p 'test_*.py'`,
 `python3 tools/seo_audit.py`, `python3 tools/monitor_curation_audit.py`.
+
+### Account Experience v1
+
+Восемь страниц: [Вход](prototype/account-login.html), [Регистрация](prototype/account-register.html), [Восстановление](prototype/account-forgot-password.html), [Заказы](prototype/account-orders.html), [Детали заказа](prototype/account-order.html), [Мои системы](prototype/account-systems.html), [Обращения](prototype/account-inquiries.html), [Профиль](prototype/account-profile.html).
+
+Нет отдельного dashboard или Brand Intro. Public Account utility ведёт к Login, не становится шестым primary nav entry. Формы/dialogs показывают проверку и review-feedback без отправки, сессии, изменения аккаунта или владения. Checkout остаётся guest flow с обязательным email; Success показывает будущий безопасный password setup.
+
+[Account / Bitrix / authorization contract](docs/frontend/KORSAC-ACCOUNT-EXPERIENCE.md) · [Review evidence](docs/frontend/review/account-experience-v1.md). Синтетический Account B видит текущую System association; заказ прежнего владельца ему не показывается. Реальный Bitrix/auth/email/ownership backend не реализован. Human visual/architecture review required; do not auto-merge.

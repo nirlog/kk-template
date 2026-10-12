@@ -277,3 +277,7 @@ Cloud проверяет Chromium/HTTP, media emulation и touch simulation. Н�
 проверку физических устройств/Windows OS, Firefox/Safari или screen reader.
 Human acceptance по скорости сканирования, B2B tone и keyboard остаётся review gate.
 PR не сливать автоматически.
+
+## Account continuation v1
+
+Email остаётся обязательным, guest checkout сохраняется без pre-registration. Короткая подпись объясняет email для заказа/входа; ссылка Login — utility, не registration gate. Success показывает будущий setup/recovery для нового аккаунта и alternate authenticated Orders path, явно без real account/email creation. Исходная статичная сводка Success теперь включает обычный монитор alongside two PC snapshots; сумма 381850 RUB matches mixed source fixture. Нет передачи введённых контактов, backend auth или новых payment/delivery правил. [Account integration](KORSAC-ACCOUNT-EXPERIENCE.md) описывает safe existing-email verification и стандартные Bitrix components.

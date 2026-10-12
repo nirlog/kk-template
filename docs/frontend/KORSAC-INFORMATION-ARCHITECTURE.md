@@ -179,8 +179,7 @@ System Passport реализован как синтетический active/pe
 Bitrix Admin workflow concept, доступный только из review materials. Это
 одноразовый макет будущего KORSAC D7 модуля внутри административной области
 1C-Bitrix, не custom customer app. Он не имеет публичной production route
-и не входит в production URL-дерево. Account,
-публичный поиск, генераторы и D7 не добавлены. Старые footer-ссылки на концепт
+и не входит в production URL-дерево. Публичный поиск, генераторы и D7 не добавлены. Account review описан ниже. Старые footer-ссылки на концепт
 Product заменены поддержкой; новый номер/fixture token не попал в global nav.
 Product содержит только статичный подписанный пример будущего паспорта с
 иллюстративным номером и ссылкой на review fixture; это не production Passport
@@ -226,3 +225,21 @@ Equipment имеет crawlable ссылки на каждую реальную �
 
 См. [SEO foundation](KORSAC-SEO-FOUNDATION.md),
 [Generic pages](KORSAC-GENERIC-PAGES.md), [Review](review/seo-foundation-v1.md).
+
+## Account Experience v1 implementation
+
+`/account/` у авторизованного пользователя ведёт к Orders; отдельного dashboard нет.
+
+| Static review                | Production                |
+| ---------------------------- | ------------------------- |
+| account-login.html           | /account/login/           |
+| account-register.html        | /account/register/        |
+| account-forgot-password.html | /account/forgot-password/ |
+| account-orders.html          | /account/orders/          |
+| account-order.html           | /account/orders/{id}/     |
+| account-systems.html         | /account/systems/         |
+| account-inquiries.html       | /account/inquiries/       |
+| account-profile.html         | /account/profile/         |
+
+Все auth/private routes production noindex + server authorization, вне sitemap, без public schema/canonical. Static HTTP 200 — review, не доказательство приватности. Customer utility в public shell ведёт к Login без нового primary menu entry; private страницы не добавлены в footer SEO nav. Passport остаётся публичным независимым entity. Manager Ownership остаётся в Bitrix Admin, не Account.
+См. [Account contract](KORSAC-ACCOUNT-EXPERIENCE.md).

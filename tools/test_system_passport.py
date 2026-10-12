@@ -125,7 +125,7 @@ class PublicPassportTests(unittest.TestCase):
             page = Page(path)
             self.assertNotIn('system-workflow.html', page.links, path.name)
             if path.name not in ('passport.html', 'passport-pending.html'):
-                if path.name != 'product.html':
+                if path.name not in ('product.html', 'account-systems.html', 'account-inquiries.html'):
                     self.assertNotIn('passport.html', page.links, path.name)
                 for shell in re.findall(r'<(?:header|footer)\b[^>]*>.*?</(?:header|footer)>', page.raw, re.S):
                     self.assertNotIn('passport.html', shell, path.name)

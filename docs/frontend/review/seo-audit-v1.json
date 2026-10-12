@@ -31,6 +31,86 @@
       ]
     },
     {
+      "page": "prototype/account-forgot-password.html",
+      "title": "Восстановление доступа — KORSAC",
+      "schema_types": [],
+      "errors": [],
+      "warnings": [
+        "No approved og:image; production social artwork remains pending",
+        "Prototype canonical/og:url intentionally omitted; production follows page-type policy and approved host"
+      ]
+    },
+    {
+      "page": "prototype/account-inquiries.html",
+      "title": "Мои обращения — KORSAC",
+      "schema_types": [],
+      "errors": [],
+      "warnings": [
+        "No approved og:image; production social artwork remains pending",
+        "Prototype canonical/og:url intentionally omitted; production follows page-type policy and approved host"
+      ]
+    },
+    {
+      "page": "prototype/account-login.html",
+      "title": "Вход — KORSAC",
+      "schema_types": [],
+      "errors": [],
+      "warnings": [
+        "No approved og:image; production social artwork remains pending",
+        "Prototype canonical/og:url intentionally omitted; production follows page-type policy and approved host"
+      ]
+    },
+    {
+      "page": "prototype/account-order.html",
+      "title": "Детали заказа — KORSAC",
+      "schema_types": [],
+      "errors": [],
+      "warnings": [
+        "No approved og:image; production social artwork remains pending",
+        "Prototype canonical/og:url intentionally omitted; production follows page-type policy and approved host"
+      ]
+    },
+    {
+      "page": "prototype/account-orders.html",
+      "title": "Заказы — KORSAC",
+      "schema_types": [],
+      "errors": [],
+      "warnings": [
+        "No approved og:image; production social artwork remains pending",
+        "Prototype canonical/og:url intentionally omitted; production follows page-type policy and approved host"
+      ]
+    },
+    {
+      "page": "prototype/account-profile.html",
+      "title": "Профиль — KORSAC",
+      "schema_types": [],
+      "errors": [],
+      "warnings": [
+        "No approved og:image; production social artwork remains pending",
+        "Prototype canonical/og:url intentionally omitted; production follows page-type policy and approved host"
+      ]
+    },
+    {
+      "page": "prototype/account-register.html",
+      "title": "Регистрация — KORSAC",
+      "schema_types": [],
+      "errors": [],
+      "warnings": [
+        "No approved og:image; production social artwork remains pending",
+        "Prototype canonical/og:url intentionally omitted; production follows page-type policy and approved host"
+      ]
+    },
+    {
+      "page": "prototype/account-systems.html",
+      "title": "Мои системы — KORSAC",
+      "schema_types": [],
+      "errors": [],
+      "warnings": [
+        "No approved og:image; production social artwork remains pending",
+        "Prototype canonical/og:url intentionally omitted; production follows page-type policy and approved host"
+      ]
+    },
+    {
       "page": "prototype/cart.html",
       "title": "Корзина — KORSAC",
       "schema_types": [],
@@ -293,5 +373,5 @@
     }
   ],
   "errors": 0,
-  "warnings": 58
+  "warnings": 74
 }

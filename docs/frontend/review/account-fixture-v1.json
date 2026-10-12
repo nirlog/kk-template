@@ -1,0 +1,58 @@
+{
+  "notice": "Synthetic Account B review; no real users or records. Internal account key is documentation only, never customer markup. No secret values.",
+  "account_user_id": 52002,
+  "system_id": "KS-2610-0012",
+  "association_source": "manager-approved transfer on 2026-10-09; initial Order A belongs to another user and is not displayed",
+  "transfer_date": "2026-10-07",
+  "warranty_end": "2029-10-07",
+  "completed_order": {
+    "number": "DEMO-4101",
+    "user_id": 52002,
+    "date": "2026-10-06",
+    "product": "MSI MAG 274QF X24",
+    "total_minor": 2205000
+  },
+  "current_order": {
+    "number": "DEMO-4102",
+    "user_id": 52002,
+    "date": "2026-10-11",
+    "system_ids": [
+      "KS-2610-0015",
+      "KS-2610-0016"
+    ],
+    "systems_user_id": null,
+    "items": [
+      {
+        "kind": "system",
+        "name": "PLAY 1440",
+        "quantity": 1,
+        "unit_minor": 17990000,
+        "configuration": "32 GB / SSD 1 TB / Lian Li"
+      },
+      {
+        "kind": "system",
+        "name": "PLAY 1440",
+        "quantity": 1,
+        "unit_minor": 17990000,
+        "configuration": "64 GB / SSD 2 TB / Fractal North"
+      },
+      {
+        "kind": "product",
+        "name": "MSI MAG 274QF X24",
+        "quantity": 1,
+        "unit_minor": 2205000
+      }
+    ],
+    "total_minor": 38185000
+  },
+  "pending_request": {
+    "system_id": "KS-2610-0014",
+    "request_user_id": 52002,
+    "status": "PENDING",
+    "notice": "Separate request from the internal Admin pending request for 0012 by User C. Not current ownership."
+  },
+  "inquiries": [
+    "DEMO-Q01",
+    "DEMO-Q02"
+  ]
+}

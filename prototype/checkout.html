@@ -62,7 +62,10 @@
           <p class="k-eyebrow">Без регистрации</p>
           <h1>Оформление заказа</h1>
         </div>
-        <p class="k-muted">Контакты, доставка и оплата — на одной странице.</p>
+        <p class="k-muted">
+          Контакты, доставка и оплата — на одной странице. Уже есть аккаунт?
+          <a href="account-login.html">Войти</a>
+        </p>
       </div>
       <p class="k-commerce-demo-note" id="checkout-demo-notice">
         Прототип оформления — заказ не отправляется. Здесь используется исходный
@@ -162,7 +165,7 @@
                   required
                   autocomplete="email"
                   inputmode="email"
-                  aria-describedby="buyer-email-error"
+                  aria-describedby="buyer-email-help buyer-email-error"
                   data-error-label="Email"
                 />
                 <p
@@ -171,6 +174,9 @@
                   data-field-error
                   hidden
                 ></p>
+                <p class="k-small k-muted" id="buyer-email-help">
+                  Email используется для заказа и входа в личный кабинет.
+                </p>
               </div>
             </div>
             <fieldset
