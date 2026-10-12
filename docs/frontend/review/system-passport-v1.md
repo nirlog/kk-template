@@ -47,6 +47,13 @@ from authoritative `Order.USER_ID` at first handoff, with private request/histor
 entities. The secret is physical-machine evidence for a manager-reviewed
 request, not an automatic takeover credential. Neither ordinary transfer nor
 unlink changes machine/public identity, warranty or System/service history.
+Initial SECRET_CODE allocation belongs to successful preparePassport(), in the
+same transaction as first PUBLIC_ID preparation. Retries reuse both; activation,
+transfer, USER_UNLINK and QR regeneration never replace the code. Only future
+explicit privileged code regeneration may invalidate/replace it, with audit and
+replacement-label handling. CANCELLED Systems retain the same secret/privacy
+exclusions. This is an application-service/transaction contract only; no real
+generator is implemented. Ownership remains a separate admin tab from Service.
 Mandatory registration/checkout email, normalized email as Bitrix LOGIN,
 existing-account guest verification and future unlink/«Мои системы» are
 documentation only. No Account UI or Bitrix authentication is implemented;

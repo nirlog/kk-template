@@ -150,6 +150,12 @@ displayed as `1234-5678`. Generate with a backend cryptographically secure
 random source; preserve leading zeros and format for human reading. It is
 separate from both SYSTEM_ID and the public 128-bit PUBLIC_ID.
 
+**Initial allocation belongs to successful `preparePassport()`**, together
+with first PUBLIC_ID preparation, not System creation or activation. Allocate
+SECRET_CODE only if absent and reuse it on every preparation retry. The
+application-service and transactional contracts below govern this lifecycle;
+the browser and ordinary admin screens never generate or receive the code.
+
 Physical label concept (illustrative only, no real code or QR output):
 
 ```text
@@ -294,11 +300,11 @@ Automatic events and manual recovery call the **same application services**:
 Only invocation source/actor differs. There are no separate automatic/manual
 business implementations and no client-side imitation of these guarantees.
 
-| Operation        | First-call eligibility                                                                                          | Persisted outcome / repeat behavior                                                                   |
-| ---------------- | --------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| createSystem     | Order reaches configured creation condition; unit is a computer and has no System                               | One missing System per physical unit. Existing units are returned/skipped; no duplicates              |
-| preparePassport  | System exists, configured ready status applies, required assembly/component confirmation complete, token absent | Assign PUBLIC_ID once; PUBLIC_ACTIVE stays false; existing token is reused                            |
-| activatePassport | Passport prepared, authoritative physical-transfer condition reached                                            | Set first TRANSFER_DATE, warranty snapshot and PUBLIC_ACTIVE atomically; repeated calls preserve them |
+| Operation        | First-call eligibility                                                                                                           | Persisted outcome / repeat behavior                                                                                                                    |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| createSystem     | Order reaches configured creation condition; unit is a computer and has no System                                                | One missing System per physical unit. Existing units are returned/skipped; no duplicates                                                               |
+| preparePassport  | System exists, configured ready status applies, required assembly/component confirmation complete, lifecycle permits preparation | Allocate PUBLIC_ID and SECRET_CODE only if absent; first preparation leaves PUBLIC_ACTIVE false; retries reuse both and preserve existing public state |
+| activatePassport | Passport prepared, authoritative physical-transfer condition reached                                                             | Set first TRANSFER_DATE, warranty snapshot and PUBLIC_ACTIVE atomically; repeated calls preserve them                                                  |
 
 Default creation trigger is order status **«Согласован»**, later configurable
 as one or more creation statuses. Eligibility must use authoritative order
@@ -309,9 +315,33 @@ disabled with a reason; after all units exist there is no duplicate action.
 
 Preparation happens at the configured `READY_FOR_DELIVERY` condition. Required
 slots must be physically confirmed; an expected order snapshot alone is
-insufficient. A successful preparation knows the public URL and permits QR
-production while full public viewing remains inactive. Retrying preparation
-returns the existing token, not a new Passport.
+insufficient. The conceptual initial preparation sequence is:
+
+```text
+READY_FOR_DELIVERY
+→ preparePassport()
+→ allocate PUBLIC_ID if absent
+→ allocate SECRET_CODE if absent (server-side cryptographically secure source)
+→ derive Passport URL from PUBLIC_ID
+→ allow QR / physical System label production after successful commit
+```
+
+Initial preparation is idempotent: both allocations belong to the same
+successful preparation transaction. Retrying reuses the existing PUBLIC_ID
+**and SECRET_CODE**, not a new Passport or physical credential. A retry never
+resets an already-activated Passport. If recovery finds one credential missing,
+allocate only that missing value under the same readiness/privacy checks and
+lock; preserve the other. Until preparation completes successfully, no label/QR
+production is authorized. Public viewing remains inactive until handoff.
+
+Normal activation, ownership transfer, USER_UNLINK and QR regeneration must
+never allocate, invalidate or replace SECRET_CODE. QR regeneration derives only
+from the unchanged Passport URL. Only a future privileged explicit
+**«Перевыпустить код системы» / regenerate System code** operation may invalidate
+and replace it, with permission checks, audit and controlled replacement-label
+handling. It is separate from preparation retries and ordinary lifecycle or
+ownership actions. No real generator or code-regeneration action is implemented
+in this frontend PR. Ownership remains a separate admin tab, not part of Service.
 
 Physical handoff is the authoritative activation event. Order entry into one
 or more configured final-positive statuses is its intended source. Resolve the
@@ -361,8 +391,13 @@ MANUAL). Status mutation plus its audit must be consistent. This history is
 internal and never part of the public projection.
 
 If an untransferred order is cancelled, mark the relevant System lifecycle
-CANCELLED. Never reuse SYSTEM_ID. No token means no public URL; a prepared but
-inactive cancelled System must not expose configuration. Production closes its
+CANCELLED. Never reuse SYSTEM_ID. No token means no public URL. A cancelled
+System must keep any allocated secret private. Cancellation does not
+publish SECRET_CODE through a status response, HTML, metadata, JSON, support
+context or label/QR regeneration. Apply the same public projection exclusions
+to CANCELLED Systems; cancellation never relaxes preparation/label access checks.
+An inactive prepared cancelled System must not expose configuration. Production
+closes its
 public access (404 or an approved equally private closed response). A later
 erroneous order-status edit must not automatically deactivate an already
 transferred System. Warranty expiry also leaves its passport active.
@@ -576,8 +611,20 @@ Transactional requirements:
 
 1. Unit creation: lock/reconcile authoritative order units; enforce unique
    unit relationship and SYSTEM_ID; concurrent/repeated events cannot duplicate.
-2. Preparation: lock System, validate readiness/confirmation once, allocate
-   PUBLIC_ID only if absent, enforce uniqueness; preserve existing token.
+2. Preparation: lock System and validate readiness, confirmed components and
+   non-cancelled lifecycle. Allocate PUBLIC_ID only if absent (with its unique
+   constraint) and SECRET_CODE only if absent using server-side cryptographically
+   secure randomness; persist the protected credential and preparation state
+   atomically. Concurrent calls/retries reuse both existing values and cannot
+   commit competing codes or overwrite either credential. An incomplete legacy
+   record may fill only a missing value under these same checks. Rollback cannot
+   authorize a printable label/QR from an unsuccessful allocation. Derive the
+   Passport URL and permit privileged QR/physical label production only after
+   commit; never expose SECRET_CODE in public/admin request DTOs or audit logs.
+   Preparation retries, activation, ownership transfer, USER_UNLINK and QR
+   regeneration preserve the allocated code. Only the separate future explicit
+   privileged code-regeneration operation may invalidate/replace it, with
+   atomic protected-credential update, audit and replacement-label handling.
 3. Activation: lock System, resolve first valid handoff, write snapshot/state,
    initial authoritative Order.USER_ID and INITIAL_ORDER history atomically
    once; retries preserve later ownership, transfer, warranty and identity.
