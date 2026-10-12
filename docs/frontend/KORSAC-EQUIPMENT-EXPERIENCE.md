@@ -1,8 +1,8 @@
 # KORSAC — Equipment / Simple Product Experience v1
 
 Base: merged Projects PR #11, `main` at `d68b98c`. This stage implements
-Equipment with Monitors as its only category. System Passport and Bitrix
-migration are later work. Static completion is not production publication or
+Equipment with Monitors as its only category. System Passport and Account now have separate static reviews; Bitrix
+migration remains future work. Static completion is not production publication or
 assortment approval.
 
 ## Role and selection
@@ -146,10 +146,11 @@ removing the monitor leaves the existing 359 800 ₽ PC example. No component
 price engine, storage or network mutation is involved. Reload resets the
 fixture. Existing reduced opacity feedback is reused.
 
-Checkout/Success still open their original, separate two-system example. Cart
-explains this explicitly before checkout: changes are not transferred between
-pages. This stage does not invent basket persistence or change checkout
-availability/payment/delivery rules. Production navigation instead reads the
+Cart, Checkout and Success share the same **authored source fixture**: two PC
+configuration snapshots plus one ordinary monitor, total 381 850 ₽. This is not
+cross-page persistence: local quantity/removal/configurator changes are not
+transferred. Final audit aligned the previously stale two-PC Checkout.
+Availability/payment/delivery rules remain backend-owned. Production navigation instead reads the
 same Bitrix Sale basket across cart and checkout.
 
 ## Commercial and future Bitrix ownership
@@ -212,7 +213,7 @@ meaningful base galleries remain usable without JavaScript.
 
 ## SEO, responsive and accessibility
 
-All 20 prototype pages remain `noindex, nofollow, noarchive`, without production
+All current prototype pages remain `noindex, nofollow, noarchive`, without production
 canonical or `og:url`. Equipment/category have CollectionPage; only ordinary
 detail has Product, with source-supported name/brand/model/description/image/
 category. Its image is the actual visible local primary view. No static price

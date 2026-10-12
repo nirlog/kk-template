@@ -300,3 +300,13 @@ System Passport v1 supersedes earlier Product SYSTEM ID preview assumptions.
 See [domain and public-projection contract](KORSAC-SYSTEM-PASSPORT.md). UI Kit
 motion specimens remain review-only; physical Passport does not inherit their
 entry sequence or live configuration synchronization.
+
+## Product / Order / System snapshot boundary
+
+**Product current configuration ≠ Order configuration snapshot ≠ System actual confirmed configuration.**
+Текущие опции и цены модели не переписывают immutable purchase-time snapshot
+заказа. Фактически установленная комплектация физической System подтверждается
+при сборке и может позднее измениться через audited service events; это не
+редактирование исторической строки Order. Monitor остаётся обычным Product и
+никогда не получает System identity. Frontend только отображает соответствующую
+проекцию. См. [final boundary audit](KORSAC-FINAL-AUDIT.md#product-system-order-account-boundaries).

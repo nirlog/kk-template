@@ -527,3 +527,15 @@ The subsequent Account Experience stage owns Account UI. Public privacy guards c
 
 Login, Registration, Recovery, Orders, Order detail, My Systems, Add System, Unlink, Inquiries and Profile have desktop/mobile evidence. Private utility shell, four native areas, no dashboard or Brand Intro. Forms acknowledge review-only behavior without auth, sending, storage, mutation or ownership changes. Code is entered only in Add System and cleared; manager/private fields never enter customer pages. Public Account utility is separate from five primary links; guest checkout remains usable.
 55 tests pass; audit 31 pages / 0 errors; 248 responsive layouts and 30 Account Axe states. Human visual/architecture review required; do not auto-merge.
+
+## Final holistic audit
+
+Current product-wide baseline after merged Account PR #15:
+[Final specification / route mapping / migration ownership](../KORSAC-FINAL-AUDIT.md)
+and [compact final visual / validation evidence](final-audit.md).
+Prior named review sets remain historical evidence of their own revision.
+The current contract has 31 review documents and eight Account/auth pages,
+three-line mixed source Cart/Checkout/Success, independent Product Passport
+example and review-only Bitrix Admin Ownership workflow.
+Run `python3 tools/final_audit.py` and the complete `test_*.py` discovery from
+repository root. Human visual and architecture review is required; no auto-merge.

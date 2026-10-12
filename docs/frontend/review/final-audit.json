@@ -1,0 +1,200 @@
+{
+  "pages": [
+    {
+      "page": "prototype/404.html",
+      "production": "REQUESTED URL; HTTP 404",
+      "page_type": "Error response",
+      "errors": []
+    },
+    {
+      "page": "prototype/500.html",
+      "production": "REQUESTED URL; HTTP 500",
+      "page_type": "Resilient error response",
+      "errors": []
+    },
+    {
+      "page": "prototype/503.html",
+      "production": "REQUESTED URL; HTTP 503",
+      "page_type": "Resilient error response",
+      "errors": []
+    },
+    {
+      "page": "prototype/account-forgot-password.html",
+      "production": "/account/forgot-password/",
+      "page_type": "Recovery",
+      "errors": []
+    },
+    {
+      "page": "prototype/account-inquiries.html",
+      "production": "/account/inquiries/",
+      "page_type": "Private inquiries",
+      "errors": []
+    },
+    {
+      "page": "prototype/account-login.html",
+      "production": "/account/login/",
+      "page_type": "Authentication",
+      "errors": []
+    },
+    {
+      "page": "prototype/account-order.html",
+      "production": "/account/orders/{id}/",
+      "page_type": "Private Order snapshot",
+      "errors": []
+    },
+    {
+      "page": "prototype/account-orders.html",
+      "production": "/account/orders/",
+      "page_type": "Private Orders",
+      "errors": []
+    },
+    {
+      "page": "prototype/account-profile.html",
+      "production": "/account/profile/",
+      "page_type": "Private profile",
+      "errors": []
+    },
+    {
+      "page": "prototype/account-register.html",
+      "production": "/account/register/",
+      "page_type": "Registration",
+      "errors": []
+    },
+    {
+      "page": "prototype/account-systems.html",
+      "production": "/account/systems/",
+      "page_type": "Private current Systems",
+      "errors": []
+    },
+    {
+      "page": "prototype/cart.html",
+      "production": "/cart/",
+      "page_type": "Transactional cart",
+      "errors": []
+    },
+    {
+      "page": "prototype/catalog.html",
+      "production": "/computers/play/",
+      "page_type": "PLAY family",
+      "errors": []
+    },
+    {
+      "page": "prototype/checkout.html",
+      "production": "/checkout/",
+      "page_type": "Transactional checkout",
+      "errors": []
+    },
+    {
+      "page": "prototype/computers.html",
+      "production": "/computers/",
+      "page_type": "Computer hub",
+      "errors": []
+    },
+    {
+      "page": "prototype/contacts.html",
+      "production": "/contacts/",
+      "page_type": "Contacts",
+      "errors": []
+    },
+    {
+      "page": "prototype/create.html",
+      "production": "/computers/create/",
+      "page_type": "CREATE family",
+      "errors": []
+    },
+    {
+      "page": "prototype/equipment.html",
+      "production": "/equipment/",
+      "page_type": "Equipment hub",
+      "errors": []
+    },
+    {
+      "page": "prototype/index.html",
+      "production": "/",
+      "page_type": "Homepage",
+      "errors": []
+    },
+    {
+      "page": "prototype/monitor.html",
+      "production": "/equipment/monitors/{approved-slug}/",
+      "page_type": "Ordinary product",
+      "errors": []
+    },
+    {
+      "page": "prototype/monitors.html",
+      "production": "/equipment/monitors/",
+      "page_type": "Curated category",
+      "errors": []
+    },
+    {
+      "page": "prototype/order-success.html",
+      "production": "/order-success/",
+      "page_type": "Transactional result",
+      "errors": []
+    },
+    {
+      "page": "prototype/passport-pending.html",
+      "production": "/passport/{PUBLIC_ID}/",
+      "page_type": "Pending public System projection",
+      "errors": []
+    },
+    {
+      "page": "prototype/passport.html",
+      "production": "/passport/{PUBLIC_ID}/",
+      "page_type": "Active public System projection",
+      "errors": []
+    },
+    {
+      "page": "prototype/product.html",
+      "production": "/computers/play/1440/",
+      "page_type": "Computer model",
+      "errors": []
+    },
+    {
+      "page": "prototype/project.html",
+      "production": "/projects/{approved-slug}/",
+      "page_type": "Historical project",
+      "errors": []
+    },
+    {
+      "page": "prototype/projects.html",
+      "production": "/projects/",
+      "page_type": "Projects archive",
+      "errors": []
+    },
+    {
+      "page": "prototype/review.html",
+      "production": "NO PUBLIC ROUTE",
+      "page_type": "Review navigation",
+      "errors": []
+    },
+    {
+      "page": "prototype/system-workflow.html",
+      "production": "NO PUBLIC ROUTE",
+      "page_type": "Disposable Bitrix Admin review",
+      "errors": []
+    },
+    {
+      "page": "prototype/ui.html",
+      "production": "NO PUBLIC ROUTE",
+      "page_type": "UI Kit review",
+      "errors": []
+    },
+    {
+      "page": "prototype/work.html",
+      "production": "/computers/work/",
+      "page_type": "WORK family",
+      "errors": []
+    }
+  ],
+  "repository_errors": [],
+  "seo_errors": 0,
+  "seo_review_warnings": 74,
+  "checked_markdown_destinations": 454,
+  "verified_source_media": 23,
+  "errors": 0,
+  "limitations": [
+    "Static source checks do not prove backend authorization, lifecycle transactions, email delivery, live commercial state or production HTTP/SEO behavior.",
+    "Browser layout/accessibility/motion and human visual review are separate evidence."
+  ]
+}

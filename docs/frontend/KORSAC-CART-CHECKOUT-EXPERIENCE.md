@@ -2,7 +2,8 @@
 
 ## Назначение и граница прототипа
 
-Cart отвечает, какие системы выбраны и чем отличаются их конфигурации.
+Cart отвечает, какие товары выбраны: заказанные конфигурации компьютеров
+и обычные товары (монитор), с отдельной identity каждой строки.
 Checkout — одна спокойная страница для гостя или компании. Success показывает
 будущее завершение оформления, явно помеченное `DEMO / ORDER`.
 
@@ -45,7 +46,7 @@ backend-provided списки и attributes; layout не требует фикс
 
 - `prototype/cart.html`: обычный public shell, sticky opaque header, native drawer,
   footer. Cart utility на Homepage/Catalog/Product теперь ведёт сюда; поиска и
-  аккаунта по-прежнему нет. Count badge не добавлен.
+  поиска нет; Account utility ведёт к static Login. Count badge не добавлен.
 - `prototype/checkout.html`: sticky logo + название оформления + возврат в Cart;
   компактный footer, без marketing navigation. Mobile: logo / Оформление / Назад.
 - `prototype/order-success.html`: тот же спокойный shell, статическая approved mark,
@@ -92,7 +93,8 @@ identity/state из `kk.korsac`.
 `cart-experience.js` работает только внутри `[data-demo-cart]`, включая отдельный
 UI Kit specimen. Данные не продублированы в JS object. В каждой строке авторское
 `data-demo-unit-price-minor="17990000"`; обе используют существующий пример
-179 900 ₽, без новых цен за выбранные компоненты. Исходный subtotal — 359 800 ₽.
+179 900 ₽, без новых цен за выбранные компоненты. Subtotal двух PC — 359 800 ₽; с обычным монитором 22 050 ₽
+исходный mixed subtotal — 381 850 ₽.
 Одинаковые sample amounts не утверждают реальную цену конфигураций.
 
 **Prototype display arithmetic only**: `updateDemoCartSummary` читает integer
@@ -107,15 +109,15 @@ Quantity — native buttons 44×44px и читаемый `output`. Minimum 1; ar
 товарам. Delivery не имеет цены: «Рассчитывается при оформлении».
 
 Remove скрывает авторскую строку. Последнюю удалённую строку можно восстановить
-с прежним локальным quantity. После удаления обеих остаются shell, intentional
+с прежним локальным quantity. После удаления всех трёх строк остаются shell, intentional
 empty state и Catalog CTA. Последний Undo остаётся доступен, клавиатурный фокус
 не теряется. Перезагрузка восстанавливает исходный HTML fixture.
 
-Один polite live region объявляет результат действия, число систем и demo total.
+Один polite live region объявляет результат действия, число товаров и demo total.
 Остальные DOM updates не являются отдельными live regions.
 
 **Нет cross-page cart state**: Checkout/Success используют собственную авторскую
-исходную сводку двух систем. Изменённые количества/удаления туда не переносятся;
+исходную mixed сводку двух компьютеров и монитора. Изменённые количества/удаления туда не переносятся;
 Cart перед CTA и Checkout перед формой явно объясняют это. Нет localStorage,
 sessionStorage, cookies, query payload или глобального live cart count.
 UI Kit summary справа — самостоятельный статический specimen.
@@ -161,7 +163,7 @@ Native selection сразу становится состоянием формы
 
 ## Review, comment, consent и submit
 
-Desktop summary sticky ниже header: CONFIG / 01 / 02, quantities, subtotal,
+Desktop summary sticky ниже header: CONFIG / 01 / 02 + ordinary monitor, quantities, subtotal,
 delivery status, total по товарам, «Изменить корзину». Полная конфигурация здесь
 не повторяется. На mobile summary — компактный disclosure до формы; перед
 единственной Submit CTA total показан повторно. Mobile CTA в normal flow:
@@ -254,7 +256,7 @@ USER_ID; новый guest email создаёт User и связь с Order. Со
 с существующим аккаунтом требует authentication/verification flow и не позволяет
 молча привязать заказ к чужому USER_ID. В первой физической передаче System
 получает текущую связь из authoritative Order.USER_ID. Это контракт, не изменение
-статической формы, не Bitrix auth и не Account UI в этом PR.
+статической формы, не Bitrix auth. Account UI теперь представлен отдельным static review.
 См. [ownership / account / privacy contract](KORSAC-SYSTEM-PASSPORT.md).
 
 ## Review и self-review A–J
@@ -281,3 +283,13 @@ PR не сливать автоматически.
 ## Account continuation v1
 
 Email остаётся обязательным, guest checkout сохраняется без pre-registration. Короткая подпись объясняет email для заказа/входа; ссылка Login — utility, не registration gate. Success показывает будущий setup/recovery для нового аккаунта и alternate authenticated Orders path, явно без real account/email creation. Исходная статичная сводка Success теперь включает обычный монитор alongside two PC snapshots; сумма 381850 RUB matches mixed source fixture. Нет передачи введённых контактов, backend auth или новых payment/delivery правил. [Account integration](KORSAC-ACCOUNT-EXPERIENCE.md) описывает safe existing-email verification и стандартные Bitrix components.
+
+## Product / Order / System snapshot boundary
+
+**Product current configuration ≠ Order configuration snapshot ≠ System actual confirmed configuration.**
+Текущие опции и цены модели не переписывают immutable purchase-time snapshot
+заказа. Фактически установленная комплектация физической System подтверждается
+при сборке и может позднее измениться через audited service events; это не
+редактирование исторической строки Order. Monitor остаётся обычным Product и
+никогда не получает System identity. Frontend только отображает соответствующую
+проекцию. См. [final boundary audit](KORSAC-FINAL-AUDIT.md#product-system-order-account-boundaries).

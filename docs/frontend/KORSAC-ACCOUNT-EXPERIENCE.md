@@ -260,3 +260,13 @@ remain. Shared native dialogs provide Escape, focus containment/return and exist
 finite/reduced opacity feedback; no new animation system or MP4 is needed.
 See [validation/screenshots](review/account-experience-v1.md). Human visual and
 architecture review is required before merge. Do not auto-merge.
+
+## Product / Order / System snapshot boundary
+
+**Product current configuration ≠ Order configuration snapshot ≠ System actual confirmed configuration.**
+Текущие опции и цены модели не переписывают immutable purchase-time snapshot
+заказа. Фактически установленная комплектация физической System подтверждается
+при сборке и может позднее измениться через audited service events; это не
+редактирование исторической строки Order. Monitor остаётся обычным Product и
+никогда не получает System identity. Frontend только отображает соответствующую
+проекцию. См. [final boundary audit](KORSAC-FINAL-AUDIT.md#product-system-order-account-boundaries).

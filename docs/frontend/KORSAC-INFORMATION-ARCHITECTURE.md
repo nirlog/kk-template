@@ -24,12 +24,21 @@ Monitors category и один ordinary product detail. Модельные лин
 ├── equipment/
 │   └── monitors/
 │       └── {slug}/
+├── passport/{PUBLIC_ID}/         # только projection, без /passport/ каталога
 ├── contacts/
 ├── cart/
 ├── checkout/
 ├── order-success/
 ├── search/                       # будущий поиск, noindex
-└── account/                      # приватные страницы, noindex
+└── account/                      # authenticated entry → orders; no dashboard
+    ├── login/
+    ├── register/
+    ├── forgot-password/
+    ├── orders/
+    │   └── {id}/
+    ├── systems/
+    ├── inquiries/
+    └── profile/
 ```
 
 404/500/503 — состояния ответа запрошенного URL, не публичные разделы дерева.
@@ -107,8 +116,8 @@ Frontend не закрепляет ограничения по типу поку
 | Equipment hub                | `/equipment/`                                                      | Index при curated content           | Self                                                  | Главная → Оборудование                     | CollectionPage + BreadcrumbList                                  | Да                                           | Редакционно утверждённые категории                       |
 | Equipment category           | `/equipment/{category}/`, `/equipment/monitors/`                   | Index при полезном содержании       | Self                                                  | Главная → Оборудование → Категория         | CollectionPage + BreadcrumbList                                  | Да                                           | Category content + каталог                               |
 | Ordinary product             | `/equipment/{category}/{slug}/`                                    | Index                               | Self                                                  | Главная → Оборудование → Категория → Товар | Product + backend Offer + BreadcrumbList                         | Да                                           | Product entity, real media, catalog/Sale                 |
-| Active System Passport       | `/passport/{PUBLIC_ID}/`                                           | noindex, follow                     | Не SEO landing; host не утверждён                     | Без каталожных crumbs                      | Нет structured data v1                                           | Нет                                          | System domain projection / D7                            |
-| Pending System Passport      | Та же `/passport/{PUBLIC_ID}/`                                     | noindex, nofollow                   | Не SEO landing                                        | Нет                                        | Нет                                                              | Нет                                          | System public state / D7                                 |
+| Active System Passport       | `/passport/{PUBLIC_ID}/`                                           | noindex, follow                     | Нет; сервисная проекция                               | Без каталожных crumbs                      | Нет structured data v1                                           | Нет                                          | System domain projection / D7                            |
+| Pending System Passport      | Та же `/passport/{PUBLIC_ID}/`                                     | noindex, nofollow                   | Нет                                                   | Нет                                        | Нет                                                              | Нет                                          | System public state / D7                                 |
 | Contacts                     | `/contacts/`                                                       | Index                               | Self                                                  | Главная → Контакты                         | ContactPage + BreadcrumbList                                     | Да                                           | Централизованные настройки контактов                     |
 | Cart                         | `/cart/`                                                           | noindex                             | Нет                                                   | Не обязательны                             | Нет Product/Offer                                                | Нет                                          | Sale basket / текущий пользовательский контекст          |
 | Checkout                     | `/checkout/`                                                       | noindex                             | Нет                                                   | Не обязательны                             | Нет                                                              | Нет                                          | Sale order, методы/ограничения/properties                |
@@ -131,22 +140,10 @@ presentation/заказ одной модели и не создаёт инде�
 
 ## Breadcrumb hierarchy и static mapping
 
-| Static review                                        | Production                                  | Видимый путь                                          |
-| ---------------------------------------------------- | ------------------------------------------- | ----------------------------------------------------- |
-| `index.html`                                         | `/`                                         | Главная                                               |
-| `computers.html`                                     | `/computers/`                               | Главная → Компьютеры                                  |
-| `create.html`                                        | `/computers/create/`                        | Главная → Компьютеры → CREATE                         |
-| `work.html`                                          | `/computers/work/`                          | Главная → Компьютеры → WORK                           |
-| `catalog.html`                                       | `/computers/play/`                          | Главная → Компьютеры → PLAY                           |
-| `product.html`                                       | `/computers/play/1440/`                     | Главная → Компьютеры → PLAY → PLAY 1440               |
-| `projects.html`                                      | `/projects/`                                | Главная → Проекты                                     |
-| `project.html`                                       | `/projects/{approved-slug}/`                | Главная → Проекты → Белый игровой компьютер           |
-| `equipment.html`                                     | `/equipment/`                               | Главная → Оборудование                                |
-| `monitors.html`                                      | `/equipment/monitors/`                      | Главная → Оборудование → Мониторы                     |
-| `monitor.html`                                       | `/equipment/monitors/{approved-slug}/`      | Главная → Оборудование → Мониторы → MSI MAG 274QF X24 |
-| `passport.html` / `passport-pending.html`            | Active / pending `/passport/{PUBLIC_ID}/`   | Сервисный экран без публичного каталога               |
-| `contacts.html`                                      | `/contacts/`                                | Главная → Контакты                                    |
-| `cart.html` / `checkout.html` / `order-success.html` | `/cart/` / `/checkout/` / `/order-success/` | Транзакционные экраны                                 |
+Единственная полная authoritative static → production mapping:
+[Final route inventory](KORSAC-FINAL-AUDIT.md#final-route-inventory).
+Она включает public, transactional, Passport, Account, errors и review-only pages.
+Эта IA остаётся владельцем production route tree и indexability policy.
 
 В прототипе «Компьютеры» теперь реальный ancestor link `computers.html`.
 Catalog/Product/CREATE/WORK имеют тот же путь в видимых crumbs и JSON-LD;
@@ -230,16 +227,8 @@ Equipment имеет crawlable ссылки на каждую реальную �
 
 `/account/` у авторизованного пользователя ведёт к Orders; отдельного dashboard нет.
 
-| Static review                | Production                |
-| ---------------------------- | ------------------------- |
-| account-login.html           | /account/login/           |
-| account-register.html        | /account/register/        |
-| account-forgot-password.html | /account/forgot-password/ |
-| account-orders.html          | /account/orders/          |
-| account-order.html           | /account/orders/{id}/     |
-| account-systems.html         | /account/systems/         |
-| account-inquiries.html       | /account/inquiries/       |
-| account-profile.html         | /account/profile/         |
+Конкретные восемь review filenames и production routes перечислены в
+[единой final mapping](KORSAC-FINAL-AUDIT.md#final-route-inventory).
 
 Все auth/private routes production noindex + server authorization, вне sitemap, без public schema/canonical. Static HTTP 200 — review, не доказательство приватности. Customer utility в public shell ведёт к Login без нового primary menu entry; private страницы не добавлены в footer SEO nav. Passport остаётся публичным независимым entity. Manager Ownership остаётся в Bitrix Admin, не Account.
 См. [Account contract](KORSAC-ACCOUNT-EXPERIENCE.md).

@@ -1,8 +1,10 @@
 # KORSAC / kk-template
 
 Документация бренда и продуктовой архитектуры KORSAC, а также статический
-прототип сайта с Premium Site Shell / Homepage v1, каталогом PLAY v1
-Interactive Product Experience v3.1, Cart & Checkout Experience v1, Contacts / Error Pages и SEO / IA Foundation на визуальной основе v2.1.
+полный статический прототип: публичный сайт, семейства компьютеров, PLAY Product,
+Projects, curated Equipment, mixed commerce, System Passport и Account.
+[Final holistic audit](docs/frontend/KORSAC-FINAL-AUDIT.md) объединяет текущий
+контракт и границы будущего переноса в Bitrix.
 
 ## Prototype
 
@@ -17,7 +19,7 @@ Interactive Product Experience v3.1, Cart & Checkout Experience v1, Contacts / E
 - [prototype/work.html](prototype/work.html) — рабочие задачи и operational priorities.
 - [prototype/catalog.html](prototype/catalog.html) — выбор сценария PLAY, MINI-ветка, вся линейка и сравнение классов.
 - [prototype/product.html](prototype/product.html) — PLAY 1440, System Explorer, сцена конфигуратора и статичный пример будущего паспорта.
-- [prototype/cart.html](prototype/cart.html) — две конфигурации PLAY 1440, количество, demo totals и empty state.
+- [prototype/cart.html](prototype/cart.html) — две конфигурации PLAY 1440 и обычный монитор, количество, demo totals и empty state.
 - [prototype/checkout.html](prototype/checkout.html) — guest/company checkout, СДЭК placeholder, payment и validation.
 - [prototype/order-success.html](prototype/order-success.html) — явно демонстрационный результат оформления.
 - [prototype/contacts.html](prototype/contacts.html) — каналы связи без вымышленных реквизитов.
@@ -140,3 +142,17 @@ do not auto-merge.
 Нет отдельного dashboard или Brand Intro. Public Account utility ведёт к Login, не становится шестым primary nav entry. Формы/dialogs показывают проверку и review-feedback без отправки, сессии, изменения аккаунта или владения. Checkout остаётся guest flow с обязательным email; Success показывает будущий безопасный password setup.
 
 [Account / Bitrix / authorization contract](docs/frontend/KORSAC-ACCOUNT-EXPERIENCE.md) · [Review evidence](docs/frontend/review/account-experience-v1.md). Синтетический Account B видит текущую System association; заказ прежнего владельца ему не показывается. Реальный Bitrix/auth/email/ownership backend не реализован. Human visual/architecture review required; do not auto-merge.
+
+## Final audit before Bitrix planning
+
+[Authoritative final mapping and migration ownership](docs/frontend/KORSAC-FINAL-AUDIT.md)
+· [Compact final review evidence](docs/frontend/review/final-audit.md).
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 python3 tools/final_audit.py
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tools -p 'test_*.py'
+```
+
+READY means the static specification supports architecture planning, not live
+production/backend readiness. Integration decisions and deferred enhancements
+are separate in the report. Human visual and architecture review; no auto-merge.

@@ -1,5 +1,10 @@
 # KORSAC — Homepage Experience v1
 
+Current domain/navigation precedence: [Final audit](KORSAC-FINAL-AUDIT.md).
+SYSTEM ID on Product/UI Kit is an illustrative Passport example only; real physical
+identity belongs to System. Static Account and Cart routes exist without backend
+operations. Earlier stage-specific review evidence remains historical.
+
 ## Роль и путь
 
 `prototype/index.html` — главная KORSAC. Прежний developer navigation hub

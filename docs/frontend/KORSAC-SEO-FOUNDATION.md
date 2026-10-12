@@ -33,7 +33,7 @@ Bitrix page-context/entity resolver формирует в HTML до JS:
 описание/статью, breadcrumbs и важные внутренние ссылки. JS отвечает за
 presentation, не генерирует SEO. Не размещать второй generator в браузере.
 
-В review у всех 17 страниц уникальные nonempty title/description, `lang="ru"`,
+В текущем review у всех 31 страниц уникальные nonempty title/description, `lang="ru"`,
 viewport и один H1. Product H1 сохраняет имя PLAY 1440, а не логотип как heading.
 Примеры production naming: «Игровые компьютеры PLAY — KORSAC»,
 «PLAY 1440 — игровой компьютер KORSAC», «Контакты — KORSAC».
