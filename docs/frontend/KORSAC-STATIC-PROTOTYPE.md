@@ -1,10 +1,15 @@
 # KORSAC — Static UI Prototype / Homepage & Shell v1 / Product v3.1 / Catalog v1
 
+Current domain/navigation precedence: [Final audit](KORSAC-FINAL-AUDIT.md).
+SYSTEM ID on Product/UI Kit is an illustrative Passport example only; real physical
+identity belongs to System. Static Account and Cart routes exist without backend
+operations. Earlier stage-specific review evidence remains historical.
+
 ## Назначение
 
 Прототип на HTML/CSS/vanilla JS развивает KORSAC как инженерную систему:
 индексированные разделы, точные направляющие, асимметричная композиция,
-паспорт продукта и короткое движение, связанное с действием. Техническая
+пример будущего паспорта физической системы и короткое движение, связанное с действием. Техническая
 основа v1 сохраняется: семантический HTML, нативные контролы, адаптивность,
 видимый фокус, CSS-токены и запуск без сборки.
 
@@ -238,8 +243,9 @@ compatibility/availability rules и конфигурационного API.
 
 Пять button-hotspots открывают синхронизированные HTML-пояснения. Корпус меняет
 условный силуэт; RAM — метаданные; SSD/SSD2 — подписи и второй слот.
-После System Passport v1 Product не показывает вымышленный номер: его блок
-объясняет будущую per-machine identity и не синхронизирует паспорт с выбором.
+Product показывает явно иллюстративный номер в статичном «Примере паспорта»
+будущей физической системы. Это не текущая System entity, и паспорт не
+синхронизируется с выбором.
 Контексты измерений сохраняют
 пустые метрики, а четыре всегда видимых этапа сборки имеют focus/click-пояснения.
 Без JS overview и весь рассказ доступны. Reduced motion сохраняет переключение
@@ -249,7 +255,8 @@ compatibility/availability rules и конфигурационного API.
 Архитектура слоёв, события, адаптивность и будущий media/kk.korsac adapter
 описаны в [документе v3.1](KORSAC-INTERACTIVE-PRODUCT-EXPERIENCE.md).
 
-«Добавить в корзину» открывает информацию о прототипе. Счётчик корзины,
+Product CTA «Посмотреть пример корзины» открывает static Cart. Выбранные
+опции не переносятся: это доступ к авторскому fixture, не добавление товара. Счётчик корзины,
 реальные заказы, авторизация, поиск, фильтры, аналитика и API отсутствуют.
 Cart/Checkout представлены отдельными авторскими demo pages.
 Local/sessionStorage используется только для presentation frequency Brand Intro,

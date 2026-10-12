@@ -85,8 +85,8 @@ Homepage/Catalog/Product сохранена; UI Kit/review по-прежнему
 
 ## Shared site-entry Brand Intro
 
-Brand Intro принадлежит shared public shell, не homepage. Только
-`index.html`, `catalog.html`, `product.html`; прямой вход в любую страницу
+Brand Intro принадлежит shared public shell, не homepage. Только public browsing pages: Home, Computers/PLAY/CREATE/WORK, Product,
+Projects/detail, Equipment/Monitors/detail; прямой вход в любую такую страницу
 работает одинаково. `ui.html` и `review.html` не показывают intro и не
 расходуют eligibility. Hero/Header/Drawer/Footer — static eyes off.
 
@@ -233,3 +233,5 @@ Contacts доступны из public и compact transactional footer, без н
 и не меняют timestamp; policy Home/Catalog/Product сохраняется. 500/503
 работают без JS и shared application CSS. Static HTML не задаёт HTTP errors:
 production server обязан сохранить настоящий 404/500/503.
+
+Current eligibility list: [Final page-type audit](KORSAC-FINAL-AUDIT.md#page-type-inventory). Passport, Account/Auth, Contacts, Cart/Checkout/Success and errors never read/write Brand Intro eligibility.

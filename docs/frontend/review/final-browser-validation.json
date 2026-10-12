@@ -1,0 +1,1471 @@
+{
+  "base_commit": "e2a693b9bb4a33786ebe2859fd952a79a8d5e356",
+  "browser": "Chromium 151 / Playwright",
+  "widths": [
+    320,
+    375,
+    430,
+    768,
+    1024,
+    1280,
+    1440,
+    1920
+  ],
+  "layout_count": 248,
+  "layouts": [
+    {
+      "file": "404.html",
+      "width": 320
+    },
+    {
+      "file": "500.html",
+      "width": 320
+    },
+    {
+      "file": "503.html",
+      "width": 320
+    },
+    {
+      "file": "account-forgot-password.html",
+      "width": 320
+    },
+    {
+      "file": "account-inquiries.html",
+      "width": 320
+    },
+    {
+      "file": "account-login.html",
+      "width": 320
+    },
+    {
+      "file": "account-order.html",
+      "width": 320
+    },
+    {
+      "file": "account-orders.html",
+      "width": 320
+    },
+    {
+      "file": "account-profile.html",
+      "width": 320
+    },
+    {
+      "file": "account-register.html",
+      "width": 320
+    },
+    {
+      "file": "account-systems.html",
+      "width": 320
+    },
+    {
+      "file": "cart.html",
+      "width": 320
+    },
+    {
+      "file": "catalog.html",
+      "width": 320
+    },
+    {
+      "file": "checkout.html",
+      "width": 320
+    },
+    {
+      "file": "computers.html",
+      "width": 320
+    },
+    {
+      "file": "contacts.html",
+      "width": 320
+    },
+    {
+      "file": "create.html",
+      "width": 320
+    },
+    {
+      "file": "equipment.html",
+      "width": 320
+    },
+    {
+      "file": "index.html",
+      "width": 320
+    },
+    {
+      "file": "monitor.html",
+      "width": 320
+    },
+    {
+      "file": "monitors.html",
+      "width": 320
+    },
+    {
+      "file": "order-success.html",
+      "width": 320
+    },
+    {
+      "file": "passport-pending.html",
+      "width": 320
+    },
+    {
+      "file": "passport.html",
+      "width": 320
+    },
+    {
+      "file": "product.html",
+      "width": 320
+    },
+    {
+      "file": "project.html",
+      "width": 320
+    },
+    {
+      "file": "projects.html",
+      "width": 320
+    },
+    {
+      "file": "review.html",
+      "width": 320
+    },
+    {
+      "file": "system-workflow.html",
+      "width": 320
+    },
+    {
+      "file": "ui.html",
+      "width": 320
+    },
+    {
+      "file": "work.html",
+      "width": 320
+    },
+    {
+      "file": "404.html",
+      "width": 375
+    },
+    {
+      "file": "500.html",
+      "width": 375
+    },
+    {
+      "file": "503.html",
+      "width": 375
+    },
+    {
+      "file": "account-forgot-password.html",
+      "width": 375
+    },
+    {
+      "file": "account-inquiries.html",
+      "width": 375
+    },
+    {
+      "file": "account-login.html",
+      "width": 375
+    },
+    {
+      "file": "account-order.html",
+      "width": 375
+    },
+    {
+      "file": "account-orders.html",
+      "width": 375
+    },
+    {
+      "file": "account-profile.html",
+      "width": 375
+    },
+    {
+      "file": "account-register.html",
+      "width": 375
+    },
+    {
+      "file": "account-systems.html",
+      "width": 375
+    },
+    {
+      "file": "cart.html",
+      "width": 375
+    },
+    {
+      "file": "catalog.html",
+      "width": 375
+    },
+    {
+      "file": "checkout.html",
+      "width": 375
+    },
+    {
+      "file": "computers.html",
+      "width": 375
+    },
+    {
+      "file": "contacts.html",
+      "width": 375
+    },
+    {
+      "file": "create.html",
+      "width": 375
+    },
+    {
+      "file": "equipment.html",
+      "width": 375
+    },
+    {
+      "file": "index.html",
+      "width": 375
+    },
+    {
+      "file": "monitor.html",
+      "width": 375
+    },
+    {
+      "file": "monitors.html",
+      "width": 375
+    },
+    {
+      "file": "order-success.html",
+      "width": 375
+    },
+    {
+      "file": "passport-pending.html",
+      "width": 375
+    },
+    {
+      "file": "passport.html",
+      "width": 375
+    },
+    {
+      "file": "product.html",
+      "width": 375
+    },
+    {
+      "file": "project.html",
+      "width": 375
+    },
+    {
+      "file": "projects.html",
+      "width": 375
+    },
+    {
+      "file": "review.html",
+      "width": 375
+    },
+    {
+      "file": "system-workflow.html",
+      "width": 375
+    },
+    {
+      "file": "ui.html",
+      "width": 375
+    },
+    {
+      "file": "work.html",
+      "width": 375
+    },
+    {
+      "file": "404.html",
+      "width": 430
+    },
+    {
+      "file": "500.html",
+      "width": 430
+    },
+    {
+      "file": "503.html",
+      "width": 430
+    },
+    {
+      "file": "account-forgot-password.html",
+      "width": 430
+    },
+    {
+      "file": "account-inquiries.html",
+      "width": 430
+    },
+    {
+      "file": "account-login.html",
+      "width": 430
+    },
+    {
+      "file": "account-order.html",
+      "width": 430
+    },
+    {
+      "file": "account-orders.html",
+      "width": 430
+    },
+    {
+      "file": "account-profile.html",
+      "width": 430
+    },
+    {
+      "file": "account-register.html",
+      "width": 430
+    },
+    {
+      "file": "account-systems.html",
+      "width": 430
+    },
+    {
+      "file": "cart.html",
+      "width": 430
+    },
+    {
+      "file": "catalog.html",
+      "width": 430
+    },
+    {
+      "file": "checkout.html",
+      "width": 430
+    },
+    {
+      "file": "computers.html",
+      "width": 430
+    },
+    {
+      "file": "contacts.html",
+      "width": 430
+    },
+    {
+      "file": "create.html",
+      "width": 430
+    },
+    {
+      "file": "equipment.html",
+      "width": 430
+    },
+    {
+      "file": "index.html",
+      "width": 430
+    },
+    {
+      "file": "monitor.html",
+      "width": 430
+    },
+    {
+      "file": "monitors.html",
+      "width": 430
+    },
+    {
+      "file": "order-success.html",
+      "width": 430
+    },
+    {
+      "file": "passport-pending.html",
+      "width": 430
+    },
+    {
+      "file": "passport.html",
+      "width": 430
+    },
+    {
+      "file": "product.html",
+      "width": 430
+    },
+    {
+      "file": "project.html",
+      "width": 430
+    },
+    {
+      "file": "projects.html",
+      "width": 430
+    },
+    {
+      "file": "review.html",
+      "width": 430
+    },
+    {
+      "file": "system-workflow.html",
+      "width": 430
+    },
+    {
+      "file": "ui.html",
+      "width": 430
+    },
+    {
+      "file": "work.html",
+      "width": 430
+    },
+    {
+      "file": "404.html",
+      "width": 768
+    },
+    {
+      "file": "500.html",
+      "width": 768
+    },
+    {
+      "file": "503.html",
+      "width": 768
+    },
+    {
+      "file": "account-forgot-password.html",
+      "width": 768
+    },
+    {
+      "file": "account-inquiries.html",
+      "width": 768
+    },
+    {
+      "file": "account-login.html",
+      "width": 768
+    },
+    {
+      "file": "account-order.html",
+      "width": 768
+    },
+    {
+      "file": "account-orders.html",
+      "width": 768
+    },
+    {
+      "file": "account-profile.html",
+      "width": 768
+    },
+    {
+      "file": "account-register.html",
+      "width": 768
+    },
+    {
+      "file": "account-systems.html",
+      "width": 768
+    },
+    {
+      "file": "cart.html",
+      "width": 768
+    },
+    {
+      "file": "catalog.html",
+      "width": 768
+    },
+    {
+      "file": "checkout.html",
+      "width": 768
+    },
+    {
+      "file": "computers.html",
+      "width": 768
+    },
+    {
+      "file": "contacts.html",
+      "width": 768
+    },
+    {
+      "file": "create.html",
+      "width": 768
+    },
+    {
+      "file": "equipment.html",
+      "width": 768
+    },
+    {
+      "file": "index.html",
+      "width": 768
+    },
+    {
+      "file": "monitor.html",
+      "width": 768
+    },
+    {
+      "file": "monitors.html",
+      "width": 768
+    },
+    {
+      "file": "order-success.html",
+      "width": 768
+    },
+    {
+      "file": "passport-pending.html",
+      "width": 768
+    },
+    {
+      "file": "passport.html",
+      "width": 768
+    },
+    {
+      "file": "product.html",
+      "width": 768
+    },
+    {
+      "file": "project.html",
+      "width": 768
+    },
+    {
+      "file": "projects.html",
+      "width": 768
+    },
+    {
+      "file": "review.html",
+      "width": 768
+    },
+    {
+      "file": "system-workflow.html",
+      "width": 768
+    },
+    {
+      "file": "ui.html",
+      "width": 768
+    },
+    {
+      "file": "work.html",
+      "width": 768
+    },
+    {
+      "file": "404.html",
+      "width": 1024
+    },
+    {
+      "file": "500.html",
+      "width": 1024
+    },
+    {
+      "file": "503.html",
+      "width": 1024
+    },
+    {
+      "file": "account-forgot-password.html",
+      "width": 1024
+    },
+    {
+      "file": "account-inquiries.html",
+      "width": 1024
+    },
+    {
+      "file": "account-login.html",
+      "width": 1024
+    },
+    {
+      "file": "account-order.html",
+      "width": 1024
+    },
+    {
+      "file": "account-orders.html",
+      "width": 1024
+    },
+    {
+      "file": "account-profile.html",
+      "width": 1024
+    },
+    {
+      "file": "account-register.html",
+      "width": 1024
+    },
+    {
+      "file": "account-systems.html",
+      "width": 1024
+    },
+    {
+      "file": "cart.html",
+      "width": 1024
+    },
+    {
+      "file": "catalog.html",
+      "width": 1024
+    },
+    {
+      "file": "checkout.html",
+      "width": 1024
+    },
+    {
+      "file": "computers.html",
+      "width": 1024
+    },
+    {
+      "file": "contacts.html",
+      "width": 1024
+    },
+    {
+      "file": "create.html",
+      "width": 1024
+    },
+    {
+      "file": "equipment.html",
+      "width": 1024
+    },
+    {
+      "file": "index.html",
+      "width": 1024
+    },
+    {
+      "file": "monitor.html",
+      "width": 1024
+    },
+    {
+      "file": "monitors.html",
+      "width": 1024
+    },
+    {
+      "file": "order-success.html",
+      "width": 1024
+    },
+    {
+      "file": "passport-pending.html",
+      "width": 1024
+    },
+    {
+      "file": "passport.html",
+      "width": 1024
+    },
+    {
+      "file": "product.html",
+      "width": 1024
+    },
+    {
+      "file": "project.html",
+      "width": 1024
+    },
+    {
+      "file": "projects.html",
+      "width": 1024
+    },
+    {
+      "file": "review.html",
+      "width": 1024
+    },
+    {
+      "file": "system-workflow.html",
+      "width": 1024
+    },
+    {
+      "file": "ui.html",
+      "width": 1024
+    },
+    {
+      "file": "work.html",
+      "width": 1024
+    },
+    {
+      "file": "404.html",
+      "width": 1280
+    },
+    {
+      "file": "500.html",
+      "width": 1280
+    },
+    {
+      "file": "503.html",
+      "width": 1280
+    },
+    {
+      "file": "account-forgot-password.html",
+      "width": 1280
+    },
+    {
+      "file": "account-inquiries.html",
+      "width": 1280
+    },
+    {
+      "file": "account-login.html",
+      "width": 1280
+    },
+    {
+      "file": "account-order.html",
+      "width": 1280
+    },
+    {
+      "file": "account-orders.html",
+      "width": 1280
+    },
+    {
+      "file": "account-profile.html",
+      "width": 1280
+    },
+    {
+      "file": "account-register.html",
+      "width": 1280
+    },
+    {
+      "file": "account-systems.html",
+      "width": 1280
+    },
+    {
+      "file": "cart.html",
+      "width": 1280
+    },
+    {
+      "file": "catalog.html",
+      "width": 1280
+    },
+    {
+      "file": "checkout.html",
+      "width": 1280
+    },
+    {
+      "file": "computers.html",
+      "width": 1280
+    },
+    {
+      "file": "contacts.html",
+      "width": 1280
+    },
+    {
+      "file": "create.html",
+      "width": 1280
+    },
+    {
+      "file": "equipment.html",
+      "width": 1280
+    },
+    {
+      "file": "index.html",
+      "width": 1280
+    },
+    {
+      "file": "monitor.html",
+      "width": 1280
+    },
+    {
+      "file": "monitors.html",
+      "width": 1280
+    },
+    {
+      "file": "order-success.html",
+      "width": 1280
+    },
+    {
+      "file": "passport-pending.html",
+      "width": 1280
+    },
+    {
+      "file": "passport.html",
+      "width": 1280
+    },
+    {
+      "file": "product.html",
+      "width": 1280
+    },
+    {
+      "file": "project.html",
+      "width": 1280
+    },
+    {
+      "file": "projects.html",
+      "width": 1280
+    },
+    {
+      "file": "review.html",
+      "width": 1280
+    },
+    {
+      "file": "system-workflow.html",
+      "width": 1280
+    },
+    {
+      "file": "ui.html",
+      "width": 1280
+    },
+    {
+      "file": "work.html",
+      "width": 1280
+    },
+    {
+      "file": "404.html",
+      "width": 1440
+    },
+    {
+      "file": "500.html",
+      "width": 1440
+    },
+    {
+      "file": "503.html",
+      "width": 1440
+    },
+    {
+      "file": "account-forgot-password.html",
+      "width": 1440
+    },
+    {
+      "file": "account-inquiries.html",
+      "width": 1440
+    },
+    {
+      "file": "account-login.html",
+      "width": 1440
+    },
+    {
+      "file": "account-order.html",
+      "width": 1440
+    },
+    {
+      "file": "account-orders.html",
+      "width": 1440
+    },
+    {
+      "file": "account-profile.html",
+      "width": 1440
+    },
+    {
+      "file": "account-register.html",
+      "width": 1440
+    },
+    {
+      "file": "account-systems.html",
+      "width": 1440
+    },
+    {
+      "file": "cart.html",
+      "width": 1440
+    },
+    {
+      "file": "catalog.html",
+      "width": 1440
+    },
+    {
+      "file": "checkout.html",
+      "width": 1440
+    },
+    {
+      "file": "computers.html",
+      "width": 1440
+    },
+    {
+      "file": "contacts.html",
+      "width": 1440
+    },
+    {
+      "file": "create.html",
+      "width": 1440
+    },
+    {
+      "file": "equipment.html",
+      "width": 1440
+    },
+    {
+      "file": "index.html",
+      "width": 1440
+    },
+    {
+      "file": "monitor.html",
+      "width": 1440
+    },
+    {
+      "file": "monitors.html",
+      "width": 1440
+    },
+    {
+      "file": "order-success.html",
+      "width": 1440
+    },
+    {
+      "file": "passport-pending.html",
+      "width": 1440
+    },
+    {
+      "file": "passport.html",
+      "width": 1440
+    },
+    {
+      "file": "product.html",
+      "width": 1440
+    },
+    {
+      "file": "project.html",
+      "width": 1440
+    },
+    {
+      "file": "projects.html",
+      "width": 1440
+    },
+    {
+      "file": "review.html",
+      "width": 1440
+    },
+    {
+      "file": "system-workflow.html",
+      "width": 1440
+    },
+    {
+      "file": "ui.html",
+      "width": 1440
+    },
+    {
+      "file": "work.html",
+      "width": 1440
+    },
+    {
+      "file": "404.html",
+      "width": 1920
+    },
+    {
+      "file": "500.html",
+      "width": 1920
+    },
+    {
+      "file": "503.html",
+      "width": 1920
+    },
+    {
+      "file": "account-forgot-password.html",
+      "width": 1920
+    },
+    {
+      "file": "account-inquiries.html",
+      "width": 1920
+    },
+    {
+      "file": "account-login.html",
+      "width": 1920
+    },
+    {
+      "file": "account-order.html",
+      "width": 1920
+    },
+    {
+      "file": "account-orders.html",
+      "width": 1920
+    },
+    {
+      "file": "account-profile.html",
+      "width": 1920
+    },
+    {
+      "file": "account-register.html",
+      "width": 1920
+    },
+    {
+      "file": "account-systems.html",
+      "width": 1920
+    },
+    {
+      "file": "cart.html",
+      "width": 1920
+    },
+    {
+      "file": "catalog.html",
+      "width": 1920
+    },
+    {
+      "file": "checkout.html",
+      "width": 1920
+    },
+    {
+      "file": "computers.html",
+      "width": 1920
+    },
+    {
+      "file": "contacts.html",
+      "width": 1920
+    },
+    {
+      "file": "create.html",
+      "width": 1920
+    },
+    {
+      "file": "equipment.html",
+      "width": 1920
+    },
+    {
+      "file": "index.html",
+      "width": 1920
+    },
+    {
+      "file": "monitor.html",
+      "width": 1920
+    },
+    {
+      "file": "monitors.html",
+      "width": 1920
+    },
+    {
+      "file": "order-success.html",
+      "width": 1920
+    },
+    {
+      "file": "passport-pending.html",
+      "width": 1920
+    },
+    {
+      "file": "passport.html",
+      "width": 1920
+    },
+    {
+      "file": "product.html",
+      "width": 1920
+    },
+    {
+      "file": "project.html",
+      "width": 1920
+    },
+    {
+      "file": "projects.html",
+      "width": 1920
+    },
+    {
+      "file": "review.html",
+      "width": 1920
+    },
+    {
+      "file": "system-workflow.html",
+      "width": 1920
+    },
+    {
+      "file": "ui.html",
+      "width": 1920
+    },
+    {
+      "file": "work.html",
+      "width": 1920
+    }
+  ],
+  "axe_base_states": [
+    {
+      "file": "404.html",
+      "width": 375,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "file": "500.html",
+      "width": 375,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "file": "503.html",
+      "width": 375,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "file": "account-forgot-password.html",
+      "width": 375,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "file": "account-inquiries.html",
+      "width": 375,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "file": "account-login.html",
+      "width": 375,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "file": "account-order.html",
+      "width": 375,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "file": "account-orders.html",
+      "width": 375,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "file": "account-profile.html",
+      "width": 375,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "file": "account-register.html",
+      "width": 375,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "file": "account-systems.html",
+      "width": 375,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "file": "cart.html",
+      "width": 375,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "file": "catalog.html",
+      "width": 375,
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "file": "checkout.html",
+      "width": 375,
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "file": "computers.html",
+      "width": 375,
+      "violations": [],
+      "incomplete": [
+        "aria-prohibited-attr"
+      ]
+    },
+    {
+      "file": "contacts.html",
+      "width": 375,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "file": "create.html",
+      "width": 375,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "file": "equipment.html",
+      "width": 375,
+      "violations": [],
+      "incomplete": [
+        "aria-prohibited-attr",
+        "aria-valid-attr-value"
+      ]
+    },
+    {
+      "file": "index.html",
+      "width": 375,
+      "violations": [],
+      "incomplete": [
+        "color-contrast",
+        "link-in-text-block"
+      ]
+    },
+    {
+      "file": "monitor.html",
+      "width": 375,
+      "violations": [],
+      "incomplete": [
+        "aria-prohibited-attr",
+        "aria-valid-attr-value"
+      ]
+    },
+    {
+      "file": "monitors.html",
+      "width": 375,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "file": "order-success.html",
+      "width": 375,
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "file": "passport-pending.html",
+      "width": 375,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "file": "passport.html",
+      "width": 375,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "file": "product.html",
+      "width": 375,
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "file": "project.html",
+      "width": 375,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "file": "projects.html",
+      "width": 375,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "file": "review.html",
+      "width": 375,
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "file": "system-workflow.html",
+      "width": 375,
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "file": "ui.html",
+      "width": 375,
+      "violations": [],
+      "incomplete": [
+        "color-contrast",
+        "link-in-text-block"
+      ]
+    },
+    {
+      "file": "work.html",
+      "width": 375,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "file": "404.html",
+      "width": 1440,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "file": "500.html",
+      "width": 1440,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "file": "503.html",
+      "width": 1440,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "file": "account-forgot-password.html",
+      "width": 1440,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "file": "account-inquiries.html",
+      "width": 1440,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "file": "account-login.html",
+      "width": 1440,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "file": "account-order.html",
+      "width": 1440,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "file": "account-orders.html",
+      "width": 1440,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "file": "account-profile.html",
+      "width": 1440,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "file": "account-register.html",
+      "width": 1440,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "file": "account-systems.html",
+      "width": 1440,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "file": "cart.html",
+      "width": 1440,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "file": "catalog.html",
+      "width": 1440,
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "file": "checkout.html",
+      "width": 1440,
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "file": "computers.html",
+      "width": 1440,
+      "violations": [],
+      "incomplete": [
+        "aria-prohibited-attr"
+      ]
+    },
+    {
+      "file": "contacts.html",
+      "width": 1440,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "file": "create.html",
+      "width": 1440,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "file": "equipment.html",
+      "width": 1440,
+      "violations": [],
+      "incomplete": [
+        "aria-prohibited-attr",
+        "aria-valid-attr-value"
+      ]
+    },
+    {
+      "file": "index.html",
+      "width": 1440,
+      "violations": [],
+      "incomplete": [
+        "color-contrast",
+        "link-in-text-block"
+      ]
+    },
+    {
+      "file": "monitor.html",
+      "width": 1440,
+      "violations": [],
+      "incomplete": [
+        "aria-prohibited-attr",
+        "aria-valid-attr-value"
+      ]
+    },
+    {
+      "file": "monitors.html",
+      "width": 1440,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "file": "order-success.html",
+      "width": 1440,
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "file": "passport-pending.html",
+      "width": 1440,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "file": "passport.html",
+      "width": 1440,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "file": "product.html",
+      "width": 1440,
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "file": "project.html",
+      "width": 1440,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "file": "projects.html",
+      "width": 1440,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "file": "review.html",
+      "width": 1440,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "file": "system-workflow.html",
+      "width": 1440,
+      "violations": [],
+      "incomplete": [
+        "color-contrast"
+      ]
+    },
+    {
+      "file": "ui.html",
+      "width": 1440,
+      "violations": [],
+      "incomplete": [
+        "color-contrast",
+        "link-in-text-block"
+      ]
+    },
+    {
+      "file": "work.html",
+      "width": 1440,
+      "violations": [],
+      "incomplete": []
+    }
+  ],
+  "focused_axe_states": {
+    "account": 30,
+    "passport_admin_inquiry": 12,
+    "monitors_cart": 12,
+    "families": 9,
+    "projects": 6,
+    "scope_dialog": 2
+  },
+  "focused_axe_violations": 0,
+  "decoded_html_images": 99,
+  "source_media_verified": 23,
+  "checks": [
+    "248 current layouts, 62 base Axe states, no runtime/resource errors",
+    "Account utilities/drawer native Login destination at all eight widths",
+    "Home→Computers→PLAY→Product→example Cart→mixed Checkout/Success→Orders/detail→My Systems→same public Passport; no selection coupling/payload/order claim",
+    "Product/Cart/Checkout fixed routes and mixed source accessible without JS at320",
+    "248 layouts / 31 pages × 8 widths: no overflow/duplicate IDs/H1/noindex errors; mobile ID/date/inquiry CTA and pending data boundary",
+    "Normal/reduced/live preference direct passport entry never runs or writes Brand Intro eligibility",
+    "Inquiry: Tab/Escape/focus return; topic/message validation focus, non-submission/PII-free feedback, 12 Axe states zero violations; reduced opacity and live cancellation",
+    "Internal: disabled reasons, all recovery actions non-mutating, 9 unique actual-record choices with multi-selection/preservation, ADD/REMOVE/maintenance/two repair modes/correction: 8 valid non-saving forms including internal ownership",
+    "No-JS passport components/pending/native inquiry fallback/Contacts; internal visible forms do not submit or request",
+    "Updated scope dialog at320/1440: honest Account availability copy, zero Axe violations, no overflow, Tab/Escape/focus return"
+  ],
+  "additional_regressions": [
+    "Home shell/hero/drawer/keyboard/no-JS",
+    "PLAY navigator/preview/compare",
+    "Product Explorer/configurator/static Passport independence",
+    "Families",
+    "Projects with real media",
+    "10-product monitor curation/mixed Cart",
+    "Guest/B2B Checkout/neutral methods",
+    "Account/no mutation/code cleanup/no-JS"
+  ],
+  "runtime_errors": [],
+  "limitations": [
+    "Static review and Chromium emulation only; no real Bitrix/auth/commerce/System operations.",
+    "Axe incomplete findings and human/target-browser acceptance remain review gates."
+  ]
+}

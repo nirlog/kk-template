@@ -1,5 +1,10 @@
 # KORSAC — Visual Identity & Motion Direction v2
 
+Current domain/navigation precedence: [Final audit](KORSAC-FINAL-AUDIT.md).
+SYSTEM ID on Product/UI Kit is an illustrative Passport example only; real physical
+identity belongs to System. Static Account and Cart routes exist without backend
+operations. Earlier stage-specific review evidence remains historical.
+
 ## Концепция
 
 KORSAC — точный инженерный инструмент. Интерфейс соединяет подачу продукта

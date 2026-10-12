@@ -698,3 +698,13 @@ See [review evidence](review/system-passport-v1.md) and
 ## Account customer projection
 
 [Account Experience](KORSAC-ACCOUNT-EXPERIENCE.md) supplies a static customer shell and ownership-request/unlink review. It queries conceptual current USER_ID, not historical Order.USER_ID; transferring a machine grants no previous owner order/private conversation access. Public Passport is unchanged. Add System verifies no secret in the browser and never mutates account association. Manager requests/history remain exclusively in the separate Bitrix Admin Ownership tab. Initial SECRET_CODE allocation during preparation, idempotency, privacy and privileged-only replacement remain authoritative and unimplemented backend guarantees.
+
+## Product / Order / System snapshot boundary
+
+**Product current configuration ≠ Order configuration snapshot ≠ System actual confirmed configuration.**
+Текущие опции и цены модели не переписывают immutable purchase-time snapshot
+заказа. Фактически установленная комплектация физической System подтверждается
+при сборке и может позднее измениться через audited service events; это не
+редактирование исторической строки Order. Monitor остаётся обычным Product и
+никогда не получает System identity. Frontend только отображает соответствующую
+проекцию. См. [final boundary audit](KORSAC-FINAL-AUDIT.md#product-system-order-account-boundaries).

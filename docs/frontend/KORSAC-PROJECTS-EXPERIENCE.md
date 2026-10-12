@@ -3,8 +3,8 @@
 Base: merged PR #10, `main` at `b6436f1149c1dd0a5f40676753b34568458a1aa6`.
 Authoritative URL/SEO policy remains the [IA matrix](KORSAC-INFORMATION-ARCHITECTURE.md#единая-матрица-production-indexability).
 Projects — completed-build cases, не Blog/Journal, не supplier catalog и не
-ещё одна линейка компьютеров. Equipment, System Passport и Bitrix migration
-не реализованы в этом stage.
+ещё одна линейка компьютеров. Equipment, System Passport и Account теперь имеют отдельные static review
+experiences; Bitrix migration не реализована.
 
 ## Назначение и путь
 

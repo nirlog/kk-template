@@ -19,10 +19,10 @@ header/footer нет. `review.html` сохраняет прежнюю оболо
 
 Desktop: утверждённый horizontal SVG lockup, пять навигационных ссылок и Search / Account / Cart.
 Иконки — локальный inline SVG с `aria-hidden` и без icon library. Utility
-links имеют русские `aria-label`, visible focus и область 44×44 px. Без JS
-Search/Account ведут к пояснению в footer; JS открывает существующий native
-dialog, сохраняя URL. Cart ведёт в `cart.html` с авторским demo order.
-Реальных поиска, аккаунта и production basket нет.
+links имеют русские `aria-label`, visible focus и область 44×44 px. Search без JS ведёт к пояснению в footer; JS открывает native
+dialog, сохраняя URL. Account во всех header/drawer instances — native
+`account-login.html`, без имитации session/auth. Cart ведёт в `cart.html` с авторским demo order.
+Реального поиска, авторизации и production basket нет.
 
 Маршруты:
 
@@ -37,7 +37,7 @@ dialog, сохраняя URL. Cart ведёт в `cart.html` с авторски
 Active state — короткая Electric Blue линия и `aria-current`. Filled pills,
 технические индексы и рамки вокруг utility actions отсутствуют.
 
-Browsing pages (`index.html`, `catalog.html`, `product.html`) и Cart имеют sticky
+Все public browsing pages и Cart имеют sticky
 header: top0, **88px desktop / 64px mobile**, z-index20. Catalog/Product
 сразу используют opaque surface и тонкую bottom rule. Homepage прозрачна
 только при `data-shell-home[data-shell-at-top="true"]`; при scrollY >16px
@@ -61,16 +61,16 @@ UI Kit header fixtures остаются relative внутри component capture 
 
 ## Mobile и no-JS
 
-До 1100 px верхняя строка: **KORSAC / Cart / Menu**. Search/account перенесены
-в drawer. Используется прежний native `dialog`: Escape, backdrop close,
+До 1100 px верхняя строка: **KORSAC / Account / Cart / Menu**. Search
+остаётся в drawer; Account дополнительно доступен там как native Login link. Используется прежний native `dialog`: Escape, backdrop close,
 focus containment, opener return и `aria-expanded`. Ссылки закрывают drawer
 и переходят обычным способом. Крупные названия, спокойные интервалы и
 отсутствие numeric indices поддерживают новую иерархию.
 
 Menu-button появляется только после enhancement. Без JS вместо неё есть
 нативный `details` с теми же навигационными ссылками. Он имеет тот же размер,
-поэтому включение JS не меняет высоту header. Utility anchors ведут к
-`#site-prototype`, где честно объяснена граница прототипа.
+поэтому включение JS не меняет высоту header. Search fallback ведёт к `#site-prototype`; Account и Cart используют
+настоящие static routes. Пояснение сохраняет границу прототипа.
 
 ## Approved brand assets
 
@@ -111,7 +111,9 @@ Flash и `korsac:hero-enter` удалены. Animated geometry теперь пр
 
 ## Site-entry Brand Intro
 
-Только `index.html`, `catalog.html`, `product.html`: единая декоративная
+`index.html`, `computers.html`, `catalog.html`, `create.html`, `work.html`,
+`product.html`, `projects.html`, `project.html`, `equipment.html`, `monitors.html`,
+`monitor.html`: единая декоративная
 full-viewport композиция mark → real eyes → wordmark → eyes off → exit.
 Target 1500 ms; JS watchdog 1700 ms и независимый CSS safety cutoff 1800 ms.
 `review.html`/`ui.html` не запускают intro и не расходуют eligibility.
@@ -178,7 +180,8 @@ Footer anatomy раскрывается через `details`; Brand Assets по�
 | Cart                     | Bitrix sale basket state                           |
 | Footer/legal             | Согласованные include areas и реальные документы   |
 
-Native dialog в прототипе — пояснение, не auth/search/cart adapter. Текущие
+Scope dialog в прототипе — пояснение поиска/review границ; native Account
+и Cart links ведут к static templates, без auth/basket adapter. Текущие
 IDs/data attributes описывают presentation и не становятся backend contract.
 Bitrix/PHP/API в этом PR не реализованы.
 
@@ -199,8 +202,8 @@ Human acceptance: header должен читаться как спокойная
 ## Transactional extension — Cart & Checkout v1
 
 Cart использует обычный sticky opaque public header и footer. Public Cart icon
-на Homepage/Catalog/Product/Cart ведёт в `cart.html`; Search/Account остаются
-prototype placeholders. Cart count badge отсутствует. Checkout/Success используют
+на Homepage/Catalog/Product/Cart ведёт в `cart.html`; Search остаётся
+placeholder; Account ведёт к static Login. Cart count badge отсутствует. Checkout/Success используют
 calm sticky logo/title/back shell и компактный footer без marketing nav.
 Высота остаётся 88/64px; shared anchor padding сохраняется. Native delivery
 modal/drawer остаются выше sticky header. На этих трёх страницах Brand Intro
