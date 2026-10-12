@@ -65,19 +65,24 @@
         <dl class="k-workflow-data">
           <div>
             <dt>Меню KORSAC Systems</dt>
-            <dd>Systems · Inquiries · Statuses · Settings</dd>
+            <dd>
+              Systems · Ownership Requests · Inquiries · Statuses · Settings
+            </dd>
           </div>
           <div>
             <dt>Вкладки карточки System</dt>
-            <dd>Main · Components · Passport · Service · History</dd>
+            <dd>
+              Main · Components · Passport · Service · Ownership · History
+            </dd>
           </div>
         </dl>
         <p class="k-small k-muted">
           Статусы, компоненты и S/N, выбор расширения гарантии, подготовка и
-          активация паспорта, QR, сервис, история, аудит, обращения и настройки
-          принадлежат Bitrix Admin. Публичный frontend показывает только
-          активный или ожидающий паспорт и форму обращения. Здесь показаны
-          разделы wireframe, а не работающие меню или вкладки модуля.
+          активация паспорта, QR, сервис, владение и заявки, история, аудит,
+          обращения и настройки принадлежат Bitrix Admin. Публичный frontend
+          показывает только активный или ожидающий паспорт и форму обращения.
+          Здесь показаны разделы wireframe, а не работающие меню или вкладки
+          модуля.
         </p>
       </section>
       <nav class="k-workflow-nav" aria-label="Разделы внутреннего макета">
@@ -85,6 +90,7 @@
         ><a href="#manual-actions">Восстановление</a
         ><a href="#installed-components">Компоненты</a
         ><a href="#service-forms">Сервис</a
+        ><a href="#system-ownership">Владение</a
         ><a href="#internal-history">История</a>
       </nav>
       <section id="system-context" class="k-passport-section">
@@ -1638,8 +1644,212 @@
           </form>
         </details>
       </section>
+      <section
+        id="system-ownership"
+        class="k-passport-section"
+        aria-labelledby="ownership-title"
+        data-ownership-review
+      >
+        <div class="k-passport-section-heading">
+          <p class="k-eyebrow">06 / Ownership · Bitrix Admin only</p>
+          <h2 id="ownership-title">Связь системы с аккаунтом</h2>
+          <p class="k-muted">
+            Синтетический review-сценарий на 11.10.2026, 15:00 МСК. USER_ID —
+            текущая связь с аккаунтом. Компьютер существует и без неё; смена
+            аккаунта не меняет его паспорт, гарантию, компоненты или сервис.
+          </p>
+        </div>
+        <div class="k-workflow-context">
+          <article class="k-workflow-panel" data-current-owner>
+            <h3>Текущий аккаунт</h3>
+            <dl class="k-workflow-data">
+              <div>
+                <dt>System</dt>
+                <dd>KS-2610-0012</dd>
+              </div>
+              <div>
+                <dt>System.USER_ID</dt>
+                <dd>52002 · DEMO-ACCOUNT-B</dd>
+              </div>
+              <div>
+                <dt>При первой передаче</dt>
+                <dd>Order.USER_ID 52001 · DEMO-ACCOUNT-A</dd>
+              </div>
+              <div>
+                <dt>Последняя смена</dt>
+                <dd>
+                  <time datetime="2026-10-09T12:00:00Z"
+                    >09.10.2026, 15:00 МСК</time
+                  >
+                  · ADMIN_TRANSFER
+                </dd>
+              </div>
+            </dl>
+            <p class="k-small k-muted">
+              Только внутренние условные аккаунты, не данные клиентов. «Мои
+              системы» позже выбирает записи по текущему авторизованному
+              USER_ID. Account UI — следующий отдельный этап.
+            </p>
+          </article>
+          <article class="k-workflow-panel" data-ownership-request>
+            <h3>Заявка на смену владельца</h3>
+            <dl class="k-workflow-data">
+              <div>
+                <dt>Заявка / статус</dt>
+                <dd>DEMO-OWNERSHIP-01 · PENDING</dd>
+              </div>
+              <div>
+                <dt>Запрошенный новый пользователь</dt>
+                <dd>REQUEST_USER_ID 52003 · DEMO-ACCOUNT-C</dd>
+              </div>
+              <div>
+                <dt>Код системы проверен</dt>
+                <dd data-secret-verified>Да · SECRET_VERIFIED = true</dd>
+              </div>
+              <div>
+                <dt>Создана</dt>
+                <dd>11.10.2026, 15:00 МСК · условный снимок</dd>
+              </div>
+            </dl>
+            <p class="k-small k-muted">
+              Проверка подтверждает доказательство для заявки, но не меняет
+              владельца автоматически. Сам код не передаётся в этот экран,
+              скрытые поля, историю или аудит.
+            </p>
+            <div
+              class="k-ownership-warning"
+              id="ownership-recent-warning"
+              data-ownership-warning
+            >
+              <p>С прошлой смены владельца прошло менее 7 дней</p>
+              <p class="k-small">
+                Прошло 2 дня · авторский снимок, не расчёт браузера.
+              </p>
+              <p class="k-small">
+                Это предупреждение. Уполномоченный менеджер может одобрить смену
+                после проверки; технической блокировки нет.
+              </p>
+            </div>
+            <button
+              type="button"
+              class="k-button"
+              data-workflow-action="approveOwnership"
+              aria-describedby="ownership-recent-warning"
+            >
+              Подтвердить смену владельца
+            </button>
+            <button
+              type="button"
+              class="k-button k-button--secondary"
+              data-workflow-action="rejectOwnership"
+            >
+              Отклонить заявку
+            </button>
+            <p
+              data-action-feedback
+              role="status"
+              aria-live="polite"
+              class="k-small"
+            ></p>
+            <p class="k-small k-muted">
+              Обе кнопки — review only. USER_ID, статус заявки и история не
+              меняются. В будущем одобрение и запись истории выполняются одной
+              backend-транзакцией; отклонение сохраняет текущего владельца.
+            </p>
+          </article>
+        </div>
+        <article
+          class="k-workflow-panel k-ownership-history"
+          data-ownership-history
+        >
+          <h3>История связи с аккаунтом · только внутренняя</h3>
+          <ol class="k-workflow-history">
+            <li>
+              <time datetime="2026-10-07T12:00:00Z">07.10.2026, 15:00 МСК</time>
+              · INITIAL_ORDER · NULL → 52001 · первая передача, актор
+              AUTOMATION.
+            </li>
+            <li>
+              <time datetime="2026-10-09T12:00:00Z">09.10.2026, 15:00 МСК</time>
+              · ADMIN_TRANSFER · 52001 → 52002 · DEMO-OWNERSHIP-00 · актор
+              DEMO-STAFF-A.
+            </li>
+          </ol>
+          <p class="k-small k-muted">
+            Будущая USER_UNLINK записывает прежний USER_ID → NULL. Она убирает
+            систему из «Мои системы», сохраняет активный публичный паспорт,
+            гарантию и всю System/service-историю. Подтверждение и Account UI
+            здесь не реализуются. История владения не публикуется в паспорте.
+          </p>
+        </article>
+        <details class="k-workflow-form-panel" open>
+          <summary>
+            Исключительная ручная смена аккаунта · только сотрудник
+          </summary>
+          <form method="dialog" data-workflow-form="ownership-transfer">
+            <fieldset class="k-workflow-pick">
+              <legend>Внутренняя смена текущего аккаунта</legend>
+              <p class="k-small k-muted">
+                Требует будущего привилегированного backend-доступа и аудита.
+                Код системы не запрашивается и не показывается менеджеру.
+              </p>
+              <div class="k-field">
+                <label for="ownership-current-user"
+                  >Текущий USER_ID / аккаунт</label
+                ><input
+                  id="ownership-current-user"
+                  class="k-control"
+                  type="text"
+                  value="52002 · DEMO-ACCOUNT-B"
+                  readonly
+                />
+              </div>
+              <div class="k-field">
+                <label for="ownership-new-user"
+                  >Новый USER_ID / аккаунт · обязательно</label
+                ><input
+                  id="ownership-new-user"
+                  class="k-control"
+                  type="text"
+                  required
+                  aria-describedby="ownership-target-help"
+                />
+              </div>
+              <p id="ownership-target-help" class="k-small k-muted">
+                Идентификатор существующего аккаунта. В будущем backend
+                проверяет пользователя и полномочия; ввод в этом макете ничего
+                не связывает.
+              </p>
+              <div class="k-field">
+                <label for="ownership-comment"
+                  >Комментарий · необязательно</label
+                ><textarea id="ownership-comment" class="k-control"></textarea>
+              </div>
+            </fieldset>
+            <p
+              data-workflow-feedback
+              role="status"
+              aria-live="polite"
+              class="k-inquiry-feedback"
+            ></p>
+            <button
+              type="button"
+              class="k-button k-button--secondary"
+              data-workflow-check
+            >
+              Проверить ручную смену · макет
+            </button>
+            <p class="k-small k-muted">
+              Ничего не сохраняется. Источник будущей операции ADMIN_TRANSFER;
+              REQUEST_ID необязателен. SYSTEM_ID, PUBLIC_ID, QR/URL, гарантия и
+              сервис сохраняются. Обычная смена аккаунта не перевыпускает
+              физический код.
+            </p>
+          </form>
+        </details>
+      </section>
       <section id="internal-history" class="k-passport-section">
-        <p class="k-eyebrow">06 / Internal history & audit</p>
+        <p class="k-eyebrow">07 / Internal history & audit</p>
         <h2>История остаётся внутренней</h2>
         <div class="k-workflow-context">
           <article class="k-workflow-panel">

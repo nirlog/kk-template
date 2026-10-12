@@ -2,6 +2,10 @@
 
 Base: merged Equipment PR #12, `main` at
 `01219297b9af159102feaa95d9e9569659642310`.
+Ownership addendum is reviewed separately after merged PR #13, `main` at
+`5750d45dfddf9ecd9c1bd3b3a815a2021e9b76d9`. Account Experience remains a
+subsequent feature stage.
+
 [Domain / workflow / D7 contract](../KORSAC-SYSTEM-PASSPORT.md) ·
 [Synthetic fixture ledger](system-passport-fixture.json).
 
@@ -26,8 +30,8 @@ Lifecycle management belongs to the future KORSAC D7 module in the **1C-Bitrix
 administrative area**, not the public frontend. The disposable wireframe is
 labelled **Bitrix Admin workflow concept / review only**; its review bar has no
 public logo/Home link or commercial site shell. It shows the likely admin menu
-(Systems, Inquiries, Statuses, Settings) and System card tabs (Main, Components,
-Passport, Service, History). Order detail exposes related Systems and opens
+(Systems, Ownership Requests, Inquiries, Statuses, Settings) and System card
+tabs (Main, Components, Passport, Service, Ownership, History). Order detail exposes related Systems and opens
 their admin cards; full System data are not flattened into order properties.
 
 Internal forms cover maintenance, multi-record replacement, ADD, REMOVE,
@@ -37,6 +41,31 @@ action gives explicit non-execution feedback; forms do not mutate components,
 identity, dates, warranty, history or audit. No client business lifecycle,
 backend persistence, event automation, generator, QR, account or override is
 implemented. Future guarantees are documented, not claimed as tested backend.
+
+Approved ownership contract adds nullable current `System.USER_ID`, assigned
+from authoritative `Order.USER_ID` at first handoff, with private request/history
+entities. The secret is physical-machine evidence for a manager-reviewed
+request, not an automatic takeover credential. Neither ordinary transfer nor
+unlink changes machine/public identity, warranty or System/service history.
+Initial SECRET_CODE allocation belongs to successful preparePassport(), in the
+same transaction as first PUBLIC_ID preparation. Retries reuse both; activation,
+transfer, USER_UNLINK and QR regeneration never replace the code. Only future
+explicit privileged code regeneration may invalidate/replace it, with audit and
+replacement-label handling. CANCELLED Systems retain the same secret/privacy
+exclusions. This is an application-service/transaction contract only; no real
+generator is implemented. Ownership remains a separate admin tab from Service.
+Mandatory registration/checkout email, normalized email as Bitrix LOGIN,
+existing-account guest verification and future unlink/«Мои системы» are
+documentation only. No Account UI or Bitrix authentication is implemented;
+Account Experience remains a subsequent, separate feature stage.
+
+Ownership wireframe shows synthetic current user 52002, requested user 52003,
+verified evidence only, PENDING request and internal INITIAL_ORDER /
+ADMIN_TRANSFER history. Last change is 09.10.2026, 15:00 МСК; authored review
+time is 11.10.2026, 15:00 МСК. The two-day warning is conspicuous but does not
+disable approval. Native approve/reject actions and exceptional staff transfer
+form never mutate USER_ID, request or history. No secret value, real label/QR
+or browser verification/generator is present in the manager specimen.
 
 Product has a visual **«Пример паспорта»** with illustrative KS-2610-0012 and
 explicit wording that no existing/sold System is represented. It describes
@@ -53,22 +82,23 @@ active fixture. Internal workflow remains reachable only from review materials.
 
 Chromium screenshots over HTTP, reduced mode, decoded local brand asset:
 
-| View                                             | Evidence                                                |
-| ------------------------------------------------ | ------------------------------------------------------- |
-| Active desktop                                   | [1440 × 1706](passport-v1-desktop.png)                  |
-| Active mobile                                    | [375 × 2242](passport-v1-mobile.png)                    |
-| Pending desktop                                  | [1440 × 1000](passport-pending-v1-desktop.png)          |
-| Pending mobile                                   | [375 × 1000](passport-pending-v1-mobile.png)            |
-| Inquiry open, mobile                             | [375 × 1000](passport-inquiry-v1-mobile.png)            |
-| Internal workflow                                | [1440 × 7151](system-workflow-v1-desktop.png)           |
-| Internal confirmed components                    | [1376 × 860](system-workflow-components-v1-desktop.png) |
-| Service forms / two actual replacements selected | [1376 × 2204](system-workflow-service-v1-desktop.png)   |
-| Manual fallback / eligibility scenarios expanded | [1376 × 1491](system-workflow-actions-v1-desktop.png)   |
-| Bitrix Admin ownership / review bar              | [1440 × 1000](system-workflow-admin-v1-desktop.png)     |
-| Product static Passport example, desktop         | [1344 × 468](product-passport-info-v1-desktop.png)      |
-| Product static Passport example, mobile          | [343 × 1181](product-passport-info-v1-mobile.png)       |
+| View                                                   | Evidence                                                |
+| ------------------------------------------------------ | ------------------------------------------------------- |
+| Active desktop                                         | [1440 × 1706](passport-v1-desktop.png)                  |
+| Active mobile                                          | [375 × 2242](passport-v1-mobile.png)                    |
+| Pending desktop                                        | [1440 × 1000](passport-pending-v1-desktop.png)          |
+| Pending mobile                                         | [375 × 1000](passport-pending-v1-mobile.png)            |
+| Inquiry open, mobile                                   | [375 × 1000](passport-inquiry-v1-mobile.png)            |
+| Internal workflow                                      | [1440 × 9230](system-workflow-v1-desktop.png)           |
+| Internal confirmed components                          | [1376 × 860](system-workflow-components-v1-desktop.png) |
+| Service forms / two actual replacements selected       | [1376 × 2204](system-workflow-service-v1-desktop.png)   |
+| Manual fallback / eligibility scenarios expanded       | [1376 × 1491](system-workflow-actions-v1-desktop.png)   |
+| Bitrix Admin IA / review bar                           | [1440 × 1000](system-workflow-admin-v1-desktop.png)     |
+| Account ownership, request, history and staff transfer | [1376 × 2018](system-workflow-ownership-v1-desktop.png) |
+| Product static Passport example, desktop               | [1344 × 468](product-passport-info-v1-desktop.png)      |
+| Product static Passport example, mobile                | [343 × 1181](product-passport-info-v1-mobile.png)       |
 
-Twelve actual PNGs; component captures hide the floating header/skip link only
+Thirteen actual PNGs; component captures hide the floating header/skip link only
 through Playwright screenshot style. Application behavior is unchanged. No
 new temporal interaction needs MP4. No generated imagery, QR or lightbox.
 Previous stage screenshots are historical baselines; the Product correction
@@ -83,7 +113,7 @@ PYTHONDONTWRITEBYTECODE=1 python3 tools/seo_audit.py --json
 PYTHONDONTWRITEBYTECODE=1 python3 tools/monitor_curation_audit.py
 ```
 
-**38 tests pass**: 20 existing SEO, 7 Equipment curation, 11 Passport
+**41 tests pass**: 20 existing SEO, 7 Equipment curation, 14 Passport
 projection/domain fixture guards. Audit: **23 pages, 0 errors, 58 warnings**.
 [Deterministic report](seo-audit-v1.json) matches repeated JSON output.
 Warnings: 23 omitted staging canonical/og:url, 23 pending social artwork,
@@ -102,6 +132,14 @@ example, with one contextual fixture link and no configurator output hooks.
 Workflow is a disposable admin concept without public brand/Home shell;
 workflow/fixture paths are not exposed in global navigation. Existing
 Family/Projects/Equipment/Product/cart guards are retained.
+
+Additional negative fixtures for **both active and pending** reject secret-code
+markers/values, USER_ID, ownership request/history, verification/processing and
+ownership source markers, including metadata, comments, hidden markup and
+inline JSON. Valid SYSTEM ID formatting remains accepted. Existing serial and
+internal-ID guards stay unchanged. Internal fixture tests ensure verified
+request evidence has no secret, matches the current/history association and
+leaves approval enabled under the warning.
 
 Static checks cannot establish authorization, completeness of a future public
 DTO allowlist, cryptographic strength, real warranty correctness, server HTTP
@@ -132,9 +170,18 @@ entry never displays Brand Intro or creates its timestamp.
 
 Internal forms: nine distinct actual-record choices, multiple replacement
 selection, correct hidden/disabled unselected input groups and retained input
-when reselected. Seven form paths validate required inputs without saving.
+when reselected. Eight form paths (seven service/correction plus internal
+ownership transfer) validate required inputs without saving.
 Disabled fallback actions explain their conditions. All enabled fallback/QR
 review actions leave identity, dates and domain records unchanged.
+
+Ownership actions also pass **24 layouts**, all eight widths in normal,
+reduced and no-JS modes. Keyboard Enter can activate approve/reject; the
+warning never disables either. Manual staff transfer validates its required
+target and gives explicit non-execution feedback. Current account, request
+evidence/status and history remain byte-for-byte unchanged; there are no
+submission/network/storage operations. No-JS keeps all context and native
+actions visible without saving. Whole-page Axe checks include the new section.
 
 No-JS at 320px: active component list, pending meaning, native inquiry fallback
 and Contacts route work. Internal service paths remain visible and native
@@ -175,6 +222,9 @@ remain unchanged.
 
 Review the restored Product example and its clear illustrative boundary;
 confirm lifecycle ownership and order-card links belong to Bitrix admin.
+Review current/requested owner context, verification without secret disclosure,
+the non-blocking recent-change warning, exceptional staff form and future
+initial-association/unlink invariants.
 Review the utility hierarchy, mobile dates/CTA, pending privacy, read-only
 System inquiry context, internal form clarity and lifecycle recovery reasons.
 Confirm the documentation distinguishes stored physical Systems from changing

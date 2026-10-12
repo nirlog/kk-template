@@ -1,6 +1,10 @@
 # KORSAC — System Passport Experience v1
 
 Base: PR #12 merged into `main`, `01219297b9af159102feaa95d9e9569659642310`.
+Ownership addendum base: merged PR #13, `main` at
+`5750d45dfddf9ecd9c1bd3b3a815a2021e9b76d9`. Account Experience remains the
+next separate feature stage; this post-merge correction implements no Account UI.
+
 This stage defines the physical-system domain and its public projection. The
 HTML, forms and dates are review fixtures. No Bitrix/D7 module, database,
 order automation, identity/QR generator, warranty service, support submission,
@@ -25,6 +29,7 @@ or a custom customer-facing application. Bitrix admin owns:
 - prepare Passport, activate Passport and regenerate QR representation;
 - maintenance, upgrade and repair;
 - service history, audit and data correction;
+- current account association, ownership requests and private ownership history;
 - System inquiries administration;
 - module settings.
 
@@ -38,6 +43,7 @@ Likely admin information architecture, subject to future Bitrix implementation:
 ```text
 KORSAC Systems
   Systems
+  Ownership Requests
   Inquiries
   Statuses
   Settings
@@ -51,6 +57,7 @@ Conceptual System detail tabs:
 | Components | Actual installed records and private S/N, physical confirmation and applicable slots                  |
 | Passport   | Preparation/public state, handoff and warranty snapshots, pre-activation extension, QR representation |
 | Service    | Maintenance, upgrade ADD/REPLACE/REMOVE and both repair modes                                         |
+| Ownership  | Current account, verified ownership requests, recent-change warning and exceptional staff transfer    |
 | History    | Production status, historical components/service events, action audit and explicit data correction    |
 
 `system-workflow.html` is a **disposable UX/domain review wireframe** of these
@@ -98,9 +105,162 @@ cancellation and exceptional edits are audited backend operations.
 `SYSTEM_TYPE = MODEL | CUSTOM`. `MODEL_REFERENCE` is optional; a CUSTOM
 System is «Индивидуальная сборка» without needing a catalog model.
 `MODEL_DISPLAY_NAME` is a System snapshot. The same domain supports PLAY,
-CREATE, WORK and CUSTOM. No `USER_ID` is required. Future private «Мои системы»
-can link an account to Systems; resale does not rotate machine identifiers or
-require public passport ownership transfer. Account is out of scope.
+CREATE, WORK and CUSTOM. Nullable `System.USER_ID` is only the current account
+association, not the physical identity or proof of ownership. A System exists
+without an account. Account UI belongs to the subsequent Account Experience stage and is not implemented here.
+
+## Current owner and future commerce/account contract
+
+At **first valid physical handoff**, assign `System.USER_ID` from authoritative
+`Order.USER_ID`, alongside the activation snapshot. Never infer the user from
+browser input or a matching contact email. A creation/preparation event need
+not already associate an account. If no authoritative association is present,
+nullable USER_ID must not be replaced with a guessed account.
+
+Activation retries return the saved outcome; they must not reassign ownership
+from a later order edit after a transfer or unlink. Changing USER_ID changes
+only the current account association. It never changes SYSTEM_ID, PUBLIC_ID,
+Passport URL, transfer/warranty snapshots, installed components or System/service
+history. Future authenticated «Мои системы» queries Systems by the **current
+authenticated USER_ID**, not historical order ownership, email, PUBLIC_ID or
+possession of a secret. Server authorization supplies that identity.
+
+Approved future registration/checkout rules:
+
+- Email is mandatory during registration and checkout.
+- Normalized email is Bitrix `LOGIN`; phone is contact data, never LOGIN.
+- Authenticated checkout uses the current authenticated USER_ID.
+- A guest with a new email creates a Bitrix User and attaches the Order.
+- A guest email matching an existing account **must not silently attach an
+  Order to that USER_ID**. Require an authentication/verification flow that
+  establishes authorized use of the existing account before attachment.
+
+Backend owns one consistent normalization/uniqueness policy for registration,
+checkout and login. Preserve display/contact values separately; do not invent
+provider-specific alias/dot stripping. Resolve concurrent user creation safely
+against Bitrix uniqueness and require verification instead of falling back to
+silent account attachment. Verification/login/session security, consent and
+error UX are future integration work. No Bitrix auth, guest-account creation,
+checkout requiredness change or Account UI is built in this PR.
+
+## Private physical System credential
+
+Conceptual `SECRET_CODE` is a random **eight-digit** physical-machine credential,
+displayed as `1234-5678`. Generate with a backend cryptographically secure
+random source; preserve leading zeros and format for human reading. It is
+separate from both SYSTEM_ID and the public 128-bit PUBLIC_ID.
+
+**Initial allocation belongs to successful `preparePassport()`**, together
+with first PUBLIC_ID preparation, not System creation or activation. Allocate
+SECRET_CODE only if absent and reuse it on every preparation retry. The
+application-service and transactional contracts below govern this lifecycle;
+the browser and ordinary admin screens never generate or receive the code.
+
+Physical label concept (illustrative only, no real code or QR output):
+
+```text
+SYSTEM ID
+KS-2610-0012
+
+QR  [derived from the approved Passport URL]
+
+Код системы
+1234-5678
+```
+
+The printed code is private. It must not appear in public Passport HTML,
+comments, hidden fields, metadata, JSON/JSON-LD, browser payloads, URLs or QR.
+Never generate it or a QR in browser JavaScript. Future privileged production
+label printing is separate from public projection and manager request review.
+
+The code provides **evidence for an account-association request**, not an
+automatic takeover token. Successful verification never changes USER_ID by
+itself. Its small human-readable space requires server rate limiting across
+System, authenticated requester and network/source, bounded attempts and
+generic failure responses that do not expose account/identity existence.
+Verify server-side over a protected connection, using a protected verifier
+and constant-time comparison where applicable. Do not retain plaintext in
+request records, staff review, ordinary logs, audit or analytics. Use a keyed
+verifier/appropriate protected secret storage; a bare fast hash of eight digits
+does not resist offline enumeration. Secure first printing/reprinting access
+must be designed separately; never expose stored credentials through routine
+admin request DTOs.
+
+Audit verification attempts/results, rate-limit decisions and actor/context
+without logging the entered code. Manager review remains mandatory. Ordinary
+ownership transfer **does not automatically rotate SECRET_CODE**: it belongs
+to the machine's physical label. Future exceptional privileged regeneration
+for compromise/recovery may exist, with permission checks and explicit audit,
+old-verifier invalidation and controlled replacement-label handling. It changes
+neither machine/public identity nor warranty and is not a normal transfer step.
+
+## Ownership request and internal history
+
+Conceptual `SystemOwnershipRequest`:
+
+`SYSTEM_ID`, `REQUEST_USER_ID`, `STATUS`, `SECRET_VERIFIED`, `CREATED_AT`,
+`PROCESSED_AT`, `PROCESSED_BY`, `COMMENT`.
+
+Statuses: `PENDING`, `APPROVED`, `REJECTED`, `CANCELLED`.
+The relation SYSTEM_ID uses the internal domain key, as with other child entities;
+human SYSTEM_ID is the submitted lookup context. No secret value is a request
+field. Future authenticated Account action **«Добавить систему»** submits
+«ID системы» and «Код системы». Backend verifies the pair with abuse controls
+and creates a PENDING request with verified evidence. It does **not** modify
+System.USER_ID. Failed verification returns a generic error, not a successful
+request or disclosed account data.
+
+A manager manually approves/rejects in Bitrix Admin after reviewing current
+account, requested new user, verification result and internal history. Show
+only `SECRET_VERIFIED`/verification result, **never the secret itself**. Status
+and requester identity are server authoritative, not client-editable shortcuts.
+PENDING resolves to APPROVED/REJECTED, or CANCELLED via an authorized operation;
+processing a closed request again must not transfer twice. Successful approval
+atomically changes current USER_ID, closes the request and appends ownership
+history. Reject/cancel changes no owner. Re-check current owner/version under
+lock to avoid approving against stale association; staff must review a changed
+context rather than silently overwrite a concurrent transfer/unlink.
+
+When the previous ownership change happened **less than 7 days** earlier, show:
+
+> С прошлой смены владельца прошло менее 7 дней
+
+Include elapsed time if helpful. Compute from authoritative change timestamps
+on the backend; exactly seven days is outside this warning. This is a prominent
+**warning, not a technical block**. An authorized manager may approve after
+review. No browser date calculation or cooldown enforcement is introduced.
+
+Exceptional direct staff owner-change uses the same protected transfer service,
+explicit current/requested account context, permissions and audit, with
+`SOURCE = ADMIN_TRANSFER` and optional REQUEST_ID. It does not require or expose
+the secret in the manager form and must not bypass immutable System invariants.
+
+Internal `SystemOwnershipHistory`:
+
+`SYSTEM_ID`, `OLD_USER_ID`, `NEW_USER_ID`, `SOURCE`, optional `REQUEST_ID`,
+`CHANGED_AT`, `CHANGED_BY`.
+
+Sources: `INITIAL_ORDER`, `ADMIN_TRANSFER`, `USER_UNLINK`. First handoff appends
+INITIAL_ORDER once; manager-approved request or direct staff transfer uses
+ADMIN_TRANSFER; user unlink uses USER_UNLINK. NULL associations are legitimate
+history endpoints. Preserve old/new values and the authorized actor/event
+context. Ownership history is private and never appears in public Passport.
+
+## Future user unlink contract — Account Experience
+
+Future authenticated **«Отвязать систему»** confirmation:
+
+> Вы уверены, что хотите отвязать систему KS-2610-0012 от своего аккаунта?
+
+Supporting copy must explain: System disappears from «Мои системы», while its
+public Passport remains active, warranty remains unchanged and System/service
+history is preserved. On confirmed backend operation, authorize against the
+current USER_ID, set `System.USER_ID = NULL`, and append ownership history with
+`SOURCE = USER_UNLINK`, old user and NULL new user, atomically. A stale/repeated
+request must not unlink a new owner or create duplicate history. It does not
+delete the System, close its Passport, rotate identities/secret or alter any
+component/service/warranty snapshot. This is documentation only: no Account
+screen, unlink handler or account ownership UI is implemented in public pages.
 
 ## Identifiers and QR
 
@@ -140,11 +300,11 @@ Automatic events and manual recovery call the **same application services**:
 Only invocation source/actor differs. There are no separate automatic/manual
 business implementations and no client-side imitation of these guarantees.
 
-| Operation        | First-call eligibility                                                                                          | Persisted outcome / repeat behavior                                                                   |
-| ---------------- | --------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| createSystem     | Order reaches configured creation condition; unit is a computer and has no System                               | One missing System per physical unit. Existing units are returned/skipped; no duplicates              |
-| preparePassport  | System exists, configured ready status applies, required assembly/component confirmation complete, token absent | Assign PUBLIC_ID once; PUBLIC_ACTIVE stays false; existing token is reused                            |
-| activatePassport | Passport prepared, authoritative physical-transfer condition reached                                            | Set first TRANSFER_DATE, warranty snapshot and PUBLIC_ACTIVE atomically; repeated calls preserve them |
+| Operation        | First-call eligibility                                                                                                           | Persisted outcome / repeat behavior                                                                                                                    |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| createSystem     | Order reaches configured creation condition; unit is a computer and has no System                                                | One missing System per physical unit. Existing units are returned/skipped; no duplicates                                                               |
+| preparePassport  | System exists, configured ready status applies, required assembly/component confirmation complete, lifecycle permits preparation | Allocate PUBLIC_ID and SECRET_CODE only if absent; first preparation leaves PUBLIC_ACTIVE false; retries reuse both and preserve existing public state |
+| activatePassport | Passport prepared, authoritative physical-transfer condition reached                                                             | Set first TRANSFER_DATE, warranty snapshot and PUBLIC_ACTIVE atomically; repeated calls preserve them                                                  |
 
 Default creation trigger is order status **«Согласован»**, later configurable
 as one or more creation statuses. Eligibility must use authoritative order
@@ -155,16 +315,42 @@ disabled with a reason; after all units exist there is no duplicate action.
 
 Preparation happens at the configured `READY_FOR_DELIVERY` condition. Required
 slots must be physically confirmed; an expected order snapshot alone is
-insufficient. A successful preparation knows the public URL and permits QR
-production while full public viewing remains inactive. Retrying preparation
-returns the existing token, not a new Passport.
+insufficient. The conceptual initial preparation sequence is:
+
+```text
+READY_FOR_DELIVERY
+→ preparePassport()
+→ allocate PUBLIC_ID if absent
+→ allocate SECRET_CODE if absent (server-side cryptographically secure source)
+→ derive Passport URL from PUBLIC_ID
+→ allow QR / physical System label production after successful commit
+```
+
+Initial preparation is idempotent: both allocations belong to the same
+successful preparation transaction. Retrying reuses the existing PUBLIC_ID
+**and SECRET_CODE**, not a new Passport or physical credential. A retry never
+resets an already-activated Passport. If recovery finds one credential missing,
+allocate only that missing value under the same readiness/privacy checks and
+lock; preserve the other. Until preparation completes successfully, no label/QR
+production is authorized. Public viewing remains inactive until handoff.
+
+Normal activation, ownership transfer, USER_UNLINK and QR regeneration must
+never allocate, invalidate or replace SECRET_CODE. QR regeneration derives only
+from the unchanged Passport URL. Only a future privileged explicit
+**«Перевыпустить код системы» / regenerate System code** operation may invalidate
+and replace it, with permission checks, audit and controlled replacement-label
+handling. It is separate from preparation retries and ordinary lifecycle or
+ownership actions. No real generator or code-regeneration action is implemented
+in this frontend PR. Ownership remains a separate admin tab, not part of Service.
 
 Physical handoff is the authoritative activation event. Order entry into one
 or more configured final-positive statuses is its intended source. Resolve the
 **first valid transition date**, including historical proof during recovery;
 do not substitute retry time. Save `TRANSFER_DATE` once, then freeze applied
-warranty values, then activate. If activation already completed, return the
-stored outcome without recalculation or identity changes. A status edit after
+warranty values and the first-handoff authoritative USER_ID association/history,
+then activate, atomically. If activation already completed, return the stored
+outcome without recalculation, identity changes or overwriting a later owner
+transfer/unlink. A status edit after
 activation does not undo transfer or revoke an existing machine's passport.
 
 There is no «Принудительно активировать» action. Future exceptional overrides
@@ -205,8 +391,13 @@ MANUAL). Status mutation plus its audit must be consistent. This history is
 internal and never part of the public projection.
 
 If an untransferred order is cancelled, mark the relevant System lifecycle
-CANCELLED. Never reuse SYSTEM_ID. No token means no public URL; a prepared but
-inactive cancelled System must not expose configuration. Production closes its
+CANCELLED. Never reuse SYSTEM_ID. No token means no public URL. A cancelled
+System must keep any allocated secret private. Cancellation does not
+publish SECRET_CODE through a status response, HTML, metadata, JSON, support
+context or label/QR regeneration. Apply the same public projection exclusions
+to CANCELLED Systems; cancellation never relaxes preparation/label access checks.
+An inactive prepared cancelled System must not expose configuration. Production
+closes its
 public access (404 or an approved equally private closed response). A later
 erroneous order-status edit must not automatically deactivate an already
 transferred System. Warranty expiry also leaves its passport active.
@@ -321,6 +512,10 @@ PUBLIC_ID is a **bearer-style public locator**: anyone holding the URL can see
 its approved projection. Randomness prevents trivial enumeration; it is not
 private authenticated access. Never rely on obscurity to protect personal or
 internal fields. Inquiry/private admin storage is separate from the public DTO.
+SECRET_CODE, USER_ID/current account, ownership requests, verification evidence
+and ownership history are excluded from the public DTO, including pending
+responses and support hidden context. Adding ownership does not expand public
+Passport fields or inquiry identity inputs.
 
 Never publish customer name, phone/email/address, order number/IDs, internal
 keys, supplier/cost data, serials, service comments, RMA, staff notes or actor
@@ -404,7 +599,8 @@ No Bitrix order UI hook, admin routing, properties or backend is built here.
 
 Prefer an application-service/domain layer owned by a future D7 module:
 System, SystemComponent, SystemServiceEvent, ComponentChange, SystemStatus,
-SystemStatusHistory, SystemInquiry, Audit/DataCorrection, and SystemSequence
+SystemStatusHistory, SystemInquiry, SystemOwnershipRequest,
+SystemOwnershipHistory, Audit/DataCorrection, and SystemSequence
 or equivalent atomic allocator. Do not finalize SQL table names here or store
 this domain as arbitrary catalog properties. Bitrix Catalog owns Product;
 Sale owns order/status/history; System domain owns physical-unit snapshots,
@@ -415,14 +611,33 @@ Transactional requirements:
 
 1. Unit creation: lock/reconcile authoritative order units; enforce unique
    unit relationship and SYSTEM_ID; concurrent/repeated events cannot duplicate.
-2. Preparation: lock System, validate readiness/confirmation once, allocate
-   PUBLIC_ID only if absent, enforce uniqueness; preserve existing token.
-3. Activation: lock System, resolve first valid handoff, write snapshot/state
-   atomically once; retries preserve transfer, warranty and identity.
+2. Preparation: lock System and validate readiness, confirmed components and
+   non-cancelled lifecycle. Allocate PUBLIC_ID only if absent (with its unique
+   constraint) and SECRET_CODE only if absent using server-side cryptographically
+   secure randomness; persist the protected credential and preparation state
+   atomically. Concurrent calls/retries reuse both existing values and cannot
+   commit competing codes or overwrite either credential. An incomplete legacy
+   record may fill only a missing value under these same checks. Rollback cannot
+   authorize a printable label/QR from an unsuccessful allocation. Derive the
+   Passport URL and permit privileged QR/physical label production only after
+   commit; never expose SECRET_CODE in public/admin request DTOs or audit logs.
+   Preparation retries, activation, ownership transfer, USER_UNLINK and QR
+   regeneration preserve the allocated code. Only the separate future explicit
+   privileged code-regeneration operation may invalidate/replace it, with
+   atomic protected-credential update, audit and replacement-label handling.
+3. Activation: lock System, resolve first valid handoff, write snapshot/state,
+   initial authoritative Order.USER_ID and INITIAL_ORDER history atomically
+   once; retries preserve later ownership, transfer, warranty and identity.
 4. Component service: event plus all changes/history in one transaction with
    active-record ownership/version checks.
 5. Audit: correlate operation source, staff/event identity, result and time;
    preserve failure evidence without claiming rolled-back mutations succeeded.
+6. Ownership: lock/re-check current association/version and request eligibility;
+   approval atomically writes USER_ID + request processing + ADMIN_TRANSFER
+   history. Unlink atomically clears only the authorized current user and
+   appends USER_UNLINK. Reject/cancel never changes USER_ID. Replays and
+   concurrent actions cannot produce duplicate transfers/history. None of
+   these transactions changes System identities, warranty/components/service.
 
 Generation/event handlers/settings, security, persistence, real physical
 confirmation and legal warranty arithmetic are all future backend work. Static

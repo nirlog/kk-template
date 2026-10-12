@@ -247,6 +247,16 @@ Frontend будет отображать canonical data и authoritative backend
 Generic demo selectors не объявляют production property/XML IDs. Prototype
 arithmetic/controller заменяются реальным owner, не расширяются до pricing engine.
 
+System ownership contract уточняет **будущее** commerce/account поведение:
+email обязателен при регистрации и checkout; нормализованный email — Bitrix
+LOGIN, телефон — контактные данные. Авторизованный заказ связан с текущим
+USER_ID; новый guest email создаёт User и связь с Order. Совпадение guest email
+с существующим аккаунтом требует authentication/verification flow и не позволяет
+молча привязать заказ к чужому USER_ID. В первой физической передаче System
+получает текущую связь из authoritative Order.USER_ID. Это контракт, не изменение
+статической формы, не Bitrix auth и не Account UI в этом PR.
+См. [ownership / account / privacy contract](KORSAC-SYSTEM-PASSPORT.md).
+
 ## Review и self-review A–J
 
 [Снимки и MP4 в обычной скорости](review/README.md#cart--checkout-experience-v1).

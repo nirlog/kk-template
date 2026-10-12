@@ -497,7 +497,8 @@ Human visual review required; do not auto-merge.
 - [Active passport — desktop](passport-v1-desktop.png), [mobile](passport-v1-mobile.png).
 - [Pending passport — desktop](passport-pending-v1-desktop.png), [mobile](passport-pending-v1-mobile.png).
 - [Inquiry open — mobile](passport-inquiry-v1-mobile.png).
-- [Bitrix Admin concept — desktop](system-workflow-v1-desktop.png), [ownership / review bar](system-workflow-admin-v1-desktop.png).
+- [Bitrix Admin concept — desktop](system-workflow-v1-desktop.png), [admin IA / review bar](system-workflow-admin-v1-desktop.png).
+- [Account ownership / pending request / private history / staff transfer — desktop](system-workflow-ownership-v1-desktop.png).
 - [Internal components — desktop](system-workflow-components-v1-desktop.png), [service forms — desktop](system-workflow-service-v1-desktop.png).
 - [Manual fallback — desktop](system-workflow-actions-v1-desktop.png).
 - [Product static Passport example — desktop](product-passport-info-v1-desktop.png), [mobile](product-passport-info-v1-mobile.png).
@@ -512,3 +513,10 @@ Systems without flattening full data into order properties. Stale footer links
 lead to support. Historical stage images remain baselines; current tests include
 Family/Projects/Equipment and new privacy guards. Human visual and architecture
 review required; do not auto-merge.
+
+Ownership contract: nullable current USER_ID, physical private-code evidence,
+manager-reviewed requests and private history. Recent-change warning is not a
+technical block. Review actions never change account association or records;
+no secret value reaches the manager specimen or public Passport. Mandatory
+email/Bitrix LOGIN and future Account add/unlink are documented, not implemented;
+The subsequent Account Experience stage owns Account UI. Public privacy guards cover both active/pending states.
