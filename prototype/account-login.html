@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" href="data:," />
+    <title>Вход — KORSAC</title>
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <meta
+      name="description"
+      content="Вход по email в личный кабинет KORSAC. Прототип формы без авторизации и отправки данных."
+    />
+    <meta property="og:title" content="Вход — KORSAC" />
+    <meta
+      property="og:description"
+      content="Вход по email в личный кабинет KORSAC. Прототип формы без авторизации и отправки данных."
+    />
+    <meta property="og:site_name" content="KORSAC" />
+    <meta property="og:type" content="website" />
+    <link rel="stylesheet" href="assets/css/tokens.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/brand.css" />
+    <link rel="stylesheet" href="assets/css/account.css" />
+    <script src="assets/js/prototype.js" defer></script>
+    <script src="assets/js/account.js" defer></script>
+  </head>
+  <body class="k-account-page" data-account-page="login">
+    <a class="k-skip" href="#main">Перейти к содержимому</a>
+    <header class="k-account-header">
+      <div class="k-account-container">
+        <a
+          class="k-account-brand"
+          href="index.html"
+          aria-label="KORSAC — главная"
+          ><img
+            src="assets/images/brand/korsac-lockup-horizontal.svg"
+            width="450"
+            height="100"
+            alt="" /></a
+        ><span class="k-account-area">Личный кабинет</span
+        ><a href="index.html">На сайт →</a>
+      </div>
+    </header>
+    <div class="k-account-container">
+      <main id="main" class="k-account-main">
+        <p class="k-account-fixture">
+          Статический review · демонстрационный аккаунт. Все заказы и обращения
+          — условные. Авторизации, отправки и сохранения данных нет.
+        </p>
+        <div class="k-account-heading">
+          <p class="k-eyebrow">Account / login</p>
+          <h1>Вход</h1>
+          <p class="k-lead">Email — ваш идентификатор для входа.</p>
+        </div>
+        <div class="k-account-auth k-frame">
+          <form method="dialog" data-account-form="login" novalidate>
+            <div class="k-field">
+              <label for="login-email">Email · обязательно</label
+              ><input
+                class="k-control"
+                id="login-email"
+                type="email"
+                autocomplete="username"
+                required
+              />
+            </div>
+            <div class="k-field">
+              <label for="login-password">Пароль · обязательно</label
+              ><input
+                class="k-control"
+                id="login-password"
+                type="password"
+                autocomplete="current-password"
+                required
+              />
+            </div>
+            <label class="k-check"
+              ><input type="checkbox" /><span
+                >Запомнить меня · только макет</span
+              ></label
+            >
+            <p
+              class="k-account-feedback"
+              role="status"
+              aria-live="polite"
+              data-account-feedback
+            ></p>
+            <button class="k-button" type="button" data-account-check>
+              Войти
+            </button>
+          </form>
+          <div class="k-account-links">
+            <a href="account-forgot-password.html">Забыли пароль?</a
+            ><a href="account-register.html">Регистрация</a>
+          </div>
+        </div>
+        <noscript
+          ><p class="k-small k-muted">
+            Без JavaScript доступны страницы, поля и пояснения. Кнопки форм в
+            макете ничего не отправляют.
+          </p></noscript
+        >
+      </main>
+      <footer class="k-account-footer">
+        <span>KORSAC · личный кабинет</span
+        ><a href="contacts.html">Поддержка и контакты</a>
+      </footer>
+    </div>
+  </body>
+</html>

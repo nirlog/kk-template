@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" href="data:," />
+    <title>Мои системы — KORSAC</title>
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <meta
+      name="description"
+      content="Компьютеры, связанные с аккаунтом KORSAC: паспорт, обращение, заявка на добавление и отвязка."
+    />
+    <meta property="og:title" content="Мои системы — KORSAC" />
+    <meta
+      property="og:description"
+      content="Компьютеры, связанные с аккаунтом KORSAC: паспорт, обращение, заявка на добавление и отвязка."
+    />
+    <meta property="og:site_name" content="KORSAC" />
+    <meta property="og:type" content="website" />
+    <link rel="stylesheet" href="assets/css/tokens.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/brand.css" />
+    <link rel="stylesheet" href="assets/css/account.css" />
+    <script src="assets/js/prototype.js" defer></script>
+    <script src="assets/js/account.js" defer></script>
+  </head>
+  <body class="k-account-page" data-account-page="systems">
+    <a class="k-skip" href="#main">Перейти к содержимому</a>
+    <header class="k-account-header">
+      <div class="k-account-container">
+        <a
+          class="k-account-brand"
+          href="index.html"
+          aria-label="KORSAC — главная"
+          ><img
+            src="assets/images/brand/korsac-lockup-horizontal.svg"
+            width="450"
+            height="100"
+            alt="" /></a
+        ><span class="k-account-area">Личный кабинет</span
+        ><button
+          type="button"
+          class="k-button k-button--secondary"
+          data-account-logout
+        >
+          Выйти
+        </button>
+      </div>
+    </header>
+    <div class="k-account-container">
+      <nav class="k-account-nav" aria-label="Навигация личного кабинета">
+        <a href="account-orders.html">Заказы</a
+        ><a href="account-systems.html" aria-current="page">Мои системы</a
+        ><a href="account-inquiries.html">Мои обращения</a
+        ><a href="account-profile.html">Профиль</a>
+      </nav>
+      <p data-account-logout-feedback role="status" class="k-small"></p>
+      <main id="main" class="k-account-main">
+        <p class="k-account-fixture">
+          Статический review · демонстрационный аккаунт. Все заказы и обращения
+          — условные. Авторизации, отправки и сохранения данных нет.
+        </p>
+        <div class="k-account-heading">
+          <p class="k-eyebrow">Account / systems</p>
+          <h1>Мои системы</h1>
+          <p class="k-lead">
+            Компьютеры, которые сейчас связаны с вашим аккаунтом.
+          </p>
+        </div>
+        <a
+          class="k-button k-button--secondary"
+          href="#add-system"
+          data-dialog-open="account-add-dialog"
+          >Добавить систему</a
+        >
+        <article class="k-account-card" data-associated-system>
+          <p class="k-eyebrow">01 / System</p>
+          <h2>KORSAC PLAY 1440</h2>
+          <p class="k-account-system-id">KS-2610-0012</p>
+          <dl class="k-account-facts">
+            <div>
+              <dt>Дата передачи</dt>
+              <dd><time datetime="2026-10-07">07.10.2026</time></dd>
+            </div>
+            <div>
+              <dt>Гарантия до</dt>
+              <dd>
+                <time datetime="2029-10-07">07.10.2029</time> · расширение
+                включено
+              </dd>
+            </div>
+            <div>
+              <dt>Подтверждённая комплектация</dt>
+              <dd>Ryzen 7 9700X · RTX 5070 · 32 ГБ DDR5 · SSD 1 ТБ + 2 ТБ</dd>
+            </div>
+          </dl>
+          <div class="k-account-links">
+            <a href="passport.html">Открыть паспорт</a
+            ><a href="passport.html#inquiry-fallback">Задать вопрос</a
+            ><a href="#unlink-system" data-dialog-open="account-unlink-dialog"
+              >Отвязать систему</a
+            >
+          </div>
+          <p class="k-small k-muted">
+            Паспорт — тот же публичный документ, доступный независимо от входа.
+            Это пример подтверждённой связи с аккаунтом после передачи.
+          </p>
+        </article>
+        <section class="k-account-card" data-pending-ownership>
+          <h2>Заявка на добавление системы</h2>
+          <p class="k-account-system-id">KS-2610-0014</p>
+          <p class="k-account-status">На проверке</p>
+          <p>
+            После проверки менеджером система появится в разделе «Мои системы».
+          </p>
+          <p class="k-small k-muted">
+            Отдельная условная заявка. Её статус не означает, что система уже
+            связана с аккаунтом. Это не обращение в поддержку.
+          </p>
+        </section>
+        <details class="k-account-card" id="add-system" data-account-fallback>
+          <summary>Форма добавления системы</summary>
+          <form
+            id="add-system-form"
+            method="dialog"
+            data-account-form="add-system"
+            novalidate
+          >
+            <div class="k-field">
+              <label for="add-system-id">ID системы · обязательно</label
+              ><input
+                class="k-control"
+                id="add-system-id"
+                type="text"
+                autocomplete="off"
+                required
+                placeholder="KS-2610-0012"
+                pattern="KS-[0-9]{2}(0[1-9]|1[0-2])-[0-9]{4}"
+              />
+            </div>
+            <div class="k-field">
+              <label for="add-system-code">Код системы · обязательно</label
+              ><input
+                class="k-control"
+                id="add-system-code"
+                type="text"
+                autocomplete="off"
+                required
+                inputmode="numeric"
+                placeholder="####-####"
+                pattern="[0-9]{4}-?[0-9]{4}"
+                aria-describedby="add-code-help"
+                data-system-code-input
+              />
+              <p class="k-small k-muted" id="add-code-help">
+                Можно ввести восемь цифр без дефиса.
+              </p>
+            </div>
+            <p
+              class="k-account-feedback"
+              role="status"
+              aria-live="polite"
+              data-account-feedback
+            ></p>
+            <button class="k-button" type="button" data-account-check>
+              Проверить данные · макет
+            </button>
+            <p class="k-small k-muted">
+              Проверка кода выполняется только на сервере магазина. Заявку
+              рассматривает менеджер; ввод не привязывает систему автоматически.
+            </p>
+            <details>
+              <summary>Пример ответа при неподтверждённых данных</summary>
+              <p>Не удалось подтвердить данные системы. Проверьте ID и код.</p>
+              <p class="k-small k-muted">
+                Это образец ответа, не результат проверки в прототипе.
+              </p>
+            </details>
+          </form>
+        </details>
+        <details
+          class="k-account-card"
+          id="unlink-system"
+          data-account-fallback
+        >
+          <summary>Условия отвязки системы</summary>
+          <div id="unlink-confirmation">
+            <p class="k-lead">
+              Вы уверены, что хотите отвязать систему KS-2610-0012 от своего
+              аккаунта?
+            </p>
+            <p>
+              Система исчезнет из раздела «Мои системы». Публичный паспорт,
+              гарантия и история компьютера сохранятся.
+            </p>
+            <button
+              type="button"
+              class="k-button k-button--secondary"
+              data-account-unlink
+            >
+              Подтвердить отвязку · макет
+            </button>
+            <p
+              class="k-account-feedback"
+              data-unlink-feedback
+              role="status"
+              aria-live="polite"
+            ></p>
+            <p class="k-small k-muted">
+              Прототип не меняет связь с аккаунтом и не сохраняет действие.
+            </p>
+          </div>
+        </details>
+        <noscript
+          ><p class="k-small k-muted">
+            Без JavaScript доступны страницы, поля и пояснения. Кнопки форм в
+            макете ничего не отправляют.
+          </p></noscript
+        >
+      </main>
+      <footer class="k-account-footer">
+        <span>KORSAC · личный кабинет</span
+        ><a href="contacts.html">Поддержка и контакты</a>
+      </footer>
+    </div>
+    <dialog
+      id="account-add-dialog"
+      class="k-dialog k-account-dialog"
+      aria-labelledby="account-add-dialog-title"
+    >
+      <div class="k-dialog-header">
+        <h2 id="account-add-dialog-title">Добавить систему</h2>
+        <button
+          type="button"
+          class="k-button k-button--secondary"
+          data-dialog-close
+          aria-label="Закрыть"
+        >
+          ×
+        </button>
+      </div>
+      <div data-account-mount="add-system-form"></div>
+    </dialog>
+    <dialog
+      id="account-unlink-dialog"
+      class="k-dialog k-account-dialog"
+      aria-labelledby="account-unlink-dialog-title"
+    >
+      <div class="k-dialog-header">
+        <h2 id="account-unlink-dialog-title">Отвязать систему</h2>
+        <button
+          type="button"
+          class="k-button k-button--secondary"
+          data-dialog-close
+          aria-label="Закрыть"
+        >
+          ×
+        </button>
+      </div>
+      <div data-account-mount="unlink-confirmation"></div>
+    </dialog>
+  </body>
+</html>

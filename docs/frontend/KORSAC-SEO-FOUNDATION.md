@@ -320,3 +320,8 @@ Ownership расширяет только внутренний domain/admin cont
 владения или историю владельцев — ни в HTML, hidden fields, комментариях,
 metadata, JSON/JSON-LD, ни в клиентских payloads. Audit проверяет эти маркеры и
 формат приватного кода, сохраняя прежние S/N/internal-ID/schema guards.
+
+## Account / auth review
+
+Восемь Account/auth страниц включены в audit: staging noindex/nofollow/noarchive, one H1, unique generic metadata, no canonical/og:url/JSON-LD, no Brand Intro. Customer projection не содержит serials, System DB IDs, USER_ID, credential values, manager ownership data/history или staff/service notes. Единственное место ввода кода — пустая Add System форма; значение не предзаполнено, не echo в status и не persist в JS. Recovery uses Email only; registration/login не вводят независимый LOGIN.
+Production private routes noindex, вне sitemap, с server authentication/authorization. Noindex не заменяет контроль доступа. [Account contract](KORSAC-ACCOUNT-EXPERIENCE.md).

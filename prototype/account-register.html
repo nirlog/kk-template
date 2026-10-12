@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" href="data:," />
+    <title>Регистрация — KORSAC</title>
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <meta
+      name="description"
+      content="Регистрация KORSAC с email и паролем. Статический макет без создания аккаунта."
+    />
+    <meta property="og:title" content="Регистрация — KORSAC" />
+    <meta
+      property="og:description"
+      content="Регистрация KORSAC с email и паролем. Статический макет без создания аккаунта."
+    />
+    <meta property="og:site_name" content="KORSAC" />
+    <meta property="og:type" content="website" />
+    <link rel="stylesheet" href="assets/css/tokens.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/brand.css" />
+    <link rel="stylesheet" href="assets/css/account.css" />
+    <script src="assets/js/prototype.js" defer></script>
+    <script src="assets/js/account.js" defer></script>
+  </head>
+  <body class="k-account-page" data-account-page="register">
+    <a class="k-skip" href="#main">Перейти к содержимому</a>
+    <header class="k-account-header">
+      <div class="k-account-container">
+        <a
+          class="k-account-brand"
+          href="index.html"
+          aria-label="KORSAC — главная"
+          ><img
+            src="assets/images/brand/korsac-lockup-horizontal.svg"
+            width="450"
+            height="100"
+            alt="" /></a
+        ><span class="k-account-area">Личный кабинет</span
+        ><a href="index.html">На сайт →</a>
+      </div>
+    </header>
+    <div class="k-account-container">
+      <main id="main" class="k-account-main">
+        <p class="k-account-fixture">
+          Статический review · демонстрационный аккаунт. Все заказы и обращения
+          — условные. Авторизации, отправки и сохранения данных нет.
+        </p>
+        <div class="k-account-heading">
+          <p class="k-eyebrow">Account / register</p>
+          <h1>Регистрация</h1>
+          <p class="k-lead">Один аккаунт для заказов, систем и поддержки.</p>
+        </div>
+        <div class="k-account-auth k-frame">
+          <form method="dialog" data-account-form="register" novalidate>
+            <div class="k-field">
+              <label for="register-email">Email · обязательно</label
+              ><input
+                class="k-control"
+                id="register-email"
+                type="email"
+                autocomplete="email"
+                required
+              />
+            </div>
+            <div class="k-field">
+              <label for="register-password">Пароль · обязательно</label
+              ><input
+                class="k-control"
+                id="register-password"
+                type="password"
+                autocomplete="new-password"
+                required
+              />
+            </div>
+            <div class="k-field">
+              <label for="register-confirm"
+                >Подтверждение пароля · обязательно</label
+              ><input
+                class="k-control"
+                id="register-confirm"
+                type="password"
+                autocomplete="new-password"
+                required
+              />
+            </div>
+            <div class="k-field">
+              <label for="register-name">Имя · необязательно</label
+              ><input
+                class="k-control"
+                id="register-name"
+                type="text"
+                autocomplete="name"
+              />
+            </div>
+            <div class="k-field">
+              <label for="register-phone">Телефон · необязательно</label
+              ><input
+                class="k-control"
+                id="register-phone"
+                type="tel"
+                autocomplete="tel"
+              />
+            </div>
+            <p
+              class="k-account-feedback"
+              role="status"
+              aria-live="polite"
+              data-account-feedback
+            ></p>
+            <button class="k-button" type="button" data-account-check>
+              Зарегистрироваться
+            </button>
+          </form>
+          <p class="k-small k-muted">
+            Требования к паролю задаёт магазин. В этом макете проверяется только
+            заполнение и совпадение.
+          </p>
+          <a href="account-login.html">Уже есть аккаунт → Войти</a>
+        </div>
+        <noscript
+          ><p class="k-small k-muted">
+            Без JavaScript доступны страницы, поля и пояснения. Кнопки форм в
+            макете ничего не отправляют.
+          </p></noscript
+        >
+      </main>
+      <footer class="k-account-footer">
+        <span>KORSAC · личный кабинет</span
+        ><a href="contacts.html">Поддержка и контакты</a>
+      </footer>
+    </div>
+  </body>
+</html>

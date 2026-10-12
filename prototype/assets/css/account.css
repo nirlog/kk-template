@@ -1,0 +1,269 @@
+/* Private utility shell. Shared finite control/dialog motion only. */
+.k-account-container {
+  width: min(1180px, calc(100% - 64px));
+  margin-inline: auto;
+}
+.k-account-header {
+  background: var(--k-surface);
+  border-bottom: 1px solid var(--k-border);
+}
+.k-account-header > div {
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  justify-content: space-between;
+}
+.k-account-brand {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  flex-shrink: 0;
+}
+.k-account-brand img {
+  width: 160px;
+  height: auto;
+}
+.k-account-area {
+  margin-right: auto;
+  color: var(--k-secondary);
+  font-size: var(--k-body-sm);
+}
+.k-account-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  border-bottom: 1px solid var(--k-border);
+  padding-block: 18px;
+}
+.k-account-nav a {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  color: var(--k-secondary);
+}
+.k-account-nav a[aria-current] {
+  border-color: var(--k-accent);
+  color: var(--k-text);
+}
+.k-account-main {
+  padding-block: 32px 64px;
+  display: grid;
+  gap: 28px;
+}
+.k-account-fixture {
+  border-left: 1px solid var(--k-identity);
+  padding-left: 12px;
+  color: var(--k-muted);
+  font-size: var(--k-caption);
+  max-width: 80ch;
+}
+.k-account-heading {
+  display: grid;
+  gap: 16px;
+}
+.k-account-heading h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+.k-account-heading .k-lead {
+  font-size: 1.125rem;
+  max-width: 65ch;
+}
+.k-account-auth {
+  --k-frame-surface: var(--k-surface);
+  background: var(--k-surface);
+  padding: 32px;
+  width: min(100%, 580px);
+  display: grid;
+  gap: 24px;
+}
+.k-account-page form {
+  display: grid;
+  gap: 20px;
+}
+.k-account-page .k-control {
+  min-width: 0;
+  width: 100%;
+}
+.k-account-page .k-field {
+  min-width: 0;
+}
+.k-account-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+}
+.k-account-links a {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.k-account-list {
+  display: grid;
+  gap: 24px;
+}
+.k-account-card {
+  min-width: 0;
+  background: var(--k-surface);
+  border-top: 1px solid var(--k-border-strong);
+  padding: 28px;
+  display: grid;
+  gap: 20px;
+  align-content: start;
+}
+.k-account-card h2 {
+  font-size: clamp(1.3rem, 2.5vw, 1.65rem);
+}
+.k-account-card h3 {
+  font-size: 1.125rem;
+}
+.k-account-card-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.k-account-status {
+  color: var(--k-secondary);
+  border-left: 2px solid var(--k-accent);
+  padding-left: 12px;
+  font-size: var(--k-body-sm);
+}
+.k-account-facts {
+  display: grid;
+  gap: 16px;
+}
+.k-account-facts > div {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 16px;
+}
+.k-account-facts dt {
+  color: var(--k-muted);
+  font-size: var(--k-body-sm);
+}
+.k-account-facts dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.k-account-amount,
+.k-account-system-id {
+  font: 500 clamp(1.4rem, 3vw, 2rem) / 1.3 var(--k-font-mono);
+  color: var(--k-identity);
+  overflow-wrap: anywhere;
+}
+.k-account-order-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+.k-account-profile-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  align-items: start;
+}
+.k-account-order-lines {
+  padding-left: 24px;
+  display: grid;
+  gap: 24px;
+}
+.k-account-order-lines li {
+  border-top: 1px solid var(--k-border);
+  padding-top: 20px;
+}
+.k-account-page details {
+  min-width: 0;
+}
+.k-account-page summary {
+  cursor: pointer;
+  min-height: 44px;
+  padding-block: 10px;
+}
+.k-account-page details > p,
+.k-account-page details > form,
+.k-account-page details > div {
+  margin-top: 16px;
+}
+.k-account-feedback {
+  color: var(--k-secondary);
+  font-size: var(--k-body-sm);
+  overflow-wrap: anywhere;
+}
+.k-account-feedback:empty,
+[data-account-logout-feedback]:empty {
+  display: none;
+}
+.k-account-feedback[data-invalid] {
+  color: var(--k-danger);
+}
+.k-account-page .k-button {
+  white-space: normal;
+  min-width: 0;
+}
+.k-account-dialog {
+  width: min(580px, calc(100% - 32px));
+  max-height: calc(100dvh - 32px);
+}
+.k-account-dialog h2 {
+  font-size: 1.5rem;
+}
+.k-account-footer {
+  border-top: 1px solid var(--k-border);
+  padding-block: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+  color: var(--k-muted);
+  font-size: var(--k-body-sm);
+}
+@media (max-width: 899px) {
+  .k-account-order-grid,
+  .k-account-profile-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 599px) {
+  .k-account-container {
+    width: calc(100% - 32px);
+  }
+  .k-account-header > div {
+    min-height: 72px;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding-block: 12px;
+  }
+  .k-account-brand img {
+    width: 132px;
+  }
+  .k-account-area {
+    display: none;
+  }
+  .k-account-nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 4px 16px;
+  }
+  .k-account-card,
+  .k-account-auth {
+    padding: 20px;
+  }
+  .k-account-facts > div {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+  .k-account-main {
+    gap: 24px;
+  }
+  .k-account-links {
+    display: grid;
+  }
+  .k-account-dialog {
+    padding: 20px;
+  }
+}

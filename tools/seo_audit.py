@@ -13,6 +13,8 @@ FAMILY_PAGES = {'computers.html', 'catalog.html', 'create.html', 'work.html'}
 PROJECT_PAGES = {'projects.html': 'CollectionPage', 'project.html': 'Article'}
 EQUIPMENT_PAGES = {'equipment.html': 'CollectionPage', 'monitors.html': 'CollectionPage', 'monitor.html': 'Product'}
 PASSPORT_PAGES = {'passport.html': 'active', 'passport-pending.html': 'pending'}
+ACCOUNT_PAGES = {f'account-{name}.html' for name in ('login', 'register', 'forgot-password', 'orders', 'order', 'systems', 'inquiries', 'profile')}
+AUTH_PAGES = {'account-login.html', 'account-register.html', 'account-forgot-password.html'}
 
 
 class Page(HTMLParser):
@@ -292,6 +294,60 @@ def passport_errors(page):
     return errors
 
 
+def account_errors(page):
+    """Customer projection guard; not proof of production authentication/access control."""
+    errors = []
+    if page.jsonld:
+        errors.append('Account/auth pages must not contain structured data')
+    if page.canonical or page.meta.get('og:url'):
+        errors.append('Account/auth pages must not contain canonical or og:url')
+    if 'brand-intro' in page.raw or 'data-brand-intro' in page.raw or 'korsac:brand-intro' in page.raw:
+        errors.append('Account/auth pages must not run Brand Intro or write eligibility')
+    private = r'(?i)\bS\s*/\s*N\b|SERIAL[_ -]?NUMBER|DEMO-SN|SECRET[_ -]?CODE|(?<![\w-])\d{4}-\d{4}(?![\w-])|(?:OLD|NEW|REQUEST|CURRENT)?[_ -]?USER[_ -]?ID|SYSTEM[_ -]?INTERNAL[_ -]?ID|COMPONENT[_ -]?ID|SYSTEM[_ -]?(?:DB|DATABASE|RECORD)[_ -]?ID|Ownership[_ -]?History|SECRET[_ -]?VERIFIED|PROCESSED[_ -]?BY|STAFF[_ -]?(?:ID|NOTE)|DEMO-STAFF|SUPPLIER|PURCHASE[_ -]?COST|\bRMA\b|SERVICE[_ -]?(?:HISTORY|EVENT)|data-internal-workflow'
+    if re.search(private, page.raw):
+        errors.append('Customer Account exposes private System/account/admin markers or secret values')
+    credential_payload = r'(?i)AUTH[_ -]?TOKEN|ACCESS[_ -]?TOKEN|REFRESH[_ -]?TOKEN|SESSION[_ -]?ID|PASSWORD[_ -]?(?:HASH|FIXTURE|VALUE)|["\']password["\']\s*:'
+    if re.search(credential_payload, page.raw):
+        errors.append('Account/auth source must not embed credential/token/session payloads')
+    if page.path.name in AUTH_PAGES and re.search(r'[\w.+%-]+@[\w.-]+\.[A-Za-z]{2,}', page.raw):
+        errors.append('Auth source must not embed email-address fixtures')
+    head = page.raw.split('</head>', 1)[0]
+    if re.search(r'KS-\d|DEMO-\d|@|USER_ID|SECRET|[+][0-9]{7,}', head, re.I):
+        errors.append('Account metadata must stay generic without customer/order/System data')
+    inputs = [a for tag, a in page.elements if tag == 'input']
+    codes = [a for a in inputs if 'data-system-code-input' in a]
+    if codes and (page.path.name != 'account-systems.html' or len(codes) != 1):
+        errors.append('System code input belongs only to the single Add System form')
+    for a in inputs:
+        if a.get('type', 'text') == 'hidden':
+            errors.append('Account prototype must not carry hidden identity/credential fields')
+        if a.get('value') and a.get('type', 'text') in ('text', 'email', 'tel', 'password'):
+            errors.append('Account fields must not prefill personal data, passwords or code')
+        if a.get('name', '').lower() in ('login', 'username', 'user_id') or a.get('id', '').lower() in ('login', 'username'):
+            errors.append('Customer identity must use Email, not an independent LOGIN field')
+        if a in codes and (a.get('type') != 'text' or a.get('inputmode') != 'numeric' or a.get('autocomplete') != 'off'):
+            errors.append('Add System code input must be text/numeric-friendly with autocomplete off')
+    for tag, a in page.elements:
+        if tag == 'form' and (a.get('method', '').lower() != 'dialog' or a.get('action')):
+            errors.append('Account review forms must be non-submitting without action URL')
+    if page.path.name in AUTH_PAGES:
+        emails = [a for a in inputs if a.get('type') == 'email']
+        passwords = [a for a in inputs if a.get('type') == 'password']
+        expected_passwords = {'account-login.html': 1, 'account-register.html': 2, 'account-forgot-password.html': 0}[page.path.name]
+        if len(emails) != 1 or 'required' not in emails[0]:
+            errors.append('Auth identity requires one mandatory Email field')
+        if len(passwords) != expected_passwords or any('required' not in a for a in passwords):
+            errors.append('Auth password fields do not match the dedicated page contract')
+        expected_auto = 'username' if page.path.name == 'account-login.html' else 'email'
+        if emails and emails[0].get('autocomplete') != expected_auto:
+            errors.append('Auth Email autocomplete does not match page contract')
+        if any(a.get('autocomplete') != ('current-password' if page.path.name == 'account-login.html' else 'new-password') for a in passwords):
+            errors.append('Auth password autocomplete does not match page contract')
+        if page.path.name == 'account-forgot-password.html' and len(inputs) != 1:
+            errors.append('Recovery must ask only for Email')
+    return errors
+
+
 def audit(root):
     prototype = root / 'prototype'
     files = sorted(prototype.glob('*.html'))
@@ -417,6 +473,12 @@ def audit(root):
             for forbidden in ('Product', 'Offer', 'AggregateOffer', 'Review', 'AggregateRating', 'Article'):
                 if forbidden in types:
                     errors.append(f'System Passport must not claim {forbidden} schema')
+        if path.name in ACCOUNT_PAGES:
+            errors.extend(account_errors(page))
+        if path.name not in ACCOUNT_PAGES:
+            for footer in re.findall(r'<footer\b[^>]*>.*?</footer>', page.raw, re.S):
+                if re.search(r'href=["\']account-(?:orders|order|systems|inquiries|profile)\.html', footer):
+                    errors.append('Private Account pages must not enter public footer SEO navigation')
         warnings.extend(['Prototype canonical/og:url intentionally omitted; production follows page-type policy and approved host', 'No approved og:image; production social artwork remains pending'])
         results.append({'page': path.relative_to(root.resolve()).as_posix(), 'title': page.titles[0] if page.titles else '', 'schema_types': sorted(types), 'errors': sorted(set(errors)), 'warnings': sorted(set(warnings))})
     if not files:

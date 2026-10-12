@@ -520,3 +520,10 @@ technical block. Review actions never change account association or records;
 no secret value reaches the manager specimen or public Passport. Mandatory
 email/Bitrix LOGIN and future Account add/unlink are documented, not implemented;
 The subsequent Account Experience stage owns Account UI. Public privacy guards cover both active/pending states.
+
+## Account Experience v1
+
+[Account / Bitrix / authorization contract](../KORSAC-ACCOUNT-EXPERIENCE.md) · [Review report / all 20 desktop/mobile PNGs](account-experience-v1.md) · [Synthetic fixture](account-fixture-v1.json).
+
+Login, Registration, Recovery, Orders, Order detail, My Systems, Add System, Unlink, Inquiries and Profile have desktop/mobile evidence. Private utility shell, four native areas, no dashboard or Brand Intro. Forms acknowledge review-only behavior without auth, sending, storage, mutation or ownership changes. Code is entered only in Add System and cleared; manager/private fields never enter customer pages. Public Account utility is separate from five primary links; guest checkout remains usable.
+55 tests pass; audit 31 pages / 0 errors; 248 responsive layouts and 30 Account Axe states. Human visual/architecture review required; do not auto-merge.

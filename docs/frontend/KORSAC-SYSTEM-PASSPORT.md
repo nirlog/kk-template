@@ -2,8 +2,8 @@
 
 Base: PR #12 merged into `main`, `01219297b9af159102feaa95d9e9569659642310`.
 Ownership addendum base: merged PR #13, `main` at
-`5750d45dfddf9ecd9c1bd3b3a815a2021e9b76d9`. Account Experience remains the
-next separate feature stage; this post-merge correction implements no Account UI.
+`5750d45dfddf9ecd9c1bd3b3a815a2021e9b76d9`. The ownership correction implements no real auth or Account backend.
+Account Experience now provides a separate static review, linked below.
 
 This stage defines the physical-system domain and its public projection. The
 HTML, forms and dates are review fixtures. No Bitrix/D7 module, database,
@@ -107,7 +107,7 @@ System is «Индивидуальная сборка» without needing a catalo
 `MODEL_DISPLAY_NAME` is a System snapshot. The same domain supports PLAY,
 CREATE, WORK and CUSTOM. Nullable `System.USER_ID` is only the current account
 association, not the physical identity or proof of ownership. A System exists
-without an account. Account UI belongs to the subsequent Account Experience stage and is not implemented here.
+without an account. Account UI is a separate static review in [Account Experience](KORSAC-ACCOUNT-EXPERIENCE.md); real authentication and ownership processing remain future integration.
 
 ## Current owner and future commerce/account contract
 
@@ -140,8 +140,9 @@ checkout and login. Preserve display/contact values separately; do not invent
 provider-specific alias/dot stripping. Resolve concurrent user creation safely
 against Bitrix uniqueness and require verification instead of falling back to
 silent account attachment. Verification/login/session security, consent and
-error UX are future integration work. No Bitrix auth, guest-account creation,
-checkout requiredness change or Account UI is built in this PR.
+error UX are future integration work. No real Bitrix auth or guest-account
+creation is implemented; checkout requiredness remains unchanged. Account
+Experience provides a separate static UI review, not an authentication backend.
 
 ## Private physical System credential
 
@@ -259,8 +260,8 @@ current USER_ID, set `System.USER_ID = NULL`, and append ownership history with
 `SOURCE = USER_UNLINK`, old user and NULL new user, atomically. A stale/repeated
 request must not unlink a new owner or create duplicate history. It does not
 delete the System, close its Passport, rotate identities/secret or alter any
-component/service/warranty snapshot. This is documentation only: no Account
-screen, unlink handler or account ownership UI is implemented in public pages.
+component/service/warranty snapshot. Account Experience demonstrates customer confirmation without mutation.
+No real unlink handler or Account/ownership backend is implemented.
 
 ## Identifiers and QR
 
@@ -693,3 +694,7 @@ separate. Review at all eight required widths, keyboard, no-JS and reduced/live
 preference states. Human visual **and architecture** acceptance are required.
 See [review evidence](review/system-passport-v1.md) and
 [synthetic fixture ledger](review/system-passport-fixture.json).
+
+## Account customer projection
+
+[Account Experience](KORSAC-ACCOUNT-EXPERIENCE.md) supplies a static customer shell and ownership-request/unlink review. It queries conceptual current USER_ID, not historical Order.USER_ID; transferring a machine grants no previous owner order/private conversation access. Public Passport is unchanged. Add System verifies no secret in the browser and never mutates account association. Manager requests/history remain exclusively in the separate Bitrix Admin Ownership tab. Initial SECRET_CODE allocation during preparation, idempotency, privacy and privileged-only replacement remain authoritative and unimplemented backend guarantees.

@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" href="data:," />
+    <title>Заказы — KORSAC</title>
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <meta
+      name="description"
+      content="Заказы в личном кабинете KORSAC: статические примеры состава, суммы и статуса."
+    />
+    <meta property="og:title" content="Заказы — KORSAC" />
+    <meta
+      property="og:description"
+      content="Заказы в личном кабинете KORSAC: статические примеры состава, суммы и статуса."
+    />
+    <meta property="og:site_name" content="KORSAC" />
+    <meta property="og:type" content="website" />
+    <link rel="stylesheet" href="assets/css/tokens.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/brand.css" />
+    <link rel="stylesheet" href="assets/css/account.css" />
+    <script src="assets/js/prototype.js" defer></script>
+    <script src="assets/js/account.js" defer></script>
+  </head>
+  <body class="k-account-page" data-account-page="orders">
+    <a class="k-skip" href="#main">Перейти к содержимому</a>
+    <header class="k-account-header">
+      <div class="k-account-container">
+        <a
+          class="k-account-brand"
+          href="index.html"
+          aria-label="KORSAC — главная"
+          ><img
+            src="assets/images/brand/korsac-lockup-horizontal.svg"
+            width="450"
+            height="100"
+            alt="" /></a
+        ><span class="k-account-area">Личный кабинет</span
+        ><button
+          type="button"
+          class="k-button k-button--secondary"
+          data-account-logout
+        >
+          Выйти
+        </button>
+      </div>
+    </header>
+    <div class="k-account-container">
+      <nav class="k-account-nav" aria-label="Навигация личного кабинета">
+        <a href="account-orders.html" aria-current="page">Заказы</a
+        ><a href="account-systems.html">Мои системы</a
+        ><a href="account-inquiries.html">Мои обращения</a
+        ><a href="account-profile.html">Профиль</a>
+      </nav>
+      <p data-account-logout-feedback role="status" class="k-small"></p>
+      <main id="main" class="k-account-main">
+        <p class="k-account-fixture">
+          Статический review · демонстрационный аккаунт. Все заказы и обращения
+          — условные. Авторизации, отправки и сохранения данных нет.
+        </p>
+        <div class="k-account-heading">
+          <p class="k-eyebrow">Account / orders</p>
+          <h1>Заказы</h1>
+          <p class="k-lead">
+            Состав, статус и сохранённые условия ваших заказов.
+          </p>
+        </div>
+        <div class="k-account-list">
+          <article class="k-account-card">
+            <div class="k-account-card-head">
+              <h2>DEMO-4102</h2>
+              <span class="k-account-status">В работе · пример</span>
+            </div>
+            <p class="k-small k-muted">11.10.2026 · условный заказ</p>
+            <p>Два PLAY 1440 с разными конфигурациями и один монитор.</p>
+            <dl class="k-account-facts">
+              <div>
+                <dt>Состав</dt>
+                <dd>2 компьютера + MSI MAG 274QF X24</dd>
+              </div>
+              <div>
+                <dt>Сохранённая сумма товаров</dt>
+                <dd>381 850 ₽ · demo snapshot</dd>
+              </div>
+            </dl>
+            <a class="k-button k-button--secondary" href="account-order.html"
+              >Подробнее о заказе</a
+            >
+          </article>
+          <article class="k-account-card">
+            <div class="k-account-card-head">
+              <h2>DEMO-4101</h2>
+              <span class="k-account-status">Завершён · пример</span>
+            </div>
+            <p class="k-small k-muted">06.10.2026 · условный заказ</p>
+            <p>MSI MAG 274QF X24 · 1 шт.</p>
+            <p class="k-account-amount">22 050 ₽ · сохранённая demo-сумма</p>
+            <details>
+              <summary>Состав завершённого заказа</summary>
+              <p>
+                Обычный монитор без конфигуратора компьютера. System для него не
+                создаётся. Все показанные цены — статические примеры, не текущий
+                расчёт.
+              </p>
+            </details>
+          </article>
+        </div>
+        <noscript
+          ><p class="k-small k-muted">
+            Без JavaScript доступны страницы, поля и пояснения. Кнопки форм в
+            макете ничего не отправляют.
+          </p></noscript
+        >
+      </main>
+      <footer class="k-account-footer">
+        <span>KORSAC · личный кабинет</span
+        ><a href="contacts.html">Поддержка и контакты</a>
+      </footer>
+    </div>
+  </body>
+</html>

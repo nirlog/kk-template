@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" href="data:," />
+    <title>Профиль — KORSAC</title>
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <meta
+      name="description"
+      content="Профиль KORSAC: контактные данные, email и пароль. Макет без изменения учётной записи."
+    />
+    <meta property="og:title" content="Профиль — KORSAC" />
+    <meta
+      property="og:description"
+      content="Профиль KORSAC: контактные данные, email и пароль. Макет без изменения учётной записи."
+    />
+    <meta property="og:site_name" content="KORSAC" />
+    <meta property="og:type" content="website" />
+    <link rel="stylesheet" href="assets/css/tokens.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/brand.css" />
+    <link rel="stylesheet" href="assets/css/account.css" />
+    <script src="assets/js/prototype.js" defer></script>
+    <script src="assets/js/account.js" defer></script>
+  </head>
+  <body class="k-account-page" data-account-page="profile">
+    <a class="k-skip" href="#main">Перейти к содержимому</a>
+    <header class="k-account-header">
+      <div class="k-account-container">
+        <a
+          class="k-account-brand"
+          href="index.html"
+          aria-label="KORSAC — главная"
+          ><img
+            src="assets/images/brand/korsac-lockup-horizontal.svg"
+            width="450"
+            height="100"
+            alt="" /></a
+        ><span class="k-account-area">Личный кабинет</span
+        ><button
+          type="button"
+          class="k-button k-button--secondary"
+          data-account-logout
+        >
+          Выйти
+        </button>
+      </div>
+    </header>
+    <div class="k-account-container">
+      <nav class="k-account-nav" aria-label="Навигация личного кабинета">
+        <a href="account-orders.html">Заказы</a
+        ><a href="account-systems.html">Мои системы</a
+        ><a href="account-inquiries.html">Мои обращения</a
+        ><a href="account-profile.html" aria-current="page">Профиль</a>
+      </nav>
+      <p data-account-logout-feedback role="status" class="k-small"></p>
+      <main id="main" class="k-account-main">
+        <p class="k-account-fixture">
+          Статический review · демонстрационный аккаунт. Все заказы и обращения
+          — условные. Авторизации, отправки и сохранения данных нет.
+        </p>
+        <div class="k-account-heading">
+          <p class="k-eyebrow">Account / profile</p>
+          <h1>Профиль</h1>
+          <p class="k-lead">Контактные данные и доступ к аккаунту.</p>
+        </div>
+        <div class="k-account-profile-grid">
+          <section class="k-account-card">
+            <h2>Контактные данные</h2>
+            <p class="k-small k-muted">
+              Поля оставлены пустыми для review. Реальные данные пользователя не
+              загружены.
+            </p>
+            <form method="dialog" data-account-form="profile" novalidate>
+              <div class="k-field">
+                <label for="profile-name">Имя · необязательно</label
+                ><input
+                  class="k-control"
+                  id="profile-name"
+                  type="text"
+                  autocomplete="name"
+                />
+              </div>
+              <div class="k-field">
+                <label for="profile-email">Email · обязательно</label
+                ><input
+                  class="k-control"
+                  id="profile-email"
+                  type="email"
+                  autocomplete="email"
+                  required
+                />
+              </div>
+              <div class="k-field">
+                <label for="profile-phone">Телефон · необязательно</label
+                ><input
+                  class="k-control"
+                  id="profile-phone"
+                  type="tel"
+                  autocomplete="tel"
+                />
+              </div>
+              <p
+                class="k-account-feedback"
+                role="status"
+                aria-live="polite"
+                data-account-feedback
+              ></p>
+              <button class="k-button" type="button" data-account-check>
+                Проверить изменения · макет
+              </button>
+              <p class="k-small k-muted">
+                Email используется для входа. В магазине изменение проходит
+                проверку и подтверждение; в этом макете аккаунт не изменяется.
+              </p>
+            </form>
+          </section>
+          <section class="k-account-card">
+            <h2>Изменить пароль</h2>
+            <form method="dialog" data-account-form="password" novalidate>
+              <div class="k-field">
+                <label for="profile-current-password"
+                  >Текущий пароль · обязательно</label
+                ><input
+                  class="k-control"
+                  id="profile-current-password"
+                  type="password"
+                  autocomplete="current-password"
+                  required
+                />
+              </div>
+              <div class="k-field">
+                <label for="profile-new-password"
+                  >Новый пароль · обязательно</label
+                ><input
+                  class="k-control"
+                  id="profile-new-password"
+                  type="password"
+                  autocomplete="new-password"
+                  required
+                />
+              </div>
+              <div class="k-field">
+                <label for="profile-confirm-password"
+                  >Подтверждение нового пароля · обязательно</label
+                ><input
+                  class="k-control"
+                  id="profile-confirm-password"
+                  type="password"
+                  autocomplete="new-password"
+                  required
+                />
+              </div>
+              <p
+                class="k-account-feedback"
+                role="status"
+                aria-live="polite"
+                data-account-feedback
+              ></p>
+              <button class="k-button" type="button" data-account-check>
+                Проверить пароль · макет
+              </button>
+            </form>
+            <p class="k-small k-muted">
+              Правила и проверку текущего пароля задаёт магазин. Здесь нет
+              проверки учётной записи или сохранения пароля.
+            </p>
+          </section>
+        </div>
+        <noscript
+          ><p class="k-small k-muted">
+            Без JavaScript доступны страницы, поля и пояснения. Кнопки форм в
+            макете ничего не отправляют.
+          </p></noscript
+        >
+      </main>
+      <footer class="k-account-footer">
+        <span>KORSAC · личный кабинет</span
+        ><a href="contacts.html">Поддержка и контакты</a>
+      </footer>
+    </div>
+  </body>
+</html>

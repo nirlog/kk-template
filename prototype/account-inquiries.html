@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" href="data:," />
+    <title>Мои обращения — KORSAC</title>
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <meta
+      name="description"
+      content="Обращения по системам KORSAC: контекст, тема и статус. Статические примеры поддержки."
+    />
+    <meta property="og:title" content="Мои обращения — KORSAC" />
+    <meta
+      property="og:description"
+      content="Обращения по системам KORSAC: контекст, тема и статус. Статические примеры поддержки."
+    />
+    <meta property="og:site_name" content="KORSAC" />
+    <meta property="og:type" content="website" />
+    <link rel="stylesheet" href="assets/css/tokens.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/brand.css" />
+    <link rel="stylesheet" href="assets/css/account.css" />
+    <script src="assets/js/prototype.js" defer></script>
+    <script src="assets/js/account.js" defer></script>
+  </head>
+  <body class="k-account-page" data-account-page="inquiries">
+    <a class="k-skip" href="#main">Перейти к содержимому</a>
+    <header class="k-account-header">
+      <div class="k-account-container">
+        <a
+          class="k-account-brand"
+          href="index.html"
+          aria-label="KORSAC — главная"
+          ><img
+            src="assets/images/brand/korsac-lockup-horizontal.svg"
+            width="450"
+            height="100"
+            alt="" /></a
+        ><span class="k-account-area">Личный кабинет</span
+        ><button
+          type="button"
+          class="k-button k-button--secondary"
+          data-account-logout
+        >
+          Выйти
+        </button>
+      </div>
+    </header>
+    <div class="k-account-container">
+      <nav class="k-account-nav" aria-label="Навигация личного кабинета">
+        <a href="account-orders.html">Заказы</a
+        ><a href="account-systems.html">Мои системы</a
+        ><a href="account-inquiries.html" aria-current="page">Мои обращения</a
+        ><a href="account-profile.html">Профиль</a>
+      </nav>
+      <p data-account-logout-feedback role="status" class="k-small"></p>
+      <main id="main" class="k-account-main">
+        <p class="k-account-fixture">
+          Статический review · демонстрационный аккаунт. Все заказы и обращения
+          — условные. Авторизации, отправки и сохранения данных нет.
+        </p>
+        <div class="k-account-heading">
+          <p class="k-eyebrow">Account / inquiries</p>
+          <h1>Мои обращения</h1>
+          <p class="k-lead">
+            Поддержка по вашим системам. Заявки на владение находятся в «Мои
+            системы».
+          </p>
+        </div>
+        <a
+          class="k-button k-button--secondary"
+          href="passport.html#inquiry-fallback"
+          >Задать вопрос по моей системе</a
+        >
+        <div class="k-account-list">
+          <article class="k-account-card">
+            <div class="k-account-card-head">
+              <h2>DEMO-Q01 · Техническая поддержка</h2>
+              <span class="k-account-status">Открыто · пример</span>
+            </div>
+            <p class="k-small k-muted">
+              10.10.2026 · KS-2610-0012 · условное обращение
+            </p>
+            <details>
+              <summary>Контекст обращения</summary>
+              <p>Вопрос о подключении периферии к системе.</p>
+              <p class="k-small k-muted">
+                Синтетический текст, не запись клиента. Нет обещания срока
+                ответа или выполнения работ.
+              </p>
+            </details>
+          </article>
+          <article class="k-account-card">
+            <div class="k-account-card-head">
+              <h2>DEMO-Q02 · Обслуживание</h2>
+              <span class="k-account-status">Ответ получен · пример</span>
+            </div>
+            <p class="k-small k-muted">
+              09.10.2026 · KS-2610-0012 · условное обращение
+            </p>
+            <details>
+              <summary>Контекст обращения</summary>
+              <p>
+                Уточнение порядка обращения для обслуживания. Здесь показан
+                только клиентский контекст, без внутренних сервисных записей.
+              </p>
+              <p class="k-small k-muted">
+                Синтетический текст, не запись клиента. Нет обещания срока
+                ответа или выполнения работ.
+              </p>
+            </details>
+          </article>
+        </div>
+        <noscript
+          ><p class="k-small k-muted">
+            Без JavaScript доступны страницы, поля и пояснения. Кнопки форм в
+            макете ничего не отправляют.
+          </p></noscript
+        >
+      </main>
+      <footer class="k-account-footer">
+        <span>KORSAC · личный кабинет</span
+        ><a href="contacts.html">Поддержка и контакты</a>
+      </footer>
+    </div>
+  </body>
+</html>
